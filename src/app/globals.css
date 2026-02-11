@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'Comfortaa';
-    src: url('../assets/fonts/Comfortaa-VariableFont_wght.ttf');         
+    src: url('../assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf');         
 }
 @font-face {
     font-family: 'Marmelad';
-    src: url('../assets/fonts/Marmelad-Regular.ttf');         
+    src: url('../assets/fonts/Marmelad/Marmelad-Regular.ttf');         
 }
 *{
     margin: 0px;
@@ -20,14 +20,14 @@ h2,h1,h3, button{
 }
 
 :root{
-    --background-header: #CADAED;
+    --primary-color: #CADAED;
     --dark-blue: #22304A;
     --text-color: #000000;
     --input-color:#9F9F9F;
     --background-card:#9CB4D3;
     --lines-table: #40878E;
     --background-table: #CBEFF2;
-    --light-text-color: #FFFF;
+    --secundary-color: #FFFF;
     --border-button:#415A77;
     --button-personalized-plan:#AE9C7C;
     --border-personalized-plan:#C9BBA0;

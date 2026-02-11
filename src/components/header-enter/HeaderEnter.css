@@ -1,0 +1,17 @@
+@import url(../../app/globals.css);
+
+
+header{
+    height: 60px;
+  display: flex;
+  align-items: center;
+  
+  padding: 80px 70px;
+  
+    background-color: var(--primary-color);
+}
+
+.logo {
+  display: flex;
+  margin-right: -100;
+}
