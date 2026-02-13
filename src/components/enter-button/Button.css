@@ -1,0 +1,9 @@
+@import url(../../app/globals.css);
+
+button{
+    padding: 12px 41px;
+    font-size: 30px;
+    border-radius: 30px;
+    color: var(--secundary-color);
+    background-color: var(--dark-blue);
+}

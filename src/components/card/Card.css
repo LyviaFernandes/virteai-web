@@ -1,0 +1,10 @@
+@import url(../../app/globals.css);
+
+.CardGeneral{
+    background-color: var(--background-card);
+    border-radius: 50px;
+    width: 660px;
+    height: 500px;
+  overflow: hidden; /* Ensures the image respects the border radius */
+  margin: 16px;
+}
