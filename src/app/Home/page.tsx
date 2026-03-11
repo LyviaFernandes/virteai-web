@@ -2,7 +2,7 @@
 import React from 'react';
 import './home.css'
 import Image from 'next/image';
-import HeaderHome from '@/components/header-logout/Header';
+import HeaderHome from '@/components/header-login/Header';
 import ImageCenter from '../../assets/images/personalize-your-glasses.svg';
 import Julio from '../../assets/images/patient-julio.svg';
 import Lucas from '../../assets/images/patient-mariana.svg';
@@ -41,11 +41,11 @@ export default function HomePage () {
         <div className="Home-container">
             <HeaderHome/>
 
-                <Image 
+            <Image 
                 className='Personalize' 
                 src={ImageCenter} 
                 alt="Imagem com um oculos de realidade virtual e um botão escrito 'Personalize o seu' " 
-                />
+            />
             
 
             <div className="Relatos-container">

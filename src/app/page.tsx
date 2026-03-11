@@ -11,10 +11,12 @@ import Login from "./Login/page";
 import PatientSingup from "./SingUpPatient/page";
 import TherapistSingup from "./SingUpTherapist/page";
 import RedefinePassword from "./RedefineWeb/page";
+import Profile from "./Profile/page";
+import Acess from "./AccountAcess/page";
 
 export default function Home() {
   return (
-    <RedefinePassword/>
+    <HomePage/>
     
   );
 }

@@ -1,4 +1,6 @@
-import React from 'react';
+"use client"
+
+import React, { useState } from 'react';
 import './Header.css'
 import logo from '../../assets/images/logo.svg';
 import aboutUs from '../../assets/images/about-us.svg';
@@ -8,16 +10,17 @@ import profile from '../../assets/images/ProfileIcon.svg';
 import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
 
-
 export default function HeaderHome () {
 
+    const [openModal, setOpenModal] = useState(false);
+
     return (
+        <>
         <header>
             <Image 
             className='logo' 
             src={logo} 
             alt="Logo image" 
-            
             />
             
             <div className="container-pages">
@@ -28,12 +31,14 @@ export default function HeaderHome () {
                     src={aboutUs} 
                     alt="Sobre nós icon" 
                     width={50}
-                   
                     />
                     <p>Sobre nós</p>
                 </div>
 
-                <div className="iconecontainer">
+                <button 
+                className="iconecontainer"
+                onClick={() => setOpenModal(true)}
+                >
                     <Image 
                     className='image' 
                     src={Offers} 
@@ -42,7 +47,7 @@ export default function HeaderHome () {
                     />
 
                     <p>Nossos serviços</p>
-                </div>
+                </button>
                 
                 <div className="iconecontainer">
                     <Image 
@@ -50,7 +55,6 @@ export default function HeaderHome () {
                     src={home} 
                     alt="Pagina inicial" 
                     width={50}
-                    
                     />
 
                     <p>Página inicial</p>
@@ -73,12 +77,45 @@ export default function HeaderHome () {
                 className='Profile' 
                 src={profile} 
                 alt="Icon profile" 
-            
-            />
-
+                />
             </div>
             
         </header>
 
-        );
+        {openModal && (
+            <div className="modal-overlay">
+                    <div className="container-tittle">
+                        <h2>Formulário de Conhecimento</h2>
+                    </div>
+                <div className="modal">
+
+                    <p>
+                        Responda o pequeno formulário a seguir, para que possamos seguir da melhor maneira:
+                    </p>
+
+                    <label>
+                        <input type="radio" name="tea"/>
+                        Eu não sei ou não tenho certeza se possuo o Transtorno do Espectro Autista (TEA).
+                    </label>
+
+                    <label>
+                        <input type="radio" name="tea"/>
+                        Eu possuo o Transtorno do Espectro Autista (TEA), mas não possuo ou não consegui um laudo.
+                    </label>
+
+                    <label>
+                        <input type="radio" name="tea"/>
+                        Eu possuo o Transtorno do Espectro Autista (TEA), e já possuo um laudo.
+                    </label>
+
+                    <div className="modal-buttons">
+                        <button>Enviar</button>
+                        <button onClick={() => setOpenModal(false)}>Fechar</button>
+                    </div>
+
+                </div>
+            </div>
+        )}
+        </>
+    );
 }
