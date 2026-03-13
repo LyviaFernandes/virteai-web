@@ -9,10 +9,35 @@ import home from '../../assets/images/homeicon.svg';
 import profile from '../../assets/images/ProfileIcon.svg';
 import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
+import Link from "next/link";
 
 export default function HeaderHome () {
 
     const [openModal, setOpenModal] = useState(false);
+    const [openNotifications, setOpenNotifications] = useState(false);
+
+    const [notifications, setNotifications] = useState([
+        {id:1, text1:"Novo recurso disponível!", text2:"Ajuste a intensidade visual e sonora", read:false},
+        {id:2, text1:"Seu formulário de avaliação foi atualizado!", text2:"Acompanhe!", read:false},
+        {id:3, text1:"Atualizamos a interface para melhorar a acessibilidade.", text2:"", read:false},
+        {id:4, text1:"Seu responsável adicionou novas configurações ao seu perfil.", text2:"", read:false},
+        {id:5, text1:"Você sabia que pode ajustar o tempo de uso na sua conta?", text2:"", read:false},
+        {id:6, text1:"Hora de fazer uma pausa ⏱️", text2:"", read:false},
+        {id:7, text1:"Revisão de configurações recomendada após 30 dias de uso.", text2:"", read:false},
+        {id:8, text1:"Temos novas opções de personalização disponíveis!", text2:"", read:false},
+        {id:9, text1:"Um profissional recomendou uma experiência VR para você.", text2:"", read:false},
+        {id:10, text1:"Estamos analisando seu feedback.", text2:"Agradecemos a sua contribuição!", read:false}
+    ]);
+
+    const markAsRead = (id:number) => {
+        setNotifications(prev =>
+            prev.map(notification =>
+                notification.id === id
+                ? {...notification, read:true}
+                : notification
+            )
+        );
+    };
 
     return (
         <>
@@ -24,16 +49,29 @@ export default function HeaderHome () {
             />
             
             <div className="container-pages">
+                <Link href="Home">
+                    <button className="iconecontainer">
+                        <Image 
+                        className='image' 
+                        src={home} 
+                        alt="Pagina inicial" 
+                        width={50}
+                        />
+                        <p>Página inicial</p>
+                    </button>
+                </Link>
 
-                <div className="iconecontainer">
-                    <Image 
-                    className='image' 
-                    src={aboutUs} 
-                    alt="Sobre nós icon" 
-                    width={50}
-                    />
-                    <p>Sobre nós</p>
-                </div>
+                <Link href="/AboutUs">
+                    <button className="iconecontainer">
+                        <Image 
+                        className='image' 
+                        src={aboutUs} 
+                        alt="Sobre nós icon" 
+                        width={50}
+                        />
+                        <p>Sobre nós</p>
+                    </button>
+                </Link>
 
                 <button 
                 className="iconecontainer"
@@ -45,42 +83,70 @@ export default function HeaderHome () {
                     alt="Ofertas icon" 
                     width={50}
                     />
-
                     <p>Nossos serviços</p>
                 </button>
                 
-                <div className="iconecontainer">
-                    <Image 
-                    className='image' 
-                    src={home} 
-                    alt="Pagina inicial" 
-                    width={50}
-                    />
 
-                    <p>Página inicial</p>
-                </div>
-
-                <div className="iconecontainer">
+                <button 
+                className="iconecontainer"
+                onClick={() => setOpenNotifications(true)}
+                >
                     <Image 
                     className='image' 
                     src={Notification} 
                     alt="Notificações icon" 
                     width={50}
                     />
-
                     <p>Notificações</p>
-                </div>
-            </div>
+                </button>
 
-            <div className="container-profile">
-                <Image 
-                className='Profile' 
-                src={profile} 
-                alt="Icon profile" 
-                />
             </div>
             
+            <Link href="PacientProfile">
+                <button
+                className="container-profile">
+                    <Image 
+                    className='Profile' 
+                    src={profile} 
+                    alt="Icon profile" 
+                    />
+                </button>
+            </Link>
+            
         </header>
+
+        {openNotifications && (
+            <div 
+                className="notification-overlay"
+                onClick={() => setOpenNotifications(false)}
+            >
+
+                <div 
+                    className="notification-panel"
+                    onClick={(e) => e.stopPropagation()}
+                >
+
+                    <h2>NOTIFICAÇÕES</h2>
+
+                    <div className="container-notification">
+
+                        {notifications.map((notification)=>(
+                            <div
+                                key={notification.id}
+                                className={`notification-item ${notification.read ? "read" : ""}`}
+                                onClick={()=>markAsRead(notification.id)}
+                            >
+                                <p>{notification.text1}</p>
+                                {notification.text2 && <p>{notification.text2}</p>}
+                            </div>
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </div>
+        )}
 
         {openModal && (
             <div className="modal-overlay">

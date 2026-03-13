@@ -1,0 +1,13 @@
+@import url(../../app/globals.css);
+
+
+.section-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Container-profile .IconPaciente{
+    display: flex;
+    width: 50%;
+}

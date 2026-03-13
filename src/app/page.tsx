@@ -16,7 +16,7 @@ import Acess from "./AccountAcess/page";
 
 export default function Home() {
   return (
-    <HomePage/>
+    <AboutUs/>
     
   );
 }

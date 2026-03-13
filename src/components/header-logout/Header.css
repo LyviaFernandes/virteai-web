@@ -3,15 +3,53 @@
 
 header{
     width: 100%;
-  height: 170px;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  background-color: var(--primary-color);
-  justify-content: space-between;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: var(--primary-color);
+    justify-content: space-evenly;
+    gap: 5%;
 }
 
+.container-profile{
+    display: flex;
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
 
+.logo{
+    width: 15%;
+   margin-left: -3%;
+}
+
+.container-pages{
+    display: flex;
+    justify-content: space-between;
+    gap: 15%;
+    justify-content: center;
+}
+
+.iconecontainer p{
+    width: 170px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.iconecontainer{
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-pages a,
+.container-pages a:visited{
+    text-decoration: none;
+    color: inherit;
+}
 
 .white-button{
     padding: 15px 20px;
@@ -19,6 +57,7 @@ header{
     border-radius: 25px;
     color: var(--dark-blue);
     background-color: var(--secundary-color);
+    cursor: pointer;
 }
 .blue-button{
     padding: 15px 30px;   
@@ -26,33 +65,12 @@ header{
     border-radius: 25px;
     color: var(--secundary-color);
     background-color: var(--dark-blue);
+    cursor: pointer;
 }
 
 .container-button{
     display: flex;
     gap: 20px;
-    margin-right: 3%;
-}
-
-.logo{
-    width: 15%;
-    margin-left: 3%;
+   
     
-}
-
-.container-pages{
-    display: flex;
-    justify-content: space-between;
-    gap: 10%;
-}
-.iconecontainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.iconecontainer p{
-    width: 150px;
-    margin-top: 10px;
 }

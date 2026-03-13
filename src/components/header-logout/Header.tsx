@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import './Header.css'
 import logo from '../../assets/images/logo.svg';
@@ -7,6 +9,8 @@ import home from '../../assets/images/homeicon.svg';
 import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
 import ButtonEnter from '../enter-button/Button';
+import Link from "next/link";
+
 
 export default function HeaderLogout () {
 
@@ -19,53 +23,58 @@ export default function HeaderLogout () {
             
             />
             
-            <div className="container-pages">
+            <Link href="Home">
+                    <button className="iconecontainer">
+                        <Image 
+                        className='image' 
+                        src={home} 
+                        alt="Pagina inicial" 
+                        width={50}
+                        />
+                        <p>Página inicial</p>
+                    </button>
+                </Link>
 
-                <div className="iconecontainer">
-                    <Image 
-                    className='image' 
-                    src={aboutUs} 
-                    alt="Sobre nós icon" 
-                    width={50}
-                   
-                    />
-                    <p>Sobre nós</p>
-                </div>
+                <Link href="/AboutUs">
+                    <button className="iconecontainer">
+                        <Image 
+                        className='image' 
+                        src={aboutUs} 
+                        alt="Sobre nós icon" 
+                        width={50}
+                        />
+                        <p>Sobre nós</p>
+                    </button>
+                </Link>
 
-                <div className="iconecontainer">
-                    <Image 
-                    className='image' 
-                    src={Offers} 
-                    alt="Ofertas icon" 
-                    width={50}
-                    />
-
-                    <p>Nossos serviços</p>
-                </div>
+                <Link href="/AccountAcess">
+                    <button 
+                    className="iconecontainer"
+                    >
+                        <Image 
+                        className='image' 
+                        src={Offers} 
+                        alt="Ofertas icon" 
+                        width={50}
+                        />
+                        <p>Nossos serviços</p>
+                    </button>
+                </Link>
                 
-                <div className="iconecontainer">
-                    <Image 
-                    className='image' 
-                    src={home} 
-                    alt="Pagina inicial" 
-                    width={50}
-                    
-                    />
+                <Link href="/AccountAcess">
+                    <button 
+                    className="iconecontainer"
+                    >
+                        <Image 
+                        className='image' 
+                        src={Notification} 
+                        alt="Notificações icon" 
+                        width={50}
+                        />
+                        <p>Notificações</p>
+                    </button>
+                </Link>
 
-                    <p>Página inicial</p>
-                </div>
-
-                <div className="iconecontainer">
-                    <Image 
-                    className='image' 
-                    src={Notification} 
-                    alt="Notificações icon" 
-                    width={50}
-                    />
-
-                    <p>Notificações</p>
-                </div>
-            </div>
 
             <div className="container-button">
                 <button className='white-button'>
