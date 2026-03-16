@@ -7,7 +7,7 @@ header{
   display: flex;
   align-items: center; 
   background-color: var(--primary-color);
-  gap: 80%;
+  gap: 77%;
   position: fixed;
   top: 0;
 
@@ -17,4 +17,11 @@ header{
   margin: 3%;
 }
 
+.return{
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
 
+.container-return{
+  background-color: var(--primary-color);
+}

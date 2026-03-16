@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 120px;
+    margin-top: 15%;
 }
 
 .card-container h2{
@@ -21,10 +21,11 @@
 
 .card{
     background-color: var(--background-card);
-    padding: 50px 50px;
+    padding: 35px 80px;
     border-radius: 50px;
     z-index: 0;
     margin-top: -40px;
+    justify-content: center;
 }
 
 .card p{
@@ -45,4 +46,27 @@
     margin-top: 50px;
     gap: 10px;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.container-login{
+    display: flex;
+    background-color: var(--background-card);
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    color: var(--dark-blue);
+}
+
+.redefine-container{
+    display: flex;
+    background-color: var(--background-card);
+    cursor: pointer;
+    color: var(--dark-blue);
+    
+}
+
+.card input{
+    width: 65%;
 }

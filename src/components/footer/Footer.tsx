@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import './Footer.css'
 import logo from '../../assets/images/logo.svg';

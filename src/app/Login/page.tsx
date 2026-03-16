@@ -7,6 +7,7 @@ import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
+import Link from "next/link";
 
 
 export default function Login () {
@@ -25,9 +26,13 @@ export default function Login () {
                     <p>Senha:</p>
                     <Input description='Insira sua senha'/>
 
-                    <div className="password">
-                        <p>esqueci minha senha</p>
-                    </div>
+                    <Link href="/RedefineWeb">
+                        <button className='redefine-container'>
+                            <div className="password">
+                                <p>esqueci minha senha</p>
+                            </div>
+                        </button>
+                    </Link>
 
                     <div className="container-buttons">
                         <ButtonEnter
@@ -35,7 +40,11 @@ export default function Login () {
                         onclick={() => console.log("oi")}
                         />
 
-                        <p>Não tenho cadastro</p>
+                        <Link href="/Profile">
+                            <button className='container-login'>
+                                <p>Não tenho cadastro</p>
+                            </button>
+                        </Link>
                     </div>
                 </div>
 

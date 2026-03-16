@@ -1,0 +1,56 @@
+@import url(../globals.css);
+
+.Banner{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.text-container{
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text-container p{
+    font-size: 30px;
+    width: 900px;
+    margin: 50px;
+    text-align: justify;
+}
+
+.text-container h1{
+    font-size: 60px;
+}
+
+.container-therapist{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+
+.therapist-perfil{
+    display: flex;
+    padding: 50px;
+    box-shadow: 3px 3px 5px rgb(94, 92, 92);
+    cursor: pointer;
+}
+
+.description-therapist h2{
+    font-size: 40px;
+}
+
+.description-therapist p{
+    font-size: 30px;
+    margin-top: 20px;
+    width: 1000px;
+}
+
+.description-therapist{
+    margin-left: 50px;
+    margin-right: 35%;
+}

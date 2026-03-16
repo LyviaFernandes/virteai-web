@@ -13,10 +13,12 @@ import TherapistSingup from "./SingUpTherapist/page";
 import RedefinePassword from "./RedefineWeb/page";
 import Profile from "./Profile/page";
 import Acess from "./AccountAcess/page";
+import TherapistList from "./TherapistList/page";
+import Questionnaire from "./AQ10TestWeb/page";
 
 export default function Home() {
   return (
-    <AboutUs/>
+    <Questionnaire/>
     
   );
 }

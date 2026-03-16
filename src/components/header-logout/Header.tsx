@@ -77,12 +77,16 @@ export default function HeaderLogout () {
 
 
             <div className="container-button">
-                <button className='white-button'>
-                    <h3>Entrar</h3>
-                </button>
-                <button className='blue-button'>
-                    <h3>Cadastre-se</h3>
-                </button>
+                <Link href="/Login">
+                    <button className='white-button'>
+                        <h3>Entrar</h3>
+                    </button>
+                </Link>
+                <Link href="/Profile">
+                    <button className='blue-button'>
+                        <h3>Cadastre-se</h3>
+                    </button>
+                </Link>
 
             </div>
             
