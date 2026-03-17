@@ -32,23 +32,43 @@
 .Questionnaire-Section h2{
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    width: 70px;
-    align-items: center;
+    padding: 25px;
+    width: 160px;
+    
     background-color: var(--background-card);
-    border-radius: 50px;
+    border-radius: 60px;
+    font-size: 50px;
+    z-index: 2;
+    box-shadow: 5px 5px 5px rgb(54, 53, 53);
+    margin-bottom: -30px;
+}
+
+.text-question{
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    width: 160px;
+    
+    background-color: var(--background-card);
+    border-radius: 60px;
+    font-size: 50px;
+    z-index: 2;
+    box-shadow: 5px 5px 5px rgb(54, 53, 53);
+    margin-bottom: -30px;
 }
 
 .card-questions{
     display: flex;
     flex-direction: column;
     width: 70%;
-    align-items: center;
     background-color: var(--background-card);
     border-radius: 50px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 100px;
+    padding-bottom: 70px;
     justify-content: center;
+    margin-bottom: 100px;
+    z-index: 0;
+    align-items: center;
 }
 
 .questions{
@@ -56,9 +76,63 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--secundary-color);
-    width: 99%;
+    width: 85%;
+    padding: 100px 100px 50px 100px;
+}
+
+.questions-colorsand{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--backgroud-sand);
+    width: 85%;
+    padding: 100px 100px 50px 100px;
 }
 
 .questions p{
+    font-size: 30px;
+}
+
+.questions-colorsand p{
+    font-size: 30px;
+}
+
+.questions-section{
+    display: flex;
+    gap: 230px;
+    justify-content: space-between;
+}
+
+.label-container label{
+    display: flex;
+    font-size: 30px;
+    margin-top: 22px;
+    width: 30px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.label-container input[type="radio"]{
+    transform: scale(3);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.envite{
+    display: flex;
+    color: var(--secundary-color);
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--dark-blue);
+    padding: 15px 47px;
+    border-radius: 30px;
+    margin-top: 50px;
+    width: 150px;
+    margin-left: 100px;
+}
+
+.envite p{
     font-size: 30px;
 }
