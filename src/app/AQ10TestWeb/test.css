@@ -1,10 +1,16 @@
 @import url(../globals.css);
 
-
+* {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
 .Questionnaire-Section{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    height: 100vh;
 }
 .description{
     display: flex;
@@ -138,4 +144,94 @@
 
 .envite p{
     font-size: 30px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px){
+
+    .description h1{
+        font-size: 28px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding: 20px;
+        align-items: center;
+    }
+
+    .description p{
+        font-size: 16px;
+        width: 90%;
+        margin-bottom: 40px;
+    }
+
+    .Questionnaire-Section h2{
+        font-size: 24px;
+        width: 120px;
+        padding: 10px;
+        margin-bottom: -20px;
+    }
+
+    .card-questions{
+        width: 95%;
+        padding-top: 50px;
+        padding-bottom: 40px;
+        border-radius: 25px;
+    }
+
+    .questions,
+    .questions-colorsand{
+        width: 98%;
+        padding: 30px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .questions p,
+    .questions-colorsand p{
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    /* aqui é CRÍTICO pro mobile */
+    .questions-section{
+        flex-direction: column;
+        gap: 25px;
+        align-items: flex-start;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 45%;
+    }
+
+    .label-container{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .label-container label{
+        font-size: 16px;
+        width: auto;
+        text-align: left;
+        justify-content: flex-start;
+        margin: 0;
+    }
+
+    .label-container input[type="radio"]{
+        transform: scale(1.3);
+        margin-right: 5px;
+    }
+
+    .envite{
+        width: 120px;
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .envite p{
+        font-size: 18px;
+    }
 }

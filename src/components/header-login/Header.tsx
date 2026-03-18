@@ -7,14 +7,16 @@ import aboutUs from '../../assets/images/about-us.svg';
 import Offers from '../../assets/images/offers.svg';
 import home from '../../assets/images/homeicon.svg';
 import profile from '../../assets/images/ProfileIcon.svg';
+import menu from '../../assets/images/iconmenu.svg';
 import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
 import Link from "next/link";
 
 export default function HeaderHome () {
-
+    
     const [openModal, setOpenModal] = useState(false);
     const [openNotifications, setOpenNotifications] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const [notifications, setNotifications] = useState([
         {id:1, text1:"Novo recurso disponível!", text2:"Ajuste a intensidade visual e sonora", read:false},
@@ -47,6 +49,19 @@ export default function HeaderHome () {
             src={logo} 
             alt="Logo image" 
             />
+            <button 
+
+            // menu
+            className="hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            >
+            <Image 
+                className='image' 
+                src={menu} 
+                alt="" 
+                width={40}
+                        />
+            </button>
             
             <div className="container-pages">
                 <Link href="Home">
@@ -114,6 +129,43 @@ export default function HeaderHome () {
             </Link>
             
         </header>
+
+        {menuOpen && (
+            <div className="mobile-menu">
+
+                <Link href="Home" onClick={() => setMenuOpen(false)}>
+                <p>Página inicial</p>
+                </Link>
+
+                <Link href="/AboutUs" onClick={() => setMenuOpen(false)}>
+                <p>Sobre nós</p>
+                </Link>
+
+                <button onClick={() => {
+                setOpenModal(true);
+                setMenuOpen(false);
+                }}>
+                    <p>
+                        Nossos serviços
+                    </p>
+                </button>
+
+                <button onClick={() => {
+                setOpenNotifications(true);
+                setMenuOpen(false);
+                }}>
+                    <p>
+
+                        Notificações
+                    </p>
+                </button>
+
+                <Link href="PacientProfile" onClick={() => setMenuOpen(false)}>
+                <p>Perfil</p>
+                </Link>
+
+            </div>
+            )}
 
         {openNotifications && (
             <div 

@@ -1,6 +1,10 @@
 @import url(../../app/globals.css);
 
-
+* {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+    }
 header{
     width: 100%;
     height: 170px;
@@ -189,4 +193,136 @@ header{
 
 .notification-item.read{
     background: var(--read-notifications);
+}
+
+/* ================= MOBILE ================= */
+
+.hamburger{
+    display: none;
+    background: none;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+/* menu mobile escondido por padrão */
+.mobile-menu{
+    display: none;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px){
+
+    header{
+        display: flex;
+        height: 100px;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .logo{
+        width: 100px;
+        margin-left: 2%;
+    }
+
+    /* esconde menu desktop */
+    .container-pages{
+        display: none;
+    }
+
+    /* esconde profile (opcional, podemos manter se quiser) */
+    .container-profile{
+        display: none;
+    }
+
+    /* mostra hamburger */
+    .hamburger{
+        margin-left: 45%;
+        display: flex;
+        cursor: pointer;
+    }
+
+    /* menu mobile */
+    .mobile-menu{
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        background: var(--primary-color);
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        z-index: 999;
+        
+    }
+
+    .mobile-menu a,
+    .mobile-menu button{
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    /* ===== MODAL MOBILE ===== */
+
+    .modal{
+        width: 90%;
+        padding: 30px;
+        border-radius: 20px;
+    }
+
+    .container-tittle h2{
+        font-size: 24px;
+        padding: 10px 20px;
+    }
+
+    .modal p{
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .modal label{
+        font-size: 16px;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .modal input[type="radio"]{
+        transform: scale(1.2);
+    }
+
+    .modal-buttons{
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .modal-buttons button{
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    /* ===== NOTIFICAÇÕES MOBILE ===== */
+
+    .notification-panel{
+        width: 80%;
+    }
+
+    .container-notification{
+        width: 80%;
+        margin-left: 0;
+        padding: 10px;  
+    }
+
+    .notification-panel h2{
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
 }
