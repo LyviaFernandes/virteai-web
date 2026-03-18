@@ -15,10 +15,11 @@ import Profile from "./Profile/page";
 import Acess from "./AccountAcess/page";
 import TherapistList from "./TherapistList/page";
 import Questionnaire from "./AQ10TestWeb/page";
+import BigQuestionnaire from "./AQ50TestWeb/page";
 
 export default function Home() {
   return (
-    <Questionnaire/>
+    <BigQuestionnaire/>
     
   );
 }

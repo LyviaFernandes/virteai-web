@@ -2,7 +2,6 @@
 
 import React from 'react';
 import './test.css'
-import Image from 'next/image';
 import HeaderHome from '@/components/header-login/Header';
 import Footer from '@/components/footer/Footer';
 import { useRef, useEffect } from 'react';
