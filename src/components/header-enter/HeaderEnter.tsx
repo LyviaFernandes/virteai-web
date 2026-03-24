@@ -18,7 +18,7 @@ export default function HeaderEnter ({src} : ICard) {
     return (
         <header>
             <Image 
-            className='Login' 
+            className='Logo' 
             src={logo} 
             alt="Logo image" 
             width={160}

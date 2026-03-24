@@ -74,3 +74,69 @@ header{
    
     
 }
+
+.hamburger{
+        display: none;
+    }
+/* ===== MOBILE ===== */
+@media (max-width: 768px){
+
+    header{
+        display: flex;
+        height: 100px;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .logo{
+        width: 100px;
+        margin-left: 2%;
+    }
+
+    /* esconde menu desktop */
+    .iconecontainer{
+        display: none;
+    }
+
+    /* esconde profile (opcional, podemos manter se quiser) */
+    .container-button{
+        display: none;
+    }
+
+    /* mostra hamburger */
+    .hamburger{
+        display: flex;
+        cursor: pointer;
+        margin-left: 55%;
+        align-items: center;
+        background-color: var(--primary-color);
+    }
+
+    /* menu mobile */
+    .mobile-menu{
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        background: var(--primary-color);
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        z-index: 999;
+        
+    }
+
+    .mobile-menu a,
+    .mobile-menu button{
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+    }
+}

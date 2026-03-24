@@ -74,18 +74,18 @@
     font-size: 30px;
     width: 930px;
     text-align: justify;
-    margin-left: 145px;
+    
     margin-bottom: 100px;
 }
 
 .section-dev{
     display: flex;
-    gap: 80px;
+    gap: 100px;
     align-items: center;
     flex-direction: column;
     margin-bottom: 100px;
 }
-.Group-Developer{
+.Group-Developer, .Group-Developer-men{
     display: flex;
    gap: 170px;
 }
@@ -95,4 +95,105 @@
     text-align: center;
     font-size: 30px;
     width: 300px;
+}
+
+@media (max-width: 768px){
+
+.container-descripition h1{
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.container-descripition p{
+    font-size: 20px;
+    width: 80%;
+    text-align: justify;
+    margin-bottom: 100px;
+}
+
+.our-mission h2{
+    font-size: 30px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.ArteTEAI{
+    display: none;
+}
+
+.container-mission p{
+    font-size: 20px;
+    width: 80%;
+    text-align: justify;
+    margin-left: 45px;
+    margin-bottom: 100px;
+}
+.our-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.our-group h2{
+    font-size: 30px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.our-group p{
+    display: flex;
+    font-size: 20px;
+    width: 80%;
+    align-items: center;
+    text-align: justify;
+    margin-bottom: 100px;
+}
+
+.Developer-image{
+    display: flex;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container-developer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 20px;
+    width: 50px;
+    align-items: center;
+}
+
+.container-developer p{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.Group-Developer{
+    display: flex;
+   gap: 100px;
+   justify-content: center;
+   text-align: center;
+}
+
+.Group-Developer-men{
+    display: flex;
+   gap: 140px;
+   justify-content: center;
+   text-align: center;
+   margin-top: 10px;
+}
+
+.section-dev{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
 }

@@ -239,9 +239,10 @@ header{
 
     /* mostra hamburger */
     .hamburger{
-        margin-left: 45%;
         display: flex;
         cursor: pointer;
+        margin-left: 55%;
+        align-items: center;
     }
 
     /* menu mobile */
@@ -271,11 +272,13 @@ header{
     }
 
     /* ===== MODAL MOBILE ===== */
+    
 
     .modal{
         width: 90%;
         padding: 30px;
-        border-radius: 20px;
+        border-radius: 30px;
+        margin-top: -10px;
     }
 
     .container-tittle h2{
@@ -295,17 +298,18 @@ header{
     }
 
     .modal input[type="radio"]{
-        transform: scale(1.2);
+        transform: scale(2);
     }
 
     .modal-buttons{
+        display: flex;
         gap: 15px;
-        flex-direction: column;
     }
 
     .modal-buttons button{
         font-size: 18px;
         padding: 10px;
+        display: flex;
     }
 
     /* ===== NOTIFICAÇÕES MOBILE ===== */
@@ -315,7 +319,7 @@ header{
     }
 
     .container-notification{
-        width: 80%;
+        width: 100%;
         margin-left: 0;
         padding: 10px;  
     }

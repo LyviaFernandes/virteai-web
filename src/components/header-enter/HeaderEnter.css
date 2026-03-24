@@ -13,7 +13,7 @@ header{
 
 }
 
-.Login{
+.Logo{
   margin: 3%;
 }
 
@@ -24,4 +24,29 @@ header{
 
 .container-return{
   background-color: var(--primary-color);
+}
+
+@media (max-width: 768px){
+
+header{
+  width: 100%;
+  height: 110px;  
+  display: flex;
+  align-items: center; 
+  background-color: var(--primary-color);
+  gap: 50%;
+  position: fixed;
+  top: 0;
+
+}
+
+.Logo{
+    width: 100px;
+    margin-left: 2%;
+}
+
+.return{
+  display: flex;
+  width: 30px;
+}
 }

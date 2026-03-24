@@ -50,17 +50,17 @@ export default function HeaderHome () {
             alt="Logo image" 
             />
             <button 
-
             // menu
             className="hamburger"
             onClick={() => setMenuOpen(!menuOpen)}
             >
-            <Image 
-                className='image' 
-                src={menu} 
-                alt="" 
-                width={40}
-                        />
+                <Image 
+                    className='menu' 
+                    src={menu} 
+                    alt="" 
+                    width={45}
+                    height={45}
+                            />
             </button>
             
             <div className="container-pages">
@@ -156,7 +156,7 @@ export default function HeaderHome () {
                 }}>
                     <p>
 
-                        Notificações
+                            Notificações
                     </p>
                 </button>
 

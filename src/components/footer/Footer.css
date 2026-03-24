@@ -18,8 +18,8 @@ footer{
     justify-content: space-between;
 }
 
-.container-contact, h3{
-    font-family: 20px;
+.container-contact h3{
+    font-size: 20px;
 }
 
 .emailFooter{
@@ -50,4 +50,55 @@ footer{
 .Logo{
     margin: 5%;
     margin-right: 13%;
+}
+
+@media (max-width: 768px){
+
+footer{
+    display: flex;
+    border-top: 4px solid var(--lines-table);
+    height: 150px;
+    align-items: center;
+    padding: 15px;
+    justify-content: center;
+}
+
+.Logo{
+    display: none;
+}
+
+.container-footer{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    
+}
+
+.image{
+    width: 15px;
+}
+
+.container-contact h3{
+    font-size: 15px;
+}
+
+.emailFooter p {
+    font-size: 10px;
+}
+
+.container-help h3{
+    font-size: 15px;
+}
+
+.container-help p{
+    font-size: 10px;
+}
+
+.container-Terms h3{
+    font-size: 15px;
+}
+
+.container-Terms p{
+    font-size: 10px;
+}
 }

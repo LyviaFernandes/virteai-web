@@ -107,7 +107,7 @@ export default function HomePage () {
             </div>
 
             <div className="card-parceiro">
-                <h1>Empresas Parceiras</h1>
+                <h2>Empresas Parceiras</h2>
 
                 <Image 
                 className='Andddes' 

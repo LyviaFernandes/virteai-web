@@ -42,7 +42,7 @@ export default function AboutUs () {
 
                 <div className="container-mission">
                     <Image 
-                    className='Arte TEAI' 
+                    className='ArteTEAI' 
                     src={Teai} 
                     alt="Arte de um garoto com simbolos do Transtorno do espectro autista" 
                     />
@@ -112,7 +112,7 @@ export default function AboutUs () {
                         </div>
                     </div>
 
-                    <div className="Group-Developer">
+                    <div className="Group-Developer-men">
                         <div className="container-developer">
                             <Image 
                             className='Developer-image' 

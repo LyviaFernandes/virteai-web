@@ -19,7 +19,7 @@ import BigQuestionnaire from "./AQ50TestWeb/page";
 
 export default function Home() {
   return (
-    <Questionnaire/>
+    <Acess/>
     
   );
 }

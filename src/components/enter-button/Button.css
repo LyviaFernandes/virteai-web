@@ -7,3 +7,15 @@ button{
     color: var(--secundary-color);
     background-color: var(--dark-blue);
 }
+
+@media (max-width: 768px){
+
+button{
+    padding: 10px 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    color: var(--secundary-color);
+    background-color: var(--dark-blue);
+}
+    
+}
