@@ -17,10 +17,12 @@ import TherapistList from "./TherapistList/page";
 import Questionnaire from "./AQ10TestWeb/page";
 import BigQuestionnaire from "./AQ50TestWeb/page";
 import PacientProfile from "./PacientProfile/page";
+import ResultQuestionnaire from "./AQ10ResultTest/page";
+import ResultBigQuestionnaire from "./AQ50ResultTest/page";
 
 export default function Home() {
   return (
-    <TherapistList/>
+    <ResultBigQuestionnaire/>
     
   );
 }

@@ -2,12 +2,10 @@
 
 import React from 'react';
 import './redefine.css'
-import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
-import background from '../../assets/images/backgroundimage.svg';
 
 
 export default function RedefinePassword () {
