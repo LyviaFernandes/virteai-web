@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 }
 
 .container-text{
@@ -44,4 +45,48 @@
     font-size: 30px;
     margin-top: 15px;
     color: var(--secundary-color);
+}
+
+@media (max-width: 768px){
+
+.container-text h2{
+    margin-top: 180px;
+    font-size: 30px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.container-text p{
+    font-size: 20px;
+    margin-bottom: 50px;
+    width: 80%;
+    text-align: center;
+}
+
+.card-profiles{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+
+.IconPaciente, .IconTerapeuta{
+    display: flex;
+    width: 50px;
+}
+.box-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-blue);
+    border-radius: 30px;
+    padding: 40px 60px;
+}
+
+.box-profile p{
+    font-size: 20px;
+    margin-top: 15px;
+    color: var(--secundary-color);
+}
 }

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import './login.css'
-import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
@@ -29,7 +28,7 @@ export default function Login () {
                     <Link href="/RedefineWeb">
                         <button className='redefine-container'>
                             <div className="password">
-                                <p>esqueci minha senha</p>
+                                <p>esqueci a senha</p>
                             </div>
                         </button>
                     </Link>

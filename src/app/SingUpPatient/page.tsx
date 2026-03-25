@@ -2,7 +2,6 @@
 
 import React from 'react';
 import './singup.css'
-import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
 import Input from '@/components/input/Input';

@@ -1,27 +1,29 @@
 @import url(../../app/globals.css);
 
 .Section-Login{
-    margin-bottom: 100px;
+   height: 100%;
 }
 .card-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15%;
+    margin-top: 20%;
 }
 
 .card-container h2{
     background-color: var(--background-card);
     font-size: 50px;
-    padding: 18px 45px;
+    padding: 15px 40px;
     border-radius: 50px;
     z-index: 2;
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
 .card{
+    display: flex;
+    flex-direction: column;
     background-color: var(--background-card);
-    padding: 35px 80px;
+    padding: 30px 60px;
     border-radius: 50px;
     z-index: 0;
     margin-top: -40px;
@@ -29,25 +31,27 @@
 }
 
 .card p{
+    
     font-size: 20px;
     margin: 5px;
     margin-top: 50px;
+    justify-content: center;
 }
 
 
 .password{
-    display: flex;
-    justify-content: end;
     margin-top: -30px;
+    text-align: end;
 }
 
 .container-buttons{
     display: flex;
-    margin-top: 50px;
+    margin-top: 20px;
     gap: 10px;
     align-items: center;
     justify-content: center;
     text-align: center;
+
 }
 
 .container-login{
@@ -65,8 +69,97 @@
     cursor: pointer;
     color: var(--dark-blue);
     
+    
 }
 
-.card input{
-    width: 65%;
+
+
+@media (max-width: 768px){
+
+.Section-Login{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40%;
+}
+
+.card-container h2{
+    background-color: var(--background-card);
+    font-size: 30px;
+    padding: 10px 35px;
+    border-radius: 50px;
+    z-index: 2;
+    box-shadow: 5px 5px 5px rgb(41, 39, 39);
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-card);
+    padding: 30px   30px  2px ;
+    border-radius: 50px;
+    z-index: 0;
+    margin-top: -40px;
+    justify-content: center;
+    
+}
+
+
+
+.card p{
+    
+    font-size: 15px;
+    margin: 0px;
+    margin-top: 40px;
+    justify-content: center;
+    margin-bottom: 2px;
+}
+
+
+.password{
+    margin-top: -30px;
+    text-align: end;
+}
+
+.container-buttons{
+    display: flex;
+    margin-top: 0px;
+    gap: 0px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.container-login{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    color: var(--dark-blue);
+}
+
+.container-login p{
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.redefine-container{
+    display: flex;
+    background-color: var(--background-card);
+    cursor: pointer;
+    color: var(--dark-blue);
+    
+    
+}
+
+
+
+
 }

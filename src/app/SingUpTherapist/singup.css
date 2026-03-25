@@ -1,15 +1,16 @@
 @import url(../../app/globals.css);
-@import url(../../app/globals.css);
 
 
 .Section-Singup{
-    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    z-index: 3;
 }
 .card-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 120px;
+    margin-top: 15%;
 }
 
 .card-container h2{
@@ -42,4 +43,46 @@
     gap: 10px;
     justify-content: center;
     
+}
+
+@media (max-width: 768px){
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35%;
+}
+
+.card-container h2{
+    background-color: var(--background-card);
+    font-size: 30px;
+    padding: 15px 35px;
+    border-radius: 50px;
+    z-index: 2;
+    box-shadow: 5px 5px 5px rgb(41, 39, 39);
+}
+
+.card{
+    background-color: var(--background-card);
+    padding: 30px 50px;
+    border-radius: 50px;
+    z-index: 0;
+    margin-top: -40px;
+}
+
+.card p{
+    font-size: 15px;
+    margin: 5px;
+    margin-top: 40px;
+
+}
+
+.container-buttons{
+    display: flex;
+    margin-top: 30px;
+    gap: 10px;
+    justify-content: center;
+}
+
 }
