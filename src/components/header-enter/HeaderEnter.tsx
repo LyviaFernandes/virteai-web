@@ -18,7 +18,7 @@ export default function HeaderEnter ({src} : ICard) {
     return (
         <header>
             <Image 
-            className='Logo' 
+            className='Logo-header' 
             src={logo} 
             alt="Logo image" 
             width={160}
@@ -30,7 +30,7 @@ export default function HeaderEnter ({src} : ICard) {
             <Link href="/Home">
                 <button className='container-return'>
                     <Image 
-                    className='return' 
+                    className='return-enter' 
                     src={src} alt='Home'
                     width={50}
                     height={50}

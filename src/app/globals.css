@@ -36,6 +36,8 @@ h2,h1,h3, button{
     --backgroud-sand: #F9F6ED;
     --background-green: #DDF8E5;
     --light-blue: #AFC1D5;
+    --text-green: #265D39;
+    --background-text: #A8D5B7;
 
     font: normal 16px 'Comfortaa', sans-serif;
 }

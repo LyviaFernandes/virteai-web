@@ -4,10 +4,237 @@
 .section-profile{
     display: flex;
     flex-direction: column;
+}
+
+.Container-profile{
+    display: flex;
+    width: 45%;
+    margin-top: 8%;
+    align-items: start;
+}
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-right: 50%;
+  margin-left: 15%;
+  margin-bottom: 100px;
+}
+
+.image-container {
+  position: relative;
+  width: 400px !important;  
+  height: 400px !important;  
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; 
+}
+
+.IconPaciente {
+  object-fit: cover;
+}
+
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-info h2{
+    display: flex;
+    align-items: center;
+    font-size: 60px;
+    margin-bottom: 50px;
+    width: 480px;
+}
+
+.status-user {
+    display: flex;
+    justify-content: center;
+}
+
+.status-user h3{
+    font-size: 40px;
+    background-color: var(--background-text);
+    color: #265D39;
+    background-color: #A8D5B7;
+    padding: 20px 50px;
+    width: 450px;
+    border-radius: 50px;
+    margin: 0 auto;
+}
+
+/*  */
+
+.section-container{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+
+.box-container{
+    width: 100%;
+    height: 200px;
+    z-index: 2;
+    box-shadow: 5px 5px 5px rgb(41, 39, 39);
+    display: flex;
+    padding-top: 20px;
+}
+
+.box-container h3{
+    width: 80%;
+    font-size: 40px;
+    margin-left: 2%;
+    margin-right: 13%;
+}
+
+.images-box{
+    display: flex;
+    flex-direction: column;
+    gap: 40%;
+}
+
+/*  */
+
+.text-box{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+     width: 95%;
+
+}
+
+.text-box .barra{
+     margin-left: 2%;
+    margin-top: 7%;
+}
+
+/*  */
+@media (max-width: 768px){
+
+.section-profile{
+    display: flex;
+    flex-direction: column;
+     justify-content: center;
     align-items: center;
 }
 
-.Container-profile .IconPaciente{
+.Container-profile{
     display: flex;
-    width: 50%;
+    width: 45%;
+    margin-top: 8%;
+   margin-bottom: 100px;
+    flex-direction: column;
+    align-items: center;
+}
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-right: 10%;
+  margin-left: 15%;
+  margin-bottom: 50px;
+}
+
+.image-container {
+  position: relative;
+  width: 150px !important;  
+  height: 150px !important;  
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; 
+}
+
+.IconPaciente {
+  object-fit: cover;
+}
+
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-info h2{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    width: 250px;
+}
+
+.status-user {
+    display: flex;
+    justify-content: center;
+}
+
+.status-user h3{
+    font-size: 20px;
+    background-color: var(--background-text);
+    color: #265D39;
+    background-color: #A8D5B7;
+    width: 210px;
+    border-radius: 50px;
+    margin: 0 auto;
+}
+
+/*  */
+
+.section-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 100px;
+    width: 100%;
+}
+
+.box-container{
+    width: 100%;
+    height: 100px;
+    z-index: 2;
+    box-shadow: 5px 5px 5px rgb(41, 39, 39);
+    display: flex;
+    padding-top: 20px;
+    
+    
+}
+
+.box-container h3{
+    width: 100%;
+    font-size: 20px;
+   margin-left: 3%;
+}
+
+.images-box{
+    display: flex;
+    flex-direction: column;
+    gap: 30%;
+}
+
+.images-box .visualize-icon, .edit-icon{
+    width: 70%;
+    height: auto;
+}
+
+/*  */
+
+.text-box{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+     width: 100%;
+
+}
+
+.text-box .barra{
+     margin-left: 3%;
+    margin-top: 5%;
+    width: 80%;
+    height: auto;
+}
+ 
 }

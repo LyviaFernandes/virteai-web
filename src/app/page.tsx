@@ -22,7 +22,7 @@ import ResultBigQuestionnaire from "./AQ50ResultTest/page";
 
 export default function Home() {
   return (
-    <ResultBigQuestionnaire/>
+    <PacientProfile/>
     
   );
 }
