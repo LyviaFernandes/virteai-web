@@ -3,7 +3,7 @@
 import React from 'react';
 import './login.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
-import Return from '../../assets/images/return-icon.svg';
+import Return from '@/assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
 import Link from "next/link";

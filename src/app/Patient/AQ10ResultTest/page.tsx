@@ -2,12 +2,14 @@
 
 import React from 'react';
 import './result.css'
-import Return from '../../assets/images/return-icon.svg';
+import Return from '@/assets/images/return-icon.svg';
+import { useRef, useEffect } from 'react';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
+import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
 import Link from "next/link";
 
-export default function ResultBigQuestionnaire () {
+export default function ResultQuestionnaire () {
     return(
         <div className="Section-Result">
             <HeaderEnter
@@ -23,8 +25,9 @@ export default function ResultBigQuestionnaire () {
                         </div>
                         <div className="mensage">
                             <p>
-                                Deseja continuar para ter acesso à uma lista de 
-                                terapeutas prontos para atender às suas necessidades?
+                                Temos um teste ainda mais robusto, deseja realizá-lo ou 
+                                continuar para uma lista de terapeutas prontos para atender 
+                                às suas necessidades?
                             </p>
 
                         </div>
@@ -32,13 +35,16 @@ export default function ResultBigQuestionnaire () {
 
                         <div className="container-buttons">
                             
-                            <Link href="/TherapistList">
+                            <ButtonEnter
+                            label='Continuar'
+                            onclick={() => console.log("oi")}
+                            />
+
+                            <Link href="/AQ50TestWeb">
                                 <button className='white-button'>
-                                    <h3>Continuar</h3>
+                                    <h3>Acessar Teste</h3>
                                 </button>
                             </Link>
-
-                            
                         </div>
                     </div>
 

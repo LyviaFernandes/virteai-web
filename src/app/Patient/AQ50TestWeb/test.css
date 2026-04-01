@@ -1,16 +1,10 @@
-@import url(../globals.css);
+@import url(@/globals.css);
 
-* {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-        }
+
 .Questionnaire-Section{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: 100vh;
 }
 .description{
     display: flex;
@@ -22,7 +16,7 @@
     font-size: 60px;
     margin-top: 115px;
     margin-bottom: 115px;
-    background-color: var(--backgroud-sand);
+    background-color: var(--background-green);
     width: 100vw;
     position: relative;
     left: 50%;
@@ -89,21 +83,23 @@
     padding: 100px 100px 50px 100px;
 }
 
-.questions-colorsand{
+.questions-colorgreen{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--backgroud-sand);
+    background-color: var(--background-green);
     width: 99%;
     padding: 100px 100px 50px 100px;
 }
 
 .questions p{
     font-size: 30px;
+    text-align: center;
 }
 
-.questions-colorsand p{
+.questions-colorgreen p{
     font-size: 30px;
+    text-align: center;
 }
 
 .questions-section{
@@ -179,7 +175,7 @@
     }
 
     .questions,
-    .questions-colorsand{
+    .questions-colorgreen{
         width: 98%;
         padding: 30px 15px;
         display: flex;
@@ -188,7 +184,7 @@
     }
 
     .questions p,
-    .questions-colorsand p{
+    .questions-colorgreen p{
         font-size: 18px;
         text-align: center;
         margin-bottom: 8px;

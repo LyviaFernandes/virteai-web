@@ -38,6 +38,12 @@ h2,h1,h3, button{
     --light-blue: #AFC1D5;
     --text-green: #265D39;
     --background-text: #A8D5B7;
+    --terms-color: #E8FDFF;
+    --legal-terms: #F2EDE3;
+    --blue-faq: #E8FDFF;
+    --border-faq: #60B0B8;
+    --background-green-faq: #DDF8E5;
+    --border-green: #509266;
 
     font: normal 16px 'Comfortaa', sans-serif;
 }

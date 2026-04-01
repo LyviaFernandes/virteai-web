@@ -7,18 +7,22 @@ import Input from "@/components/input/Input";
 import Image from "next/image";
 import HomePage from "./Home/page";
 import AboutUs from "./AboutUs/page";
-import Login from "./Login/page";
-import PatientSingup from "./SingUpPatient/page";
-import TherapistSingup from "./SingUpTherapist/page";
+import Login from "./Patient/Login/page";
+import PatientSingup from "./Patient/SingUpPatient/page";
+import TherapistSingup from "./Therapist/SingUpTherapist/page";
 import RedefinePassword from "./RedefineWeb/page";
 import Profile from "./Profile/page";
 import Acess from "./AccountAcess/page";
-import TherapistList from "./TherapistList/page";
-import Questionnaire from "./AQ10TestWeb/page";
-import BigQuestionnaire from "./AQ50TestWeb/page";
-import PacientProfile from "./PacientProfile/page";
-import ResultQuestionnaire from "./AQ10ResultTest/page";
-import ResultBigQuestionnaire from "./AQ50ResultTest/page";
+import TherapistList from "./Patient/TherapistList/page";
+import Questionnaire from "./Patient/AQ10TestWeb/page";
+import BigQuestionnaire from "./Patient/AQ50TestWeb/page";
+import PacientProfile from "./Patient/PacientProfile/page";
+import ResultQuestionnaire from "./Patient/AQ10ResultTest/page";
+import ResultBigQuestionnaire from "./Patient/AQ50ResultTest/page";
+import TermosServico from "./TermsofServiceWeb/page";
+import TermosLegais from "./LegalTermsWeb/page";
+import PoliticaPrivacidade from "./PrivacyPolicyWeb/page";
+import FAQ from "./FAQWeb/page";
 
 export default function Home() {
   return (

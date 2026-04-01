@@ -1,10 +1,94 @@
 @import url(../globals.css);
 
+.Section-Termos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
+.TermsofService{
+    display: flex;
+    justify-content: center;
+    text-align : center;
+    background-color: var(--terms-color);
+    padding: 10px 0px;
+    font-size: 60px;
+    margin: 100px 0px;
+}
 
+.description-terms{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 100px;
+}
+
+.terms h2{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.terms p{
+    font-size: 30px;
+}
+
+.terms ul{
+    margin-top: 20px;
+    padding-left: 20px; /* espaço da bolinha */
+    
+}
+
+.terms li{
+    font-size: 30px;
+    margin-bottom: 30px;
+
+}
 
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px){
 
+.TermsofService{
+    display: flex;
+    justify-content: center;
+    text-align : center;
+    background-color: var(--terms-color);
+    padding: 10px 0px;
+    font-size: 30px;
+    margin: 100px 0px;
+}
+
+.description-terms{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+
+.terms h2{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.terms p{
+    font-size: 15px;
+}
+
+.terms ul{
+    margin-top: 20px;
+    padding-left: 20px; /* espaço da bolinha */
+    
+}
+
+.terms li{
+    font-size: 15px;
+    margin-bottom: 30px;
+
+}
 }

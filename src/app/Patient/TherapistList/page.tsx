@@ -4,11 +4,10 @@ import React from 'react';
 import './therapistlist.css'
 import Image from 'next/image';
 import HeaderHome from '@/components/header-login/Header';
-import ImageCenter from '../../assets/images/TherapyBanner.svg';
-import profile from '../../assets/images/ProfileIcon.svg';
-import visualize from '../../assets/images/visualizeicon.svg';
+import ImageCenter from '@/assets/images/TherapyBanner.svg';
+import profile from '@/assets/images/ProfileIcon.svg';
+import visualize from '@/assets/images/visualizeicon.svg';
 import Footer from '@/components/footer/Footer';
-import { useRef, useEffect } from 'react';
 
 export default function TherapistList () {
     return(

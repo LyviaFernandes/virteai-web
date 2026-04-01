@@ -4,11 +4,11 @@ import React from 'react';
 import './pacientprofile.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
-import Return from '../../assets/images/return-icon.svg';
-import Iconpaciente from '../../assets/images/ProfileIcon.svg';
-import visualize from '../../assets/images/visualizeicon.svg';
-import editicon from '../../assets/images/editicon.svg';
-import barraprocess from '../../assets/images/barraprocesso.svg';
+import Return from '@/assets/images/return-icon.svg';
+import Iconpaciente from '@/assets/images/ProfileIcon.svg';
+import visualize from '@/assets/images/visualizeicon.svg';
+import editicon from '@/assets/images/editicon.svg';
+import barraprocess from '@/assets/images/barraprocesso.svg';
 import Footer from '@/components/footer/Footer';
 
 

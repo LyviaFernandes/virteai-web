@@ -2,13 +2,12 @@
 
 import React from 'react';
 import './singup.css'
-import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
-import Return from '../../assets/images/return-icon.svg';
+import Return from '@/assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
 
-export default function TherapistSingup () {
+export default function PatientSingup () {
     return(
         <div className="Section-Singup">
             <HeaderEnter
@@ -26,9 +25,6 @@ export default function TherapistSingup () {
 
                     <p>Senha:</p>
                     <Input description='Insira sua senha'/>
-
-                    <p>Registro profissional:</p>
-                    <Input description='Insira seu registro profissional'/>
 
 
                     <div className="container-buttons">

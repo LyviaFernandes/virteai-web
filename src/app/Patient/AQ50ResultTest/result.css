@@ -1,5 +1,5 @@
 
-@import url(../../app/globals.css);
+@import url(@/app/globals.css);
 
 
 .Section-Result{
