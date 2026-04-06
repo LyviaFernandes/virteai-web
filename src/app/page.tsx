@@ -23,10 +23,12 @@ import TermosServico from "./TermsofServiceWeb/page";
 import TermosLegais from "./LegalTermsWeb/page";
 import PoliticaPrivacidade from "./PrivacyPolicyWeb/page";
 import FAQ from "./FAQWeb/page";
+import TherapistProfile from "./Therapist/TherapistPersonalProfile/page";
+import OurServices from "./Therapist/OurServicesWeb/page";
 
 export default function Home() {
   return (
-    <PacientProfile/>
+    <OurServices/>
     
   );
 }
