@@ -10,41 +10,40 @@ import ButtonEnter from '@/components/enter-button/Button';
 import background from '../../assets/images/backgroundimage.svg';
 import profile from '../../assets/images/ProfileIcon.svg';
 
-
 export default function Acess () {
     return(
-        <div className="Section-Password">
+        <div className="account-access">
             <HeaderEnter
-            src={Return}
+                src={Return}
             />
-            
-                
-                
-                <div className="card-container">
-                    <h2>Acesse sua conta!</h2>
-                    <div className="card">
-                        <Image 
-                            className='IconProfile' 
-                            src={profile} 
-                            alt="" 
-                        />
-                        
 
-                        <div className="container-buttons">
-                            <ButtonEnter
+            <div className="account-access__container">
+                <h2>Acesse sua conta!</h2>
+
+                <div className="account-access__card">
+                    <Image 
+                        className='account-access__profile-image' 
+                        src={profile} 
+                        alt="" 
+                    />
+
+                    <div className="account-access__actions">
+                        <ButtonEnter
                             label='Continuar'
                             onclick={() => console.log("oi")}
-                            />
-                        </div>
-                        <div className="mensage">
-                            <p>
-                                Ao continuar você concorda com nossos
-                            </p>
-                            <p className='termos'>Termos de Uso</p>
-                        </div>
+                        />
                     </div>
 
+                    <div className="account-access__terms">
+                        <p>
+                            Ao continuar você concorda com nossos
+                        </p>
+                        <p className='account-access__terms-link'>
+                            Termos de Uso
+                        </p>
+                    </div>
                 </div>
             </div>
+        </div>
     )
 }

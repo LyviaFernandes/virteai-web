@@ -12,30 +12,30 @@ import Iconterapeuta from '../../assets/images/TherapistIcon.svg';
 
 export default function Profile () {
     return(
-        <div className="section-profile">
+        <div className="profile-section">
             <HeaderEnter
             src={Return}
             />
             
-            <div className="container-text">
+            <div className="profile-header">
                 <h2>Perfil</h2>
                 <p>Selecione abaixo o tipo de perfil que mais se adequa a você</p>
 
             </div>
 
-            <div className="card-profiles">
-                <div className="box-profile">
+            <div className="profile-card-list">
+                <div className="profile-card">
                     <Image 
-                    className='IconPaciente' 
+                    className='profile-card__icon' 
                     src={Iconpaciente} 
                     alt="" 
                     />
                     <p>Paciente</p>
                 </div>
 
-                <div className="box-profile">
+                <div className="profile-card">
                     <Image 
-                    className='IconTerapeuta' 
+                    className='profile-card__icon' 
                     src={Iconterapeuta} 
                     alt="" 
                     />

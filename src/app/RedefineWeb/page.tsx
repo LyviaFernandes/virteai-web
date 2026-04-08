@@ -10,36 +10,32 @@ import ButtonEnter from '@/components/enter-button/Button';
 
 export default function RedefinePassword () {
     return(
-        <div className="Section-Password">
+        <div className="reset-password">
             <HeaderEnter
             src={Return}
             />
             
-                
-                
-                <div className="card-container">
+                <div className="reset-password__container">
                     <h2>Redefinir Senha</h2>
-                    <div className="card">
-                        <div className="mensage">
+                    <div className="reset-password__card">
+                        <div className="reset-password__message">
                             <p>
                                 Informe o email registrado em sua conta e 
                                 lhe enviaremos um link para a redefinição de senha
                             </p>
 
                         </div>
-                        <div className="container-input">
+                        <div className="reset-password__input-group">
                             <p>Email:</p>
                             <Input description='Insira seu email'/>
                             
                         </div>
 
-                        <div className="container-buttons">
+                        <div className="reset-password__actions">
                             <ButtonEnter
                             label='Enviar'
                             onclick={() => console.log("oi")}
                             />
-
-                            
                         </div>
                     </div>
 

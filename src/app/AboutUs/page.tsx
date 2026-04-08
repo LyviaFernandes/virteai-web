@@ -13,19 +13,18 @@ import Valdir from '../../assets/images/ValdirImage.svg';
 import Teai from '../../assets/images/TEAImage.svg';
 import Footer from '@/components/footer/Footer';
 
-
 export default function AboutUs () {
     return(
-        <div className="aboutus-container">
+        <div className="about-us">
             <HeaderHome/>
 
             <Image 
-                className='Group-image' 
+                className='about-us__banner' 
                 src={imagegroup} 
                 alt="Imagem com um oculos de realidade virtual e um botão escrito 'Personalize o seu' " 
             />
 
-            <div className="container-descripition">
+            <div className="about-us__intro">
                 <h1>Quem somos?</h1>
                 <p>A VirTEAI nasceu em 2025 com um propósito claro: 
                     tornar a tecnologia mais humana, sensível e acessível 
@@ -37,14 +36,14 @@ export default function AboutUs () {
                     com o mundo.</p>
             </div>
 
-            <div className="our-mission">
+            <div className="about-us__mission">
                 <h2>Nossa Missão</h2>
 
-                <div className="container-mission">
+                <div className="mission__content">
                     <Image 
-                    className='ArteTEAI' 
-                    src={Teai} 
-                    alt="Arte de um garoto com simbolos do Transtorno do espectro autista" 
+                        className='mission__image' 
+                        src={Teai} 
+                        alt="Arte de um garoto com simbolos do Transtorno do espectro autista" 
                     />
                     <p>Nosso principal objetivo é oferecer óculos de realidade virtual 
                         acessíveis, seguros e personalizados para pessoas com TEA, 
@@ -65,78 +64,49 @@ export default function AboutUs () {
                         são ferramentas de conexão, aprendizagem e bem-estar
                     </p>
                 </div>
-
             </div>
-                <div className="our-group">
-                    <h2>Nosso Time</h2>
 
-                    <p>A força da VirTEAI está na colaboração. Nosso time multidisciplinar reúne 
-                        talentos de diferentes áreas, comprometidos com a acessibilidade e a 
-                        inovação social:
-                    </p>
+            <div className="about-us__team">
+                <h2>Nosso Time</h2>
 
+                <p>A força da VirTEAI está na colaboração. Nosso time multidisciplinar reúne 
+                    talentos de diferentes áreas, comprometidos com a acessibilidade e a 
+                    inovação social:
+                </p>
+            </div>
 
-                </div>
-
-                <div className="section-dev">
-
-                    <div className="Group-Developer">
-                        <div className="container-developer">
-                            <Image 
-                            className='Developer-image' 
-                            src={Lyvia} 
-                            alt="Desenvolvedora front-end" 
-                            />
-
-                            <p>Desenvolvedora FrontEnd</p>
-                        </div>
-
-                        <div className="container-developer">
-                            <Image 
-                            className='Developer-image' 
-                            src={Ana} 
-                            alt="Designer" 
-                            />
-
-                            <p>Designer</p>
-                        </div>
-
-                        <div className="container-developer">
-                            <Image 
-                            className='Developer-image' 
-                            src={Ester} 
-                            alt="Desenvolvedora de Banco de Dados" 
-                            />
-
-                            <p>Desenvolvedora de Banco de Dados</p>
-                        </div>
+            <div className="team">
+                <div className="team__group">
+                    <div className="team__member">
+                        <Image className='team__image' src={Lyvia} alt="Desenvolvedora front-end" />
+                        <p>Desenvolvedora FrontEnd</p>
                     </div>
 
-                    <div className="Group-Developer-men">
-                        <div className="container-developer">
-                            <Image 
-                            className='Developer-image' 
-                            src={Valdir} 
-                            alt="Documentação" 
-                            />
+                    <div className="team__member">
+                        <Image className='team__image' src={Ana} alt="Designer" />
+                        <p>Designer</p>
+                    </div>
 
-                            <p>Documentação</p>
-                        </div>
-
-                        <div className="container-developer">
-                            <Image 
-                            className='Developer-image' 
-                            src={Yuri} 
-                            alt="Desenvolvedor BackEnd" 
-                            />
-
-                            <p>Desenvolvedor BackEnd</p>
-                        </div>
-
+                    <div className="team__member">
+                        <Image className='team__image' src={Ester} alt="Desenvolvedora de Banco de Dados" />
+                        <p>Desenvolvedora de Banco de Dados</p>
                     </div>
                 </div>
-                <Footer/>
+
+                <div className="team__group">
+                    <div className="team__member">
+                        <Image className='team__image' src={Valdir} alt="Documentação" />
+                        <p>Documentação</p>
+                    </div>
+
+                    <div className="team__member">
+                        <Image className='team__image' src={Yuri} alt="Desenvolvedor BackEnd" />
+                        <p>Desenvolvedor BackEnd</p>
+                    </div>
+                </div>
+            </div>
+
+            <Footer/>
         </div>
-
     );
 }

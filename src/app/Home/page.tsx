@@ -39,23 +39,23 @@ export default function HomePage () {
 
     return(
         
-        <div className="Home-container">
+        <div className="home-page">
             <HeaderHome/>
 
             <Image 
-                className='Personalize' 
+                className='home-banner' 
                 src={ImageCenter} 
                 alt="Imagem com um oculos de realidade virtual e um botão escrito 'Personalize o seu' " 
             />
             
 
-            <div className="Relatos-container">
+            <div className="home-testimonials">
                 <h1>Relatos</h1>
 
                 <p>Alguns de nossos clientes relataram suas experiências com nossos produtos. Dê uma olhada:</p>
             </div>
 
-            <div ref={containerRef} className="card-container">
+            <div ref={containerRef} className="home-carousel">
                 <Card 
                 src={Julio}
                 title='Julio C. - Programador (26 anos, TEA nível 1 e ansiedade social)'
@@ -106,11 +106,11 @@ export default function HomePage () {
             
             </div>
 
-            <div className="card-parceiro">
+            <div className="home-partners">
                 <h2>Empresas Parceiras</h2>
 
                 <Image 
-                className='Andddes' 
+                className='home-partners__logo' 
                 src={Andddes} 
                 alt="Logo da empresa Andddes" 
                 />

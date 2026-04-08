@@ -6,7 +6,27 @@ import Image from 'next/image';
 import Footer from '@/components/footer/Footer';
 import ImageCenter from '@/assets/images/Banner.svg';
 import Check from '@/assets/images/check.svg';
+import XIcon from '@/assets/images/XIcon.svg';
+import CheckIcon from '@/assets/images/CheckIcon.svg';
 import HeaderLogout from '@/components/header-logout/Header';
+
+
+type Feature = {
+  name: string;
+  basic: boolean;
+  premium: boolean;
+};
+
+const features: Feature[] = [
+    { name: "Acesso à plataforma", basic: true, premium: true },
+    { name: "Materiais terapêuticos", basic: true, premium: true },
+    { name: "Acompanhamento de pacientes", basic: true, premium: true },
+    { name: "Relatórios individuais", basic: true, premium: true },
+    { name: "Múltiplos usuários", basic: false, premium: true },
+    { name: "Gestão centralizada", basic: false, premium: true },
+    { name: "Relatórios consolidados", basic: false, premium: true },
+    { name: "Suporte dedicado", basic: false, premium: true },
+];
 
 export default function OurServices () {
     return(
@@ -87,6 +107,132 @@ export default function OurServices () {
                         <p>saiba mais</p>
                         </button>
                 </div>
+
+                 <div className="sand-card">
+                    <h2>Plano corporativo</h2>
+
+                    <h3>Para quem precisa escalar o cuidado sem perder a qualidade.</h3>
+
+                    <div className="section-checks">
+                        <div className="check-text">
+                            <Image 
+                                className='Check-icon' 
+                                src={Check} 
+                                alt="" 
+                            />
+                            <p>Tudo do Plano Comum</p>
+                        </div>
+
+                        <div className="check-text">
+                            <Image 
+                                className='Check-icon' 
+                                src={Check} 
+                                alt="" 
+                            />
+                            <p>Múltiplos acessos para equipes</p>
+                        </div>
+
+                        <div className="check-text">
+                            <Image 
+                                className='Check-icon' 
+                                src={Check} 
+                                alt="" 
+                            />
+                            <p>Painel de gestão centralizado</p>
+                        </div>
+
+                        <div className="check-text">
+                            <Image 
+                                className='Check-icon' 
+                                src={Check} 
+                                alt="" 
+                            />
+                            <p>Relatórios consolidados por unidade/profissional</p>
+                        </div>
+
+                        <div className="check-text">
+                            <Image 
+                                className='Check-icon' 
+                                src={Check} 
+                                alt="" 
+                            />
+                            <p>Suporte dedicado e onboarding personalizado</p>
+                        </div>
+                    </div>
+
+                    <div className="pay">
+                        <p>R$199,00/mês</p>
+                    </div>
+
+                    <button>
+                        <p>saiba mais</p>
+                        </button>
+                </div>
+            </div>
+
+            <div className="section-table">
+                <h3>Tabela de Comparação</h3>
+
+                <div className="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Funcionalidades</th>
+                            <th>Básico</th>
+                            <th>Premium</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {features.map((item, index) => (
+                            <tr key={index}>
+                            <td>{item.name}</td>
+
+                            <td>
+                                {item.basic ? (
+                                <span className="check">
+                                    <Image 
+                                        className='Check' 
+                                        src={CheckIcon} 
+                                        alt="" 
+                                    />
+                                </span>
+                                ) : (
+                                <span className="cross">
+                                     <Image 
+                                        className='X' 
+                                        src={XIcon} 
+                                        alt="" 
+                                    />
+                                </span>
+                                )}
+                            </td>
+
+                            <td>
+                                {item.premium ? (
+                                <span className="check">
+                                    <Image 
+                                        className='Check' 
+                                        src={CheckIcon} 
+                                        alt="" 
+                                    />
+                                </span>
+                                ) : (
+                                <span className="cross">
+                                    <Image 
+                                        className='X' 
+                                        src={XIcon} 
+                                        alt="" 
+                                    />
+                                </span>
+                                )}
+                            </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                    </div>
+
             </div>
             <Footer/>
         </div>

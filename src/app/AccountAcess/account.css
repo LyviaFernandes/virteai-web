@@ -1,28 +1,25 @@
-
 @import url(../../app/globals.css);
 
-
-.Section-Password{
+.account-access{
     display: flex;
     width: 100%;
     height: 100vh;
     flex-direction: column;
-     background-image: url('../../assets/images/backgroundimage.svg');
-     justify-content: center;
-     align-items: center;
+    background-image: url('../../assets/images/backgroundimage.svg');
+    justify-content: center;
+    align-items: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-
-.card-container{
+.account-access__container{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 120px;
 }
 
-.card-container h2{
+.account-access__container h2{
     background-color: var(--background-card);
     font-size: 50px;
     padding: 18px 45px;
@@ -31,7 +28,7 @@
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
-.card{
+.account-access__card{
     background-color: var(--background-card);
     padding: 35px 45px;
     border-radius: 50px;
@@ -42,21 +39,20 @@
     align-items: center;
 }
 
-.card .IconProfile{
+.account-access__profile-image{
     margin-top: 60px;
     width: 170px;
     height: 170px;
 }
 
-.container-buttons{
+.account-access__actions{
     display: flex;
     margin-top: 60px;
     gap: 10px;
     justify-content: center;
-    
 }
 
-.mensage{
+.account-access__terms{
     display: flex;
     text-align: center;
     justify-content: center;
@@ -64,75 +60,52 @@
     flex-direction: column;
 }
 
-.mensage p{
+.account-access__terms p{
     font-size: 30px;
-    
 }
 
-.mensage .termos{
+.account-access__terms-link{
     color: var(--secundary-color);
 }
 
 @media (max-width: 768px){
 
-.card-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.account-access__container{
     width: 80%;
     height: 400px;
 }
 
-.card-container h2{
-    background-color: var(--background-card);
+.account-access__container h2{
     font-size: 20px;
     padding: 18px 25px;
-    border-radius: 50px;
-    z-index: 2;
-    box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
-
-.card{
-    background-color: var(--background-card);
+.account-access__card{
     padding: 35px 45px;
-    border-radius: 50px;
-    z-index: 0;
     margin-top: -40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.card .IconProfile{
+.account-access__profile-image{
     margin-top: 40px;
     width: 100px;
     height: 100px;
 }
 
-.container-buttons{
-    display: flex;
+.account-access__actions{
     margin-top: 60px;
     gap: 10px;
-    justify-content: center;
     width: 30px;
-    
 }
 
-.mensage{
-    display: flex;
-    text-align: center;
-    justify-content: center;
+.account-access__terms{
     margin-top: 40px;
-    flex-direction: column;
 }
 
-.mensage p{
+.account-access__terms p{
     font-size: 20px;
-    
 }
 
-.mensage .termos{
+.account-access__terms-link{
     color: var(--secundary-color);
 }
 

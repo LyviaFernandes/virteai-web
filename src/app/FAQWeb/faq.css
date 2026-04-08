@@ -1,23 +1,24 @@
-@import url(@/globals.css);
+@import url('../globals.css');
 
-.Section-FAQ{
+.faq-section{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.Page-center{
+
+.faq-header{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.Page-center h1{
+.faq-header h1{
     margin-top: 100px;
     font-size: 60px;
 }
 
-.Page-center p{
+.faq-header p{
     font-size: 30px;
     margin-top: 100px;
     margin-bottom: 100px;
@@ -25,7 +26,7 @@
 
 /*  */
 
-.section-questions{
+.faq-list{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +34,7 @@
     margin-bottom: 100px;
 }
 
-.faq-send{
+.faq-card--sand{
     background-color: var(--backgroud-sand);
     border-radius: 50px;
     border: 5px solid var(--border-personalized-plan);
@@ -42,7 +43,7 @@
     padding: 50px;
 }
 
-.faq-ciano{
+.faq-card--ciano{
     background-color: var(--blue-faq);
     border-radius: 50px;
     border: 5px solid var(--border-faq);
@@ -51,7 +52,7 @@
     padding: 50px;
 }
 
-.faq-blue{
+.faq-card--blue{
     background-color: var(--primary-color);
     border-radius: 50px;
     border: 5px solid var(--dark-blue);
@@ -60,7 +61,7 @@
     padding: 50px;
 }
 
-.faq-green{
+.faq-card--green{
     background-color: var(--background-green-faq);
     border-radius: 50px;
     border: 5px solid var(--border-green);
@@ -68,44 +69,45 @@
     width: 60%;
     padding: 50px;
 }
-.text{
+
+.faq-card__content{
     margin-left: 50px;
 }
 
-.bigger p{
+.faq-card__question p{
     font-size: 50px;
     margin-bottom: 20px;
 }
 
-.small p{
+.faq-card__answer p{
     font-size: 30px;
     text-align: justify;
 }
-
 
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px){
 
-.Section-FAQ{
+.faq-section{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-.Page-center{
+
+.faq-header{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.Page-center h1{
+.faq-header h1{
     margin-top: 80px;
     font-size: 30px;
 }
 
-.Page-center p{
+.faq-header p{
     font-size: 20px;
     margin-top: 80px;
     margin-bottom: 80px;
@@ -113,7 +115,7 @@
 
 /*  */
 
-.section-questions{
+.faq-list{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,7 +123,7 @@
     margin-bottom: 50px;
 }
 
-.faq-send{
+.faq-card--sand{
     background-color: var(--backgroud-sand);
     border-radius: 50px;
     border: 5px solid var(--border-personalized-plan);
@@ -130,7 +132,7 @@
     padding: 30px;
 }
 
-.faq-ciano{
+.faq-card--ciano{
     background-color: var(--blue-faq);
     border-radius: 50px;
     border: 5px solid var(--border-faq);
@@ -139,7 +141,7 @@
     padding: 30px;
 }
 
-.faq-blue{
+.faq-card--blue{
     background-color: var(--primary-color);
     border-radius: 50px;
     border: 5px solid var(--dark-blue);
@@ -148,7 +150,7 @@
     padding: 30px;
 }
 
-.faq-green{
+.faq-card--green{
     background-color: var(--background-green-faq);
     border-radius: 50px;
     border: 5px solid var(--border-green);
@@ -156,21 +158,22 @@
     width: 80%;
     padding: 30px;
 }
-.text{
+
+.faq-card__content{
     margin-left: 20px;
 }
 
-.bigger p{
+.faq-card__question p{
     font-size: 25px;
     margin-bottom: 10px;
 }
 
-.small p{
+.faq-card__answer p{
     font-size: 15px;
     text-align: justify;
 }
 
-.questionicon{
+.faq-card__icon{
     width: 60%;
 }
 }

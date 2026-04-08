@@ -11,8 +11,6 @@ import editicon from '@/assets/images/editicon.svg';
 import barraprocess from '@/assets/images/barraprocesso.svg';
 import Footer from '@/components/footer/Footer';
 
-
-
 type User = {
     id: number;
     name: string;
@@ -20,34 +18,31 @@ type User = {
     status: string;
 }
 
-
-
 export default function PacientProfile () {
 
-    // 🔹 Dados mockados (estáticos)
     const user: User = {
         id: 1,
         name: "João Lucas Vega",
-        profileImage: "https://thumbs.dreamstime.com/b/retrato-da-pessoa-adulta-22170035.jpg", // pode colocar uma URL ou deixar vazio pra usar o ícone padrão
+        profileImage: "https://thumbs.dreamstime.com/b/retrato-da-pessoa-adulta-22170035.jpg",
         status: "Em acompanhamento"
     };
 
     return(
-        <div className="section-profile">
+        <div className="profile-section">
 
             <HeaderEnter
                 src={Return}
             />
 
-            <div className="Container-profile">
+            <div className="profile-container">
 
-                <div className="image-wrapper">
-                    <div className="image-container">
+                <div className="profile-avatar-wrapper">
+                    <div className="profile-avatar-container">
                         <Image 
                         src={user.profileImage || Iconpaciente}
                         alt="Foto do usuário"
                         fill
-                        className="IconPaciente"
+                        className="profile-avatar-image"
                         />
                     </div>
                 </div>
@@ -56,7 +51,7 @@ export default function PacientProfile () {
 
                     <h2>{user.name}</h2>
 
-                    <div className="status-user">
+                    <div className="profile-status">
                         <h3>{user.status}</h3>
                     </div>
 
@@ -64,68 +59,64 @@ export default function PacientProfile () {
 
             </div>
 
-            <div className="section-container">
-                <div className="box-container">
+            <div className="profile-content">
+                <div className="profile-card">
                     <h3>Informações de Cadastro</h3>
                     
-                    <div className="images-box">
+                    <div className="profile-card__actions">
                         <Image 
-                        className='visualize-icon' 
+                        className='profile-card__icon--view' 
                         src={visualize} 
                         alt="" 
                         />
                         <Image 
-                        className='edit-icon' 
+                        className='profile-card__icon--edit' 
                         src={editicon} 
                         alt="" 
                         />
                     </div>
                 </div>
 
-                <div className="box-container">
-                    <div className="text-box">
+                <div className="profile-card">
+                    <div className="profile-card__content">
                         <h3>Fichas e Testes</h3>
-                        <div className="barra-processo">
-                        <Image 
-                        className='barra' 
-                        src={barraprocess} 
-                        alt="" 
-                        />
-                    </div>
-
+                        <div className="profile-progress">
+                            <Image 
+                            className='profile-progress__bar' 
+                            src={barraprocess} 
+                            alt="" 
+                            />
+                        </div>
                     </div>
                     
-                    <div className="images-box">
+                    <div className="profile-card__actions">
                         <Image 
-                        className='visualize-icon' 
+                        className='profile-card__icon--view' 
                         src={visualize} 
                         alt="" 
                         />
                     </div>
                 </div>
-                <div className="box-container">
+
+                <div className="profile-card">
                     <h3>Processos e Tratamentos</h3>
                     
-                    <div className="images-box">
+                    <div className="profile-card__actions">
                         <Image 
-                        className='visualize-icon' 
+                        className='profile-card__icon--view' 
                         src={visualize} 
                         alt="" 
                         />
                         <Image 
-                        className='edit-icon' 
+                        className='profile-card__icon--edit' 
                         src={editicon} 
                         alt="" 
                         />
                     </div>
                 </div>
-
-
             </div>
 
             <Footer/>
-
-
         </div>
     )
 }

@@ -1,51 +1,75 @@
 @import url(../../app/globals.css);
 
-
-
-header{
-  width: 100%;
-  height: 170px;  
-  display: flex;
-  align-items: center; 
-  background-color: var(--primary-color);
-  gap: 86%;
-  top: 0;
-
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
-.Logo{
-  margin: 3%;
+.header{
+    width: 100%;
+    height: 170px;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    padding: 0 40px;
+    background-color: var(--primary-color);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+
+    transition: transform 0.3s ease;
 }
 
-.return{
-  background-color: var(--primary-color);
-  cursor: pointer;
+/* aparece */
+.header.show{
+    transform: translateY(0);
+}
+
+/* some */
+.header.hide{
+    transform: translateY(-100%);
+}
+
+.logo-header{
+    margin-left: 20px;
 }
 
 .container-return{
-  background-color: var(--primary-color);
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+}
+
+.return-enter{
+    display: flex;
+}
+
+/* IMPORTANTE: evita sobreposição */
+body{
+    padding-top: 170px;
 }
 
 @media (max-width: 768px){
 
-header{
-  width: 100%;
-  height: 110px;  
-  display: flex;
-  align-items: center; 
-  background-color: var(--primary-color);
-  gap: 68%;
-  top: 0;
-
+.header{
+    height: 110px;
+    padding: 0 20px;
 }
 
-.Logo-header{
-    width: 20%;
-    margin-left: 2%;
+.logo-header{
+    width: 100px;
 }
 
 .return-enter{
-  display: flex;
-  width: 30px;
+    width: 30px;
+}
+
+/* ajusta espaço no mobile */
+body{
+    padding-top: 110px;
 }
 }

@@ -1,12 +1,12 @@
 @import url(../globals.css);
 
-.Section-Privacy{
+.privacy-section{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.PrivacyTerms{
+.privacy-header{
     display: flex;
     justify-content: center;
     text-align : center;
@@ -16,7 +16,7 @@
     margin: 100px 0px;
 }
 
-.description-terms{
+.privacy-content{
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -26,22 +26,22 @@
     margin-bottom: 100px;
 }
 
-.terms h2{
+.privacy-item h2{
     font-size: 40px;
     margin-bottom: 20px;
 }
 
-.terms p{
+.privacy-item p{
     font-size: 30px;
 }
 
-.terms ul{
+.privacy-item ul{
     margin-top: 20px;
     padding-left: 20px; /* espaço da bolinha */
     
 }
 
-.terms li{
+.privacy-item li{
     font-size: 30px;
     margin-bottom: 30px;
 
@@ -51,7 +51,7 @@
 
 @media (max-width: 768px){
 
-.PrivacyTerms{
+.privacy-header{
     display: flex;
     justify-content: center;
     text-align : center;
@@ -61,7 +61,7 @@
     margin: 100px 0px;
 }
 
-.description-terms{
+.privacy-content{
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -71,22 +71,22 @@
     margin-bottom: 100px;
 }
 
-.terms h2{
+.privacy-item h2{
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.terms p{
+.privacy-item p{
     font-size: 15px;
 }
 
-.terms ul{
+.privacy-item ul{
     margin-top: 20px;
     padding-left: 20px; /* espaço da bolinha */
     
 }
 
-.terms li{
+.privacy-item li{
     font-size: 15px;
     margin-bottom: 30px;
 

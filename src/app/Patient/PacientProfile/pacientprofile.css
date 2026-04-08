@@ -1,18 +1,18 @@
 @import url(@/app/globals.css);
 
-
-.section-profile{
+.profile-section{
     display: flex;
     flex-direction: column;
 }
 
-.Container-profile{
+.profile-container{
     display: flex;
     width: 45%;
-    margin-top: 8%;
+    margin-top: 10%;
     align-items: start;
 }
-.image-wrapper {
+
+.profile-avatar-wrapper {
   display: flex;
   justify-content: center;
   margin-right: 50%;
@@ -20,7 +20,7 @@
   margin-bottom: 100px;
 }
 
-.image-container {
+.profile-avatar-container {
   position: relative;
   width: 400px !important;  
   height: 400px !important;  
@@ -29,7 +29,7 @@
   flex-shrink: 0; 
 }
 
-.IconPaciente {
+.profile-avatar-image {
   object-fit: cover;
 }
 
@@ -49,12 +49,12 @@
     width: 480px;
 }
 
-.status-user {
+.profile-status {
     display: flex;
     justify-content: center;
 }
 
-.status-user h3{
+.profile-status h3{
     font-size: 40px;
     background-color: var(--background-text);
     color: #265D39;
@@ -67,14 +67,14 @@
 
 /*  */
 
-.section-container{
+.profile-content{
     display: flex;
     flex-direction: column;
     gap: 50px;
     margin-bottom: 100px;
 }
 
-.box-container{
+.profile-card{
     width: 100%;
     height: 200px;
     z-index: 2;
@@ -83,14 +83,14 @@
     padding-top: 20px;
 }
 
-.box-container h3{
+.profile-card h3{
     width: 80%;
     font-size: 40px;
     margin-left: 2%;
     margin-right: 13%;
 }
 
-.images-box{
+.profile-card__actions{
     display: flex;
     flex-direction: column;
     gap: 40%;
@@ -98,38 +98,38 @@
 
 /*  */
 
-.text-box{
+.profile-card__content{
     display: flex;
     flex-direction: column;
     align-items: start;
-     width: 95%;
-
+    width: 95%;
 }
 
-.text-box .barra{
-     margin-left: 2%;
+.profile-card__content .profile-progress__bar{
+    margin-left: 2%;
     margin-top: 7%;
 }
 
 /*  */
 @media (max-width: 768px){
 
-.section-profile{
+.profile-section{
     display: flex;
     flex-direction: column;
-     justify-content: center;
+    justify-content: center;
     align-items: center;
 }
 
-.Container-profile{
+.profile-container{
     display: flex;
     width: 45%;
-    margin-top: 8%;
-   margin-bottom: 100px;
+    margin-top: 10%;
+    margin-bottom: 100px;
     flex-direction: column;
     align-items: center;
 }
-.image-wrapper {
+
+.profile-avatar-wrapper {
   display: flex;
   justify-content: center;
   margin-right: 10%;
@@ -137,7 +137,7 @@
   margin-bottom: 50px;
 }
 
-.image-container {
+.profile-avatar-container {
   position: relative;
   width: 150px !important;  
   height: 150px !important;  
@@ -146,7 +146,7 @@
   flex-shrink: 0; 
 }
 
-.IconPaciente {
+.profile-avatar-image {
   object-fit: cover;
 }
 
@@ -167,12 +167,12 @@
     width: 250px;
 }
 
-.status-user {
+.profile-status {
     display: flex;
     justify-content: center;
 }
 
-.status-user h3{
+.profile-status h3{
     font-size: 20px;
     background-color: var(--background-text);
     color: #265D39;
@@ -184,7 +184,7 @@
 
 /*  */
 
-.section-container{
+.profile-content{
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -192,49 +192,46 @@
     width: 100%;
 }
 
-.box-container{
+.profile-card{
     width: 100%;
     height: 100px;
     z-index: 2;
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
     display: flex;
     padding-top: 20px;
-    
-    
 }
 
-.box-container h3{
+.profile-card h3{
     width: 100%;
     font-size: 20px;
-   margin-left: 3%;
+    margin-left: 3%;
 }
 
-.images-box{
+.profile-card__actions{
     display: flex;
     flex-direction: column;
     gap: 30%;
 }
 
-.images-box .visualize-icon, .edit-icon{
+.profile-card__actions .profile-card__icon--view, 
+.profile-card__icon--edit{
     width: 70%;
     height: auto;
 }
 
 /*  */
 
-.text-box{
+.profile-card__content{
     display: flex;
     flex-direction: column;
     align-items: start;
-     width: 100%;
-
+    width: 100%;
 }
 
-.text-box .barra{
-     margin-left: 3%;
+.profile-card__content .profile-progress__bar{
+    margin-left: 3%;
     margin-top: 5%;
     width: 80%;
     height: auto;
 }
- 
 }

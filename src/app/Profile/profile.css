@@ -1,37 +1,37 @@
 @import url(../../app/globals.css);
 
 
-.section-profile{
+.profile-section{
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
 }
 
-.container-text{
+.profile-header{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.container-text h2{
+.profile-header h2{
     margin-top: 250px;
     font-size: 60px;
     margin-bottom: 30px;
     align-items: center;
 }
 
-.container-text p{
+.profile-header p{
     font-size: 30px;
     margin-bottom: 100px;
 }
 
-.card-profiles{
+.profile-card-list{
     display: flex;
     gap: 20px;
 }
 
-.box-profile{
+.profile-card{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +41,7 @@
     padding: 76px 82px;
 }
 
-.box-profile p{
+.profile-card p{
     font-size: 30px;
     margin-top: 15px;
     color: var(--secundary-color);
@@ -49,32 +49,33 @@
 
 @media (max-width: 768px){
 
-.container-text h2{
+.profile-header h2{
     margin-top: 180px;
     font-size: 30px;
     margin-bottom: 20px;
     align-items: center;
 }
 
-.container-text p{
+.profile-header p{
     font-size: 20px;
     margin-bottom: 50px;
     width: 80%;
     text-align: center;
 }
 
-.card-profiles{
+.profile-card-list{
     display: flex;
     gap: 10px;
     flex-direction: column;
 }
 
 
-.IconPaciente, .IconTerapeuta{
+.profile-card__icon{
     display: flex;
     width: 50px;
 }
-.box-profile{
+
+.profile-card{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +85,7 @@
     padding: 40px 60px;
 }
 
-.box-profile p{
+.profile-card p{
     font-size: 20px;
     margin-top: 15px;
     color: var(--secundary-color);

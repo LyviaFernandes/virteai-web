@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css'
 import logo from '../../assets/images/logo.svg';
 import aboutUs from '../../assets/images/about-us.svg';
@@ -8,22 +8,34 @@ import Offers from '../../assets/images/offers.svg';
 import home from '../../assets/images/homeicon.svg';
 import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
-import ButtonEnter from '../enter-button/Button';
 import Link from "next/link";
 import menu from '../../assets/images/iconmenu.svg';
 
-
 export default function HeaderLogout () {
+
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const [showHeader, setShowHeader] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > lastScrollY) {
+                setShowHeader(false);
+            } else {
+                setShowHeader(true);
+            }
+            setLastScrollY(window.scrollY);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScrollY]);
 
     return (
         <>
-            <header>
-                <Image 
-                    className='logo' 
-                    src={logo} 
-                    alt="Logo image" 
-                />
+            <header className={showHeader ? "header show" : "header hide"}>
+                <Image className='logo' src={logo} alt="Logo image" />
 
                 <button 
                     className="hamburger"
@@ -40,48 +52,28 @@ export default function HeaderLogout () {
                 
                 <Link href="/Home">
                     <button className="iconecontainer">
-                        <Image 
-                            className='image' 
-                            src={home} 
-                            alt="Pagina inicial" 
-                            width={50}
-                        />
+                        <Image className='image' src={home} alt="Pagina inicial" width={50}/>
                         <p>Página inicial</p>
                     </button>
                 </Link>
 
                 <Link href="/AboutUs">
                     <button className="iconecontainer">
-                        <Image 
-                            className='image' 
-                            src={aboutUs} 
-                            alt="Sobre nós icon" 
-                            width={50}
-                        />
+                        <Image className='image' src={aboutUs} alt="Sobre nós icon" width={50}/>
                         <p>Sobre nós</p>
                     </button>
                 </Link>
 
                 <Link href="/AccountAcess">
                     <button className="iconecontainer">
-                        <Image 
-                            className='image' 
-                            src={Offers} 
-                            alt="Ofertas icon" 
-                            width={50}
-                        />
+                        <Image className='image' src={Offers} alt="Ofertas icon" width={50}/>
                         <p>Nossos serviços</p>
                     </button>
                 </Link>
                 
                 <Link href="/AccountAcess">
                     <button className="iconecontainer">
-                        <Image 
-                            className='image' 
-                            src={Notification} 
-                            alt="Notificações icon" 
-                            width={50}
-                        />
+                        <Image className='image' src={Notification} alt="Notificações icon" width={50}/>
                         <p>Notificações</p>
                     </button>
                 </Link>

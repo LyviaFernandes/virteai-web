@@ -11,26 +11,26 @@ import questionicon from '@/assets/images/questionicon.svg';
 
 export default function FAQ () {
     return(
-        <div className="Section-FAQ">
+        <div className="faq-section">
             <HeaderHome/>
-                <div className="Page-center">
+                <div className="faq-header">
                     <h1>Perguntas Frequentes</h1>
                     <p>Veja abaixo as respostas de nossas perguntas mais frequentes.</p>
                 </div>
 
-                <div className="section-questions">
-                    <div className="faq-send">
+                <div className="faq-list">
+                    <div className="faq-card faq-card--sand">
                         <Image 
                         src={questionicon}
                         alt=''
-                        className="questionicon"
+                        className="faq-card__icon"
                         />
                         
-                        <div className="text">
-                            <div className="bigger">
+                        <div className="faq-card__content">
+                            <div className="faq-card__question">
                                 <p>O que é a VirTEAi?</p>
                             </div>
-                            <div className="small">
+                            <div className="faq-card__answer">
                                 <p>A VirTEAi é uma iniciativa que desenvolve óculos de realidade 
                                     virtual adaptados e personalizados para pessoas com TEA. 
                                     Promovendo experiências seguras, acessíveis e focadas no bem-estar.
@@ -39,18 +39,18 @@ export default function FAQ () {
                         </div>
                     </div>
 
-                    <div className="faq-ciano">
+                    <div className="faq-card faq-card--ciano">
                         <Image 
                         src={questionicon}
                         alt=''
-                        className="questionicon"
+                        className="faq-card__icon"
                         />
                         
-                        <div className="text">
-                            <div className="bigger">
+                        <div className="faq-card__content">
+                            <div className="faq-card__question">
                                 <p>Como os óculos da VirTEAi ajudam pessoas com TEA?</p>
                             </div>
-                            <div className="small">
+                            <div className="faq-card__answer">
                                 <p>Eles permitem vivências controladas em ambientes virtuais 
                                     que estimulam o aprendizado, a interação e o relaxamento, 
                                     respeitando os níveis sensoriais de cada pessoa.
@@ -59,18 +59,18 @@ export default function FAQ () {
                         </div>
                     </div>
 
-                    <div className="faq-blue">
+                    <div className="faq-card faq-card--blue">
                         <Image 
                         src={questionicon}
                         alt=''
-                        className="questionicon"
+                        className="faq-card__icon"
                         />
                         
-                        <div className="text">
-                            <div className="bigger">
+                        <div className="faq-card__content">
+                            <div className="faq-card__question">
                                 <p>Como os óculos da VirTEAi ajudam pessoas com TEA?</p>
                             </div>
-                            <div className="small">
+                            <div className="faq-card__answer">
                                 <p>Eles permitem vivências controladas em ambientes virtuais 
                                     que estimulam o aprendizado, a interação e o relaxamento, 
                                     respeitando os níveis sensoriais de cada pessoa.
@@ -79,18 +79,18 @@ export default function FAQ () {
                         </div>
                     </div>
 
-                    <div className="faq-green">
+                    <div className="faq-card faq-card--green">
                         <Image 
                         src={questionicon}
                         alt=''
-                        className="questionicon"
+                        className="faq-card__icon"
                         />
                         
-                        <div className="text">
-                            <div className="bigger">
+                        <div className="faq-card__content">
+                            <div className="faq-card__question">
                                 <p>Como os óculos da VirTEAi ajudam pessoas com TEA?</p>
                             </div>
-                            <div className="small">
+                            <div className="faq-card__answer">
                                 <p>Eles permitem vivências controladas em ambientes virtuais 
                                     que estimulam o aprendizado, a interação e o relaxamento, 
                                     respeitando os níveis sensoriais de cada pessoa.
@@ -99,18 +99,18 @@ export default function FAQ () {
                         </div>
                     </div>
 
-                    <div className="faq-send">
+                    <div className="faq-card faq-card--sand">
                         <Image 
                         src={questionicon}
                         alt=''
-                        className="questionicon"
+                        className="faq-card__icon"
                         />
                         
-                        <div className="text">
-                            <div className="bigger">
+                        <div className="faq-card__content">
+                            <div className="faq-card__question">
                                 <p>Como os óculos da VirTEAi ajudam pessoas com TEA?</p>
                             </div>
-                            <div className="small">
+                            <div className="faq-card__answer">
                                 <p>Eles permitem vivências controladas em ambientes virtuais 
                                     que estimulam o aprendizado, a interação e o relaxamento, 
                                     respeitando os níveis sensoriais de cada pessoa.

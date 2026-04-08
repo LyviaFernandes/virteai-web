@@ -8,19 +8,19 @@ import Link from "next/link";
 
 export default function ResultBigQuestionnaire () {
     return(
-        <div className="Section-Result">
+        <div className="result-section">
             <HeaderEnter
             src={Return}
             />
             
-                <div className="card-container">
+                <div className="result-container">
                     <h2>Seu resultado!</h2>
 
-                    <div className="card">
-                        <div className="pontuacao">
+                    <div className="result-card">
+                        <div className="result-card__score">
                             <p>??/10</p>
                         </div>
-                        <div className="mensage">
+                        <div className="result-card__message">
                             <p>
                                 Deseja continuar para ter acesso à uma lista de 
                                 terapeutas prontos para atender às suas necessidades?
@@ -29,10 +29,10 @@ export default function ResultBigQuestionnaire () {
                         </div>
                         
 
-                        <div className="container-buttons">
+                        <div className="result-card__actions">
                             
                             <Link href="/TherapistList">
-                                <button className='white-button'>
+                                <button className='result-button'>
                                     <h3>Continuar</h3>
                                 </button>
                             </Link>

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css'
 import logo from '../../assets/images/logo.svg';
 import aboutUs from '../../assets/images/about-us.svg';
@@ -17,6 +17,23 @@ export default function HeaderHome () {
     const [openModal, setOpenModal] = useState(false);
     const [openNotifications, setOpenNotifications] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const [showHeader, setShowHeader] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > lastScrollY) {
+                setShowHeader(false);
+            } else {
+                setShowHeader(true);
+            }
+            setLastScrollY(window.scrollY);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScrollY]);
 
     const [notifications, setNotifications] = useState([
         {id:1, text1:"Novo recurso disponível!", text2:"Ajuste a intensidade visual e sonora", read:false},
@@ -43,92 +60,50 @@ export default function HeaderHome () {
 
     return (
         <>
-        <header>
-            <Image 
-            className='logo' 
-            src={logo} 
-            alt="Logo image" 
-            />
+        <header className={showHeader ? "header show" : "header hide"}>
+            <Image className='logo' src={logo} alt="Logo image" />
+            
             <button 
-            // menu
-            className="hamburger"
-            onClick={() => setMenuOpen(!menuOpen)}
+                className="hamburger"
+                onClick={() => setMenuOpen(!menuOpen)}
             >
-                <Image 
-                    className='menu' 
-                    src={menu} 
-                    alt="" 
-                    width={45}
-                    height={45}
-                            />
+                <Image className='menu' src={menu} alt="" width={45} height={45}/>
             </button>
             
             <div className="container-pages">
                 <Link href="Home">
                     <button className="iconecontainer">
-                        <Image 
-                        className='image' 
-                        src={home} 
-                        alt="Pagina inicial" 
-                        width={50}
-                        />
+                        <Image className='image' src={home} alt="Pagina inicial" width={50}/>
                         <p>Página inicial</p>
                     </button>
                 </Link>
 
                 <Link href="/AboutUs">
                     <button className="iconecontainer">
-                        <Image 
-                        className='image' 
-                        src={aboutUs} 
-                        alt="Sobre nós icon" 
-                        width={50}
-                        />
+                        <Image className='image' src={aboutUs} alt="Sobre nós icon" width={50}/>
                         <p>Sobre nós</p>
                     </button>
                 </Link>
 
-                <button 
-                className="iconecontainer"
-                onClick={() => setOpenModal(true)}
-                >
-                    <Image 
-                    className='image' 
-                    src={Offers} 
-                    alt="Ofertas icon" 
-                    width={50}
-                    />
+                <button className="iconecontainer" onClick={() => setOpenModal(true)}>
+                    <Image className='image' src={Offers} alt="Ofertas icon" width={50}/>
                     <p>Nossos serviços</p>
                 </button>
-                
 
-                <button 
-                className="iconecontainer"
-                onClick={() => setOpenNotifications(true)}
-                >
-                    <Image 
-                    className='image' 
-                    src={Notification} 
-                    alt="Notificações icon" 
-                    width={50}
-                    />
+                <button className="iconecontainer" onClick={() => setOpenNotifications(true)}>
+                    <Image className='image' src={Notification} alt="Notificações icon" width={50}/>
                     <p>Notificações</p>
                 </button>
-
             </div>
             
             <Link href="PacientProfile">
-                <button
-                className="container-profile">
-                    <Image 
-                    className='Profile' 
-                    src={profile} 
-                    alt="Icon profile" 
-                    />
+                <button className="container-profile">
+                    <Image className='Profile' src={profile} alt="Icon profile"/>
                 </button>
             </Link>
-            
         </header>
+
+        
 
         {menuOpen && (
             <div className="mobile-menu">

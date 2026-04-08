@@ -11,14 +11,14 @@ import Link from "next/link";
 
 export default function Login () {
     return(
-        <div className="Section-Login">
+        <div className="login-section">
             <HeaderEnter
             src={Return}
             />
 
-            <div className="card-container">
+            <div className="login-container">
                 <h2>Login</h2>
-                <div className="card">
+                <div className="login-card">
                     <p>Email:</p>
                     <Input description='Insira seu email'/>
 
@@ -26,21 +26,21 @@ export default function Login () {
                     <Input description='Insira sua senha'/>
 
                     <Link href="/RedefineWeb">
-                        <button className='redefine-container'>
-                            <div className="password">
+                        <button className='login-forgot-password'>
+                            <div className="login-forgot-password__text">
                                 <p>esqueci a senha</p>
                             </div>
                         </button>
                     </Link>
 
-                    <div className="container-buttons">
+                    <div className="login-actions">
                         <ButtonEnter
                         label='Entrar'
                         onclick={() => console.log("oi")}
                         />
 
                         <Link href="/Profile">
-                            <button className='container-login'>
+                            <button className='login-register'>
                                 <p>Não tenho cadastro</p>
                             </button>
                         </Link>

@@ -1,16 +1,17 @@
 @import url(@/app/globals.css);
 
-.Section-Login{
+.login-section{
    height: 100%;
 }
-.card-container{
+
+.login-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20%;
+    margin-top: 15%;
 }
 
-.card-container h2{
+.login-container h2{
     background-color: var(--background-card);
     font-size: 50px;
     padding: 15px 40px;
@@ -19,7 +20,7 @@
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
-.card{
+.login-card{
     display: flex;
     flex-direction: column;
     background-color: var(--background-card);
@@ -30,31 +31,28 @@
     justify-content: center;
 }
 
-.card p{
-    
+.login-card p{
     font-size: 20px;
     margin: 5px;
     margin-top: 50px;
     justify-content: center;
 }
 
-
-.password{
+.login-forgot-password__text{
     margin-top: -30px;
     text-align: end;
 }
 
-.container-buttons{
+.login-actions{
     display: flex;
     margin-top: 20px;
     gap: 10px;
     align-items: center;
     justify-content: center;
     text-align: center;
-
 }
 
-.container-login{
+.login-register{
     display: flex;
     background-color: var(--background-card);
     align-items: center;
@@ -63,33 +61,32 @@
     color: var(--dark-blue);
 }
 
-.redefine-container{
+.login-forgot-password{
     display: flex;
     background-color: var(--background-card);
     cursor: pointer;
     color: var(--dark-blue);
-    
-    
 }
 
-
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px){
 
-.Section-Login{
+.login-section{
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.card-container{
+
+.login-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 40%;
 }
 
-.card-container h2{
+.login-container h2{
     background-color: var(--background-card);
     font-size: 30px;
     padding: 10px 35px;
@@ -98,7 +95,7 @@
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
-.card{
+.login-card{
     display: flex;
     flex-direction: column;
     background-color: var(--background-card);
@@ -107,13 +104,9 @@
     z-index: 0;
     margin-top: -40px;
     justify-content: center;
-    
 }
 
-
-
-.card p{
-    
+.login-card p{
     font-size: 15px;
     margin: 0px;
     margin-top: 40px;
@@ -121,23 +114,21 @@
     margin-bottom: 2px;
 }
 
-
-.password{
+.login-forgot-password__text{
     margin-top: -30px;
     text-align: end;
 }
 
-.container-buttons{
+.login-actions{
     display: flex;
     margin-top: 0px;
     gap: 0px;
     align-items: center;
     justify-content: center;
     text-align: center;
-
 }
 
-.container-login{
+.login-register{
     display: flex;
     align-items: center;
     text-align: center;
@@ -145,21 +136,16 @@
     color: var(--dark-blue);
 }
 
-.container-login p{
+.login-register p{
     display: flex;
     margin-bottom: 50px;
 }
 
-.redefine-container{
+.login-forgot-password{
     display: flex;
     background-color: var(--background-card);
     cursor: pointer;
     color: var(--dark-blue);
-    
-    
 }
-
-
-
 
 }

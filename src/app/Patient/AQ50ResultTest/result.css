@@ -1,26 +1,26 @@
-
 @import url(@/app/globals.css);
 
 
-.Section-Result{
+.result-section{
     display: flex;
     width: 100%;
     height: 100vh;
     flex-direction: column;
+     background-image: url('@/assets/images/backgroundimage.svg');
      justify-content: center;
      align-items: center;
-   
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-
-.card-container{
+.result-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 120px;
 }
 
-.card-container h2{
+.result-container h2{
     background-color: var(--primary-color);
     font-size: 50px;
     padding: 18px 45px;
@@ -29,7 +29,7 @@
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
-.card{
+.result-card{
     background-color: var(--primary-color);
     border: 5px solid var(--light-blue);
     padding: 35px 45px;
@@ -41,22 +41,20 @@
     align-items: center;
 }
 
-.container-input p{
+.result-input p{
     font-size: 20px;
     margin: 5px;
     margin-top: 50px;
-
 }
 
-.container-buttons{
+.result-card__actions{
     display: flex;
     margin-top: 50px;
     gap: 15px;
     justify-content: center;
-    
 }
 
-.mensage{
+.result-card__message{
     display: flex;
     width: 640px;
     text-align: justify;
@@ -64,17 +62,17 @@
     margin-top: 50px;
 }
 
-.mensage p{
+.result-card__message p{
     font-size: 30px;
 }
 
-.pontuacao{
+.result-card__score{
     font-size: 90px;
     margin-top: 50px;
     color: var( --border-button);
 }
 
-.white-button{
+.result-button{
     color: var(--secundary-color);
     background-color: var( --border-button);
     padding: 15px 30px;
@@ -82,35 +80,32 @@
     border-radius: 30px;
 }
 
-.white-button h3{
+.result-button h3{
     font-size: 30px;
 }
 
 @media (max-width: 768px){
 
-.Section-Password{
+.result-section{
     display: flex;
     width: 100%;
     height: 100vh;
     flex-direction: column;
-     background-image: url('../../assets/images/backgroundimage.svg');
+     background-image: url('@/assets/images/backgroundimage.svg');
      justify-content: center;
      align-items: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-
-
-.card-container{
+.result-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 0px;
 }
 
-.card-container h2{
-    
+.result-container h2{
     font-size: 30px;
     padding: 15px 40px;
     border-radius: 50px;
@@ -118,8 +113,7 @@
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
-.card{
-    
+.result-card{
     padding: 15px 2px 30px;
     border-radius: 50px;
     z-index: 0;
@@ -130,22 +124,20 @@
     margin: -40px 30px;
 }
 
-.container-input p{
+.result-input p{
     font-size: 18px;
     margin: 5px;
     margin-top: 30px;
-    
 }
 
-.container-buttons{
+.result-card__actions{
     display: flex;
     margin-top: 30px;
     gap: 10px;
     justify-content: center;
-    
 }
 
-.mensage{
+.result-card__message{
     display: flex;
     width: 80%;
     text-align: center;
@@ -153,17 +145,18 @@
     margin-top: 50px;
 }
 
-.mensage p{
+.result-card__message p{
     font-size: 20px;
     text-align: center;
 }
-.white-button{
+
+.result-button{
     color: var(--secundary-color);
     background-color: var( --border-button);
     border-radius: 30px;
 }
 
-.white-button h3{
+.result-button h3{
     font-size: 20px;
 }
 }
