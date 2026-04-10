@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import './singup.css'
+import './services.css'
 import Image from 'next/image';
 import Footer from '@/components/footer/Footer';
 import ImageCenter from '@/assets/images/Banner.svg';
@@ -30,150 +30,110 @@ const features: Feature[] = [
 
 export default function OurServices () {
     return(
-        <div className="Section-services">
+        <div className="services-section">
             <HeaderLogout/>
     
             <Image 
-                className='Banner' 
+                className='services-banner' 
                 src={ImageCenter} 
                 alt="" 
             />
 
-            <div className="Transformer">
+            <div className="services-intro">
                 <h1>Transforme o seu atendimento!</h1>
 
                 <p>Nossos planos oferecem ferramentas inteligentes, 
                     materiais especializados e uma plataforma pensada para profissionais que fazem a diferença no cuidado com o TEA. Escolha o ideal para você!</p>
             </div>
 
-            <div className="Section-cards">
-                <div className="blue-card">
+            <div className="plans-section">
+                <div className="plan-card-basic">
                     <h2>Plano comum</h2>
 
                     <h3>Para quem atende com profundidade, caso a caso.</h3>
 
-                    <div className="section-checks">
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                    <div className="plan-features">
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Acesso completo à plataforma VirTEAi</p>
                         </div>
 
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Biblioteca de materiais terapêuticos atualizados</p>
                         </div>
 
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Ferramentas de acompanhamento de pacientes</p>
                         </div>
 
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Relatórios automatizados de evolução</p>
                         </div>
 
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Suporte técnico prioritário</p>
                         </div>
                     </div>
 
-                    <div className="pay">
+                    <div className="plan-price">
                         <p>R$49,90/mês</p>
                     </div>
 
                     <button>
                         <p>saiba mais</p>
-                        </button>
+                    </button>
                 </div>
 
-                 <div className="sand-card">
+                 <div className="plan-card-premium">
                     <h2>Plano corporativo</h2>
 
                     <h3>Para quem precisa escalar o cuidado sem perder a qualidade.</h3>
 
-                    <div className="section-checks">
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                    <div className="plan-features">
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Tudo do Plano Comum</p>
                         </div>
 
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Múltiplos acessos para equipes</p>
                         </div>
 
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Painel de gestão centralizado</p>
                         </div>
 
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Relatórios consolidados por unidade/profissional</p>
                         </div>
 
-                        <div className="check-text">
-                            <Image 
-                                className='Check-icon' 
-                                src={Check} 
-                                alt="" 
-                            />
+                        <div className="feature-item">
+                            <Image className='feature-icon' src={Check} alt="" />
                             <p>Suporte dedicado e onboarding personalizado</p>
                         </div>
                     </div>
 
-                    <div className="pay">
+                    <div className="plan-price">
                         <p>R$199,00/mês</p>
                     </div>
 
                     <button>
                         <p>saiba mais</p>
-                        </button>
+                    </button>
                 </div>
             </div>
 
-            <div className="section-table">
+            <div className="comparison-section">
                 <h3>Tabela de Comparação</h3>
 
-                <div className="table-container">
+                <div className="comparison-table-container">
                     <table>
                         <thead>
                         <tr>
@@ -190,40 +150,24 @@ export default function OurServices () {
 
                             <td>
                                 {item.basic ? (
-                                <span className="check">
-                                    <Image 
-                                        className='Check' 
-                                        src={CheckIcon} 
-                                        alt="" 
-                                    />
+                                <span className="icon-check">
+                                    <Image className='icon-check-img' src={CheckIcon} alt="" />
                                 </span>
                                 ) : (
-                                <span className="cross">
-                                     <Image 
-                                        className='X' 
-                                        src={XIcon} 
-                                        alt="" 
-                                    />
+                                <span className="icon-cross">
+                                     <Image className='icon-cross-img' src={XIcon} alt="" />
                                 </span>
                                 )}
                             </td>
 
                             <td>
                                 {item.premium ? (
-                                <span className="check">
-                                    <Image 
-                                        className='Check' 
-                                        src={CheckIcon} 
-                                        alt="" 
-                                    />
+                                <span className="icon-check">
+                                    <Image className='icon-check-img' src={CheckIcon} alt="" />
                                 </span>
                                 ) : (
-                                <span className="cross">
-                                    <Image 
-                                        className='X' 
-                                        src={XIcon} 
-                                        alt="" 
-                                    />
+                                <span className="icon-cross">
+                                    <Image className='icon-cross-img' src={XIcon} alt="" />
                                 </span>
                                 )}
                             </td>
@@ -231,9 +175,9 @@ export default function OurServices () {
                         ))}
                         </tbody>
                     </table>
-                    </div>
-
+                </div>
             </div>
+
             <Footer/>
         </div>
     )

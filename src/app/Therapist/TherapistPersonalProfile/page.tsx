@@ -5,12 +5,10 @@ import './personal.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
-import Iconpaciente from '@/assets/images/ProfileIcon.svg';
-import visualize from '@/assets/images/visualizeicon.svg';
-import editicon from '@/assets/images/editicon.svg';
+import DefaultProfileIcon from '@/assets/images/ProfileIcon.svg';
+import ViewIcon from '@/assets/images/visualizeicon.svg';
+import EditIcon from '@/assets/images/editicon.svg';
 import Footer from '@/components/footer/Footer';
-
-
 
 type User = {
     id: number;
@@ -20,46 +18,43 @@ type User = {
     status: string;
 }
 
-
-
 export default function TherapistProfile () {
 
-    // 🔹 Dados mockados (estáticos)
     const user: User = {
         id: 1,
         name: "Camilla Andrade",
-        profileImage: "", // pode colocar uma URL ou deixar vazio pra usar o ícone padrão
+        profileImage: "",
         CRP: "CRP 06/38472",
         status: "Terapeuta Cognitivo-Comportamental"
     };
 
     return(
-        <div className="section-profile">
+        <div className="profile-page">
 
             <HeaderEnter
                 src={Return}
             />
 
-            <div className="Container-profile">
+            <div className="profile-header">
 
-                <div className="image-wrapper">
-                    <div className="image-container">
+                <div className="profile-avatar-wrapper">
+                    <div className="profile-avatar-container">
                         <Image 
-                        src={user.profileImage || Iconpaciente}
+                        src={user.profileImage || DefaultProfileIcon}
                         alt="Foto do usuário"
                         fill
-                        className="IconPaciente"
+                        className="profile-avatar-image"
                         />
                     </div>
                 </div>
 
-                <div className="profile-info">
+                <div className="profile-details">
 
                     <h2>{user.name}</h2>
 
                     <p>{user.CRP}</p>
 
-                    <div className="status-user">
+                    <div className="profile-status">
                         <h3>{user.status}</h3>
                     </div>
 
@@ -67,44 +62,44 @@ export default function TherapistProfile () {
 
             </div>
 
-            <div className="section-container">
-                <div className="box-container">
+            <div className="profile-sections">
+                <div className="profile-card">
                     <h3>Informações de Cadastro</h3>
                     
-                    <div className="images-box">
+                    <div className="card-actions">
                         <Image 
-                        className='visualize-icon' 
-                        src={visualize} 
+                        className='action-icon view-icon' 
+                        src={ViewIcon} 
                         alt="" 
                         />
                         <Image 
-                        className='edit-icon' 
-                        src={editicon} 
+                        className='action-icon edit-icon' 
+                        src={EditIcon} 
                         alt="" 
                         />
                     </div>
                 </div>
 
              
-                <div className="box-container">
+                <div className="profile-card">
                     <h3>Pacientes e Tratamentos</h3>
                     
-                    <div className="images-box">
+                    <div className="card-actions">
                         <Image 
-                        className='visualize-icon' 
-                        src={visualize} 
+                        className='action-icon view-icon' 
+                        src={ViewIcon} 
                         alt="" 
                         />
                     </div>
                 </div>
 
-                <div className="box-container">
+                <div className="profile-card">
                     <h3>Agenda e Histórico</h3>
                     
-                    <div className="images-box">
+                    <div className="card-actions">
                         <Image 
-                        className='visualize-icon' 
-                        src={visualize} 
+                        className='action-icon view-icon' 
+                        src={ViewIcon} 
                         alt="" 
                         />
                     </div>
@@ -113,7 +108,6 @@ export default function TherapistProfile () {
             </div>
 
             <Footer/>
-
 
         </div>
     )

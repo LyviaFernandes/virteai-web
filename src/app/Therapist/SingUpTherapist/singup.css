@@ -1,19 +1,19 @@
 @import url(../../app/globals.css);
 
-
-.Section-Singup{
+.signup-section{
     display: flex;
     justify-content: center;
     z-index: 3;
 }
-.card-container{
+
+.signup-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 15%;
 }
 
-.card-container h2{
+.signup-container h2{
     background-color: var(--background-card);
     font-size: 50px;
     padding: 18px 45px;
@@ -22,7 +22,7 @@
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
-.card{
+.signup-card{
     background-color: var(--background-card);
     padding: 50px 50px;
     border-radius: 50px;
@@ -30,31 +30,29 @@
     margin-top: -40px;
 }
 
-.card p{
+.signup-card p{
     font-size: 20px;
     margin: 5px;
     margin-top: 50px;
-
 }
 
-.container-buttons{
+.signup-actions{
     display: flex;
     margin-top: 60px;
     gap: 10px;
     justify-content: center;
-    
 }
 
 @media (max-width: 768px){
 
-.card-container{
+.signup-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 35%;
 }
 
-.card-container h2{
+.signup-container h2{
     background-color: var(--background-card);
     font-size: 30px;
     padding: 15px 35px;
@@ -63,7 +61,7 @@
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
-.card{
+.signup-card{
     background-color: var(--background-card);
     padding: 30px 50px;
     border-radius: 50px;
@@ -71,14 +69,13 @@
     margin-top: -40px;
 }
 
-.card p{
+.signup-card p{
     font-size: 15px;
     margin: 5px;
     margin-top: 40px;
-
 }
 
-.container-buttons{
+.signup-actions{
     display: flex;
     margin-top: 30px;
     gap: 10px;

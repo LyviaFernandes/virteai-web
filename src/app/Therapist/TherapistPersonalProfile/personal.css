@@ -1,18 +1,18 @@
 @import url(@/app/globals.css);
 
-
-.section-profile{
+.profile-page{
     display: flex;
     flex-direction: column;
 }
 
-.Container-profile{
+.profile-header{
     display: flex;
     width: 45%;
     margin-top: 8%;
     align-items: start;
 }
-.image-wrapper {
+
+.profile-avatar-wrapper {
   display: flex;
   justify-content: center;
   margin-right: 50%;
@@ -20,7 +20,7 @@
   margin-bottom: 100px;
 }
 
-.image-container {
+.profile-avatar-container {
   position: relative;
   width: 400px !important;  
   height: 400px !important;  
@@ -29,11 +29,11 @@
   flex-shrink: 0; 
 }
 
-.IconPaciente {
+.profile-avatar-image {
   object-fit: cover;
 }
 
-.profile-info{
+.profile-details{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -41,7 +41,7 @@
     justify-content: center;
 }
 
-.profile-info h2{
+.profile-details h2{
     display: flex;
     align-items: center;
     font-size: 60px;
@@ -49,19 +49,17 @@
     width: 480px;
 }
 
-.profile-info p{
+.profile-details p{
     font-size: 40px;
     margin-bottom: 50px;
 }
 
-.status-user {
+.profile-status {
     display: flex;
     justify-content: center;
 }
 
-
-
-.status-user h3{
+.profile-status h3{
     font-size: 40px;
     color: var(--secundary-color);
     background-color: #22304A;
@@ -75,14 +73,14 @@
 
 /*  */
 
-.section-container{
+.profile-sections{
     display: flex;
     flex-direction: column;
     gap: 50px;
     margin-bottom: 100px;
 }
 
-.box-container{
+.profile-card{
     width: 100%;
     height: 200px;
     z-index: 2;
@@ -91,14 +89,14 @@
     padding-top: 20px;
 }
 
-.box-container h3{
+.profile-card h3{
     width: 80%;
     font-size: 40px;
     margin-left: 2%;
     margin-right: 13%;
 }
 
-.images-box{
+.card-actions{
     display: flex;
     flex-direction: column;
     gap: 40%;
@@ -111,7 +109,6 @@
     flex-direction: column;
     align-items: start;
      width: 95%;
-
 }
 
 .text-box .barra{
@@ -122,22 +119,23 @@
 /*  */
 @media (max-width: 768px){
 
-.section-profile{
+.profile-page{
     display: flex;
     flex-direction: column;
      justify-content: center;
     align-items: center;
 }
 
-.Container-profile{
+.profile-header{
     display: flex;
     width: 45%;
     margin-top: 8%;
-   margin-bottom: 100px;
+    margin-bottom: 100px;
     flex-direction: column;
     align-items: center;
 }
-.image-wrapper {
+
+.profile-avatar-wrapper {
   display: flex;
   justify-content: center;
   margin-right: 10%;
@@ -145,7 +143,7 @@
   margin-bottom: 50px;
 }
 
-.image-container {
+.profile-avatar-container {
   position: relative;
   width: 150px !important;  
   height: 150px !important;  
@@ -154,11 +152,11 @@
   flex-shrink: 0; 
 }
 
-.IconPaciente {
+.profile-avatar-image {
   object-fit: cover;
 }
 
-.profile-info{
+.profile-details{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -167,7 +165,7 @@
     width: 100%;
 }
 
-.profile-info h2{
+.profile-details h2{
     display: flex;
     align-items: center;
     font-size: 30px;
@@ -175,16 +173,16 @@
     width: 250px;
 }
 
-.profile-info p{
+.profile-details p{
     font-size: 20px;
 }
 
-.status-user {
+.profile-status {
     display: flex;
     justify-content: center;
 }
 
-.status-user h3{
+.profile-status h3{
     font-size: 20px;
     color: white;
     background-color: #22304A;
@@ -195,7 +193,7 @@
 
 /*  */
 
-.section-container{
+.profile-sections{
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -203,30 +201,28 @@
     width: 100%;
 }
 
-.box-container{
+.profile-card{
     width: 100%;
     height: 100px;
     z-index: 2;
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
     display: flex;
     padding-top: 20px;
-    
-    
 }
 
-.box-container h3{
+.profile-card h3{
     width: 100%;
     font-size: 20px;
-   margin-left: 3%;
+    margin-left: 3%;
 }
 
-.images-box{
+.card-actions{
     display: flex;
     flex-direction: column;
     gap: 30%;
 }
 
-.images-box .visualize-icon, .edit-icon{
+.card-actions .view-icon, .edit-icon{
     width: 70%;
     height: auto;
 }
@@ -238,7 +234,6 @@
     flex-direction: column;
     align-items: start;
      width: 100%;
-
 }
 
 .text-box .barra{

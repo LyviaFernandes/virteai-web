@@ -1,22 +1,22 @@
 "use client"
 
 import React from 'react';
-import './singup.css'
+import './signup.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
 
-export default function TherapistSingup () {
+export default function TherapistSignup () {
     return(
-        <div className="Section-Singup">
+        <div className="signup-section">
             <HeaderEnter
             src={Return}
             />
 
-            <div className="card-container">
+            <div className="signup-container">
                 <h2>Cadastro</h2>
-                <div className="card">
+                <div className="signup-card">
                     <p>Nome:</p>
                     <Input description='Insira seu nome'/>
 
@@ -29,14 +29,11 @@ export default function TherapistSingup () {
                     <p>Registro profissional:</p>
                     <Input description='Insira seu registro profissional'/>
 
-
-                    <div className="container-buttons">
+                    <div className="signup-actions">
                         <ButtonEnter
                         label='Enviar'
                         onclick={() => console.log("oi")}
                         />
-
-                        
                     </div>
                 </div>
 

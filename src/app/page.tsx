@@ -25,10 +25,11 @@ import PoliticaPrivacidade from "./PrivacyPolicyWeb/page";
 import FAQ from "./FAQWeb/page";
 import TherapistProfile from "./Therapist/TherapistPersonalProfile/page";
 import OurServices from "./Therapist/OurServicesWeb/page";
+import CommonPlan from "./Therapist/CommonPlanLearnMoreWeb/page";
 
 export default function Home() {
   return (
-    <OurServices/>
+    <CommonPlan/>
     
   );
 }

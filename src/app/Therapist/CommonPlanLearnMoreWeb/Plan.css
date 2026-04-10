@@ -1,0 +1,334 @@
+@import url(@/app/globals.css);
+
+.plan-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plan-hero{
+    font-size: 60px;
+    text-align: center;
+    margin-top: 115px;
+    background-color: #CBEFF2;
+    padding: 10px;
+    width: 100%;
+}
+
+.plan-subtitle{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.plan-description{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px ;
+    font-size: 30px;
+    width: 100%;
+    align-items: center;
+}
+
+.plan-description p{
+    width: 70%;
+    text-align: justify;
+    justify-items: center;
+}
+
+/*  */
+.plan-section{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.plan-section h2{
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-section h2::before{
+    content: "";
+  width: 10px;
+  height: 10px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.plan-section p{
+    font-size: 30px;
+    text-align: justify;
+    width: 80%;
+    margin-top: 50px;
+}
+
+.feature-card-primary p{
+    font-size: 30px;
+    padding: 20px 20px;
+    background-color: #CBEFF2;
+    width: 48%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.feature-card-secondary p{
+    font-size: 30px;
+    padding: 20px 20px;
+    background-color: #F2EDE3;
+    width: 55%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.feature-card-tertiary p{
+    font-size: 30px;
+    padding: 20px 20px;
+    background-color: #CADAED;
+    width: 45%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.feature-card-success p{
+    font-size: 30px;
+    padding: 20px 20px;
+    background-color: #DDF8E5;
+    width: 47%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+/*  */
+.plan-section-alt{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.plan-section-alt h2{
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-section-alt h2::before{
+    content: "";
+  width: 10px;
+  height: 10px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.plan-section-alt p{
+    font-size: 30px;
+    text-align: justify;
+    width: 80%;
+    margin-top: 50px;
+}
+
+.feature-card-primary-alt p{
+    font-size: 30px;
+    padding: 20px 20px;
+    background-color: #CBEFF2;
+    width: 35%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.feature-card-secondary-alt p{
+    font-size: 30px;
+    padding: 20px 20px;
+    background-color: #F2EDE3;
+    width: 23%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.feature-card-tertiary-alt p{
+    font-size: 30px;
+    padding: 20px 20px;
+    background-color: #CADAED;
+    width: 43%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.feature-card-success-alt p{
+    font-size: 30px;
+    padding: 20px 20px;
+    background-color: #DDF8E5;
+    width: 43%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+/*  */
+
+.plan-cta-button{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 100px;
+    background-color: #40878E;
+    color: white;
+    width: 30%;
+    border-radius: 60px;
+    align-items: center;
+    padding: 15px;
+    font-size: 60px;
+    margin-top: 100px;
+}
+
+@media (max-width: 768px){
+
+.plan-hero{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 115px;
+    background-color: #CBEFF2;
+    padding: 10px;
+    width: 100%;
+}
+
+.plan-subtitle{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.plan-description{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px ;
+    font-size: 15px;
+    width: 100%;
+    align-items: center;
+}
+
+.plan-description p{
+    width: 70%;
+    text-align: justify;
+    justify-items: center;
+}
+
+/*  */
+.plan-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0%;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+.plan-section h2{
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.plan-section h2::before{
+    content: "";
+  width: 5px;
+  height: 5px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.plan-section p{
+    font-size: 15px;
+    text-align: justify;
+    width: 80%;
+    margin-top: 50px;
+}
+
+.feature-card-primary p,
+.feature-card-secondary p,
+.feature-card-tertiary p,
+.feature-card-success p{
+    font-size: 15px;
+    padding: 20px 20px;
+    width: 100%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+/*  */
+.plan-section-alt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.plan-section-alt h2{
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-section-alt h2::before{
+    content: "";
+  width: 5px;
+  height: 5px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.plan-section-alt p{
+    font-size: 15px;
+    text-align: justify;
+    width: 80%;
+    margin-top: 50px;
+}
+
+.feature-card-primary-alt p,
+.feature-card-secondary-alt p,
+.feature-card-tertiary-alt p,
+.feature-card-success-alt p{
+    font-size: 15px;
+    padding: 20px 20px;
+    width: 100%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+/*  */
+
+.plan-cta-button{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 100px;
+    background-color: #40878E;
+    color: white;
+    width: 70%;
+    border-radius: 60px;
+    align-items: center;
+    padding: 15px;
+    font-size: 30px;
+    margin-top: 100px;
+}
+}
