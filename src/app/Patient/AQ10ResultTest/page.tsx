@@ -5,7 +5,6 @@ import './result.css'
 import Return from '@/assets/images/return-icon.svg';
 import { useRef, useEffect } from 'react';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
-import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
 import Link from "next/link";
 

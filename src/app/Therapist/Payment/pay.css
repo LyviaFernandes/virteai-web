@@ -1,0 +1,95 @@
+@import url(../../globals.css);
+
+.payment-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.text-center{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.text-center h1{
+    font-size: 60px;
+}
+
+.plan-section .plan{
+    font-size: 40px;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    width: 15%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+ 
+}
+
+.plan-section .charge{
+    font-size: 40px;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    width: 19%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+
+.plan-section .data{
+    font-size: 40px;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    width: 26%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+
+.plan-section{
+    margin-bottom: 20px;
+    
+
+}
+
+.select-container{
+    border-bottom: 2px solid #000;
+}
+
+#Plan{
+    font-size: 40px;
+    background-color: white;
+    margin-left: 100px;
+    width: 90%;
+    margin-bottom: 25px;
+}
+
+select {
+  appearance: base-select; /* Habilita a customização moderna */
+}
+::picker-icon {
+  content: url('../../../assets/images/OptionsIcon.svg'); /* Troca a seta por um ícone personalizado */
+}
+
+
+.select-container-data{
+    display: flex;
+    border-bottom: 2px solid #000;
+    margin-top: 75px;
+}
+
+.select-container-data p{
+    font-size: 30px;
+    margin-left: 100px;
+}
+
+.select-container-data input{
+    font-size: 30px;
+    margin-left: 20px;
+    width: 50%;
+}
+

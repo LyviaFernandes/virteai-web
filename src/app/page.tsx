@@ -26,10 +26,12 @@ import FAQ from "./FAQWeb/page";
 import TherapistProfile from "./Therapist/TherapistPersonalProfile/page";
 import OurServices from "./Therapist/OurServicesWeb/page";
 import CommonPlan from "./Therapist/CommonPlanLearnMoreWeb/page";
+import CorporativePlan from "./Therapist/CorporativePlanLearnMoreWeb/page";
+import Payment from "./Therapist/Payment/page";
 
 export default function Home() {
   return (
-    <CommonPlan/>
+    <Payment/>
     
   );
 }
