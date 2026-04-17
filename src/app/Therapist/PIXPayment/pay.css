@@ -1,0 +1,138 @@
+@import url(../../globals.css);
+
+.pix-payment-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pix-payment-header{
+    font-size: 60px;
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+
+/* .pix-steps-container{
+    justify-content: center;
+    width: 100%;
+} */
+
+.pix-step-item{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 95%;
+    margin-bottom: 100px;
+}
+
+.pix-step-content h3{
+    font-size: 40px;
+}
+
+.pix-step-content p{
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+/*  */
+
+.pix-code-box{
+    display: flex;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 20px;
+    width: 50%;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+.pix-code-box p{
+   width:90%;
+   overflow-wrap: break-word;
+   border-right: 2px solid #000;
+   padding-right: 20px;
+   font-size: 30px;
+}
+
+.pix-code-box img{
+   display: flex;
+   width: 50px;
+   margin-top: 3%;
+   padding-left: 10px;
+}
+
+
+@media (max-width: 768px){
+
+.pix-payment-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pix-payment-header{
+    font-size: 20px;
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+
+/* .pix-steps-container{
+    justify-content: center;
+    width: 100%;
+} */
+
+.pix-step-item{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 95%;
+    margin-bottom: 50px;
+    margin-left: 2%;
+}
+
+.pix-step-item .pix-step-icon{
+    width: 50px;
+}
+
+.pix-step-content h3{
+    font-size: 20px;
+}
+
+.pix-step-content p{
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+/*  */
+
+.pix-qrcode-image{
+    width: 300px;
+    height: 300px;
+}
+
+.pix-code-box{
+    display: flex;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 15px;
+    width: 80%;
+    margin-bottom: 60px;
+    margin-top: 50px;
+}
+
+.pix-code-box p{
+   width:90%;
+   overflow-wrap: break-word;
+   border-right: 2px solid #000;
+   padding-right: 20px;
+   font-size: 15px;
+}
+
+.pix-code-box img{
+   display: flex;
+   width: 40px;
+   margin-top: 3%;
+   padding-left: 10px;
+}
+
+}

@@ -28,6 +28,7 @@ import OurServices from "./Therapist/OurServicesWeb/page";
 import CommonPlan from "./Therapist/CommonPlanLearnMoreWeb/page";
 import CorporativePlan from "./Therapist/CorporativePlanLearnMoreWeb/page";
 import Payment from "./Therapist/Payment/page";
+import PixPay from "./Therapist/PIXPayment/page";
 
 export default function Home() {
   return (
