@@ -7,7 +7,6 @@ import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Iconpaciente from '@/assets/images/ProfileIcon.svg';
 import visualize from '@/assets/images/visualizeicon.svg';
-import editicon from '@/assets/images/editicon.svg';
 import barraprocess from '@/assets/images/barraprocesso.svg';
 import Footer from '@/components/footer/Footer';
 
@@ -69,11 +68,6 @@ export default function PacientProfile () {
                         src={visualize} 
                         alt="" 
                         />
-                        <Image 
-                        className='profile-card__icon--edit' 
-                        src={editicon} 
-                        alt="" 
-                        />
                     </div>
                 </div>
 
@@ -105,11 +99,6 @@ export default function PacientProfile () {
                         <Image 
                         className='profile-card__icon--view' 
                         src={visualize} 
-                        alt="" 
-                        />
-                        <Image 
-                        className='profile-card__icon--edit' 
-                        src={editicon} 
                         alt="" 
                         />
                     </div>

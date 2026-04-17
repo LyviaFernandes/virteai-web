@@ -244,3 +244,124 @@
     border-radius: 100px;
     cursor: pointer;
 }
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+.payment-header h1{
+    font-size: 30px;
+}
+
+.payment-content .payment-title-plan{
+    font-size: 20px;
+    padding: 10px 25px 10px 80px;
+    width: 35%;
+}
+
+.payment-content .payment-title-charge{
+    font-size: 20px;
+    padding: 10px 25px 10px 80px;
+    width: 40%;
+    margin-top: 100px;
+}
+
+.payment-content .payment-title-data{
+    font-size: 20px;
+    padding: 10px 25px 10px 80px;
+    width: 45%;
+    margin-bottom: 100px;
+}
+
+.select-trigger {
+  font-size: 20px;
+  padding-left: 50px;
+}
+
+.select-options {
+  padding-left: 50px;
+}
+
+.select-options div {
+  font-size: 20px;
+}
+
+.form-field{
+    margin-top: 75px;
+    padding-bottom: 5px;
+}
+
+.form-field p{
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.form-field input{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.payment-method-section .payment-title-method{
+    font-size: 20px;
+    padding: 10px 25px 10px 50px;
+    width: 40%;
+    margin-top: 50px;
+}
+
+.payment-card{
+    padding-bottom: 40px;
+}
+
+.payment-card label{
+    gap:10px;
+    font-size: 20px;
+    border-bottom: 1px solid #000;
+}
+
+.payment-card input[type="radio"]{
+    transform: scale(1.5);
+}
+
+.payment-card p{
+    font-size: 20px;
+}
+
+.input-wrapper-card Input{
+    background-position: 15px center;
+    background-size: 25px;
+    padding-left: 50px;
+}
+
+.input-wrapper-expiry Input{
+    background-position: 15px center;
+    background-size: 25px;
+    padding-left: 50px;
+}
+
+.order-summary{
+    margin-bottom: 70px;
+}
+
+.order-summary .summary-title{
+    font-size: 20px;
+    padding: 10px 25px 10px 50px;
+    width: 40%;
+}
+
+.order-summary p{
+    font-size: 15px;
+    padding-left: 10%;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.summary-items .summary-plan{
+    gap: 15%;
+}
+
+.checkout-action{
+    margin-bottom: 60px;
+}
+
+.checkout-action button{
+    font-size: 30px;
+}
+}

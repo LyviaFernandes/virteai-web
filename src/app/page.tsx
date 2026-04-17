@@ -7,7 +7,7 @@ import Input from "@/components/input/Input";
 import Image from "next/image";
 import HomePage from "./Home/page";
 import AboutUs from "./AboutUs/page";
-import Login from "./Patient/Login/page";
+import Login from "./Login/page";
 import PatientSingup from "./Patient/SingUpPatient/page";
 import TherapistSingup from "./Therapist/SingUpTherapist/page";
 import RedefinePassword from "./RedefineWeb/page";
@@ -29,10 +29,12 @@ import CommonPlan from "./Therapist/CommonPlanLearnMoreWeb/page";
 import CorporativePlan from "./Therapist/CorporativePlanLearnMoreWeb/page";
 import Payment from "./Therapist/Payment/page";
 import PixPay from "./Therapist/PIXPayment/page";
+import AccountInformation from "./Patient/AccountInformation/page";
+import SheetsAndTests from "./Patient/SheetsAndTests/page";
 
 export default function Home() {
   return (
-    <Payment/>
+    <SheetsAndTests/>
     
   );
 }

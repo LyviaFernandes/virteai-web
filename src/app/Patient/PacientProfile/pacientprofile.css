@@ -52,6 +52,7 @@
 .profile-status {
     display: flex;
     justify-content: center;
+    
 }
 
 .profile-status h3{
@@ -60,9 +61,10 @@
     color: #265D39;
     background-color: #A8D5B7;
     padding: 20px 50px;
-    width: 450px;
-    border-radius: 50px;
+    width: 100%;
+    border-radius: 100px;
     margin: 0 auto;
+      white-space: nowrap;
 }
 
 /*  */
@@ -106,9 +108,11 @@
 }
 
 .profile-card__content .profile-progress__bar{
-    margin-left: 2%;
-    margin-top: 7%;
+    margin-left: 3%;
+    margin-top: 5%;
 }
+
+
 
 /*  */
 @media (max-width: 768px){
@@ -177,7 +181,7 @@
     background-color: var(--background-text);
     color: #265D39;
     background-color: #A8D5B7;
-    width: 210px;
+    width: 100%;
     border-radius: 50px;
     margin: 0 auto;
 }
