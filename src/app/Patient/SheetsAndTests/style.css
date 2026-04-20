@@ -98,8 +98,14 @@
     height: auto;
     display: block;
     margin-bottom: 100px;
+    cursor: pointer;
 }
 
+.file-name{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
 /* ================= MOBILE ================= */
 @media (max-width: 768px){
 
@@ -195,6 +201,12 @@
     width: 100%;
     height: auto;
     display: block;
+    margin-bottom: 50px;
+}
+
+.file-name{
+    text-align: center;
+    font-size: 15px;
     margin-bottom: 50px;
 }
 }

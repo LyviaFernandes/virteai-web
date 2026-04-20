@@ -31,10 +31,11 @@ import Payment from "./Therapist/Payment/page";
 import PixPay from "./Therapist/PIXPayment/page";
 import AccountInformation from "./Patient/AccountInformation/page";
 import SheetsAndTests from "./Patient/SheetsAndTests/page";
+import ProcessesAndTreatments from "./Patient/ProcessesAndTreatments/page";
 
 export default function Home() {
   return (
-    <SheetsAndTests/>
+    <ProcessesAndTreatments/>
     
   );
 }
