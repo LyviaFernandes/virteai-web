@@ -32,10 +32,13 @@ import PixPay from "./Therapist/PIXPayment/page";
 import AccountInformation from "./Patient/AccountInformation/page";
 import SheetsAndTests from "./Patient/SheetsAndTests/page";
 import ProcessesAndTreatments from "./Patient/ProcessesAndTreatments/page";
+import TherapistProfileWeb from "./Patient/TherapistProfileWeb/page";
+import CodeAuthentication from "./CodeAuthentication/page";
+import NewPassword from "./NewPassword/page";
 
 export default function Home() {
   return (
-    <ProcessesAndTreatments/>
+    <NewPassword/>
     
   );
 }

@@ -6,17 +6,19 @@ type ICard = {
   value?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   maxLength?: number
+  type?: string
 }
 
 export default function Input({
   description,
   value,
   onChange,
-  maxLength
+  maxLength,
+  type = "text"
 }: ICard) {
   return (
     <input
-      type="text"
+      type={type}
       placeholder={description}
       value={value ?? ""}
       onChange={onChange}

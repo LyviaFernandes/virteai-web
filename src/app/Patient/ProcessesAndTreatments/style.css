@@ -114,7 +114,6 @@
 
 .scenario-card h3{
     font-size: 40px;
-    cursor: pointer;
 }
 
 .scenario-card button{
@@ -124,10 +123,82 @@
     background-color: #22304A;
     color: white;
     border-radius: 50px;
+    cursor: pointer;
+
 }
 
 .scenarios-container{
     margin-bottom: 100px;
+}
+/* validação */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.4); /* cinza transparente */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+}
+
+.code-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+   width: 45%;
+   padding: 50px;
+   border-radius: 50px;
+}
+
+.code-box p{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.code-box button{
+    background-color: #22304A;
+    color: white;
+    padding: 10px 30px;
+    font-size: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.validation{
+    background-color: white;
+    display: flex;
+    padding: 10px 40px;
+    width: 45%;
+    box-shadow: 5px 3px 3px rgb(155, 150, 150);
+    border-radius: 50px;
+    margin-top: -110;
+    margin-bottom: 50px;
+    font-size: 40px;
+}
+
+.code-inputs{
+    display: flex;
+    gap: 45px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.code-input{
+    font-size: 20px;
+    display: flex;
+    text-align: center;
+    box-shadow: inset 5 5 5px rgba(0, 0, 0, 0.2);
+    width: 70px;
+    height:45px;
+    border-radius: 30px;
 }
 /* ================= MOBILE ================= */
 @media (max-width: 768px){
@@ -244,7 +315,6 @@
 
 .scenario-card h3{
     font-size: 20px;
-    cursor: pointer;
 }
 
 .scenario-card button{
@@ -254,9 +324,82 @@
     background-color: #22304A;
     color: white;
     border-radius: 50px;
+    cursor: pointer;
+
 }
 
 .scenarios-container{
     margin-bottom: 50px;
+}
+
+/* validação */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.4); /* cinza transparente */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+}
+
+.code-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+   width: 90%;
+   padding: 30px;
+   border-radius: 50px;
+}
+
+.code-box p{
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}
+
+.code-box button{
+    background-color: #22304A;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.validation{
+    background-color: white;
+    display: flex;
+    padding: 10px 25px;
+    width: 50%;
+    box-shadow: 5px 3px 3px rgb(155, 150, 150);
+    border-radius: 50px;
+    margin-top: -60;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.code-inputs{
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.code-input{
+    font-size: 15px;
+    display: flex;
+    text-align: center;
+    box-shadow: inset 5 5 5px rgba(0, 0, 0, 0.2);
+    width: 50px;
+    height:35px;
+    border-radius: 20px;
 }
 }

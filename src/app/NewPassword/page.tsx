@@ -1,16 +1,15 @@
 "use client"
 
 import { useState } from 'react';
-import './redefine.css'
+import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
 
 
-export default function RedefinePassword () {
-
-    const [email, setEmail] = useState('');
+export default function NewPassword () {
+    const [password, setPassword] = useState('');
     return(
         <div className="reset-password">
             <HeaderEnter
@@ -18,29 +17,25 @@ export default function RedefinePassword () {
             />
             
                 <div className="reset-password__container">
-                    <h2>Redefinir Senha</h2>
+                    <h2>Redefina sua Senha</h2>
                     <div className="reset-password__card">
                         <div className="reset-password__message">
                             <p>
-                                Informe o email registrado em sua conta e 
-                                lhe enviaremos um link para a redefinição de senha
+                                Insira sua nova senha:
                             </p>
 
                         </div>
                         <div className="reset-password__input-group">
-                            <p>Email:</p>
+                            <p>Senha:</p>
                             <Input
-                                description='Insira seu email'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                description='Insira sua senha'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
                         <div className="reset-password__actions">
-                            <ButtonEnter
-                            label='Enviar'
-                            onclick={() => console.log("oi")}
-                            />
+                            <button>Enviar</button>
                         </div>
                     </div>
 

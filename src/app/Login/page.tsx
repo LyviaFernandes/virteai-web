@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import { useState } from 'react';
 import './login.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
@@ -10,6 +10,8 @@ import Link from "next/link";
 
 
 export default function Login () {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     return(
         <div className="login-section">
             <HeaderEnter
@@ -20,10 +22,18 @@ export default function Login () {
                 <h2>Login</h2>
                 <div className="login-card">
                     <p>Email:</p>
-                    <Input description='Insira seu email'/>
+                    <Input
+                        description='Insira seu email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
                     <p>Senha:</p>
-                    <Input description='Insira sua senha'/>
+                    <Input
+                        description='Insira sua senha'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
                     <Link href="/RedefineWeb">
                         <button className='login-forgot-password'>

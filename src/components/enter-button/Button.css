@@ -6,6 +6,7 @@ button{
     border-radius: 30px;
     color: var(--secundary-color);
     background-color: var(--dark-blue);
+    cursor: pointer;
 }
 
 @media (max-width: 768px){
