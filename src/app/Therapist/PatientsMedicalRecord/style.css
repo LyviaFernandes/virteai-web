@@ -1,0 +1,236 @@
+@import url(@/app/globals.css);
+
+.patients-medical-record{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container{
+    display: flex;
+    width: 45%;
+    margin-top: 10%;
+    align-items: start;
+}
+
+.profile-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-right: 50%;
+  margin-left: 15%;
+  margin-bottom: 100px;
+}
+
+.profile-avatar-container {
+  position: relative;
+  width: 400px !important;  
+  height: 400px !important;  
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; 
+}
+
+.profile-avatar-image {
+  object-fit: cover;
+}
+
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-info h2{
+    display: flex;
+    align-items: center;
+    font-size: 60px;
+    margin-bottom: 50px;
+    width: 480px;
+}
+
+.profile-status {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.profile-status h3{
+    font-size: 40px;
+    background-color: var(--background-text);
+    color: #265D39;
+    background-color: #A8D5B7;
+    padding: 20px 50px;
+    width: 100%;
+    border-radius: 100px;
+    margin: 0 auto;
+      white-space: nowrap;
+}
+
+/*  */
+
+.DiagramTitle{
+    display: flex;
+    width: 92%;
+    align-items: center;
+    margin-left: 5%;
+    margin-bottom: 50px;
+}
+
+.DiagramTitle p{
+    font-size: 40px;
+    width: 100%;
+}
+
+.DiagramTitle .plus-image{
+    cursor: pointer;
+}
+
+.EvolutionDiagram{
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    margin-bottom: 100px;
+}
+
+
+/*  */
+
+.therapeutic-goals{
+    display: flex;
+    padding: 50px;
+    box-shadow: 3px 3px 5px rgb(94, 92, 92);
+    cursor: pointer;
+    flex-direction: column;
+}
+
+.therapeutic-goals-relatorios{
+    display: flex;
+    padding: 50px;
+    padding-bottom: 150px;
+    box-shadow: 3px 3px 5px rgb(94, 92, 92);
+    cursor: pointer;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.therapeutic-goals-container{
+    display: flex;
+
+}
+
+.therapeutic-goals__content h2{
+    font-size: 40px;
+}
+
+.therapeutic-goals__content-relatorios h2{
+    font-size: 40px;
+}
+.therapeutic-goals__content p{
+    font-size: 30px;
+    margin-top: 20px;
+    width: 90%;
+}
+
+.therapeutic-goals__content{
+    margin-left: 5%;
+    width: 100%;
+    margin-right: 25%;
+}
+
+.therapeutic-goals__content-relatorios{
+    margin-left: 5%;
+    width: 80%;
+    margin-right: 20%;
+}
+
+.Goals{
+    display: flex;
+    margin-left: 5%;
+    margin-top: 70px;
+    gap: 20px;
+}
+
+.Goals p{
+    background-color: #ECECEC;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 30px;
+}
+@media (max-width: 768px){
+
+.patients-medical-record{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container{
+    display: flex;
+    width: 45%;
+    margin-top: 10%;
+    margin-bottom: 100px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-right: 10%;
+  margin-left: 15%;
+  margin-bottom: 50px;
+}
+
+.profile-avatar-container {
+  position: relative;
+  width: 150px !important;  
+  height: 150px !important;  
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; 
+}
+
+.profile-avatar-image {
+  object-fit: cover;
+}
+
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-info h2{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    width: 250px;
+}
+
+.profile-status {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-status h3{
+    font-size: 20px;
+    background-color: var(--background-text);
+    color: #265D39;
+    background-color: #A8D5B7;
+    width: 100%;
+    border-radius: 50px;
+    margin: 0 auto;
+}
+
+/*  */
+
+}

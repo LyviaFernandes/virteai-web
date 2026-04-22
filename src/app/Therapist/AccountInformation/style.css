@@ -1,0 +1,424 @@
+@import url(@/app/globals.css);
+
+.account-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.account-profile{
+    display: flex;
+    width: 10%;
+    margin-top: 7%;
+    align-items: start;
+    margin-left: 5%;
+}
+
+.account-avatar-wrapper {
+  display: flex;
+  margin-right: 50%;
+  margin-left: 15%;
+  margin-bottom: 100px;
+}
+
+.account-avatar {
+  position: relative;
+  width: 300px !important;  
+  height: 300px !important;  
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; 
+  cursor: pointer;
+}
+
+.account-avatar-image {
+  object-fit: cover;
+}
+
+.account-user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.account-user-info h2{
+    display: flex;
+    font-size: 40px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.account-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.account-status p{
+    font-size: 30px;
+    color: #636363;
+    width: 100%;
+    border-radius: 100px;
+    margin: 0 auto;
+    white-space: nowrap;
+}
+
+/*  */
+
+.personal-data-title{
+    font-size: 40px;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    width: 24%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+
+.personal-data-item{
+    font-size: 30px;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    padding: 10px 0;
+    padding-left: 5%;
+    display: flex;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.personal-data-item p{
+    width: 90%;
+}
+/*  */
+.account-modalidade-section{
+    width: 100%;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-modalidade-box{
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-bottom: 50px;
+    align-items: center;
+    width: 50%;
+        box-shadow: 5px 5px 5px 5px rgb(110, 105, 105);
+
+}
+.account-modalidade-item{
+    font-size: 30px;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    padding-left: 5%;
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0px 5px;
+
+}
+
+.questionnaire-options{
+    display: flex;
+    gap: 230px;
+    justify-content: space-between;
+}
+
+
+.questionnaire-option label{
+    display: flex;
+    font-size: 30px;
+    margin-top: 22px;
+    width: 30px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.questionnaire-option input[type="radio"]{
+    transform: scale(3);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+.account-modalidade-item p{
+    width: 75%;
+    margin-left: 8%;
+    white-space: nowrap;
+    margin-bottom: 2%;
+}
+
+.account-modalidade-item .edit-icon{
+    margin-bottom: 2%;
+}
+/*  */
+.account-settings-title{
+    font-size: 40px;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    width: 30%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    margin-top: 100px;
+}
+
+.account-local-title{
+    font-size: 40px;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    width: 35%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    margin-top: 100px;
+}
+
+.account-field{
+    display: flex;
+    border-bottom: 2px solid #000;
+    margin-top: 75px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.account-field p{
+    font-size: 30px;
+    margin-left: 5%;
+}
+
+.account-field input{
+    font-size: 30px;
+    margin-left: 20px;
+    width: 75%;
+    box-shadow: none;
+    padding: 5;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+.account-profile{
+    display: flex;
+    width: 100%;
+    margin-top: 7%;
+    align-items: center;
+    margin-left: 0;
+    flex-direction: column;
+}
+
+.account-avatar-wrapper {
+  display: flex;
+  margin-right: 0%;
+  margin-left: 0%;
+  margin-bottom: 30px;
+}
+
+.account-avatar {
+  position: relative;
+  width: 150px !important;  
+  height: 150px !important;  
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; 
+  cursor: pointer;
+}
+
+.account-avatar-image {
+  object-fit: cover;
+}
+
+.account-user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.account-user-info h2{
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 20px;
+    width:65%;
+}
+
+.account-status {
+    display: flex;
+    justify-content: center;
+}
+
+.account-status p{
+    font-size: 15px;
+    color: #636363;
+    width: 95%;
+    border-radius: 100px;
+    margin: 0 auto;
+    white-space: nowrap;
+}
+
+.account-local-title{
+    font-size: 20px;
+    padding: 10px 30px 10px 50px;
+    background-color: var(--primary-color);
+    width: 68%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    margin-top: 100px;
+}
+
+/*  */
+
+.personal-data-title{
+    font-size: 20px;
+    padding: 10px 30px 10px 50px;
+    background-color: var(--primary-color);
+    width: 50%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.personal-data-item{
+    font-size: 15px;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    padding: 10px 0;
+    padding-left: 10%;
+    display: flex;
+    margin-top: 8%;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.personal-data-item .edit-icon{
+    width: 50px;
+    height: 20px;
+}
+
+.personal-data-item p{
+    width: 90%;
+}
+
+/*  */
+.account-modalidade-section{
+    width: 100%;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-modalidade-box{
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+    align-items: center;
+    width: 80%;
+        box-shadow: 5px 5px 5px 5px rgb(110, 105, 105);
+
+}
+.account-modalidade-item{
+    font-size: 20px;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    padding-left: 2%;
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0px 5px;
+
+}
+
+.questionnaire-options{
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+}
+
+
+.questionnaire-option label{
+    display: flex;
+    font-size: 15px;
+    margin-top: 12px;
+    width: 20px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.questionnaire-option input[type="radio"]{
+    transform: scale(2);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+.account-modalidade-item p{
+    width: 80%;
+    margin-left: 8%;
+    white-space: nowrap;
+    margin-bottom: 2%;
+}
+
+.account-modalidade-item .edit-icon{
+    margin-bottom: 2%;
+    width: 30px;
+    height: 30px;
+}
+/*  */
+
+.account-settings-title{
+    font-size: 20px;
+    padding: 10px 30px 10px 50px;
+    background-color: var(--primary-color);
+    width: 60%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.account-field{
+    display: flex;
+    border-bottom: 2px solid #000;
+    margin-top: 75px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.account-field p{
+    font-size: 15px;
+    margin-left: 10%;
+}
+
+.account-field input{
+    font-size: 15px;
+    margin-left: 10px;
+    width: 75%;
+    box-shadow: none;
+    padding: 5;
+}
+
+}

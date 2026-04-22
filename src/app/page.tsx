@@ -35,10 +35,14 @@ import ProcessesAndTreatments from "./Patient/ProcessesAndTreatments/page";
 import TherapistProfileWeb from "./Patient/TherapistProfileWeb/page";
 import CodeAuthentication from "./CodeAuthentication/page";
 import NewPassword from "./NewPassword/page";
+import FinishedPayment from "./Therapist/FinishedPayment/page";
+import AccountInformationTherapist from "./Therapist/AccountInformation/page";
+import PatientListPage from "./Therapist/PatientListPage/page";
+import PatientsMedicalRecord from "./Therapist/PatientsMedicalRecord/page";
 
 export default function Home() {
   return (
-    <NewPassword/>
+    <PatientsMedicalRecord/>
     
   );
 }

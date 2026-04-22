@@ -101,6 +101,7 @@
     border-bottom-right-radius: 50px;
     border-top-right-radius: 50px;
     margin-bottom: 50px;
+    white-space: nowrap;
 }
 
 .scenario-card{
@@ -109,7 +110,7 @@
     padding: 50px;
     gap: 50px;
     box-shadow: 5px 5px 5px rgb(128, 123, 123);
-
+    
 }
 
 .scenario-card h3{
@@ -124,7 +125,7 @@
     color: white;
     border-radius: 50px;
     cursor: pointer;
-
+    white-space: nowrap;
 }
 
 .scenarios-container{
