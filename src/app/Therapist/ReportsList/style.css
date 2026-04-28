@@ -1,0 +1,158 @@
+@import url(../../globals.css);
+
+.reports-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.reports-header{
+    display: flex;
+    justify-content: center;
+    text-align : center;
+    background-color: var(--primary-color);
+    padding: 10px 0px;
+    font-size: 60px;
+    margin: 100px 0px;
+    width: 100%;
+}
+
+.section__list_reports{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.list-report-info{
+    width: 100%;
+    box-shadow: 5px 5px 5px rgb(199, 190, 190);
+    padding: 3%;
+}
+
+.list-status{
+    display: flex;
+}
+
+.list-status h2{
+    font-size: 40px;
+    width: 85%;
+    margin-bottom: 20px;
+}
+
+.list-status h3{
+    font-size: 30px;
+    padding: 15px;
+    border-radius: 50px;
+    white-space: nowrap;
+    width: 250px;
+    text-align: center;
+}
+
+.list-report-info p{
+    font-size: 30px;
+    color: #636363;
+}
+
+.status-green {
+    background-color: #A8D5B7;
+}
+
+.status-send {
+    background-color: #F2EDE3;
+}
+
+.status-blue {
+    background-color: #CADAED;
+}
+
+.new__report{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.new__report button{
+    font-size: 60px;
+    color: white;
+    background-color: #22304A;
+    padding: 20px 50px;
+    border-radius: 50px;
+}
+@media (max-width: 768px){
+
+.reports-header{
+    display: flex;
+    justify-content: center;
+    text-align : center;
+    background-color: var(--primary-color);
+    padding: 10px 0px;
+    font-size: 30px;
+    margin: 100px 0px;
+}
+
+.section__list_reports{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.list-report-info{
+    width: 100%;
+    box-shadow: 5px 5px 5px rgb(199, 190, 190);
+    padding: 3%;
+}
+
+.list-status{
+    display: flex;
+}
+
+.list-status h2{
+    font-size: 20px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.list-status h3{
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 50px;
+    white-space: nowrap;
+    width: 100px;
+    height: 50%;
+    text-align: center;
+}
+
+.list-report-info p{
+    font-size: 15px;
+    color: #636363;
+}
+
+.status-green {
+    background-color: #A8D5B7;
+}
+
+.status-send {
+    background-color: #F2EDE3;
+}
+
+.status-blue {
+    background-color: #CADAED;
+}
+
+.new__report{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.new__report button{
+    font-size: 30px;
+    color: white;
+    background-color: #22304A;
+    padding: 20px 40px;
+    border-radius: 40px;
+}
+}

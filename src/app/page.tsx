@@ -39,10 +39,13 @@ import FinishedPayment from "./Therapist/FinishedPayment/page";
 import AccountInformationTherapist from "./Therapist/AccountInformation/page";
 import PatientListPage from "./Therapist/PatientListPage/page";
 import PatientsMedicalRecord from "./Therapist/PatientsMedicalRecord/page";
+import ReportsList from "./Therapist/ReportsList/page";
+import Reports from "./Therapist/Reports/page";
+import AddNewReport from "./Therapist/AddNewReport/page";
 
 export default function Home() {
   return (
-    <PatientsMedicalRecord/>
+    <AddNewReport/>
     
   );
 }
