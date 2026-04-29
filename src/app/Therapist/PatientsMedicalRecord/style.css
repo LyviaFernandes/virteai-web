@@ -200,6 +200,16 @@
     cursor: pointer;
     flex-direction: column;
     margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.therapeutic-goals-cenarios{
+    display: flex;
+    padding: 50px;
+    padding-bottom: 150px;
+    box-shadow: 3px 3px 5px rgb(94, 92, 92);
+    cursor: pointer;
+    flex-direction: column;
     margin-bottom: 100px;
 }
 
@@ -247,6 +257,64 @@
     font-size: 30px;
     white-space: nowrap;
 }
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.4); /* cinza transparente */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 3999;
+}
+
+.modal-box{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+   width: 100%;
+   padding: 50px;
+}
+
+.therapeutic-modal h2{
+    font-size: 40px;
+    margin-left: 5%;
+}
+
+.plus-modal{
+    margin-left: 18%;
+    cursor: pointer;
+}
+
+.Goals-modal{
+    display: flex;
+    margin-left: 5%;
+    margin-top: 70px;
+    gap: 20px;
+}
+
+.delete-goal{
+    background-color: #ECECEC;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 30px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.delete-goal .delete{
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 @media (max-width: 768px){
 
 .patients-medical-record{
@@ -456,6 +524,19 @@
 }
 
 .therapeutic-goals-relatorios{
+    display: flex;
+    padding: 50px;
+    padding-bottom: 100px;
+    box-shadow: 3px 3px 5px rgb(94, 92, 92);
+    cursor: pointer;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    padding: 20px 30px 50px;
+    width: 100%;
+}
+
+.therapeutic-goals-cenarios{
     display: flex;
     padding: 50px;
     padding-bottom: 100px;

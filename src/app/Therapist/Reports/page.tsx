@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState } from 'react';
+import  {  useState } from 'react';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
@@ -21,8 +21,8 @@ export default function Reports () {
         goals: "Comunicação e interação social",
     };
 
-    const [status, setStatus] = useState("evoluiu");
-    const [open, setOpen] = useState(false);
+    const [status] = useState("evoluiu");
+    
 
     const statusLabel: Record<string, string> = {
         evoluiu: "Evoluiu",
@@ -60,29 +60,11 @@ export default function Reports () {
                     <div className="Report__Text__item">
                         <p>Desenvolvimento da comunicação verbal</p>
                         <div className="status-container">
-                            <h3
-                                onClick={() => setOpen(!open)}
-                                className={`status status--${status}`}
-                            >
+                            <h3 className={`status status--${status}`}>
                                 {statusLabel[status]}
                             </h3>
 
-                            {open && (
-                                <div className="status-dropdown">
-                                    {Object.entries(statusLabel).map(([key, label]) => (
-                                        <div
-                                            key={key}
-                                            className={`status-option status--${key}`}
-                                            onClick={() => {
-                                                setStatus(key);
-                                                setOpen(false);
-                                            }}
-                                        >
-                                            {label}
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                            
                         </div>
                     </div>
 

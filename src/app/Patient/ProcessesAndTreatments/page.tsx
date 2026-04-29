@@ -170,7 +170,7 @@ const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
                             <h2>Validação</h2>
                         </div>
 
-                        <p>Enviamos um código de validação no email cadastrado em sua conta. Informe-o abaixo para acessar o cenário.</p>
+                        <p>Enviamos seu código de validação no email cadastrado em sua conta. Informe-o abaixo para acessar o cenário.</p>
                         <div className="code-inputs">
                             {[0,1,2,3,4,5].map((_, index) => (
                                 <input

@@ -9,6 +9,7 @@ import Iconpaciente from '@/assets/images/ProfileIcon.svg';
 import plusicon from '@/assets/images/PlusIcon.svg';
 import progess from '@/assets/images/ProgressDiagram.svg';
 import visualize from '@/assets/images/visualizeicon.svg';
+import deleteicon from '@/assets/images/DeleteIcon.svg';
 import edit from '@/assets/images/editicon.svg';
 import Footer from '@/components/footer/Footer';
 import Input from '@/components/input/Input';
@@ -33,10 +34,17 @@ export default function PatientsMedicalRecord () {
         status: "Em acompanhamento"
     };
     const [showCodeInput, setShowCodeInput] = useState(false);
+    const [showModalInput, setShowModalInput] = useState(false);
     const codeBoxRef = useRef<HTMLDivElement>(null);
+    const codeModalRef = useRef<HTMLDivElement>(null);
 
     const handleAccessScenario = () => {
     setShowCodeInput(true);
+    };
+
+    const handleAccessObjectives = () => {
+    setShowModalInput(true);
+     document.body.style.overflow = 'hidden';
     };
 
     return(
@@ -141,13 +149,13 @@ export default function PatientsMedicalRecord () {
 
 
             <div className="therapeutic-goals">
-
-                <div className="therapeutic-goals-container">
+                <div className="therapeutic-goals-container" >
                     <div className="therapeutic-goals__content">
                         <h2>Objetivos terapeuticos</h2>
                     </div>
 
                     <Image 
+                    onClick={handleAccessObjectives}
                     className='therapeutic-goals__action-icon' 
                     src={edit} 
                     alt="" 
@@ -159,8 +167,61 @@ export default function PatientsMedicalRecord () {
                         <p>Comunicação Verbal</p>
                         <p>Interação Social</p>
                         <p>Regulação Emocional</p>
+                        
                     </div>
             </div>
+
+            {showModalInput && (
+                <div className="modal" onClick={() => { setShowModalInput(false)  
+                document.body.style.overflow = 'unset';}}>
+                    <div className="modal-box"
+                        ref={codeModalRef}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="therapeutic-modal">
+                            <h2>Objetivos terapeuticos</h2>
+                        </div>
+
+                        <div className="Goals-modal">
+                            <div className="delete-goal">
+                                <Image 
+                                src={deleteicon}
+                                alt=""
+                                className="delete"
+                                />
+                                <p>Comunicação Verbal</p>
+                            </div>
+                            <div className="delete-goal">
+                                <Image 
+                                src={deleteicon}
+                                alt=""
+                                className="delete"
+                                />
+                                <p>Interação Social</p>
+                            </div>
+
+                            <div className="delete-goal">
+                                <Image 
+                                src={deleteicon}
+                                alt=""
+                                className="delete"
+                                />
+                                <p>Regulação Emocional</p>
+                            </div>
+                            <Image 
+                            onClick={handleAccessScenario}
+                            src={plusicon}
+                            alt=""
+                            className="plus-modal"
+                            />
+                        </div>
+
+                    </div>
+
+                </div>
+            )}
+
+            
             <div className="therapeutic-goals-relatorios">
 
                 <div className="therapeutic-goals-container">
@@ -175,7 +236,29 @@ export default function PatientsMedicalRecord () {
                     />
 
                 </div>
+
+                
             </div>
+
+            <div className="therapeutic-goals-cenarios">
+
+                <div className="therapeutic-goals-container">
+                    <div className="therapeutic-goals__content">
+                        <h2>Cenarios</h2>
+                    </div>
+
+                    <Image 
+                    className='therapeutic-goals__action-icon' 
+                    src={visualize} 
+                    alt="" 
+                    />
+
+                </div>
+
+                
+            </div>
+
+            
             <Footer/>
 
         </div>
