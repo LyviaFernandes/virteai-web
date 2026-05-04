@@ -265,14 +265,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-
     background: rgba(0, 0, 0, 0.4); /* cinza transparente */
     
     display: flex;
     align-items: center;
     justify-content: center;
-
-    z-index: 3999;
+    
+    z-index: 998;
 }
 
 .modal-box{
@@ -280,7 +279,7 @@
     flex-direction: column;
     background-color: white;
    width: 100%;
-   padding: 50px;
+   padding: 50px 50px 80px;
 }
 
 .therapeutic-modal h2{
@@ -289,7 +288,6 @@
 }
 
 .plus-modal{
-    margin-left: 18%;
     cursor: pointer;
 }
 
@@ -298,6 +296,12 @@
     margin-left: 5%;
     margin-top: 70px;
     gap: 20px;
+}
+
+.container-goal{
+    display: flex;
+    gap: 20px;
+    width: 95%;
 }
 
 .delete-goal{
@@ -312,6 +316,80 @@
 
 .delete-goal .delete{
     margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Add Objective */
+
+.objectives {
+    position: fixed;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: 140px;
+    margin-left: -100px;
+    z-index: 999;
+}
+
+.Add-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+   width: 55%;
+   padding: 30px 50px 30px;
+   border-radius: 50px;
+}
+
+.add-objectives{
+    background-color: white;
+    display: flex;
+    padding: 20px 65px;
+    box-shadow: 5px 3px 3px rgb(155, 150, 150);
+    border-radius: 50px;
+    margin-top: -90;
+    margin-bottom: 30px;
+    
+}
+
+.add-objectives h2{
+    font-size: 50px;    
+    white-space: nowrap;
+}
+
+.input-section{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+    align-items: center;
+}
+
+.input-add{
+    width: 90%;
+}
+
+.input-add p{
+    font-size: 20px;
+    margin-left: 5%;
+    margin-bottom: 5px;
+}
+
+.button-send{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.button-send button{
+    color: white;
+    background-color: #22304A;
+    padding: 15px 30px;
+    font-size: 30px;
+    border-radius: 50px;
     cursor: pointer;
 }
 
@@ -598,6 +676,150 @@
     font-size: 10px; 
     white-space: nowrap;
 
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.4); /* cinza transparente */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 998;
+}
+
+.modal-box{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+   width: 100%;
+   padding: 20px;
+}
+
+.therapeutic-modal h2{
+    font-size: 20px;
+    margin-left: 2%;
+}
+
+.plus-modal{
+    cursor: pointer;
+}
+
+.Goals-modal{
+    display: flex;
+    margin-left: 0%;
+    margin-top: 30px;
+    gap: 2px;
+    align-items: center;
+    
+}
+.container-goal{
+    display: flex;
+    gap: 2px;
+    width: 95%;
+}
+
+.delete-goal{
+    background-color: #ECECEC;
+    padding:0px 8px;
+    height: 30px;
+    border-radius: 50px;
+    font-size: 10px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    
+}
+
+.delete-goal .delete{
+    margin: 2px;
+    cursor: pointer;
+    width: 15px;
+}
+
+.plus-modal{
+    width: 15px;
+}
+
+/* Add Objective */
+
+.objectives {
+    position: fixed;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: -480px;
+    margin-left: -20px;
+    z-index: 999;
+}
+
+.Add-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+   width: 70%;
+   padding: 15px 30px 15px;
+   border-radius: 50px;
+}
+
+.add-objectives{
+    background-color: white;
+    display: flex;
+    padding: 10px 45px;
+    box-shadow: 5px 3px 3px rgb(155, 150, 150);
+    border-radius: 50px;
+    margin-top: -30;
+    margin-bottom: 30px;
+    
+}
+
+.add-objectives h2{
+    font-size: 25px;    
+    white-space: nowrap;
+}
+
+.input-section{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+}
+
+.input-add{
+    width: 100%;
+}
+
+.input-add p{
+    font-size: 15px;
+    margin-left: 5%;
+    margin-bottom: 5px;
+}
+
+.button-send{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.button-send button{
+    color: white;
+    background-color: #22304A;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 50px;
+    cursor: pointer;
 }
 
 }
