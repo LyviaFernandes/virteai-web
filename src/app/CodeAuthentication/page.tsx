@@ -4,7 +4,7 @@ import { useState } from 'react';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
-import ButtonEnter from '@/components/enter-button/Button';
+import Link from 'next/link';
 
 export default function CodeAuthentication () {
 
@@ -61,6 +61,8 @@ export default function CodeAuthentication () {
                     </div>
 
                     <div className="reset-password__actions">
+                        <Link href="../NewPassword">
+                        </Link>
                         <button>Enviar</button>
                     </div>
                 </div>

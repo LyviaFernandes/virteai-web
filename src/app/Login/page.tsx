@@ -44,10 +44,12 @@ export default function Login () {
                     </Link>
 
                     <div className="login-actions">
-                        <ButtonEnter
-                        label='Entrar'
-                        onclick={() => console.log("oi")}
-                        />
+                        <Link href="/Home">
+                            <ButtonEnter
+                            label='Entrar'
+                            onclick={() => console.log("oi")}
+                            />
+                        </Link>
 
                         <Link href="/Profile">
                             <button className='login-register'>

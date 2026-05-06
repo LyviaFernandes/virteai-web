@@ -59,6 +59,9 @@
   cursor: pointer;
   padding: 10px 0;
   padding-left: 100px;
+   background-image: url('../../../assets/images/DownArrow.svg');
+    background-repeat: no-repeat;
+    background-position: 95% center;
 }
 
 .select-options {

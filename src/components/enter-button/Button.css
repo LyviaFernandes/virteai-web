@@ -4,7 +4,7 @@ button{
     padding: 12px 41px;
     font-size: 30px;
     border-radius: 30px;
-    color: var(--secundary-color);
+    color: var(--white-color);
     background-color: var(--dark-blue);
     cursor: pointer;
 }
@@ -15,7 +15,7 @@ button{
     padding: 10px 30px;
     font-size: 20px;
     border-radius: 30px;
-    color: var(--secundary-color);
+    color: var(--white-color);
     background-color: var(--dark-blue);
 }
     

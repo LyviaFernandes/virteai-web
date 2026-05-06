@@ -34,7 +34,7 @@
 .about-us__mission{
     display: flex;
     flex-direction: column;
-    background-color: var(--background-home);
+    background-color: var(--gray-medium);
     align-items: center;
 }
 

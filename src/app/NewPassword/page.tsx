@@ -6,6 +6,7 @@ import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
+import Link from 'next/link';
 
 
 export default function NewPassword () {
@@ -35,7 +36,9 @@ export default function NewPassword () {
                         </div>
 
                         <div className="reset-password__actions">
-                            <button>Enviar</button>
+                            <Link href="../Profile">
+                                <button>Enviar</button>
+                            </Link>
                         </div>
                     </div>
 

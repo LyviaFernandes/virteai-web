@@ -214,7 +214,7 @@ body{
 /* estado de notificação lida */
 
 .notification-item.read{
-    background: var(--read-notifications);
+    background: var(--gray-medium-two);
 }
 
 /* ================= MOBILE ================= */

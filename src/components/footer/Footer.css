@@ -7,7 +7,7 @@ footer{
   display: flex;
   align-items: center; 
   background-color: var(--primary-color);
-  border-top: 10px solid var(--lines-table);
+  border-top: 10px solid var(--turquoise-medium-four);
 }
     
 .container-footer{
@@ -56,7 +56,6 @@ footer{
 
 footer{
     display: flex;
-    border-top: 4px solid var(--lines-table);
     height: 150px;
     align-items: center;
     padding: 15px;

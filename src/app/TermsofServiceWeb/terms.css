@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     text-align : center;
-    background-color: var(--terms-color);
+    background-color: var(--turquoise-ligth);
     padding: 10px 0px;
     font-size: 60px;
     margin: 100px 0px;
@@ -55,7 +55,6 @@
     display: flex;
     justify-content: center;
     text-align : center;
-    background-color: var(--terms-color);
     padding: 10px 0px;
     font-size: 30px;
     margin: 100px 0px;

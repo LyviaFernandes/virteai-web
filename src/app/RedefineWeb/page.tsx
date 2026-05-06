@@ -6,6 +6,7 @@ import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
+import Link from 'next/link';
 
 
 export default function RedefinePassword () {
@@ -37,6 +38,8 @@ export default function RedefinePassword () {
                         </div>
 
                         <div className="reset-password__actions">
+                            <Link href="../CodeAuthentication">
+                            </Link>
                             <ButtonEnter
                             label='Enviar'
                             onclick={() => console.log("oi")}

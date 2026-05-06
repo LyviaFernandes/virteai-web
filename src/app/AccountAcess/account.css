@@ -20,7 +20,7 @@
 }
 
 .account-access__container h2{
-    background-color: var(--background-card);
+    background-color: var(--blue-medium);
     font-size: 50px;
     padding: 18px 45px;
     border-radius: 50px;
@@ -29,7 +29,7 @@
 }
 
 .account-access__card{
-    background-color: var(--background-card);
+    background-color: var(--blue-medium);
     padding: 35px 45px;
     border-radius: 50px;
     z-index: 0;

@@ -21,16 +21,19 @@
 }
 /*  */
 .reset-password__container h2{
-    background-color: var(--background-card);
+    background-color: var(--blue-medium-two);
+    color: var(--white-color);
     font-size: 50px;
     padding: 18px 45px;
     border-radius: 50px;
     z-index: 2;
-    box-shadow: 5px 5px 5px rgb(41, 39, 39);
+    box-shadow: 5px 5px 5px rgb(140, 128, 128);
+    margin-top: -15%;
 }
 
 .reset-password__card{
-    background-color: var(--background-card);
+    background-color: var(--primary-color);
+    border: 5px solid var(--blue-medium-two);
     padding: 35px 45px;
     border-radius: 50px;
     z-index: 0;
@@ -102,16 +105,13 @@
 }
 /*  */
 .reset-password__container h2{
-    background-color: var(--background-card);
     font-size: 25px;
     padding: 15px 30px;
     border-radius: 50px;
     z-index: 2;
-    box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
 .reset-password__card{
-    background-color: var(--background-card);
     padding: 20px 30px;
     border-radius: 50px;
     z-index: 0;

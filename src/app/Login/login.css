@@ -12,23 +12,26 @@
 }
 
 .login-container h2{
-    background-color: var(--background-card);
+    background-color: var(--blue-medium-two);
+    color: var(--white-color);
     font-size: 50px;
-    padding: 15px 40px;
+    padding: 15px 60px;
     border-radius: 50px;
     z-index: 2;
-    box-shadow: 5px 5px 5px rgb(41, 39, 39);
+    box-shadow: 5px 5px 5px rgb(169, 160, 160);
 }
 
 .login-card{
     display: flex;
     flex-direction: column;
-    background-color: var(--background-card);
-    padding: 30px 60px;
+    background-color: var(--primary-color);
+    padding: 30px 60px 50px;
     border-radius: 50px;
     z-index: 0;
     margin-top: -40px;
     justify-content: center;
+    border: 5px solid var(--blue-medium-two);
+    width: 35%;
 }
 
 .login-card p{
@@ -36,11 +39,17 @@
     margin: 5px;
     margin-top: 50px;
     justify-content: center;
+    margin-left: 5%;
 }
 
+
+
 .login-forgot-password__text{
+    display: flex;
     margin-top: -30px;
     text-align: end;
+    align-items: end;
+    white-space: nowrap;
 }
 
 .login-actions{
@@ -54,16 +63,15 @@
 
 .login-register{
     display: flex;
-    background-color: var(--background-card);
-    align-items: center;
-    text-align: center;
+    background-color: var(--primary-color);
+    white-space: nowrap;
     cursor: pointer;
     color: var(--dark-blue);
 }
 
 .login-forgot-password{
     display: flex;
-    background-color: var(--background-card);
+    background-color: var(--primary-color);
     cursor: pointer;
     color: var(--dark-blue);
 }
@@ -72,57 +80,54 @@
 
 @media (max-width: 768px){
 
-.login-section{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .login-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40%;
+    margin-top: 35%;
 }
 
 .login-container h2{
-    background-color: var(--background-card);
     font-size: 30px;
-    padding: 10px 35px;
+    padding: 15px 60px;
     border-radius: 50px;
     z-index: 2;
-    box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
 .login-card{
     display: flex;
     flex-direction: column;
-    background-color: var(--background-card);
-    padding: 30px   30px  2px ;
+    padding: 30px 35px 20px;
     border-radius: 50px;
     z-index: 0;
     margin-top: -40px;
     justify-content: center;
+    width: 85%;
 }
 
 .login-card p{
     font-size: 15px;
-    margin: 0px;
-    margin-top: 40px;
+    margin: 5px;
+    margin-top: 30px;
     justify-content: center;
-    margin-bottom: 2px;
+    margin-left: 5%;
 }
 
+
+
 .login-forgot-password__text{
+    display: flex;
     margin-top: -30px;
     text-align: end;
+    align-items: end;
+    white-space: nowrap;
 }
 
 .login-actions{
     display: flex;
-    margin-top: 0px;
-    gap: 0px;
+    margin-top: 20px;
+    gap: 10px;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -130,22 +135,15 @@
 
 .login-register{
     display: flex;
-    align-items: center;
-    text-align: center;
     cursor: pointer;
-    color: var(--dark-blue);
 }
 
 .login-register p{
-    display: flex;
-    margin-bottom: 50px;
+    white-space: nowrap;
 }
-
 .login-forgot-password{
     display: flex;
-    background-color: var(--background-card);
     cursor: pointer;
-    color: var(--dark-blue);
 }
 
 }

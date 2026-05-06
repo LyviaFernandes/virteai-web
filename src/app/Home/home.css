@@ -44,7 +44,7 @@
 }
 
 .home-partners{
-    background-color: var(--background-home);
+    background-color: var(--gray-medium);
     display: flex;
     flex-direction: column ;
     justify-content: center;
@@ -93,7 +93,6 @@
 }
 
 .home-partners{
-    background-color: var(--background-home);
     display: flex;
     flex-direction: column ;
     justify-content: center;

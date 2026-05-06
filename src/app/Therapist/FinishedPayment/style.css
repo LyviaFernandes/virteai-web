@@ -24,7 +24,7 @@
 }
 
 .finished-payment__container h2{
-    background-color: var(--background-card);
+    background-color: var(--blue-medium);
     font-size: 50px;
     padding: 18px 45px;
     border-radius: 50px;
@@ -33,7 +33,7 @@
 }
 
 .finished-payment__card{
-    background-color: var(--background-card);
+    background-color: var(--blue-medium);
     padding: 35px 45px;
     border-radius: 50px;
     z-index: 0;
@@ -90,7 +90,6 @@
 }
 
 .finished-payment__container h2{
-    background-color: var(--background-card);
     font-size: 30px;
     padding: 15px 40px;
     border-radius: 50px;
@@ -99,7 +98,6 @@
 }
 
 .finished-payment__card{
-    background-color: var(--background-card);
     padding: 15px 2px 30px;
     border-radius: 50px;
     z-index: 0;

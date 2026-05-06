@@ -37,7 +37,7 @@
 .faq-card--sand{
     background-color: var(--backgroud-sand);
     border-radius: 50px;
-    border: 5px solid var(--border-personalized-plan);
+    border: 5px solid var(--sand-medium);
     display: flex;
     width: 60%;
     padding: 50px;
@@ -46,7 +46,7 @@
 .faq-card--ciano{
     background-color: var(--blue-faq);
     border-radius: 50px;
-    border: 5px solid var(--border-faq);
+    border: 5px solid var(--Turquoise-medium-three);
     display: flex;
     width: 60%;
     padding: 50px;
@@ -126,7 +126,7 @@
 .faq-card--sand{
     background-color: var(--backgroud-sand);
     border-radius: 50px;
-    border: 5px solid var(--border-personalized-plan);
+    border: 5px solid var(--sand-medium);
     display: flex;
     width: 80%;
     padding: 30px;
@@ -135,7 +135,7 @@
 .faq-card--ciano{
     background-color: var(--blue-faq);
     border-radius: 50px;
-    border: 5px solid var(--border-faq);
+    border: 5px solid var(--Turquoise-medium-three);
     display: flex;
     width: 80%;
     padding: 30px;

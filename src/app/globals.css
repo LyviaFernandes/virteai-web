@@ -11,7 +11,7 @@
     padding: 0px;
     border: 0px;
 }
-p, h6, input, textarea{
+p, h6, input, textarea, option, input, select{
     font-family: 'Comfortaa';
 }
 
@@ -20,31 +20,30 @@ h2,h1,h3, button{
 }
 
 :root{
+    --white-color: #FFFFFF;
+    --gray-ligth: #F0F0F0;
+    --gray-medium:#ECECEC;
+    --gray-medium-two:#E7E7E7;
+    --gray-medium-three: #D9D9D9;
+    --gray-medium-four: #A3A3A3;
+    --gray-medium-five:#9F9F9F;
+    --gray-dark: #636363;
+    --black-color: #000000;
+    --sand-ligth: #F2EDE3;
+    --sand-medium:#C9BBA0;
     --primary-color: #CADAED;
+    --blue-medium:#9CB4D3;
+    --blue-medium-two: #7B9EC8;
     --dark-blue: #22304A;
-    --text-color: #000000;
-    --input-color:#9F9F9F;
-    --background-card:#9CB4D3;
-    --lines-table: #40878E;
-    --background-table: #CBEFF2;
-    --secundary-color: #FFFF;
-    --border-button:#415A77;
-    --button-personalized-plan:#AE9C7C;
-    --border-personalized-plan:#C9BBA0;
-    --read-notifications:#E7E7E7;
-    --background-home:#ECECEC;
-    --backgroud-sand: #F9F6ED;
-    --background-green: #DDF8E5;
-    --light-blue: #AFC1D5;
-    --text-green: #265D39;
-    --background-text: #A8D5B7;
-    --terms-color: #E8FDFF;
-    --legal-terms: #F2EDE3;
-    --blue-faq: #E8FDFF;
-    --border-faq: #60B0B8;
-    --background-green-faq: #DDF8E5;
-    --border-green: #509266;
-    --card-therapist:#7EC9D1;
+    --turquoise-ligth: #E8FDFF;
+    --turquoise-medium: #CBEFF2;
+    --turquoise-medium-two: #A6CEE3;
+    --Turquoise-medium-three: #60B0B8;
+    --turquoise-medium-four: #40878E;
+    --turquoise-dark: #295766;
+    --green-ligth: #DDF8E5;
+    --green-medium: #A8D5B7;
+    --green-dark:#265D39;
 
     font: normal 16px 'Comfortaa', sans-serif;
 }

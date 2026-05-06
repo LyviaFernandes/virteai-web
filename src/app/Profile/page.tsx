@@ -4,9 +4,10 @@ import React from 'react';
 import './profile.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
-import Return from '../../assets/images/homeicon.svg';
+import Return from '../../assets/images/return-icon.svg';
 import Iconpaciente from '../../assets/images/PacientIcon.svg';
 import Iconterapeuta from '../../assets/images/TherapistIcon.svg';
+import Link from 'next/link';
 
 
 
@@ -24,23 +25,27 @@ export default function Profile () {
             </div>
 
             <div className="profile-card-list">
-                <div className="profile-card">
-                    <Image 
-                    className='profile-card__icon' 
-                    src={Iconpaciente} 
-                    alt="" 
-                    />
-                    <p>Paciente</p>
-                </div>
+                <Link href="../Patient/SingUpPatient">
+                    <div className="profile-card">
+                        <Image 
+                        className='profile-card__icon' 
+                        src={Iconpaciente} 
+                        alt="" 
+                        />
+                        <p>Paciente</p>
+                    </div>
+                </Link>
 
-                <div className="profile-card">
-                    <Image 
-                    className='profile-card__icon' 
-                    src={Iconterapeuta} 
-                    alt="" 
-                    />
-                    <p>Terapeuta</p>
-                </div>
+                <Link href="../Therapist/SingUpTherapist">
+                    <div className="profile-card">
+                        <Image 
+                        className='profile-card__icon' 
+                        src={Iconterapeuta} 
+                        alt="" 
+                        />
+                        <p>Terapeuta</p>
+                    </div>
+                </Link>
             </div>
         </div>
     )

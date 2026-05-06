@@ -15,21 +15,23 @@
 }
 
 .signup-container h2{
-    background-color: var(--background-card);
+    background-color: var(--blue-medium-two);
+    color: var(--white-color);
     font-size: 50px;
-    padding: 18px 45px;
+    padding: 20px 45px;
     border-radius: 50px;
     z-index: 2;
     box-shadow: 5px 5px 5px rgb(41, 39, 39);
 }
 
 .signup-card{
-    background-color: var(--background-card);
+    background-color: var(--primary-color);
+    border: 5px solid var(--blue-medium-two);
     padding: 50px 50px;
     border-radius: 50px;
     z-index: 0;
     margin-top: -40px;
-    width: 30%;
+    width: 35%;
 }
 
 .signup-card p{
@@ -42,7 +44,7 @@
     display: flex;
     margin-top: 60px;
     gap: 10px;
-    justify-content: center;
+    justify-content: start;
 }
 
 @media (max-width: 768px){
@@ -55,7 +57,6 @@
 }
 
 .signup-container h2{
-    background-color: var(--background-card);
     font-size: 30px;
     padding: 15px 35px;
     border-radius: 50px;
@@ -64,7 +65,6 @@
 }
 
 .signup-card{
-    background-color: var(--background-card);
     padding: 30px 50px;
     border-radius: 50px;
     z-index: 0;

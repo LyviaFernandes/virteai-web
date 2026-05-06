@@ -45,7 +45,7 @@ import AddNewReport from "./Therapist/AddNewReport/page";
 
 export default function Home() {
   return (
-    <PatientsMedicalRecord/>
+    <NewPassword/>
     
   );
 }
