@@ -6,6 +6,8 @@ import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Iconpaciente from '@/assets/images/ProfileIcon.svg';
+import editimage from '@/assets/images/EditImageIcon.svg';
+import infoicon from '@/assets/images/InfoIcon.svg';
 import Footer from '@/components/footer/Footer';
 import edit from '@/assets/images/editicon.svg';
 
@@ -20,7 +22,7 @@ type User = {
 
 export default function AccountInformation () {
     const user: User = {
-        id: 1,
+        id: 482917,
         name: "João Lucas Vega",
         profileImage: "https://thumbs.dreamstime.com/b/retrato-da-pessoa-adulta-22170035.jpg",
         status: "Paciente em acompanhamento",
@@ -61,6 +63,7 @@ export default function AccountInformation () {
                             fill
                             className="account-avatar-image"
                         />
+
                         <input
                             type="file"
                             accept="image/*"
@@ -69,6 +72,12 @@ export default function AccountInformation () {
                             style={{ display: 'none' }}
                         />
                     </div>
+                       <Image 
+                           src={editimage}
+                           alt=""
+                           
+                           className="edit"
+                       />
                 </div>
 
                 <div className="account-user-info">
@@ -78,6 +87,17 @@ export default function AccountInformation () {
                     <div className="account-status">
                         <p>{user.status}</p>
                     </div>
+
+                    <div className="box-ID">
+                        <h3>ID: {user.id}</h3>
+                        <Image 
+                           src={infoicon}
+                           alt=""
+                           
+                           className="infoicon"
+                       />
+                    </div>
+
 
                 </div>
 

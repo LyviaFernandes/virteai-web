@@ -11,86 +11,106 @@
     align-items: center;
     margin-top: 100px;
     margin-bottom: 100px;
+    width: 100%;
+    background-color: var(--primary-color);
 }
 
 .section-header h1{
     font-size: 60px;
-    margin-bottom: 50px;
+    padding: 30px;
 }
 
-.section-header p{
-    font-size: 30px;
-    text-align: center;
-    width: 50%;
-}
 
 .section-title-responsible{
     font-size: 40px;
     padding: 20px 50px 20px 100px;
     background-color: var(--primary-color);
-    width: 20%;
+    width: 16%;
     border-bottom-right-radius: 50px;
     border-top-right-radius: 50px;
     margin-bottom: 50px;
 }
 /*  */
-.profile-container{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 100px;
-}
-
-.email-box{
-    padding: 20px 50px;
-    background-color: #ECECEC;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    display: flex;
-    align-items: center;
-    margin-left: 20%;
-    cursor: pointer;
-}
-
-.email-box h3{
-    font-size: 40px;
-    margin-right: 20px;
-}
-.profile-avatar-wrapper {
+.account-avatar-wrapper {
   display: flex;
-  margin-right: 5%;
   margin-left: 5%;
-
+  margin-bottom: 100px;
+  align-items: center;
+  align-items: center;
 }
 
-.profile-avatar-container {
+.account-avatar {
   position: relative;
-  width: 200px !important;  
-  height: 200px !important;  
+  width: 300px !important;  
+  height: 300px !important;  
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0; 
+  cursor: pointer; 
+  margin-right: 5%;
 }
 
-.profile-avatar-image {
+.account-avatar-image {
   object-fit: cover;
+    
 }
 
-.profile-info{
+.edit{
+    align-items: center;
+    z-index: 1000;
+    position: absolute;
+    margin-top: 11%;
+    margin-left: 12%
+}
+
+.account-user-info{
     display: flex;
     flex-direction: column;
+    margin-top: 10%;
 }
 
-.profile-info h2{
+.account-user-info h2{
     display: flex;
-    font-size: 60px;
-    margin-bottom: 50px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
-.profile-info p{
-    font-size: 40px;
+.account-status {
+    display: flex;
+    justify-content: center;
 }
+
+.account-status p{
+    font-size: 30px;
+    color: #636363;
+    width: 100%;
+    border-radius: 100px;
+    margin: 0 auto;
+    white-space: nowrap;
+}
+
+.box-ID{
+    display: flex;
+    align-items: center;
+}
+
+.infoicon{
+    margin-left: 15px;
+}
+
+.box-ID h3{
+    display: flex;
+    margin-top: 20px;
+    font-size: 30px;
+    background-color: var(--dark-blue);
+    color: var(--white-color);
+    padding: 15px 20px;
+    justify-content: center;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
 /*  */
 
 .section-title-scenarios{
@@ -202,6 +222,9 @@
     height:45px;
     border-radius: 30px;
 }
+
+/*  */
+
 /* ================= MOBILE ================= */
 @media (max-width: 768px){
 
@@ -403,5 +426,88 @@
     width: 50px;
     height:35px;
     border-radius: 20px;
+}
+
+.account-avatar-wrapper {
+  display: flex;
+  margin-right: 0%;
+  margin-left: 0%;
+  margin-bottom: 30px;
+}
+
+.account-avatar {
+  position: relative;
+  width: 150px !important;  
+  height: 150px !important;  
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; 
+  cursor: pointer;
+}
+
+.account-avatar-image {
+  object-fit: cover;
+}
+
+.edit{
+    align-items: center;
+    z-index: 1000;
+    position: absolute;
+    margin-top: 19%;
+    margin-left: 23%;
+    width: 30px;
+}
+
+.account-user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.account-user-info h2{
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 20px;
+    width:65%;
+}
+
+.account-status {
+    display: flex;
+    justify-content: center;
+}
+
+.account-status p{
+    font-size: 15px;
+    color: #636363;
+    width: 95%;
+    border-radius: 100px;
+    margin: 0 auto;
+    white-space: nowrap;
+}
+
+.box-ID{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.infoicon{
+    margin-left: 8px;
+    width: 30px;
+}
+
+.box-ID h3{
+    display: flex;
+    margin-top: 20px;
+    font-size: 15px;
+    background-color: var(--dark-blue);
+    color: var(--white-color);
+    width: 100%;
+    padding: 15px 15px;
+    justify-content: center;
+    border-radius: 50px;
 }
 }

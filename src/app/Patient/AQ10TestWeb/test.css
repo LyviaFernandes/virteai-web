@@ -24,7 +24,7 @@
     font-size: 60px;
     margin-top: 115px;
     margin-bottom: 115px;
-    background-color: var(--backgroud-sand);
+    background-color: var(--sand-ligth);
     width: 100vw;
     position: relative;
     left: 50%;
@@ -86,13 +86,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--secundary-color);
+    background-color: var(--white-color);
     width: 99%;
     padding: 100px 100px 50px 100px;
 }
 
 .questionnaire-item--sand{
-    background-color: var(--backgroud-sand);
+    background-color: var(--sand-ligth);
 }
 
 .questionnaire-item p{
@@ -123,7 +123,7 @@
 
 .questionnaire-submit{
     display: flex;
-    color: var(--secundary-color);
+    color: var(--white-color);
     justify-content: center;
     text-align: center;
     cursor: pointer;

@@ -19,6 +19,8 @@ h2,h1,h3, button{
     font-family: 'Marmelad';
 }
 
+
+
 :root{
     --white-color: #FFFFFF;
     --gray-ligth: #F0F0F0;
@@ -46,4 +48,10 @@ h2,h1,h3, button{
     --green-dark:#265D39;
 
     font: normal 16px 'Comfortaa', sans-serif;
+}
+
+html,
+body{
+    width: 100%;
+    overflow-x: hidden;
 }

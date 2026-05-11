@@ -1,98 +1,36 @@
 "use client"
 
-import { useRef, useState, useEffect } from 'react';import './style.css'
+import { useRef, useState, useEffect } from 'react';import './styles.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Footer from '@/components/footer/Footer';
 import email from '@/assets/images/emailIcon.svg';
 import DefaultProfileIcon from '@/assets/images/ProfileIcon.svg';
+import infoicon from '@/assets/images/InfoIcon.svg';
+import Iconpaciente from '@/assets/images/ProfileIcon.svg';
 
 type User = {
     id: number;
     name: string;
     profileImage?: string;
-    CRP: string;
+    status: string;
+    dataNasc: string;
+    pais: string;
 }
 
-export default function ProcessesAndTreatments () {
+export default function Scenarios () {
     
     const user: User = {
-        id: 1,
-        name: "Camilla Andrade",
-        profileImage: "",
-        CRP: "CRP 06/38472",
+        id: 482917,
+        name: "João Lucas Vega",
+        profileImage: "https://thumbs.dreamstime.com/b/retrato-da-pessoa-adulta-22170035.jpg",
+        status: "Gerar ID",
+        dataNasc: "15/03/2010",
+        pais: "Brasil",
     };
 
-//     // 🔽 ADICIONADO: estados do código
-//     const [showCodeInput, setShowCodeInput] = useState(false);
-//     const [generatedCode, setGeneratedCode] = useState("");
-//     const [userCode, setUserCode] = useState("");
-//     const [isValid, setIsValid] = useState<boolean | null>(null);
-//     const codeBoxRef = useRef<HTMLDivElement>(null);
 
-//     useEffect(() => {
-//     const handleClickOutside = (event: MouseEvent) => {
-//         if (
-//             codeBoxRef.current &&
-//             !codeBoxRef.current.contains(event.target as Node)
-//         ) {
-//             setShowCodeInput(false);
-//             setUserCode("");
-//             setIsValid(null);
-//         }
-//     };
-
-//     if (showCodeInput) {
-//         document.addEventListener("mousedown", handleClickOutside);
-//     }
-
-//     return () => {
-//         document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//     }, [showCodeInput]);
-//     // 🔽 ADICIONADO: gerar código fake
-//     const handleAccessScenario = () => {
-//         const fakeCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-//         console.log("Código fake:", fakeCode);
-
-//         setGeneratedCode(fakeCode);
-//         setShowCodeInput(true);
-//         setIsValid(null);
-//     };
-
-//     // 🔽 ADICIONADO: validar código
-//     const handleValidateCode = () => {
-//         if (userCode === generatedCode) {
-//             setIsValid(true);
-//         } else {
-//             setIsValid(false);
-//         }
-//     };
-
-//     const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
-
-// const handleChange = (value: string, index: number) => {
-//     if (!/^[0-9]?$/.test(value)) return; // só número
-
-//     const newCode = userCode.split("");
-//     newCode[index] = value;
-//     const updatedCode = newCode.join("");
-
-//     setUserCode(updatedCode);
-
-//     // vai pro próximo input
-//     if (value && inputsRef.current[index + 1]) {
-//         inputsRef.current[index + 1]?.focus();
-//     }
-// };
-
-// const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-//     if (e.key === "Backspace" && !userCode[index]) {
-//         inputsRef.current[index - 1]?.focus();
-//     }
-// };
 
     return(
         <div className="processes-container">
@@ -101,43 +39,42 @@ export default function ProcessesAndTreatments () {
             />
 
             <div className="section-header">
-                <h1>Processos e Tratamentos</h1>
-                <p>Abaixo estão os cenários e tratamentos disponibilizados pelo seu terapeuta:</p>
+                <h1>Cenários</h1>
             </div>
 
-            <h3 className='section-title-responsible'>Responsável:</h3>
+            <h3 className='section-title-responsible'>Paciente:</h3>
 
-            <div className="profile-container">
-
-                <div className="profile-avatar-wrapper">
-                    <div className="profile-avatar-container">
+            <div className="account-avatar-wrapper">
+                   <div className="account-avatar">
                         <Image 
-                        src={user.profileImage || DefaultProfileIcon}
-                        alt="Foto do usuário"
-                        fill
-                        className="profile-avatar-image"
+                            src={ Iconpaciente}
+                            alt="Foto do usuário"
+                            fill
+                            className="account-avatar-image"
                         />
+
+                       
                     </div>
-                </div>
+                    <div className="account-user-info">
 
-                <div className="profile-info">
+                        <h2>{user.name}</h2>
 
-                    <h2>{user.name}</h2>
+                      
 
-                    <p>{user.CRP}</p>
-
-                </div>
-
-                <div className="email-box">
-                    <h3>Envie um email</h3>
-                    <Image 
-                        src={email}
-                        alt=""
-                        className="email-icon"
+                        <div className="box-ID">
+                            <h3>{user.status}</h3>
+                            <Image 
+                            src={infoicon}
+                            alt=""
+                            
+                            className="infoicon"
                         />
-                </div>
+                        </div>
 
+
+                    </div>
             </div>
+
 
             <h3 className='section-title-scenarios'>Cenários Terapêuticos:</h3>
 

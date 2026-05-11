@@ -57,29 +57,8 @@ export default function AddNewReport () {
             </div>
 
             <div className="personal-data-section">
-                <h3 className='personal-data-title'>Dados Pessoais:</h3>
+                <h3 className='personal-data-title'>Relatório</h3>
 
-                <div className="personal-data-item">
-                    <p>Paciente:</p>
-                    <input 
-                        name="pacient" 
-                        value={form.pacient} 
-                        onChange={handleChange}
-                        className="input-field"
-                        placeholder="Insira neste campo o nome de seu paciente"
-                    />
-                </div>
-
-                <div className="personal-data-item">
-                    <p>Terapeuta:</p>
-                    <input 
-                        name="therapist" 
-                        value={form.therapist} 
-                        onChange={handleChange}
-                        className="input-field"
-                        placeholder="Insira seu nome"
-                    />
-                </div>
 
                 <div className="personal-data-item">
                     <p>Objetivo da sessão:</p>

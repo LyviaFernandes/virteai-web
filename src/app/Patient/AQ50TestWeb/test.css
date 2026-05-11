@@ -16,7 +16,7 @@
     font-size: 60px;
     margin-top: 115px;
     margin-bottom: 115px;
-    background-color: var(--background-green);
+    background-color: var(--green-ligth);
     width: 100vw;
     position: relative;
     left: 50%;
@@ -78,7 +78,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--secundary-color);
+    background-color: var(--white-color);
     width: 99%;
     padding: 100px 100px 50px 100px;
 }
@@ -87,7 +87,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--background-green);
+    background-color: var(--green-ligth);
     width: 99%;
     padding: 100px 100px 50px 100px;
 }

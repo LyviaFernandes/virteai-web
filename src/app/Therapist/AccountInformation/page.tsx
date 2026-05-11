@@ -163,18 +163,18 @@ export default function AccountInformationTherapist () {
                     <div className="questionnaire-options">
 
                         <div className="questionnaire-option">
-                            <label htmlFor="agree">Online</label>
                             <input type="radio" id="agree" name="tea"/>
+                            <label htmlFor="agree">Online</label>
                         </div>
 
                         <div className="questionnaire-option">
-                            <label htmlFor="completely-disagree">Presencial</label>
                             <input type="radio" id="completely-disagree" name="tea"/>
+                            <label htmlFor="completely-disagree">Presencial</label>
                         </div>
 
                         <div className="questionnaire-option">
-                            <label htmlFor="disagree">Ambos</label>
                             <input type="radio" id="disagree" name="tea"/>
+                            <label htmlFor="disagree">Ambos</label>
                         </div>
                     </div>
                 </div>
@@ -186,11 +186,23 @@ export default function AccountInformationTherapist () {
                 <div className="account-field">
                     <p>Email:</p>
                     <input name="name" value="marcosvega82@gmail.com" />
+
+                    <Image 
+                                src={edit}
+                                alt=""
+                                className="edit-icon"
+                            />
                 </div>
 
                 <div className="account-field">
                     <p>Senha:</p>
                     <input name="email" value="••••••••••••" />
+
+                    <Image 
+                                src={edit}
+                                alt=""
+                                className="edit-icon"
+                            />
                 </div>
             </div>
 

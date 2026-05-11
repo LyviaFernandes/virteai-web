@@ -111,7 +111,7 @@
     padding-bottom: 50px;
     align-items: center;
     width: 50%;
-        box-shadow: 5px 5px 5px 5px rgb(110, 105, 105);
+        box-shadow: 5px 5px 5px 5px rgb(174, 168, 168);
 
 }
 .account-modalidade-item{
@@ -129,16 +129,17 @@
 
 .questionnaire-options{
     display: flex;
-    gap: 230px;
+    gap: 180px;
     justify-content: space-between;
 }
 
-
+.questionnaire-option{
+    display: flex;
+}
 .questionnaire-option label{
     display: flex;
     font-size: 30px;
     margin-top: 22px;
-    width: 30px;
     text-align: center;
     justify-content: center;
     margin-bottom: 15px;
@@ -146,7 +147,7 @@
 
 .questionnaire-option input[type="radio"]{
     transform: scale(3);
-    margin-right: 10px;
+    margin-right: 25%;
     cursor: pointer;
 }
 
@@ -203,7 +204,7 @@
 .account-field input{
     font-size: 30px;
     margin-left: 20px;
-    width: 75%;
+    width: 80%;
     box-shadow: none;
     padding: 5;
 }
@@ -353,7 +354,7 @@
 
 .questionnaire-options{
     display: flex;
-    gap: 100px;
+    gap: 40px;
     justify-content: space-between;
 }
 
@@ -362,10 +363,10 @@
     display: flex;
     font-size: 15px;
     margin-top: 12px;
-    width: 20px;
     text-align: center;
     justify-content: center;
     margin-bottom: 10px;
+
 }
 
 .questionnaire-option input[type="radio"]{
