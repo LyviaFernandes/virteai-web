@@ -43,10 +43,11 @@ import ReportsList from "./Therapist/ReportsList/page";
 import Reports from "./Therapist/Reports/page";
 import AddNewReport from "./Therapist/AddNewReport/page";
 import Scenarios from "./Therapist/Scenario/page";
+import ScenariosResult from "./Therapist/ScenarioResult/page";
 
 export default function Home() {
   return (
-    <Scenarios/>
+    <ScenariosResult/>
     
   );
 }

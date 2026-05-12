@@ -1,14 +1,16 @@
 "use client"
 
-import { useRef, useState, useEffect } from 'react';import './styles.css'
+import { useRef, useState } from 'react';import './styles.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Footer from '@/components/footer/Footer';
-import email from '@/assets/images/emailIcon.svg';
-import DefaultProfileIcon from '@/assets/images/ProfileIcon.svg';
+import deleteicon from '@/assets/images/deleteicon.svg';
+import plusicon from '@/assets/images/PlusIcon.svg';
+import visualize from '@/assets/images/visualizeicon.svg';
 import infoicon from '@/assets/images/InfoIcon.svg';
 import Iconpaciente from '@/assets/images/ProfileIcon.svg';
+import Input from "@/components/input/Input";
 
 type User = {
     id: number;
@@ -30,7 +32,25 @@ export default function Scenarios () {
         pais: "Brasil",
     };
 
+      const [title, setTitle] = useState("");
 
+      const [showCodeInput, setShowCodeInput] = useState(false);
+      const codeBoxRef = useRef<HTMLDivElement>(null);
+      const handleAccessScenario = () => {
+        setShowCodeInput(true);
+    };
+
+ {
+    
+    };
+    
+        const [status, setStatus] = useState<Record<number, string>>({});
+        const [open, setOpen] = useState<number | null>(null);
+    
+        const statusLabel: Record<string, string> = {
+            naoiniciado: "Não iniciado",
+            finalizado: "Finalizado",
+        };
 
     return(
         <div className="processes-container">
@@ -63,12 +83,19 @@ export default function Scenarios () {
 
                         <div className="box-ID">
                             <h3>{user.status}</h3>
-                            <Image 
-                            src={infoicon}
-                            alt=""
-                            
-                            className="infoicon"
-                        />
+                            <div className="info-wrapper">
+                                <Image 
+                                    src={infoicon}
+                                    alt=""
+                                    className="infoicon"
+                                />
+
+                                <div className="info-tooltip">
+                                O ID gerado será utilizado para a validação 
+                                da identidade do seu paciente para o acesso 
+                                dos cenários
+                                </div>
+                             </div>
                         </div>
 
 
@@ -76,68 +103,220 @@ export default function Scenarios () {
             </div>
 
 
-            <h3 className='section-title-scenarios'>Cenários Terapêuticos:</h3>
+            <div className="text-class">
+                <h3 className='section-title-scenarios'>Cenários Terapêuticos</h3>
+                    <Image 
+                        onClick={handleAccessScenario}
+                        src={plusicon}
+                        alt=""   
+                        className="plus"
+                    />
+            </div>
+
+            {showCodeInput && (
+                    <div className="overlay" onClick={() => setShowCodeInput(false)}>
+                      <div
+                        className="code-container"
+                        ref={codeBoxRef}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="evolution">
+                          <h2>Cenário</h2>
+                        </div>
+            
+                        <div className="text-evolution">
+                          <p>
+                            Preencha as informações abaixo, para adicionar 
+                            ao gráfico de evolução de seu paciente:
+                          </p>
+                        </div>
+            
+                        <div className="inputs-section">
+                          <div className="input-box">
+                            <p>Título:</p>
+                            <Input
+                              description="Insira aqui o título do cenário"
+                              value={title}
+                              onChange={(e) => setTitle(e.target.value)}
+                            />
+                          </div>
+            
+            
+                          
+                        </div>
+            
+                        <div className="button-send">
+                          <button>Enviar</button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
             <div className="scenarios-container">
                 <div className="scenario-card">
-                    <h3>Cenário 1: Interação Social Básica</h3>
-                    {/* <button onClick={handleAccessScenario}>Acessar Cenário</button> */}
+                    <div className="scenario-card-container">
+                        <h2>Cenário 1: Interação Social Básica</h2>
+                            <div className="image-container">
+                                <Image 
+                                    src={deleteicon}
+                                    alt=""
+                                    className="delete"
+                                />
+
+                                {status[1] === "finalizado" && (
+                                    <Image 
+                                        src={visualize}
+                                        alt=""
+                                        className="view"
+                                    />
+                                )}
+                            </div>
+                    </div>
+                    <div className="status-container">
+                            <h3
+                                onClick={() => setOpen(open === 1 ? null : 1)}
+                                 className={`status-option status ${
+                                    status[1] ? `status--${status[1]}` : "status--default"
+                                }`}
+                            >
+                                {status[1] ? statusLabel[status[1]] : "Não iniciado"}
+                            </h3>
+
+                            {open === 1 && (
+                                <div className="status-dropdown">
+                                    {Object.entries(statusLabel).map(([key, label]) => (
+                                        <div
+                                            key={key}
+                                           className="status-container"
+                                            onClick={() => {
+                                                setStatus((prev) => ({
+                                                            ...prev,
+                                                            1: key
+                                                        }));
+                                                setOpen(null);
+                                            }}
+                                        >
+                                            <h3>
+                                            {label}
+
+                                            </h3>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                 </div>
 
                 <div className="scenario-card">
-                    <h3>Cenário 2: Ambiente Escolar</h3>
-                    {/* <button onClick={handleAccessScenario}>Acessar Cenário</button> */}
+                    <div className="scenario-card-container">
+                        <h2>Cenário 2: Ambiente Escolar</h2>
+                            <div className="image-container">
+                                <Image 
+                                    src={deleteicon}
+                                    alt=""
+                                    className="delete"
+                                />
+
+                                {status[2] === "finalizado" && (
+                                    <Image 
+                                        src={visualize}
+                                        alt=""
+                                        className="view"
+                                    />
+                                )}
+
+                            </div>
+                    </div>
+                    <div className="status-container">
+                            <h3
+                                onClick={() => setOpen(open === 2 ? null : 2)}
+                                 className={`status-option status ${
+                                    status[2] ? `status--${status[2]}` : "status--default"
+                                }`}
+                            >
+                                {status[2] ? statusLabel[status[2]] : "Não iniciado"}
+                            </h3>
+
+                            {open === 2 && (
+                                <div className="status-dropdown">
+                                    {Object.entries(statusLabel).map(([key, label]) => (
+                                        <div
+                                            key={key}
+                                           className="status-container"
+                                            onClick={() => {
+                                                setStatus((prev) => ({
+                                                            ...prev,
+                                                            2: key
+                                                        }));
+                                                setOpen(null);
+                                            }}
+                                        >
+                                            <h3>
+                                            {label}
+
+                                            </h3>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                 </div>
 
                 <div className="scenario-card">
-                    <h3>Cenário 3: Situações do Dia a Dia</h3>
-                    {/* <button onClick={handleAccessScenario}>Acessar Cenário</button> */}
+                    <div className="scenario-card-container">
+                        <h2>Cenário 3: Situações do Dia a Dia</h2>
+                            <div className="image-container">
+                                <Image 
+                                    src={deleteicon}
+                                    alt=""
+                                    className="delete"
+                                />
+                                {status[3] === "finalizado" && (
+                                    <Image 
+                                        src={visualize}
+                                        alt=""
+                                        className="view"
+                                    />
+                                )}
+
+                            </div>
+                    </div>
+                    <div className="status-container">
+                            <h3
+                                onClick={() => setOpen(open === 3 ? null : 3)}
+                                 className={`status-option status ${
+                                    status[3] ? `status--${status[3]}` : "status--default"
+                                }`}
+                            >
+                                {status[3] ? statusLabel[status[3]] : "Não iniciado"}
+                            </h3>
+                            {open === 3 && (
+                                <div className="status-dropdown">
+                                    {Object.entries(statusLabel).map(([key, label]) => (
+                                        <div
+                                            key={key}
+                                           className="status-container"
+                                            onClick={() => {
+                                                setStatus((prev) => ({
+                                                            ...prev,
+                                                            3: key
+                                                        }));
+                                                setOpen(null);
+                                            }}
+                                        >
+                                            <h3>
+                                            {label}
+
+                                            </h3>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                 </div>
             </div>
 
-            {/* área de validação */}
-            {/* {showCodeInput && (
-                <div className="overlay" onClick={() => setShowCodeInput(false)}>
-                    <div
-                        className="code-box"
-                        ref={codeBoxRef}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="validation">
-                            <h2>Validação</h2>
-                        </div>
-
-                        <p>Enviamos seu código de validação no email cadastrado em sua conta. Informe-o abaixo para acessar o cenário.</p>
-                        <div className="code-inputs">
-                            {[0,1,2,3,4,5].map((_, index) => (
-                                <input
-                                    key={index}
-                                    type="text"
-                                    maxLength={1}
-                                    className="code-input"
-                                    value={userCode[index] || ""}
-                                    onChange={(e) => handleChange(e.target.value, index)}
-                                    onKeyDown={(e) => handleKeyDown(e, index)}
-                                    ref={(el) => { inputsRef.current[index] = el }}
-                                />
-                            ))}
-                        </div>
-
-                        <button onClick={handleValidateCode}>
-                            Enviar
-                        </button>
-
-                        {isValid === true && (
-                            <p style={{ color: "green" }}>Código correto! Acesso liberado.</p>
-                        )}
-
-                        {isValid === false && (
-                            <p style={{ color: "red" }}>Código inválido</p>
-                        )}
-                    </div>
-                </div>
-            )} */}
-
+          
             <Footer/>
         </div>
     )

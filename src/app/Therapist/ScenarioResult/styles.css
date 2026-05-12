@@ -1,0 +1,226 @@
+@import url(../../globals.css);
+
+.scenarios__result{
+    display: flex;
+    flex-direction: column;
+}
+
+.section-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+.section-header h1{
+    font-size: 60px;
+    padding: 30px;
+}
+
+.paragraph{
+    font-size: 40px;
+    margin: 50px;
+}
+/* mapa de calor */
+
+.heat__map{
+    background-color: var(--primary-color);
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+/* informações gerais */
+
+.section-title-responsible{
+    font-size: 40px;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    width: 25%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 100px;
+}
+
+.intense__focus_graph{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.box__graph{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5 10 10px rgba(0, 0, 0, 0.2);
+    padding: 50px;
+    margin-bottom: 100px;
+    border-radius: 30px;
+}
+
+.box__graph h3{
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.intense_box{
+    display: flex;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 3%;
+    gap: 88%;
+}
+/* estatisticas gerais */
+
+.section__info{
+    display: flex;
+    width: 100%;
+    align-items: start;
+    justify-content: center;
+    margin-bottom: 100px;
+    gap: 100px;
+}
+
+.General__Statistics{
+    padding: 50px 50px 0px;
+    border-radius: 30px;
+    box-shadow: 5 10 10px rgba(0, 0, 0, 0.2);
+    width: 35%;
+}
+
+.General__Statistics h3{
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.box__times, .box__areas{
+    font-size: 30px;
+    display: flex;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.space{
+    width: 90%;
+}
+
+.one, .two, .three, .four, .five{
+    margin-right: 10px;
+}
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+.section-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+.section-header h1{
+    font-size: 30px;
+    padding: 15px;
+}
+
+.paragraph{
+    font-size: 20px;
+    margin: 30px;
+}
+/* mapa de calor */
+
+.heat__map{
+    background-color: var(--primary-color);
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.graph{
+    max-width: 80%;
+    height: auto;
+}
+/* informações gerais */
+
+.section-title-responsible{
+    font-size: 40px;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    width: 25%;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-bottom: 100px;
+}
+
+.intense__focus_graph{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.box__graph{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5 10 10px rgba(0, 0, 0, 0.2);
+    padding: 50px;
+    margin-bottom: 100px;
+    border-radius: 30px;
+}
+
+.box__graph h3{
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.intense_box{
+    display: flex;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 3%;
+    gap: 88%;
+}
+/* estatisticas gerais */
+
+.section__info{
+    display: flex;
+    width: 100%;
+    align-items: start;
+    justify-content: center;
+    margin-bottom: 100px;
+    gap: 100px;
+}
+
+.General__Statistics{
+    padding: 50px 50px 0px;
+    border-radius: 30px;
+    box-shadow: 5 10 10px rgba(0, 0, 0, 0.2);
+    width: 35%;
+}
+
+.General__Statistics h3{
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.box__times, .box__areas{
+    font-size: 30px;
+    display: flex;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.space{
+    width: 90%;
+}
+
+.one, .two, .three, .four, .five{
+    margin-right: 10px;
+}
+}

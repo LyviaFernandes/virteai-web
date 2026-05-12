@@ -90,12 +90,18 @@ export default function AccountInformation () {
 
                     <div className="box-ID">
                         <h3>ID: {user.id}</h3>
-                        <Image 
-                           src={infoicon}
-                           alt=""
-                           
-                           className="infoicon"
-                       />
+                        <div className="info-wrapper">
+                                <Image 
+                                    src={infoicon}
+                                    alt=""
+                                    className="infoicon"
+                                />
+
+                                <div className="info-tooltip">
+                                Esse ID é necessário para a segurança 
+                                e exclusividade no acesso aos cenários
+                                </div>
+                             </div>
                     </div>
 
 
