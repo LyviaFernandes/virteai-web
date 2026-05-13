@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react';
 import './result.css'
 import Return from '@/assets/images/return-icon.svg';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';

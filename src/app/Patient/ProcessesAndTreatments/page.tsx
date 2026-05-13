@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState, useEffect } from 'react';import './style.css'
+import './style.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';

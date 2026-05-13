@@ -4,7 +4,6 @@ import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../../assets/images/return-icon.svg';
 import ButtonEnter from '@/components/enter-button/Button';
-import Image from 'next/image';
 
 export default function FinishedPayment () {
 

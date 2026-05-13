@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react';
 import './services.css'
 import Image from 'next/image';
 import Footer from '@/components/footer/Footer';

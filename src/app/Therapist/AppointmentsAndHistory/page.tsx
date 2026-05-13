@@ -1,7 +1,6 @@
 "use client"
 
 import './styles.css'
-import { useState } from "react";
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Footer from '@/components/footer/Footer';

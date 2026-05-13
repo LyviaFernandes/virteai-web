@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react';
 import './aboutus.css'
 import Image from 'next/image';
 import HeaderHome from "@/components/header-logout/Header";

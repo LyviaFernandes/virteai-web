@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import './Plan.css';
 import HeaderHome from '@/components/header-login/Header';
 import Footer from '@/components/footer/Footer';

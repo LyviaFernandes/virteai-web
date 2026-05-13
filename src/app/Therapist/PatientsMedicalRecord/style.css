@@ -916,4 +916,83 @@
     cursor: pointer;
 }
 
+/*  status */
+.account-status-section{
+    width: 100%;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-status-box{
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    padding-bottom: 50px;
+    align-items: center;
+    width: 90%;
+        box-shadow: 5px 5px 5px 5px rgb(174, 168, 168);
+
+}
+.account-status-item{
+    font-size: 15px;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0px 0px;
+
+}
+
+.status-options{
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+}
+
+.status-option{
+    display: flex;
+}
+.status-option label{
+    display: flex;
+    font-size: 15px;
+    margin-top: 32px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.status-option input[type="radio"]{
+    transform: scale(1.5);
+    margin-right: 8%;
+    cursor: pointer;
+    box-shadow: none;
+    margin-top: 15px;
+}
+
+
+.account-status-item p{
+    width: 80%;
+    margin-left: 8%;
+    white-space: nowrap;
+    margin-bottom: 2%;
+}
+
+.account-status-item .edit-icon{
+    margin-bottom: 2%;
+}
+
+.edit-icon{
+    width: 30px;
+}
+/*  */
+
 }

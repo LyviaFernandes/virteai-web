@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import "./style.css";
 import "./style.css";
 import Image from "next/image";
@@ -25,7 +25,6 @@ type User = {
 export default function PatientsMedicalRecord() {
   const [date, setDate] = useState("");
   const [goal, setGoal] = useState("");
-  const [objective, setObjective] = useState("");
   const [pontuation, setPontuation] = useState("");
 
   const user: User = {

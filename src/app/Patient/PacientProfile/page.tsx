@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react';
 import './pacientprofile.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';

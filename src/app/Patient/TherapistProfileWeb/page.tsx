@@ -7,7 +7,6 @@ import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import DefaultProfileIcon from '@/assets/images/ProfileIcon.svg';
 import star from '@/assets/images/RatingIcon.svg';
-import EditIcon from '@/assets/images/editicon.svg';
 import Footer from '@/components/footer/Footer';
 import email from '@/assets/images/emailIcon.svg';
 
