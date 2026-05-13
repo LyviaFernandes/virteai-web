@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from 'react';import './styles.css'
+import './styles.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
@@ -12,16 +12,8 @@ import two from '@/assets/images/NumberTwoIcon.svg';
 import three from '@/assets/images/NumberThreeIcon.svg';
 import four from '@/assets/images/NumberFourIcon.svg';
 import five from '@/assets/images/NumberFiveIcon.svg';
-import Input from "@/components/input/Input";
 
-type User = {
-    id: number;
-    name: string;
-    profileImage?: string;
-    status: string;
-    dataNasc: string;
-    pais: string;
-}
+
 
 export default function ScenariosResult () {
     return(

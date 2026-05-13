@@ -29,12 +29,14 @@ export default function PatientsMedicalRecord() {
   const [pontuation, setPontuation] = useState("");
 
   const user: User = {
-    id: 1,
-    name: "João Lucas Vega",
-    profileImage:
-      "https://thumbs.dreamstime.com/b/retrato-da-pessoa-adulta-22170035.jpg",
-    status: "Em acompanhamento",
-  };
+  id: 1,
+  name: "João Lucas Vega",
+  profileImage:"",
+  status: "",
+};
+
+  const [status, setStatus] = useState("Não iniciado");
+
   const [showCodeInput, setShowCodeInput] = useState(false);
   const [showModalInput, setShowModalInput] = useState(false);
   const [showAddObjective, setShowObjective] = useState(false);
@@ -75,8 +77,8 @@ export default function PatientsMedicalRecord() {
         <div className="profile-info">
           <h2>{user.name}</h2>
 
-          <div className="profile-status">
-            <h3>{user.status}</h3>
+          <div className={`profile-status ${status.toLowerCase().replace(" ", "-")}`}>
+            <h3>{status}</h3>
           </div>
         </div>
       </div>
@@ -196,6 +198,55 @@ export default function PatientsMedicalRecord() {
           />
         </div>
       </div>
+
+      <div className="account-status-section">
+                <div className="account-status-box">
+                    <div className="account-status-item">
+                        <p>Status do paciente</p>
+                        <Image 
+                                src={edit}
+                                alt=""
+                                className="edit-icon"
+                            />
+                    </div>
+
+                    <div className="status-options">
+
+                      <div className="status-option">
+                      <input
+                        type="radio"
+                        id="agree"
+                        name="tea"
+                        checked={status === "Em acompanhamento"}
+                        onChange={() => setStatus("Em acompanhamento")}
+                      />
+                      <label htmlFor="agree">Em acompanhamento</label>
+                    </div>
+
+                    <div className="status-option">
+                      <input
+                        type="radio"
+                        id="completely-disagree"
+                        name="tea"
+                        checked={status === "Pausado"}
+                        onChange={() => setStatus("Pausado")}
+                      />
+                      <label htmlFor="completely-disagree">Pausado</label>
+                    </div>
+
+                    <div className="status-option">
+                      <input
+                        type="radio"
+                        id="disagree"
+                        name="tea"
+                        checked={status === "Finalizado"}
+                        onChange={() => setStatus("Finalizado")}
+                      />
+                      <label htmlFor="disagree">Finalizado</label>
+                    </div>
+                    </div>
+                </div>
+            </div>
 
       {showModalInput && (
         <div

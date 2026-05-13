@@ -44,10 +44,11 @@ import Reports from "./Therapist/Reports/page";
 import AddNewReport from "./Therapist/AddNewReport/page";
 import Scenarios from "./Therapist/Scenario/page";
 import ScenariosResult from "./Therapist/ScenarioResult/page";
+import CalendarHistory from "./Therapist/AppointmentsAndHistory/page";
 
 export default function Home() {
   return (
-    <ScenariosResult/>
+    <PatientsMedicalRecord/>
     
   );
 }

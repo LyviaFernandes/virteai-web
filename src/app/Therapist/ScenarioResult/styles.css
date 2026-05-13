@@ -24,6 +24,11 @@
     font-size: 40px;
     margin: 50px;
 }
+
+.map{
+    width: 80%;
+    height: auto;
+}
 /* mapa de calor */
 
 .heat__map{
@@ -142,20 +147,21 @@
     margin-bottom: 100px;
 }
 
-.graph{
-    max-width: 80%;
+.map{
+    width: 90%;
     height: auto;
 }
 /* informações gerais */
 
 .section-title-responsible{
-    font-size: 40px;
-    padding: 20px 50px 20px 100px;
+    font-size: 20px;
+    padding: 10px 30px 10px 50px;
     background-color: var(--primary-color);
-    width: 25%;
+    width: 40%;
     border-bottom-right-radius: 50px;
     border-top-right-radius: 50px;
     margin-bottom: 100px;
+    white-space: nowrap;
 }
 
 .intense__focus_graph{
@@ -169,58 +175,68 @@
     display: flex;
     flex-direction: column;
     box-shadow: 5 10 10px rgba(0, 0, 0, 0.2);
-    padding: 50px;
-    margin-bottom: 100px;
+    padding: 20px;
+    margin-bottom: 50px;
     border-radius: 30px;
+    width: 90%;
 }
 
 .box__graph h3{
-    font-size: 40px;
-    margin-bottom: 50px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    margin-left: 3%;
+}
+
+.graph{
+    width: 95%;
+    height: auto;
+    margin-left:2%;
 }
 
 .intense_box{
     display: flex;
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 20px;
-    margin-left: 3%;
-    gap: 88%;
+    margin-left: 5%;
+    gap: 78%;
 }
 /* estatisticas gerais */
 
 .section__info{
     display: flex;
     width: 100%;
-    align-items: start;
+    align-items: center;
     justify-content: center;
     margin-bottom: 100px;
     gap: 100px;
+    flex-direction: column;
 }
 
 .General__Statistics{
-    padding: 50px 50px 0px;
+    padding: 35px 35px 0px;
     border-radius: 30px;
     box-shadow: 5 10 10px rgba(0, 0, 0, 0.2);
-    width: 35%;
+    width: 60%;
 }
 
 .General__Statistics h3{
-    font-size: 40px;
-    margin-bottom: 50px;
+    font-size: 20px;
+    margin-bottom: 30px;
 }
 
 .box__times, .box__areas{
-    font-size: 30px;
+    font-size: 15px;
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     align-items: center;
 }
 
 .space{
-    width: 90%;
+    width: 80%;
 }
 
 .one, .two, .three, .four, .five{
     margin-right: 10px;
+    width: 30px;
 }
 }

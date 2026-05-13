@@ -1,0 +1,205 @@
+@import url(../../app/globals.css);
+
+.calendar {
+    width: 85%;
+    max-width: 2000px;
+
+    border-radius: 50px;
+    background-color: #fff;
+}
+
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    
+    margin-bottom: 40px;
+}
+
+.calendar-header h2 {
+    font-size: 40px;
+    text-transform: capitalize;
+    width: 35%;
+    padding: 20px 50px 20px 100px;
+    background-color: var(--primary-color);
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    white-space: nowrap;
+    margin-right: 47%;
+}
+
+
+.calendar-header button {
+    height: 50px;
+    background-color: var(--white-color);
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+
+.week-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    padding: 0 100px;
+    margin-top: 100px;
+    font-size: 30px;
+}
+
+.week-days span {
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--gray-ligth);
+}
+
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    padding: 0 100px;
+    margin-bottom: 100px;
+    font-size: 30px;
+}
+
+
+.day,
+.empty {
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--gray-ligth);
+}
+
+.day {
+    cursor: pointer;
+    transition: 0.2s;
+
+    background-color: var(--white-color);
+}
+
+.day:hover {
+    transform: scale(1.03);
+}
+
+
+.appointment {
+    background-color: var(--primary-color);
+    color: var(--black-color);
+
+    font-weight: bold;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+.calendar {
+    width: 99%;
+    max-width: 2000px;
+
+    border-radius: 30px;
+    background-color: #fff;
+}
+
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+    font-size: 20px;
+    text-transform: capitalize;
+    width: 40%;
+    padding: 10px 30px 10px 50px;
+    background-color: var(--primary-color);
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    white-space: nowrap;
+    margin-right: 35%;
+    margin-top: 0;
+}
+
+
+.calendar-header button {
+    height: 30px;
+    background-color: var(--white-color);
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+
+.week-days {
+    display: grid;
+    grid-template-columns: repeat(7, 0.5fr);
+
+    padding: 0 50px;
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+.week-days span {
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--gray-ligth);
+}
+
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    padding: 0 50px;
+    margin-bottom: 50px;
+    font-size: 20px;
+}
+
+
+.day,
+.empty {
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--gray-ligth);
+}
+
+.day {
+    cursor: pointer;
+    transition: 0.2s;
+
+    background-color: var(--white-color);
+}
+
+.day:hover {
+    transform: scale(1.03);
+}
+
+
+.appointment {
+    background-color: var(--primary-color);
+    color: var(--black-color);
+
+    font-weight: bold;
+}
+}

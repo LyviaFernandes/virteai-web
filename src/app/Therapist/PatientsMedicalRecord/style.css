@@ -54,15 +54,36 @@
     justify-content: center;
     
 }
+.profile-status.não-iniciado{
+    background-color: var(--gray-medium);
+    color: var(--gray-dark);
+    border-radius: 100px;
+}
+
+.profile-status.em-acompanhamento{
+    background-color: var(--green-medium);
+    color: var(--green-dark);
+    border-radius: 100px;
+}
+
+.profile-status.pausado{
+    background-color: #E9E1C8;
+    color: #5C513B;
+    border-radius: 100px;
+}
+
+/* Finalizado */
+.profile-status.finalizado{
+    background-color: var(--primary-color);
+    color: var(--blue-dark);
+    border-radius: 100px;
+}
 
 .profile-status h3{
     font-size: 40px;
-    background-color: var(--green-medium);
-    color: #265D39;
-    background-color: #A8D5B7;
+    
     padding: 20px 50px;
-    width: 100%;
-    border-radius: 100px;
+    width: 500px;
     margin: 0 auto;
       white-space: nowrap;
 }
@@ -393,6 +414,80 @@
     cursor: pointer;
 }
 
+/*  status */
+.account-status-section{
+    width: 100%;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-status-box{
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 150px;
+    padding-bottom: 50px;
+    align-items: center;
+    width: 80%;
+        box-shadow: 5px 5px 5px 5px rgb(174, 168, 168);
+
+}
+.account-status-item{
+    font-size: 30px;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0px 0px;
+
+}
+
+.status-options{
+    display: flex;
+    gap: 190px;
+    justify-content: space-between;
+}
+
+.status-option{
+    display: flex;
+}
+.status-option label{
+    display: flex;
+    font-size: 30px;
+    margin-top: 50px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.status-option input[type="radio"]{
+    transform: scale(3);
+    margin-right: 15%;
+    cursor: pointer;
+    box-shadow: none;
+    margin-top: 30px;
+}
+
+
+.account-status-item p{
+    width: 80%;
+    margin-left: 8%;
+    white-space: nowrap;
+    margin-bottom: 2%;
+}
+
+.account-status-item .edit-icon{
+    margin-bottom: 2%;
+}
+/*  */
 @media (max-width: 768px){
 
 .patients-medical-record{
