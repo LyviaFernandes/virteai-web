@@ -58,7 +58,7 @@ export const useConsultation = () => {
       setError(null);
       const result = await consultationService.updateConsultation(consultationId, data);
       setConsultations(prev =>
-        prev.map(c => c.id === consultationId ? result : c)
+        prev.map(c => c.consultationId === consultationId ? result : c)
       );
       return result;
     } catch (err: any) {
@@ -74,7 +74,7 @@ export const useConsultation = () => {
       setLoading(true);
       setError(null);
       await consultationService.deleteConsultation(consultationId);
-      setConsultations(prev => prev.filter(c => c.id !== consultationId));
+      setConsultations(prev => prev.filter(c => c.consultationId !== consultationId));
     } catch (err: any) {
       setError(err);
       throw err;

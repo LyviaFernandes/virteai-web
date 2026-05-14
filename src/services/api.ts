@@ -51,9 +51,9 @@ class APIClient {
       ...restOptions
     } = options;
 
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ...customHeaders,
+      ...(customHeaders as Record<string, string>),
     };
 
     if (!skipAuth) {

@@ -58,7 +58,7 @@ export const useReport = () => {
       setError(null);
       const result = await reportService.updateReport(reportId, data);
       setReports(prev =>
-        prev.map(r => r.id === reportId ? result : r)
+        prev.map(r => r.reportId === reportId ? result : r)
       );
       return result;
     } catch (err: any) {
@@ -74,7 +74,7 @@ export const useReport = () => {
       setLoading(true);
       setError(null);
       await reportService.deleteReport(reportId);
-      setReports(prev => prev.filter(r => r.id !== reportId));
+      setReports(prev => prev.filter(r => r.reportId !== reportId));
     } catch (err: any) {
       setError(err);
       throw err;

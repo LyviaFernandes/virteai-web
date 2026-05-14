@@ -58,7 +58,7 @@ export const useScenario = () => {
       setError(null);
       const result = await scenarioService.updateScenario(scenarioId, data);
       setScenarios(prev =>
-        prev.map(s => s.id === scenarioId ? result : s)
+        prev.map(s => s.scenarioId === scenarioId ? result : s)
       );
       return result;
     } catch (err: any) {
@@ -74,7 +74,7 @@ export const useScenario = () => {
       setLoading(true);
       setError(null);
       await scenarioService.deleteScenario(scenarioId);
-      setScenarios(prev => prev.filter(s => s.id !== scenarioId));
+      setScenarios(prev => prev.filter(s => s.scenarioId !== scenarioId));
     } catch (err: any) {
       setError(err);
       throw err;

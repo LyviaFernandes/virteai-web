@@ -58,7 +58,7 @@ export const useObjective = () => {
       setError(null);
       const result = await objectiveService.updateObjective(objectiveId, data);
       setObjectives(prev =>
-        prev.map(o => o.id === objectiveId ? result : o)
+        prev.map(o => o.objectiveId === objectiveId ? result : o)
       );
       return result;
     } catch (err: any) {
@@ -74,7 +74,7 @@ export const useObjective = () => {
       setLoading(true);
       setError(null);
       await objectiveService.deleteObjective(objectiveId);
-      setObjectives(prev => prev.filter(o => o.id !== objectiveId));
+      setObjectives(prev => prev.filter(o => o.objectiveId !== objectiveId));
     } catch (err: any) {
       setError(err);
       throw err;
