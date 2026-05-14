@@ -6,7 +6,6 @@ import { useAuth } from '@/lib';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
-import Link from 'next/link';
 
 export default function CodeAuthentication () {
     const router = useRouter();
@@ -35,32 +34,18 @@ export default function CodeAuthentication () {
     const handleSubmit = () => {
         const code = userCode.join('');
 
-        console.log("Código gerado:", generatedCode);
-
-        if (code === generatedCode) {
-            alert('Código correto ✅');
+        // O backend envia o link de reset por email; aqui simulamos a etapa do código.
+        if (code.length === 5) {
+            router.push('/NewPassword');
         } else {
-            alert('Código incorreto ❌');
+            alert('Informe os 5 dígitos do código.');
         }
+        console.debug('código mock gerado:', generatedCode);
     };
 
     if (isAuthenticated) {
         return <div>Redirecting...</div>;
     }
-
-    return(
-        <div className="reset-password">
-            <HeaderEnter src={Return} />
-            
-            <div className="reset-password__container">
-                <h2>Autenticação</h2>
-
-                <div className="reset-password__card">
-                    <div className="reset-password__message">
-                        <p>
-                            Enviamos um código em seu email. Informe-o abaixo para continuar a redefinição de senha.
-                        </p>
-                    </div>
 
     return(
         <div className="reset-password">
@@ -89,9 +74,7 @@ export default function CodeAuthentication () {
                     </div>
 
                     <div className="reset-password__actions">
-                        <Link href="../NewPassword">
-                        </Link>
-                        <button>Enviar</button>
+                        <button onClick={handleSubmit}>Enviar</button>
                     </div>
                 </div>
             </div>
