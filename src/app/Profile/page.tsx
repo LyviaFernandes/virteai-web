@@ -40,7 +40,7 @@ export default function Profile () {
             </div>
 
             <div className="profile-card-list">
-                <Link href="../Patient/SingUpPatient">
+                <Link href="/Patient/SingUpPatient">
                     <div className="profile-card">
                         <Image 
                         className='profile-card__icon' 
@@ -51,7 +51,7 @@ export default function Profile () {
                     </div>
                 </Link>
 
-                <Link href="../Therapist/SingUpTherapist">
+                <Link href="/Therapist/SingUpTherapist">
                     <div className="profile-card">
                         <Image 
                         className='profile-card__icon' 

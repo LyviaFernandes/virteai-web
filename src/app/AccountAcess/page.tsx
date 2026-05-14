@@ -43,7 +43,7 @@ export default function Acess () {
                     <div className="account-access__actions">
                         <ButtonEnter
                             label='Continuar'
-                            onclick={() => console.log("oi")}
+                            onclick={() => router.push('/Login')}
                         />
                     </div>
 
@@ -51,7 +51,11 @@ export default function Acess () {
                         <p>
                             Ao continuar você concorda com nossos
                         </p>
-                        <p className='account-access__terms-link'>
+                        <p
+                            className='account-access__terms-link'
+                            onClick={() => router.push('/TermsofServiceWeb')}
+                            style={{ cursor: 'pointer' }}
+                        >
                             Termos de Uso
                         </p>
                     </div>

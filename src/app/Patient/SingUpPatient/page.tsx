@@ -126,7 +126,7 @@ export default function PatientSingup () {
                     </div>
 
                     <div style={{ marginTop: '15px' }}>
-                        <Link href="/login">
+                        <Link href="/Login">
                             Já possui conta? Entrar
                         </Link>
                     </div>
