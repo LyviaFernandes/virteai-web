@@ -15,7 +15,7 @@ import edit from '@/assets/images/editicon.svg';
 export default function AccountInformationTherapist () {
     const router = useRouter();
     const { isAuthenticated, user } = useAuth();
-    const { getTherapistProfile, updateTherapistProfile, loading } = useTherapist();
+    const { getMyProfile: getTherapistProfile, updateMyProfile: updateTherapistProfile, loading } = useTherapist();
     const [therapistData, setTherapistData] = useState<any>(null);
     const [error, setError] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | undefined>(undefined);
@@ -226,20 +226,6 @@ export default function AccountInformationTherapist () {
                     <p>{error}</p>
                 </div>
             )}
-
-            <Footer/>
-        </div>
-
-    )
-}
-
-                    <Image 
-                                src={edit}
-                                alt=""
-                                className="edit-icon"
-                            />
-                </div>
-            </div>
 
             <Footer/>
         </div>

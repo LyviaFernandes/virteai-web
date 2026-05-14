@@ -17,7 +17,7 @@ import edit from '@/assets/images/editicon.svg';
 export default function AccountInformation () {
     const router = useRouter();
     const { isAuthenticated, user } = useAuth();
-    const { getPatientProfile, updatePatientProfile, loading } = usePatient();
+    const { getMyProfile, loading } = usePatient();
     const [patientData, setPatientData] = useState<any>(null);
     const [error, setError] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | undefined>(undefined);
@@ -35,7 +35,7 @@ export default function AccountInformation () {
 
         const fetchPatientData = async () => {
             try {
-                const data = await getPatientProfile();
+                const data = await getMyProfile();
                 setPatientData(data);
             } catch (err) {
                 setError(handleApiError(err));
@@ -43,7 +43,7 @@ export default function AccountInformation () {
         };
 
         fetchPatientData();
-    }, [isAuthenticated, user, router, getPatientProfile]);
+    }, [isAuthenticated, user, router, getMyProfile]);
 
     const handleImageClick = () => {
         fileInputRef.current?.click();
@@ -170,115 +170,5 @@ export default function AccountInformation () {
 
             <Footer/>
         </div>
-    )
-}
-
-    
-    return(
-        <div className="account-page">
-
-            <HeaderEnter
-                src={Return}
-            />
-
-            <div className="account-profile">
-
-                <div className="account-avatar-wrapper">
-                   <div className="account-avatar" onClick={handleImageClick}>
-                        <Image 
-                            src={profileImage || Iconpaciente}
-                            alt="Foto do usuário"
-                            fill
-                            className="account-avatar-image"
-                        />
-
-                        <input
-                            type="file"
-                            accept="image/*"
-                            ref={fileInputRef}
-                            onChange={handleImageChange}
-                            style={{ display: 'none' }}
-                        />
-                    </div>
-                       <Image 
-                           src={editimage}
-                           alt=""
-                           
-                           className="edit"
-                       />
-                </div>
-
-                <div className="account-user-info">
-
-                    <h2>{user.name}</h2>
-
-                    <div className="account-status">
-                        <p>{user.status}</p>
-                    </div>
-
-                    <div className="box-ID">
-                        <h3>ID: {user.id}</h3>
-                        <div className="info-wrapper">
-                                <Image 
-                                    src={infoicon}
-                                    alt=""
-                                    className="infoicon"
-                                />
-
-                                <div className="info-tooltip">
-                                Esse ID é necessário para a segurança 
-                                e exclusividade no acesso aos cenários
-                                </div>
-                             </div>
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div className="personal-data-section">
-                <h3 className='personal-data-title'>Dados Pessoais:</h3>
-
-                <div className="personal-data-item">
-                    <p>Nome: {user.name}</p>
-                    <Image 
-                            src={edit}
-                            alt=""
-                            className="edit-icon"
-                        />
-                </div>
-
-                <div className="personal-data-item">
-                    <p>Data de nascimento: {user.dataNasc}</p>
-                </div>
-
-                <div className="personal-data-item">
-                    <p>País: {user.pais}</p>
-                    <Image 
-                            src={edit}
-                            alt=""
-                            className="edit-icon"
-                        />
-                </div>
-            </div>
-
-            <div className="account-settings-section">
-                <h3 className='account-settings-title'>Informações da conta</h3>
-
-                <div className="account-field">
-                    <p>Email:</p>
-                    <input name="name" value="marcosvega82@gmail.com" />
-                </div>
-
-                <div className="account-field">
-                    <p>Senha:</p>
-                    <input name="email" value="••••••••••••" />
-                </div>
-            </div>
-
-            <Footer/>
-        </div>
-
     )
 }
