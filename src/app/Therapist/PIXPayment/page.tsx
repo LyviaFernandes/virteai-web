@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import './pay.css'
 import Footer from '@/components/footer/Footer';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -13,6 +14,7 @@ import qrcode from '../../../assets/images/QRCode.svg';
 import pix from '../../../assets/images/CopyIcon.svg';
 
 export default function PixPay () {
+    const router = useRouter();
     return(
         <div className="pix-payment-container">
             <HeaderEnter src={Return} />
@@ -67,11 +69,17 @@ export default function PixPay () {
 
             <div className="pix-code-box">
                 <p>00020126580014BR.GOV.BCB.PIX01367f3a9c2e4b1d8a6f92c75d3e1a0b6f845204000053039865405123.455802BR5913NOMEFICTICIO6009SAOPAULO62070503***6304A1B2</p>
-                <Image 
-                    className='pix-copy-icon' 
-                    src={pix} 
-                    alt="" 
+                <Image
+                    className='pix-copy-icon'
+                    src={pix}
+                    alt=""
                 />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
+                <button onClick={() => router.push('/Therapist/FinishedPayment')}>
+                    Já paguei
+                </button>
             </div>
 
             <Footer/>

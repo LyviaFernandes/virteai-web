@@ -1,5 +1,6 @@
 "use client"
 
+import Link from 'next/link';
 import './services.css'
 import Image from 'next/image';
 import Footer from '@/components/footer/Footer';
@@ -82,9 +83,11 @@ export default function OurServices () {
                         <p>R$49,90/mês</p>
                     </div>
 
-                    <button>
-                        <p>saiba mais</p>
-                    </button>
+                    <Link href="/Therapist/CommonPlanLearnMoreWeb">
+                        <button>
+                            <p>saiba mais</p>
+                        </button>
+                    </Link>
                 </div>
 
                  <div className="plan-card-premium">
@@ -123,9 +126,11 @@ export default function OurServices () {
                         <p>R$199,00/mês</p>
                     </div>
 
-                    <button>
-                        <p>saiba mais</p>
-                    </button>
+                    <Link href="/Therapist/CorporativePlanLearnMoreWeb">
+                        <button>
+                            <p>saiba mais</p>
+                        </button>
+                    </Link>
                 </div>
             </div>
 

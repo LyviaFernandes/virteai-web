@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import './pay.css'
 import Footer from '@/components/footer/Footer';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -8,6 +9,9 @@ import Return from '@/assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 
 export default function Payment () {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const preselectedPlan = searchParams.get('plan');
 
     const [expiry, setExpiry] = useState("")
 
@@ -18,9 +22,24 @@ export default function Payment () {
 
     const [birthDate, setBirthDate] = useState("")
     const [plan, setPlan] = useState("")
+    const [paymentMethod, setPaymentMethod] = useState<'card' | 'pix'>('card')
     const [isPlanOpen, setIsPlanOpen] = useState(false)
     const [charge, setCharge] = useState("")
     const [isChargeOpen, setIsChargeOpen] = useState(false)
+
+    useEffect(() => {
+        if (preselectedPlan === 'common') setPlan('Plano Comum');
+        if (preselectedPlan === 'corporative') setPlan('Plano Corporativo');
+    }, [preselectedPlan]);
+
+    const handleCheckout = () => {
+        if (!plan) { alert('Selecione um plano.'); return; }
+        if (paymentMethod === 'pix') {
+            router.push('/Therapist/PIXPayment');
+        } else {
+            router.push('/Therapist/FinishedPayment');
+        }
+    };
 
     const [card, setCard] = useState({
         cpf: "",
@@ -153,7 +172,12 @@ export default function Payment () {
                     <div className="payment-card">
 
                         <label>
-                            <input type="radio" name="tea"/>
+                            <input
+                                type="radio"
+                                name="tea"
+                                checked={paymentMethod === 'card'}
+                                onChange={() => setPaymentMethod('card')}
+                            />
                             Cartão de crédito
                         </label>
 
@@ -198,7 +222,12 @@ export default function Payment () {
 
                     <div className="payment-card">
                         <label>
-                            <input type="radio" name="tea"/>
+                            <input
+                                type="radio"
+                                name="tea"
+                                checked={paymentMethod === 'pix'}
+                                onChange={() => setPaymentMethod('pix')}
+                            />
                             PIX
                         </label>
 
@@ -247,7 +276,7 @@ export default function Payment () {
                 </div>
 
                 <div className="checkout-action">
-                    <button>Concluir Compra</button>
+                    <button onClick={handleCheckout}>Concluir Compra</button>
                 </div>
 
             </div>

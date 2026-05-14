@@ -1,11 +1,13 @@
 "use client"
 
+import { useRouter } from 'next/navigation';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../../assets/images/return-icon.svg';
 import ButtonEnter from '@/components/enter-button/Button';
 
 export default function FinishedPayment () {
+    const router = useRouter();
 
     return(
         <div className="finished-payment">
@@ -30,7 +32,7 @@ export default function FinishedPayment () {
                         <div className="finished-payment__actions">
                             <ButtonEnter
                             label='Continuar'
-                            onclick={() => console.log("oi")}
+                            onclick={() => router.push('/Therapist/TherapistPersonalProfile')}
                             />
                         </div>
                     </div>
