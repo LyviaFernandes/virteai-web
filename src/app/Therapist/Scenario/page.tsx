@@ -1,6 +1,8 @@
 "use client"
 
-import { useRef, useState } from 'react';import './styles.css'
+import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import './styles.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
@@ -11,48 +13,119 @@ import visualize from '@/assets/images/visualizeicon.svg';
 import infoicon from '@/assets/images/InfoIcon.svg';
 import Iconpaciente from '@/assets/images/ProfileIcon.svg';
 import Input from "@/components/input/Input";
+import { useScenario, usePatient, useSession } from '@/lib';
+import type { Scenario, ScenarioStatus, PatientProfile } from '@/types';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { handleApiError } from '@/utils/apiErrors';
 
-type User = {
-    id: number;
-    name: string;
-    profileImage?: string;
-    status: string;
-    dataNasc: string;
-    pais: string;
-}
+const statusLabel: Record<ScenarioStatus, string> = {
+    NOT_STARTED: 'Não iniciado',
+    IN_PROGRESS: 'Em progresso',
+    PAUSED: 'Pausado',
+    FINISHED: 'Finalizado',
+};
+
+const statusClass: Record<ScenarioStatus, string> = {
+    NOT_STARTED: 'naoiniciado',
+    IN_PROGRESS: 'emprogresso',
+    PAUSED: 'pausado',
+    FINISHED: 'finalizado',
+};
 
 export default function Scenarios () {
-    
-    const user: User = {
-        id: 482917,
-        name: "João Lucas Vega",
-        profileImage: "https://thumbs.dreamstime.com/b/retrato-da-pessoa-adulta-22170035.jpg",
-        status: "Gerar ID",
-        dataNasc: "15/03/2010",
-        pais: "Brasil",
+    const searchParams = useSearchParams();
+    const patientIdParam = searchParams.get('patientId');
+
+    const { getPatientById } = usePatient();
+    const { listScenarios, createScenario, updateScenario, deleteScenario } = useScenario();
+    const { generateSession } = useSession();
+
+    const [patient, setPatient] = useState<PatientProfile | null>(null);
+    const [scenarios, setScenarios] = useState<Scenario[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const [title, setTitle] = useState('');
+    const [showCodeInput, setShowCodeInput] = useState(false);
+    const [sessionId, setSessionId] = useState<string | null>(null);
+    const codeBoxRef = useRef<HTMLDivElement>(null);
+
+    const [open, setOpen] = useState<number | null>(null);
+
+    const loadAll = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            if (patientIdParam) {
+                try {
+                    const p = await getPatientById(Number(patientIdParam));
+                    setPatient(p);
+                } catch { /* sem permissão */ }
+            }
+            const list = await listScenarios();
+            const filtered = patientIdParam
+                ? (list || []).filter(s => s.patientId === Number(patientIdParam))
+                : (list || []);
+            setScenarios(filtered);
+        } catch (err) {
+            setError(handleApiError(err));
+        } finally {
+            setLoading(false);
+        }
     };
 
-      const [title, setTitle] = useState("");
+    useEffect(() => {
+        loadAll();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [patientIdParam]);
 
-      const [showCodeInput, setShowCodeInput] = useState(false);
-      const codeBoxRef = useRef<HTMLDivElement>(null);
-      const handleAccessScenario = () => {
-        setShowCodeInput(true);
+    const handleGenerateId = async () => {
+        try {
+            const session = await generateSession();
+            setSessionId(session?.sessionId || null);
+        } catch (err) {
+            setError(handleApiError(err));
+        }
     };
 
- {
-    
+    const handleCreate = async () => {
+        if (!patientIdParam) { setError('Selecione um paciente.'); return; }
+        if (!title.trim()) { setError('Informe o título.'); return; }
+        try {
+            await createScenario({
+                patientId: Number(patientIdParam),
+                title,
+                status: 'NOT_STARTED',
+            });
+            setTitle('');
+            setShowCodeInput(false);
+            await loadAll();
+        } catch (err) {
+            setError(handleApiError(err));
+        }
     };
-    
-        const [status, setStatus] = useState<Record<number, string>>({});
-        const [open, setOpen] = useState<number | null>(null);
-    
-        const statusLabel: Record<string, string> = {
-            naoiniciado: "Não iniciado",
-            finalizado: "Finalizado",
-        };
+
+    const handleChangeStatus = async (scenarioId: number, newStatus: ScenarioStatus) => {
+        try {
+            await updateScenario(scenarioId, { status: newStatus });
+            setScenarios(prev => prev.map(s => s.scenarioId === scenarioId ? { ...s, status: newStatus } : s));
+            setOpen(null);
+        } catch (err) {
+            setError(handleApiError(err));
+        }
+    };
+
+    const handleDelete = async (scenarioId: number) => {
+        try {
+            await deleteScenario(scenarioId);
+            setScenarios(prev => prev.filter(s => s.scenarioId !== scenarioId));
+        } catch (err) {
+            setError(handleApiError(err));
+        }
+    };
 
     return(
+        <ProtectedRoute requiredRoles={['THERAPIST', 'ADMIN']}>
         <div className="processes-container">
             <HeaderEnter
                 src={Return}
@@ -62,53 +135,53 @@ export default function Scenarios () {
                 <h1>Cenários</h1>
             </div>
 
+            {error && (
+                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '10px 16px' }}>
+                    <p>{error}</p>
+                </div>
+            )}
+
             <h3 className='section-title-responsible'>Paciente:</h3>
 
             <div className="account-avatar-wrapper">
                    <div className="account-avatar">
-                        <Image 
-                            src={ Iconpaciente}
+                        <Image
+                            src={Iconpaciente}
                             alt="Foto do usuário"
                             fill
                             className="account-avatar-image"
                         />
-
-                       
                     </div>
                     <div className="account-user-info">
 
-                        <h2>{user.name}</h2>
+                        <h2>{patient?.name || (loading ? 'Carregando...' : 'Paciente não selecionado')}</h2>
 
-                      
-
-                        <div className="box-ID">
-                            <h3>{user.status}</h3>
+                        <div className="box-ID" onClick={handleGenerateId} style={{ cursor: 'pointer' }}>
+                            <h3>{sessionId ? sessionId : 'Gerar ID'}</h3>
                             <div className="info-wrapper">
-                                <Image 
+                                <Image
                                     src={infoicon}
                                     alt=""
                                     className="infoicon"
                                 />
 
                                 <div className="info-tooltip">
-                                O ID gerado será utilizado para a validação 
-                                da identidade do seu paciente para o acesso 
+                                O ID gerado será utilizado para a validação
+                                da identidade do seu paciente para o acesso
                                 dos cenários
                                 </div>
                              </div>
                         </div>
-
-
                     </div>
             </div>
 
 
             <div className="text-class">
                 <h3 className='section-title-scenarios'>Cenários Terapêuticos</h3>
-                    <Image 
-                        onClick={handleAccessScenario}
+                    <Image
+                        onClick={() => setShowCodeInput(true)}
                         src={plusicon}
-                        alt=""   
+                        alt=""
                         className="plus"
                     />
             </div>
@@ -123,14 +196,14 @@ export default function Scenarios () {
                         <div className="evolution">
                           <h2>Cenário</h2>
                         </div>
-            
+
                         <div className="text-evolution">
                           <p>
-                            Preencha as informações abaixo, para adicionar 
+                            Preencha as informações abaixo, para adicionar
                             ao gráfico de evolução de seu paciente:
                           </p>
                         </div>
-            
+
                         <div className="inputs-section">
                           <div className="input-box">
                             <p>Título:</p>
@@ -140,185 +213,69 @@ export default function Scenarios () {
                               onChange={(e) => setTitle(e.target.value)}
                             />
                           </div>
-            
-            
-                          
                         </div>
-            
+
                         <div className="button-send">
-                          <button>Enviar</button>
+                          <button onClick={handleCreate}>Enviar</button>
                         </div>
                       </div>
                     </div>
                   )}
 
             <div className="scenarios-container">
-                <div className="scenario-card">
-                    <div className="scenario-card-container">
-                        <h2>Cenário 1: Interação Social Básica</h2>
+                {loading && <p>Carregando cenários...</p>}
+                {!loading && scenarios.length === 0 && <p>Nenhum cenário criado.</p>}
+                {scenarios.map(scenario => (
+                    <div className="scenario-card" key={scenario.scenarioId}>
+                        <div className="scenario-card-container">
+                            <h2>{scenario.title}</h2>
                             <div className="image-container">
-                                <Image 
+                                <Image
                                     src={deleteicon}
-                                    alt=""
+                                    alt="Excluir"
                                     className="delete"
+                                    onClick={() => handleDelete(scenario.scenarioId)}
+                                    style={{ cursor: 'pointer' }}
                                 />
-
-                                {status[1] === "finalizado" && (
-                                    <Image 
+                                {scenario.status === 'FINISHED' && (
+                                    <Image
                                         src={visualize}
                                         alt=""
                                         className="view"
                                     />
                                 )}
                             </div>
-                    </div>
-                    <div className="status-container">
+                        </div>
+                        <div className="status-container">
                             <h3
-                                onClick={() => setOpen(open === 1 ? null : 1)}
-                                 className={`status-option status ${
-                                    status[1] ? `status--${status[1]}` : "status--default"
-                                }`}
+                                onClick={() => setOpen(open === scenario.scenarioId ? null : scenario.scenarioId)}
+                                className={`status-option status status--${statusClass[scenario.status]}`}
                             >
-                                {status[1] ? statusLabel[status[1]] : "Não iniciado"}
+                                {statusLabel[scenario.status]}
                             </h3>
 
-                            {open === 1 && (
+                            {open === scenario.scenarioId && (
                                 <div className="status-dropdown">
-                                    {Object.entries(statusLabel).map(([key, label]) => (
+                                    {(Object.keys(statusLabel) as ScenarioStatus[]).map((key) => (
                                         <div
                                             key={key}
                                            className="status-container"
-                                            onClick={() => {
-                                                setStatus((prev) => ({
-                                                            ...prev,
-                                                            1: key
-                                                        }));
-                                                setOpen(null);
-                                            }}
+                                            onClick={() => handleChangeStatus(scenario.scenarioId, key)}
                                         >
-                                            <h3>
-                                            {label}
-
-                                            </h3>
+                                            <h3>{statusLabel[key]}</h3>
                                         </div>
                                     ))}
                                 </div>
                             )}
                         </div>
-                </div>
-
-                <div className="scenario-card">
-                    <div className="scenario-card-container">
-                        <h2>Cenário 2: Ambiente Escolar</h2>
-                            <div className="image-container">
-                                <Image 
-                                    src={deleteicon}
-                                    alt=""
-                                    className="delete"
-                                />
-
-                                {status[2] === "finalizado" && (
-                                    <Image 
-                                        src={visualize}
-                                        alt=""
-                                        className="view"
-                                    />
-                                )}
-
-                            </div>
                     </div>
-                    <div className="status-container">
-                            <h3
-                                onClick={() => setOpen(open === 2 ? null : 2)}
-                                 className={`status-option status ${
-                                    status[2] ? `status--${status[2]}` : "status--default"
-                                }`}
-                            >
-                                {status[2] ? statusLabel[status[2]] : "Não iniciado"}
-                            </h3>
-
-                            {open === 2 && (
-                                <div className="status-dropdown">
-                                    {Object.entries(statusLabel).map(([key, label]) => (
-                                        <div
-                                            key={key}
-                                           className="status-container"
-                                            onClick={() => {
-                                                setStatus((prev) => ({
-                                                            ...prev,
-                                                            2: key
-                                                        }));
-                                                setOpen(null);
-                                            }}
-                                        >
-                                            <h3>
-                                            {label}
-
-                                            </h3>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                </div>
-
-                <div className="scenario-card">
-                    <div className="scenario-card-container">
-                        <h2>Cenário 3: Situações do Dia a Dia</h2>
-                            <div className="image-container">
-                                <Image 
-                                    src={deleteicon}
-                                    alt=""
-                                    className="delete"
-                                />
-                                {status[3] === "finalizado" && (
-                                    <Image 
-                                        src={visualize}
-                                        alt=""
-                                        className="view"
-                                    />
-                                )}
-
-                            </div>
-                    </div>
-                    <div className="status-container">
-                            <h3
-                                onClick={() => setOpen(open === 3 ? null : 3)}
-                                 className={`status-option status ${
-                                    status[3] ? `status--${status[3]}` : "status--default"
-                                }`}
-                            >
-                                {status[3] ? statusLabel[status[3]] : "Não iniciado"}
-                            </h3>
-                            {open === 3 && (
-                                <div className="status-dropdown">
-                                    {Object.entries(statusLabel).map(([key, label]) => (
-                                        <div
-                                            key={key}
-                                           className="status-container"
-                                            onClick={() => {
-                                                setStatus((prev) => ({
-                                                            ...prev,
-                                                            3: key
-                                                        }));
-                                                setOpen(null);
-                                            }}
-                                        >
-                                            <h3>
-                                            {label}
-
-                                            </h3>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                </div>
+                ))}
             </div>
 
-          
+
             <Footer/>
         </div>
+        </ProtectedRoute>
     )
 
 }

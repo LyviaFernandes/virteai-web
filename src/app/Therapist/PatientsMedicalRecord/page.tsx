@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import "./style.css";
+import { useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import "./style.css";
 import Image from "next/image";
 import HeaderEnter from "@/components/header-enter/HeaderEnter";
@@ -14,27 +14,40 @@ import deleteicon from "@/assets/images/DeleteIcon.svg";
 import edit from "@/assets/images/editicon.svg";
 import Footer from "@/components/footer/Footer";
 import Input from "@/components/input/Input";
+import { usePatient, useConsultation, useObjective } from "@/lib";
+import type {
+  PatientProfile,
+  Consultation,
+  Objective,
+  PatientCareStatus,
+} from "@/types";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { handleApiError } from "@/utils/apiErrors";
 
-type User = {
-  id: number;
-  name: string;
-  profileImage?: string;
-  status: string;
+const careStatusLabel: Record<PatientCareStatus, string> = {
+  NOT_STARTED: "Não iniciado",
+  IN_PROGRESS: "Em acompanhamento",
+  PAUSED: "Pausado",
+  FINISHED: "Finalizado",
 };
 
 export default function PatientsMedicalRecord() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const patientIdParam = searchParams.get("patientId") || searchParams.get("id");
+
+  const { getPatientById, updateCareStatus } = usePatient();
+  const { listConsultations, createConsultation } = useConsultation();
+  const { listObjectives, createObjective, deleteObjective } = useObjective();
+
+  const [patient, setPatient] = useState<PatientProfile | null>(null);
+  const [consultations, setConsultations] = useState<Consultation[]>([]);
+  const [objectives, setObjectives] = useState<Objective[]>([]);
+
   const [date, setDate] = useState("");
   const [goal, setGoal] = useState("");
   const [pontuation, setPontuation] = useState("");
-
-  const user: User = {
-  id: 1,
-  name: "João Lucas Vega",
-  profileImage:"",
-  status: "",
-};
-
-  const [status, setStatus] = useState("Não iniciado");
+  const [newObjective, setNewObjective] = useState("");
 
   const [showCodeInput, setShowCodeInput] = useState(false);
   const [showModalInput, setShowModalInput] = useState(false);
@@ -43,29 +56,93 @@ export default function PatientsMedicalRecord() {
   const codeModalRef = useRef<HTMLDivElement>(null);
   const codeAddObjective = useRef<HTMLDivElement>(null);
 
-  const handleAccessScenario = () => {
-    setShowCodeInput(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const patientIdNum = patientIdParam ? Number(patientIdParam) : null;
+
+  const loadAll = async () => {
+    if (!patientIdNum) return;
+    try {
+      const p = await getPatientById(patientIdNum);
+      setPatient(p);
+
+      const [cs, os] = await Promise.all([listConsultations(), listObjectives()]);
+      setConsultations((cs || []).filter(c => c.patientId === patientIdNum));
+      setObjectives((os || []).filter(o => o.patientId === patientIdNum));
+    } catch (err) {
+      setError(handleApiError(err));
+    }
   };
 
-  const handleAccessObjectives = () => {
-    setShowModalInput(true);
-    document.body.style.overflow = "hidden";
+  useEffect(() => {
+    loadAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [patientIdNum]);
+
+  const handleCreateConsultation = async () => {
+    if (!patientIdNum) return;
+    try {
+      await createConsultation({
+        patientId: patientIdNum,
+        consultationDate: date ? new Date(date).toISOString() : new Date().toISOString(),
+        objective: goal,
+        score: Number(pontuation) || 0,
+      });
+      setDate(""); setGoal(""); setPontuation("");
+      setShowCodeInput(false);
+      await loadAll();
+    } catch (err) {
+      setError(handleApiError(err));
+    }
   };
 
-  const handleAccessAddObjectives = () => {
-    setShowObjective(true);
-    document.body.style.overflow = "hidden";
+  const handleAddObjective = async () => {
+    if (!patientIdNum || !newObjective.trim()) return;
+    try {
+      await createObjective({ patientId: patientIdNum, title: newObjective });
+      setNewObjective("");
+      setShowObjective(false);
+      document.body.style.overflow = "unset";
+      await loadAll();
+    } catch (err) {
+      setError(handleApiError(err));
+    }
+  };
+
+  const handleDeleteObjective = async (id: number) => {
+    try {
+      await deleteObjective(id);
+      setObjectives(prev => prev.filter(o => o.objectiveId !== id));
+    } catch (err) {
+      setError(handleApiError(err));
+    }
+  };
+
+  const handleChangeCareStatus = async (newStatus: PatientCareStatus) => {
+    try {
+      await updateCareStatus(newStatus);
+      setPatient(prev => prev ? { ...prev, careStatus: newStatus } : prev);
+    } catch (err) {
+      setError(handleApiError(err));
+    }
   };
 
   return (
+    <ProtectedRoute requiredRoles={["THERAPIST", "ADMIN"]}>
     <div className="patients-medical-record">
       <HeaderEnter src={Return} />
+
+      {error && (
+        <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '10px 16px' }}>
+            <p>{error}</p>
+        </div>
+      )}
 
       <div className="profile-container">
         <div className="profile-avatar-wrapper">
           <div className="profile-avatar-container">
             <Image
-              src={user.profileImage || Iconpaciente}
+              src={Iconpaciente}
               alt="Foto do usuário"
               fill
               className="profile-avatar-image"
@@ -74,18 +151,18 @@ export default function PatientsMedicalRecord() {
         </div>
 
         <div className="profile-info">
-          <h2>{user.name}</h2>
+          <h2>{patient?.name || "Carregando..."}</h2>
 
-          <div className={`profile-status ${status.toLowerCase().replace(" ", "-")}`}>
-            <h3>{status}</h3>
+          <div className={`profile-status ${(patient?.careStatus || '').toLowerCase()}`}>
+            <h3>{patient ? careStatusLabel[patient.careStatus] : ''}</h3>
           </div>
         </div>
       </div>
 
       <div className="DiagramTitle">
-        <p>Evolução geral</p>
+        <p>Evolução geral ({consultations.length} consultas)</p>
         <Image
-          onClick={handleAccessScenario}
+          onClick={() => setShowCodeInput(true)}
           src={plusicon}
           alt=""
           className="plus-image"
@@ -143,7 +220,7 @@ export default function PatientsMedicalRecord() {
             </div>
 
             <div className="button-send">
-              <button>Enviar</button>
+              <button onClick={handleCreateConsultation}>Enviar</button>
             </div>
           </div>
         </div>
@@ -156,7 +233,7 @@ export default function PatientsMedicalRecord() {
           </div>
 
           <Image
-            onClick={handleAccessObjectives}
+            onClick={() => { setShowModalInput(true); document.body.style.overflow = "hidden"; }}
             className="therapeutic-goals__action-icon"
             src={edit}
             alt=""
@@ -164,13 +241,18 @@ export default function PatientsMedicalRecord() {
         </div>
 
         <div className="Goals">
-          <p>Comunicação Verbal</p>
-          <p>Interação Social</p>
-          <p>Regulação Emocional</p>
+          {objectives.length === 0 && <p>Nenhum objetivo</p>}
+          {objectives.map(o => (
+            <p key={o.objectiveId}>{o.title}</p>
+          ))}
         </div>
       </div>
 
-      <div className="therapeutic-goals-relatorios">
+      <div
+        className="therapeutic-goals-relatorios"
+        onClick={() => router.push(`/Therapist/ReportsList?patientId=${patientIdNum}`)}
+        style={{ cursor: 'pointer' }}
+      >
         <div className="therapeutic-goals-container">
           <div className="therapeutic-goals__content">
             <h2>Relatórios</h2>
@@ -184,10 +266,14 @@ export default function PatientsMedicalRecord() {
         </div>
       </div>
 
-      <div className="therapeutic-goals-cenarios">
+      <div
+        className="therapeutic-goals-cenarios"
+        onClick={() => router.push(`/Therapist/Scenario?patientId=${patientIdNum}`)}
+        style={{ cursor: 'pointer' }}
+      >
         <div className="therapeutic-goals-container">
           <div className="therapeutic-goals__content">
-            <h2>Cenarios</h2>
+            <h2>Cenários</h2>
           </div>
 
           <Image
@@ -202,7 +288,7 @@ export default function PatientsMedicalRecord() {
                 <div className="account-status-box">
                     <div className="account-status-item">
                         <p>Status do paciente</p>
-                        <Image 
+                        <Image
                                 src={edit}
                                 alt=""
                                 className="edit-icon"
@@ -214,34 +300,34 @@ export default function PatientsMedicalRecord() {
                       <div className="status-option">
                       <input
                         type="radio"
-                        id="agree"
-                        name="tea"
-                        checked={status === "Em acompanhamento"}
-                        onChange={() => setStatus("Em acompanhamento")}
+                        id="in-progress"
+                        name="care-status"
+                        checked={patient?.careStatus === "IN_PROGRESS"}
+                        onChange={() => handleChangeCareStatus("IN_PROGRESS")}
                       />
-                      <label htmlFor="agree">Em acompanhamento</label>
+                      <label htmlFor="in-progress">Em acompanhamento</label>
                     </div>
 
                     <div className="status-option">
                       <input
                         type="radio"
-                        id="completely-disagree"
-                        name="tea"
-                        checked={status === "Pausado"}
-                        onChange={() => setStatus("Pausado")}
+                        id="paused"
+                        name="care-status"
+                        checked={patient?.careStatus === "PAUSED"}
+                        onChange={() => handleChangeCareStatus("PAUSED")}
                       />
-                      <label htmlFor="completely-disagree">Pausado</label>
+                      <label htmlFor="paused">Pausado</label>
                     </div>
 
                     <div className="status-option">
                       <input
                         type="radio"
-                        id="disagree"
-                        name="tea"
-                        checked={status === "Finalizado"}
-                        onChange={() => setStatus("Finalizado")}
+                        id="finished"
+                        name="care-status"
+                        checked={patient?.careStatus === "FINISHED"}
+                        onChange={() => handleChangeCareStatus("FINISHED")}
                       />
-                      <label htmlFor="disagree">Finalizado</label>
+                      <label htmlFor="finished">Finalizado</label>
                     </div>
                     </div>
                 </div>
@@ -251,10 +337,8 @@ export default function PatientsMedicalRecord() {
         <div
           className="modal"
           onClick={() => {
-            {
               setShowModalInput(false);
               setShowObjective(false);
-            }
             document.body.style.overflow = "unset";
           }}
         >
@@ -269,23 +353,21 @@ export default function PatientsMedicalRecord() {
 
             <div className="Goals-modal">
                 <div className="container-goal">
-                <div className="delete-goal">
-                    <Image src={deleteicon} alt="" className="delete" />
-                    <p>Comunicação Verbal</p>
-                </div>
-                <div className="delete-goal">
-                    <Image src={deleteicon} alt="" className="delete" />
-                    <p>Interação Social</p>
-                </div>
-
-                <div className="delete-goal">
-                    <Image src={deleteicon} alt="" className="delete" />
-                    <p>Regulação Emocional</p>
-                </div>
-
+                  {objectives.map(o => (
+                    <div className="delete-goal" key={o.objectiveId}>
+                        <Image
+                            src={deleteicon}
+                            alt=""
+                            className="delete"
+                            onClick={() => handleDeleteObjective(o.objectiveId)}
+                            style={{ cursor: 'pointer' }}
+                        />
+                        <p>{o.title}</p>
+                    </div>
+                  ))}
                 </div>
               <Image
-                onClick={handleAccessAddObjectives}
+                onClick={() => { setShowObjective(true); document.body.style.overflow = "hidden"; }}
                 src={plusicon}
                 alt=""
                 className="plus-modal"
@@ -311,20 +393,21 @@ export default function PatientsMedicalRecord() {
                 <p>Objetivo terapêutico:</p>
                 <Input
                   description="Insira o novo objetivo do paciente"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  value={newObjective}
+                  onChange={(e) => setNewObjective(e.target.value)}
                 />
               </div>
             </div>
 
             <div className="button-send">
-              <button>Enviar</button>
+              <button onClick={handleAddObjective}>Enviar</button>
             </div>
           </div>
         </div>
       )}
-      
+
       <Footer />
     </div>
+    </ProtectedRoute>
   );
 }

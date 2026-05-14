@@ -1,100 +1,67 @@
 "use client"
 
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../../assets/images/return-icon.svg';
 import Footer from '@/components/footer/Footer';
+import { useReport } from '@/lib';
+import type { Report, ReportEvolution } from '@/types';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { handleApiError } from '@/utils/apiErrors';
 
-type Reports = {
-    id: number;
-    description: string;
-    status: string;
-    date: string;
-}
+const evolutionLabel: Record<ReportEvolution, string> = {
+    IMPROVED: 'Evoluiu',
+    MAINTAINED: 'Manteve',
+    REGRESSED: 'Retrocedeu',
+};
+
+const evolutionClass: Record<ReportEvolution, string> = {
+    IMPROVED: 'status-green',
+    MAINTAINED: 'status-blue',
+    REGRESSED: 'status-send',
+};
+
+const formatDate = (iso?: string) => {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return isNaN(d.getTime()) ? iso : d.toLocaleDateString('pt-BR');
+};
 
 export default function ReportsList () {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const patientIdFilter = searchParams.get('patientId');
 
-    const statusColors: Record<string, string> = {
-    "Evoluiu": "status-green",
-    "Retrocedeu": "status-send",
-    "Manteve": "status-blue"
-    };
-    const report: Reports[] = [
-    {
-        id: 1,
-        description: "Desenvolvimento da comunicação verbal",
-        status: "Evoluiu",
-        date: "12/01/2026"
-    },
-    {
-        id: 2,
-        description: "Estímulo à interação social",
-        status: "Retrocedeu",
-        date: "20/01/2026"
-    },
-    {
-        id: 3,
-        description: "Regulação emocional em ambientes novos",
-        status: "Manteve",
-        date: "20/02/2026"
-    },
-    {
-        id: 4,
-        description: "Treino de contato visual",
-        status: "Evoluiu",
-        date: "10/02/2026"
-    },
-    {
-        id: 5,
-        description: "Redução de comportamentos repetitivos",
-        status: "Manteve",
-        date: "02/02/2026"
-    },
-    {
-        id: 6,
-        description: "Compreensão de instruções simples",
-        status: "Evoluiu",
-        date: "27/03/2026"
-    },
-    {
-        id: 7,
-        description: "Desenvolvimento da autonomia em tarefas diárias",
-        status: "Evoluiu",
-        date: "12/03/2026"
-    },
-    {
-        id: 8,
-        description: "Estímulo à expressão de sentimentos",
-        status: "Manteve",
-        date: "20/03/2026"
-    },
-    {
-        id: 9,
-        description: "Adaptação a mudanças de rotina",
-        status: "Retrocedeu",
-        date: "27/04/2026"
-    },
-    {
-        id: 10,
-        description: "Interação em atividades em grupo",
-        status: "Evoluiu",
-        date: "21/04/2026"
-    },
-    {
-        id: 11,
-        description: "Controle de impulsividade",
-        status: "Manteve",
-        date: "03/05/2026"
-    },
-    {
-        id: 12,
-        description: "Generalização de habilidades sociais",
-        status: "Evoluiu",
-        date: "16/05/2026"
-    },
+    const { listReports } = useReport();
+    const [reports, setReports] = useState<Report[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-];
+    useEffect(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                setLoading(true);
+                const list = await listReports();
+                if (!cancelled) setReports(list || []);
+            } catch (err) {
+                if (!cancelled) setError(handleApiError(err));
+            } finally {
+                if (!cancelled) setLoading(false);
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [listReports]);
+
+    const filtered = patientIdFilter
+        ? reports.filter(r => r.patientId === Number(patientIdFilter))
+        : reports;
+
     return(
+        <ProtectedRoute>
         <div className="reports-list">
             <HeaderEnter
             src={Return}
@@ -104,24 +71,41 @@ export default function ReportsList () {
                     <h1>Relatórios</h1>
             </div>
 
+            {error && (
+                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '10px 16px' }}>
+                    <p>{error}</p>
+                </div>
+            )}
+
             <div className="section__list_reports">
-                {report.map((report) => (
-                    <div className="list-report-info" key={report.id}>
-                        <div className="list-status">
-                            <h2>{report.description}</h2>
-                            <h3 className={statusColors[report.status]}>
-                                {report.status}
+                {loading && <p>Carregando...</p>}
+                {!loading && filtered.length === 0 && <p>Nenhum relatório encontrado.</p>}
+                {filtered.map((report) => (
+                    <Link
+                        key={report.reportId}
+                        href={`/Therapist/Reports?id=${report.reportId}`}
+                        style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                        <div className="list-report-info">
+                            <div className="list-status">
+                                <h2>{report.title}</h2>
+                                <h3 className={evolutionClass[report.evolution]}>
+                                    {evolutionLabel[report.evolution]}
                                 </h3>
+                            </div>
+                            <p>{formatDate(report.createdAt)}</p>
                         </div>
-                        <p>{report.date}</p>
-                    </div>
+                    </Link>
                 ))}
             </div>
 
             <div className="new__report">
-                <button>Adicionar novo relatório</button>
+                <button onClick={() => router.push('/Therapist/AddNewReport' + (patientIdFilter ? `?patientId=${patientIdFilter}` : ''))}>
+                    Adicionar novo relatório
+                </button>
             </div>
             <Footer/>
         </div>
+        </ProtectedRoute>
         )
 }
