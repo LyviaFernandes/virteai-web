@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from 'react';
 import './style.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -7,94 +8,51 @@ import Return from '@/assets/images/return-icon.svg';
 import Footer from '@/components/footer/Footer';
 import email from '@/assets/images/emailIcon.svg';
 import DefaultProfileIcon from '@/assets/images/ProfileIcon.svg';
-
-type User = {
-    id: number;
-    name: string;
-    profileImage?: string;
-    CRP: string;
-}
+import { usePatient, useTherapist, useScenario } from '@/lib';
+import type { TherapistProfile, Scenario } from '@/types';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { handleApiError } from '@/utils/apiErrors';
 
 export default function ProcessesAndTreatments () {
-    
-    const user: User = {
-        id: 1,
-        name: "Camilla Andrade",
-        profileImage: "",
-        CRP: "CRP 06/38472",
-    };
+    const { getMyProfile } = usePatient();
+    const { getTherapistById } = useTherapist();
+    const { listScenarios } = useScenario();
 
-//     // 🔽 ADICIONADO: estados do código
-//     const [showCodeInput, setShowCodeInput] = useState(false);
-//     const [generatedCode, setGeneratedCode] = useState("");
-//     const [userCode, setUserCode] = useState("");
-//     const [isValid, setIsValid] = useState<boolean | null>(null);
-//     const codeBoxRef = useRef<HTMLDivElement>(null);
+    const [therapist, setTherapist] = useState<TherapistProfile | null>(null);
+    const [scenarios, setScenarios] = useState<Scenario[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
 
-//     useEffect(() => {
-//     const handleClickOutside = (event: MouseEvent) => {
-//         if (
-//             codeBoxRef.current &&
-//             !codeBoxRef.current.contains(event.target as Node)
-//         ) {
-//             setShowCodeInput(false);
-//             setUserCode("");
-//             setIsValid(null);
-//         }
-//     };
+    useEffect(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                setLoading(true);
+                const me = await getMyProfile();
+                if (cancelled) return;
 
-//     if (showCodeInput) {
-//         document.addEventListener("mousedown", handleClickOutside);
-//     }
+                if (me?.therapistId) {
+                    try {
+                        const t = await getTherapistById(me.therapistId);
+                        if (!cancelled) setTherapist(t);
+                    } catch {
+                        // patient sem terapeuta atribuído ou sem permissão
+                    }
+                }
 
-//     return () => {
-//         document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//     }, [showCodeInput]);
-//     // 🔽 ADICIONADO: gerar código fake
-//     const handleAccessScenario = () => {
-//         const fakeCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-//         console.log("Código fake:", fakeCode);
-
-//         setGeneratedCode(fakeCode);
-//         setShowCodeInput(true);
-//         setIsValid(null);
-//     };
-
-//     // 🔽 ADICIONADO: validar código
-//     const handleValidateCode = () => {
-//         if (userCode === generatedCode) {
-//             setIsValid(true);
-//         } else {
-//             setIsValid(false);
-//         }
-//     };
-
-//     const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
-
-// const handleChange = (value: string, index: number) => {
-//     if (!/^[0-9]?$/.test(value)) return; // só número
-
-//     const newCode = userCode.split("");
-//     newCode[index] = value;
-//     const updatedCode = newCode.join("");
-
-//     setUserCode(updatedCode);
-
-//     // vai pro próximo input
-//     if (value && inputsRef.current[index + 1]) {
-//         inputsRef.current[index + 1]?.focus();
-//     }
-// };
-
-// const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-//     if (e.key === "Backspace" && !userCode[index]) {
-//         inputsRef.current[index - 1]?.focus();
-//     }
-// };
+                const list = await listScenarios();
+                if (!cancelled) setScenarios(list || []);
+            } catch (err) {
+                if (!cancelled) setError(handleApiError(err));
+            } finally {
+                if (!cancelled) setLoading(false);
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [getMyProfile, getTherapistById, listScenarios]);
 
     return(
+        <ProtectedRoute requiredRoles={['PATIENT']}>
         <div className="processes-container">
             <HeaderEnter
                 src={Return}
@@ -105,14 +63,20 @@ export default function ProcessesAndTreatments () {
                 <p>Abaixo estão os cenários e tratamentos disponibilizados pelo seu terapeuta:</p>
             </div>
 
+            {error && (
+                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '10px 0' }}>
+                    <p>{error}</p>
+                </div>
+            )}
+
             <h3 className='section-title-responsible'>Responsável:</h3>
 
             <div className="profile-container">
 
                 <div className="profile-avatar-wrapper">
                     <div className="profile-avatar-container">
-                        <Image 
-                        src={user.profileImage || DefaultProfileIcon}
+                        <Image
+                        src={DefaultProfileIcon}
                         alt="Foto do usuário"
                         fill
                         className="profile-avatar-image"
@@ -122,87 +86,43 @@ export default function ProcessesAndTreatments () {
 
                 <div className="profile-info">
 
-                    <h2>{user.name}</h2>
+                    <h2>{therapist?.name || (loading ? 'Carregando...' : 'Sem terapeuta atribuído')}</h2>
 
-                    <p>{user.CRP}</p>
+                    <p>{therapist?.professionalRegister || ''}</p>
 
                 </div>
 
-                <div className="email-box">
-                    <h3>Envie um email</h3>
-                    <Image 
-                        src={email}
-                        alt=""
-                        className="email-icon"
-                        />
-                </div>
+                {therapist?.email && (
+                    <a className="email-box" href={`mailto:${therapist.email}`}>
+                        <h3>Envie um email</h3>
+                        <Image
+                            src={email}
+                            alt=""
+                            className="email-icon"
+                            />
+                    </a>
+                )}
 
             </div>
 
             <h3 className='section-title-scenarios'>Cenários Terapêuticos:</h3>
 
             <div className="scenarios-container">
-                <div className="scenario-card">
-                    <h3>Cenário 1: Interação Social Básica</h3>
-                    {/* <button onClick={handleAccessScenario}>Acessar Cenário</button> */}
-                </div>
-
-                <div className="scenario-card">
-                    <h3>Cenário 2: Ambiente Escolar</h3>
-                    {/* <button onClick={handleAccessScenario}>Acessar Cenário</button> */}
-                </div>
-
-                <div className="scenario-card">
-                    <h3>Cenário 3: Situações do Dia a Dia</h3>
-                    {/* <button onClick={handleAccessScenario}>Acessar Cenário</button> */}
-                </div>
-            </div>
-
-            {/* área de validação */}
-            {/* {showCodeInput && (
-                <div className="overlay" onClick={() => setShowCodeInput(false)}>
-                    <div
-                        className="code-box"
-                        ref={codeBoxRef}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="validation">
-                            <h2>Validação</h2>
-                        </div>
-
-                        <p>Enviamos seu código de validação no email cadastrado em sua conta. Informe-o abaixo para acessar o cenário.</p>
-                        <div className="code-inputs">
-                            {[0,1,2,3,4,5].map((_, index) => (
-                                <input
-                                    key={index}
-                                    type="text"
-                                    maxLength={1}
-                                    className="code-input"
-                                    value={userCode[index] || ""}
-                                    onChange={(e) => handleChange(e.target.value, index)}
-                                    onKeyDown={(e) => handleKeyDown(e, index)}
-                                    ref={(el) => { inputsRef.current[index] = el }}
-                                />
-                            ))}
-                        </div>
-
-                        <button onClick={handleValidateCode}>
-                            Enviar
-                        </button>
-
-                        {isValid === true && (
-                            <p style={{ color: "green" }}>Código correto! Acesso liberado.</p>
-                        )}
-
-                        {isValid === false && (
-                            <p style={{ color: "red" }}>Código inválido</p>
-                        )}
+                {loading && <p>Carregando cenários...</p>}
+                {!loading && scenarios.length === 0 && (
+                    <p>Nenhum cenário disponível.</p>
+                )}
+                {scenarios.map(s => (
+                    <div className="scenario-card" key={s.scenarioId}>
+                        <h3>{s.title}</h3>
+                        <p>{s.status}</p>
                     </div>
-                </div>
-            )} */}
+                ))}
+            </div>
 
             <Footer/>
         </div>
+        </ProtectedRoute>
     )
 
 }

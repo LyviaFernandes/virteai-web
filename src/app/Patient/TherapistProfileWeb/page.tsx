@@ -1,6 +1,7 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import './therapist.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -9,35 +10,60 @@ import DefaultProfileIcon from '@/assets/images/ProfileIcon.svg';
 import star from '@/assets/images/RatingIcon.svg';
 import Footer from '@/components/footer/Footer';
 import email from '@/assets/images/emailIcon.svg';
-
-type User = {
-    id: number;
-    name: string;
-    profileImage?: string;
-    CRP: string;
-    status: string;
-}
+import { useTherapist } from '@/lib';
+import type { TherapistProfile } from '@/types';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { handleApiError } from '@/utils/apiErrors';
 
 export default function TherapistProfileWeb () {
-    const user: User = {
-        id: 1,
-        name: "Camilla Andrade",
-        profileImage: "",
-        CRP: "CRP 06/38472",
-        status: "Terapeuta Cognitivo-Comportamental"
-    };
+    const searchParams = useSearchParams();
+    const idParam = searchParams.get('id');
+    const { getTherapistById } = useTherapist();
+
+    const [therapist, setTherapist] = useState<TherapistProfile | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (!idParam) {
+            setLoading(false);
+            setError('Terapeuta não informado.');
+            return;
+        }
+        let cancelled = false;
+        (async () => {
+            try {
+                setLoading(true);
+                const t = await getTherapistById(Number(idParam));
+                if (!cancelled) setTherapist(t);
+            } catch (err) {
+                if (!cancelled) setError(handleApiError(err));
+            } finally {
+                if (!cancelled) setLoading(false);
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [idParam, getTherapistById]);
+
     return(
+        <ProtectedRoute>
         <div className="Section-Therapist">
             <HeaderEnter
                 src={Return}
             />
 
+            {error && (
+                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '10px 16px' }}>
+                    <p>{error}</p>
+                </div>
+            )}
+
             <div className="profile-header">
 
                 <div className="profile-avatar-wrapper">
                     <div className="profile-avatar-container">
-                        <Image 
-                        src={user.profileImage || DefaultProfileIcon}
+                        <Image
+                        src={DefaultProfileIcon}
                         alt="Foto do usuário"
                         fill
                         className="profile-avatar-image"
@@ -47,12 +73,12 @@ export default function TherapistProfileWeb () {
 
                 <div className="profile-details">
 
-                    <h2>{user.name}</h2>
+                    <h2>{therapist?.name || (loading ? 'Carregando...' : '—')}</h2>
 
-                    <p>{user.CRP}</p>
+                    <p>{therapist?.professionalRegister || ''}</p>
 
                     <div className="profile-status">
-                        <h3>{user.status}</h3>
+                        <h3>{therapist?.specialty || ''}</h3>
                     </div>
 
                 </div>
@@ -62,41 +88,37 @@ export default function TherapistProfileWeb () {
             <div className="AboutTherapist-section">
                 <div className="box-abouttherapist">
                     <h2>Um Pouco Sobre Mim:</h2>
-                    <p>Sou psicóloga clínica em São Paulo, SP, 
-                        com foco na avaliação diagnóstica do TEA 
-                        em adultos. Trabalho com uma abordagem estruturada 
-                        e acolhedora, ajudando você a compreender melhor 
-                        seus padrões de comportamento, emoções e relações, 
-                        além de oferecer suporte durante todo o processo de 
-                        investigação e possível diagnóstico.</p>
+                    <p>{therapist?.experience || 'Profissional cadastrado em nossa plataforma.'}</p>
 
                         <div className="section-tags">
-                            <p>TCC</p>
-                            <p>Neurodiverdidade</p>
-                            <p>Habilidades sociais</p>
-                            <p>TEA</p>
+                            {therapist?.specialty && <p>{therapist.specialty}</p>}
+                            {therapist?.attendanceModality && <p>{therapist.attendanceModality}</p>}
+                            {therapist?.city && <p>{therapist.city}</p>}
                         </div>
                     <div className="avaliation">
                         <h3>Avaliação:</h3>
-                        <Image 
+                        <Image
                         src={star}
                         alt=""
                         className="star-image"
                         />
                     </div>
 
-                    <div className="email-box">
-                    <h3>Envie um email</h3>
-                    <Image 
-                        src={email}
-                        alt=""
-                        className="email-icon"
-                        />
-                    </div>
+                    {therapist?.email && (
+                        <a className="email-box" href={`mailto:${therapist.email}`}>
+                            <h3>Envie um email</h3>
+                            <Image
+                                src={email}
+                                alt=""
+                                className="email-icon"
+                                />
+                        </a>
+                    )}
                 </div>
             </div>
             <Footer/>
 
         </div>
+        </ProtectedRoute>
     )
 }

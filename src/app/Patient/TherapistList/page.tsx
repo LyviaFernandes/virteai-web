@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import './therapistlist.css'
 import Image from 'next/image';
 import HeaderHome from '@/components/header-login/Header';
@@ -7,220 +9,94 @@ import ImageCenter from '@/assets/images/TherapyBanner.svg';
 import profile from '@/assets/images/ProfileIcon.svg';
 import visualize from '@/assets/images/visualizeicon.svg';
 import Footer from '@/components/footer/Footer';
+import { useTherapist } from '@/lib';
+import type { TherapistProfile } from '@/types';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { handleApiError } from '@/utils/apiErrors';
 
 export default function TherapistList () {
+    const { listTherapists } = useTherapist();
+    const [therapists, setTherapists] = useState<TherapistProfile[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                setLoading(true);
+                const list = await listTherapists();
+                if (!cancelled) setTherapists(list || []);
+            } catch (err) {
+                if (!cancelled) setError(handleApiError(err));
+            } finally {
+                if (!cancelled) setLoading(false);
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [listTherapists]);
+
     return(
+        <ProtectedRoute>
         <div className="therapist-section">
             <HeaderHome/>
 
-            <Image 
-                className='therapist-banner' 
-                src={ImageCenter} 
-                alt="" 
+            <Image
+                className='therapist-banner'
+                src={ImageCenter}
+                alt=""
             />
 
             <div className="therapist-header">
                 <h1>Nossos Terapeutas</h1>
 
                 <p>Com base nos resultados do seu teste, você pode
-                     consultar abaixo terapeutas disponíveis para avaliação, 
+                     consultar abaixo terapeutas disponíveis para avaliação,
                      diagnóstico ou acompanhamento terapêutico.</p>
             </div>
 
+            {error && (
+                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '10px 16px' }}>
+                    <p>{error}</p>
+                </div>
+            )}
+
             <div className="therapist-list">
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
+                {loading && <p style={{ padding: '16px' }}>Carregando terapeutas...</p>}
+                {!loading && therapists.length === 0 && (
+                    <p style={{ padding: '16px' }}>Nenhum terapeuta cadastrado.</p>
+                )}
+                {therapists.map(t => (
+                    <Link
+                        key={t.userId}
+                        href={`/Patient/TherapistProfileWeb?id=${t.userId}`}
+                        style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                        <div className="therapist-card">
+                            <Image
+                            className='therapist-card__image'
+                            src={profile}
+                            alt=""
+                            />
 
-                    <div className="therapist-card__content">
-                        <h2>Dra. Camila Andrade</h2>
-                        <p>Especialista em avaliação diagnóstica do TEA em adultos.</p>
-                    </div>
+                            <div className="therapist-card__content">
+                                <h2>{t.name}</h2>
+                                <p>{t.specialty || t.experience || 'Profissional cadastrado'}</p>
+                            </div>
 
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dr. Rafael Moreira</h2>
-                        <p>Psicólogo focado em acompanhamento para jovens e adultos no espectro.</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dra. Beatriz Nogueira</h2>
-                        <p>Neuropsicóloga dedicada à avaliação em casos de suspeita de TEA.</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dr. Lucas Tavares</h2>
-                        <p>Terapeuta especializado em desenvolvimento socioemocional</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dra. Mariana Falcão</h2>
-                        <p>Psicóloga com atuação em diagnóstico precoce e orientação familiar no TEA.</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dr. Felipe Azevedo</h2>
-                        <p>Neuropsicólogo com 10 anos de experiência em avaliação clínica</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dra. Juliana Siqueira</h2>
-                        <p>Especialista em intervenções terapêuticas focadas em habilidades sociais.</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dr. André Vasconcelos</h2>
-                        <p>Psicólogo clínico com foco em adultos que buscam avaliação tardia para TEA.</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dra. Renata Duarte</h2>
-                        <p>Profissional com experiência em planejamento de intervenções.</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
-
-                <div className="therapist-card">
-                    <Image 
-                    className='therapist-card__image' 
-                    src={profile} 
-                    alt="" 
-                    />
-
-                    <div className="therapist-card__content">
-                        <h2>Dr. Thiago Barreto</h2>
-                        <p>Especialista em avaliação neuropsicológica e suporte para TEA.</p>
-                    </div>
-
-                    <Image 
-                    className='therapist-card__action-icon' 
-                    src={visualize} 
-                    alt="" 
-                    />
-                </div>
+                            <Image
+                            className='therapist-card__action-icon'
+                            src={visualize}
+                            alt=""
+                            />
+                        </div>
+                    </Link>
+                ))}
             </div>
 
             <Footer/>
 
         </div>
+        </ProtectedRoute>
     )
 }

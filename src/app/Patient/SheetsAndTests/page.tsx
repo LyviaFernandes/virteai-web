@@ -1,12 +1,16 @@
 "use client"
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
 import './style.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Footer from '@/components/footer/Footer';
 import Upload from '@/assets/images/UploadField.svg';
+import { useTest } from '@/lib';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { handleApiError } from '@/utils/apiErrors';
 
 export default function SheetsAndTests () {
 
@@ -14,6 +18,27 @@ export default function SheetsAndTests () {
 
     const [preview, setPreview] = useState<string | null>(null);
     const [fileName, setFileName] = useState<string>("");
+
+    const { checkTest10, checkTest50 } = useTest();
+    const [test10Done, setTest10Done] = useState<boolean | null>(null);
+    const [test50Done, setTest50Done] = useState<boolean | null>(null);
+    const [statusError, setStatusError] = useState<string | null>(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                const [r10, r50] = await Promise.all([checkTest10(), checkTest50()]);
+                if (!cancelled) {
+                    setTest10Done(!!r10?.completed);
+                    setTest50Done(!!r50?.completed);
+                }
+            } catch (err) {
+                if (!cancelled) setStatusError(handleApiError(err));
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [checkTest10, checkTest50]);
 
     const handleClick = () => {
         fileInputRef.current?.click();
@@ -25,7 +50,6 @@ export default function SheetsAndTests () {
         if (file) {
             setFileName(file.name);
 
-            // se for imagem → mostra preview
             if (file.type.startsWith("image/")) {
                 const imageUrl = URL.createObjectURL(file);
                 setPreview(imageUrl);
@@ -35,7 +59,13 @@ export default function SheetsAndTests () {
         }
     };
 
+    const statusLabel = (done: boolean | null) => {
+        if (done === null) return 'Carregando...';
+        return done ? 'Finalizado' : 'Não realizado';
+    };
+
     return(
+        <ProtectedRoute requiredRoles={['PATIENT']}>
         <div className="tests-page">
             <HeaderEnter
                 src={Return}
@@ -45,21 +75,31 @@ export default function SheetsAndTests () {
             </div>
 
             <div className="page-description">
-                <p>Abaixo estão disponibilizados nossos testes avaliativos. 
+                <p>Abaixo estão disponibilizados nossos testes avaliativos.
                 Ao realizá-los, você facilita para que nossos profissionais parceiros analisem seu caso com maior precisão</p>
             </div>
 
-            <div className="test-card">
-                <h2>Teste AQ-10</h2>
-                <p>Um teste curto, para auxiliar na avaliação e identificação de TEA em pacientes </p>
-                <h3>Finalizado</h3>
-            </div>
+            {statusError && (
+                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '10px 0' }}>
+                    <p>{statusError}</p>
+                </div>
+            )}
 
-            <div className="test-card">
-                <h2>Teste AQ-50</h2>
-                <p>Um teste curto, para auxiliar na avaliação e identificação de TEA em pacientes </p>
-                <h3>Finalizado</h3>
-            </div>
+            <Link href={test10Done ? '/Patient/AQ10ResultTest' : '/Patient/AQ10TestWeb'}>
+                <div className="test-card">
+                    <h2>Teste AQ-10</h2>
+                    <p>Um teste curto, para auxiliar na avaliação e identificação de TEA em pacientes </p>
+                    <h3>{statusLabel(test10Done)}</h3>
+                </div>
+            </Link>
+
+            <Link href={test50Done ? '/Patient/AQ50ResultTest' : '/Patient/AQ50TestWeb'}>
+                <div className="test-card">
+                    <h2>Teste AQ-50</h2>
+                    <p>Um teste curto, para auxiliar na avaliação e identificação de TEA em pacientes </p>
+                    <h3>{statusLabel(test50Done)}</h3>
+                </div>
+            </Link>
 
             <h3 className='form-title'>Ficha:</h3>
 
@@ -77,20 +117,19 @@ export default function SheetsAndTests () {
 
            <div className="upload-container" onClick={handleClick}>
     {preview ? (
-        <img 
+        <img
             src={preview}
             alt="Preview"
             className="upload-image"
         />
     ) : (
-        <Image 
+        <Image
             src={Upload}
             alt="Upload"
             className="upload-image"
         />
     )}
 </div>
-            {/* 👇 feedback pro usuário */}
             {fileName && (
                 <p className="file-name">
                     Arquivo selecionado: {fileName}
@@ -99,5 +138,6 @@ export default function SheetsAndTests () {
 
             <Footer/>
         </div>
+        </ProtectedRoute>
     )
 }
