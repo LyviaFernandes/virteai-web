@@ -1,5 +1,8 @@
 "use client"
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib';
 import './profile.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -11,6 +14,19 @@ import Link from 'next/link';
 
 
 export default function Profile () {
+    const router = useRouter();
+    const { isAuthenticated } = useAuth();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/Home');
+        }
+    }, [isAuthenticated, router]);
+
+    if (isAuthenticated) {
+        return <div>Redirecting...</div>;
+    }
+
     return(
         <div className="profile-section">
             <HeaderEnter

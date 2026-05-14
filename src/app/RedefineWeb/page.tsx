@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib';
 import './redefine.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
@@ -10,8 +12,20 @@ import Link from 'next/link';
 
 
 export default function RedefinePassword () {
-
+    const router = useRouter();
+    const { isAuthenticated } = useAuth();
     const [email, setEmail] = useState('');
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/Home');
+        }
+    }, [isAuthenticated, router]);
+
+    if (isAuthenticated) {
+        return <div>Redirecting...</div>;
+    }
+
     return(
         <div className="reset-password">
             <HeaderEnter

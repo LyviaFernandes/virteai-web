@@ -1,6 +1,9 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib';
+import { handleApiError } from '@/utils/apiErrors';
 import './login.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
@@ -10,8 +13,32 @@ import Link from "next/link";
 
 
 export default function Login () {
+    const router = useRouter();
+    const { login, isLoading, isAuthenticated } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/Home');
+        }
+    }, [isAuthenticated, router]);
+
+    const handleLogin = async () => {
+        try {
+            setError(null);
+            await login({ email, password });
+            // Redirection is handled by AuthContext
+        } catch (err) {
+            setError(handleApiError(err));
+        }
+    };
+
+    if (isAuthenticated) {
+        return <div>Redirecting...</div>;
+    }
+
     return(
         <div className="login-section">
             <HeaderEnter
@@ -21,6 +48,12 @@ export default function Login () {
             <div className="login-container">
                 <h2>Login</h2>
                 <div className="login-card">
+                    {error && (
+                        <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
+                            <p>{error}</p>
+                        </div>
+                    )}
+                    
                     <p>Email:</p>
                     <Input
                         description='Insira seu email'
@@ -44,12 +77,10 @@ export default function Login () {
                     </Link>
 
                     <div className="login-actions">
-                        <Link href="/Home">
-                            <ButtonEnter
-                            label='Entrar'
-                            onclick={() => console.log("oi")}
-                            />
-                        </Link>
+                        <ButtonEnter
+                            label={isLoading ? 'Entrando...' : 'Entrar'}
+                            onclick={handleLogin}
+                        />
 
                         <Link href="/Profile">
                             <button className='login-register'>

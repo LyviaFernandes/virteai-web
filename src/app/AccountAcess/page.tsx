@@ -1,6 +1,8 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib';
 import './account.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -9,6 +11,19 @@ import ButtonEnter from '@/components/enter-button/Button';
 import profile from '../../assets/images/ProfileIcon.svg';
 
 export default function Acess () {
+    const router = useRouter();
+    const { isAuthenticated } = useAuth();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/Home');
+        }
+    }, [isAuthenticated, router]);
+
+    if (isAuthenticated) {
+        return <div>Redirecting...</div>;
+    }
+
     return(
         <div className="account-access">
             <HeaderEnter
@@ -19,10 +34,10 @@ export default function Acess () {
                 <h2>Acesse sua conta!</h2>
 
                 <div className="account-access__card">
-                    <Image 
-                        className='account-access__profile-image' 
-                        src={profile} 
-                        alt="" 
+                    <Image
+                        className='account-access__profile-image'
+                        src={profile}
+                        alt=""
                     />
 
                     <div className="account-access__actions">

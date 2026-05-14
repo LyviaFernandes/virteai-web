@@ -1,6 +1,9 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib';
+import { handleApiError } from '@/utils/apiErrors';
 import './singup.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
@@ -9,8 +12,15 @@ import ButtonEnter from '@/components/enter-button/Button';
 import Link from 'next/link';
 
 const options = ["Presencial", "Híbrido", "Online"];
-export default function TherapistSignup () {
+const optionMap: { [key: string]: string } = {
+    "Presencial": "PRESENCIAL",
+    "Híbrido": "BOTH",
+    "Online": "ONLINE"
+};
 
+export default function TherapistSignup () {
+    const router = useRouter();
+    const { register: registerUser, isLoading, isAuthenticated } = useAuth();
 
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("");
@@ -23,6 +33,48 @@ export default function TherapistSignup () {
     const [specialty, setSpecialty] = useState('');
     const [experiencetime, setExperienceTime] = useState('');
     const [register, setRegister] = useState('');
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/Home');
+        }
+    }, [isAuthenticated, router]);
+
+    const handleRegister = async () => {
+        try {
+            setError(null);
+
+            // Validate DD/MM/YYYY
+            const isValidDate = /^\d{2}\/\d{2}\/\d{4}$/.test(date);
+
+            if (!isValidDate) {
+                setError('Data inválida. Use DD/MM/YYYY');
+                return;
+            }
+
+            // Convert DD/MM/YYYY -> YYYY-MM-DD
+            const [day, month, year] = date.split('/');
+            const formattedBirthDate = `${year}-${month}-${day}`;
+            
+            await registerUser({
+                name,
+                email,
+                password,
+                birthDate: formattedBirthDate,
+                city,
+                specialty,
+                experience: experiencetime,
+                professionalRegister: register,
+                attendanceModality: optionMap[selected] as 'ONLINE' | 'PRESENCIAL' | 'BOTH',
+                role: 'THERAPIST'
+            });
+
+            // Redirection is handled by AuthContext
+        } catch (err) {
+            setError(handleApiError(err));
+        }
+    };
     return(
         <div className="signup-section">
             <HeaderEnter
@@ -32,6 +84,12 @@ export default function TherapistSignup () {
             <div className="signup-container">
                 <h2>Cadastro</h2>
                 <div className="signup-card">
+                    {error && (
+                        <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
+                            <p>{error}</p>
+                        </div>
+                    )}
+
                     <p>Nome:</p>
                         <Input
                             description='Insira seu nome completo'
@@ -114,12 +172,10 @@ export default function TherapistSignup () {
                     />
 
                     <div className="signup-actions">
-                        <Link href="../../Login">
-                            <ButtonEnter
-                            label='Enviar'
-                            onclick={() => console.log()}
-                            />
-                        </Link>
+                        <ButtonEnter
+                            label={isLoading ? 'Registrando...' : 'Enviar'}
+                            onclick={handleRegister}
+                        />
                     </div>
                 </div>
 

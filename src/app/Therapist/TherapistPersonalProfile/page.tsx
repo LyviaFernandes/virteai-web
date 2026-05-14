@@ -1,7 +1,10 @@
 "use client"
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import './personal.css'
 import Image from 'next/image';
+import { useAuth, useTherapist } from '@/lib';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import DefaultProfileIcon from '@/assets/images/ProfileIcon.svg';
@@ -9,23 +12,30 @@ import ViewIcon from '@/assets/images/visualizeicon.svg';
 import EditIcon from '@/assets/images/editicon.svg';
 import Footer from '@/components/footer/Footer';
 
-type User = {
-    id: number;
-    name: string;
-    profileImage?: string;
-    CRP: string;
-    status: string;
-}
-
 export default function TherapistProfile () {
+    const router = useRouter();
+    const { isAuthenticated, user } = useAuth();
+    const { data: therapistData, loading, error, getMyProfile } = useTherapist();
 
-    const user: User = {
-        id: 1,
-        name: "Camilla Andrade",
-        profileImage: "",
-        CRP: "CRP 06/38472",
-        status: "Terapeuta Cognitivo-Comportamental"
-    };
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push('/Login');
+            return;
+        }
+        if (user?.role !== 'THERAPIST') {
+            router.push('/Home');
+            return;
+        }
+        getMyProfile();
+    }, [isAuthenticated, user, getMyProfile, router]);
+
+    if (!isAuthenticated) {
+        return <div style={{ padding: '20px', textAlign: 'center' }}>Please log in</div>;
+    }
+
+    if (loading) {
+        return <div style={{ padding: '20px', textAlign: 'center' }}>Loading profile...</div>;
+    }
 
     return(
         <div className="profile-page">
@@ -39,7 +49,7 @@ export default function TherapistProfile () {
                 <div className="profile-avatar-wrapper">
                     <div className="profile-avatar-container">
                         <Image 
-                        src={user.profileImage || DefaultProfileIcon}
+                        src={DefaultProfileIcon}
                         alt="Foto do usuário"
                         fill
                         className="profile-avatar-image"
@@ -49,12 +59,12 @@ export default function TherapistProfile () {
 
                 <div className="profile-details">
 
-                    <h2>{user.name}</h2>
+                    <h2>{therapistData?.name || 'Terapeuta'}</h2>
 
-                    <p>{user.CRP}</p>
+                    <p>{therapistData?.professionalRegister || 'Registro profissional'}</p>
 
                     <div className="profile-status">
-                        <h3>{user.status}</h3>
+                        <h3>{therapistData?.specialty || 'Especialidade'}</h3>
                     </div>
 
                 </div>
@@ -62,6 +72,17 @@ export default function TherapistProfile () {
             </div>
 
             <div className="profile-sections">
+                {error && <p style={{ color: 'red', padding: '10px' }}>Error: {error.message}</p>}
+                
+                {therapistData && (
+                    <div style={{ padding: '10px', fontSize: '14px', marginBottom: '15px' }}>
+                        <p><strong>Email:</strong> {therapistData.email}</p>
+                        <p><strong>Cidade:</strong> {therapistData.city}</p>
+                        <p><strong>Experiência:</strong> {therapistData.experience}</p>
+                        <p><strong>Modalidade:</strong> {therapistData.attendanceModality}</p>
+                    </div>
+                )}
+
                 <div className="profile-card">
                     <h3>Informações de Cadastro</h3>
                     
@@ -69,12 +90,16 @@ export default function TherapistProfile () {
                         <Image 
                         className='action-icon view-icon' 
                         src={ViewIcon} 
-                        alt="" 
+                        alt="View"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => router.push('/Therapist/AccountInformation')}
                         />
                         <Image 
                         className='action-icon edit-icon' 
                         src={EditIcon} 
-                        alt="" 
+                        alt="Edit"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => router.push('/Therapist/AccountInformation')}
                         />
                     </div>
                 </div>
@@ -87,7 +112,9 @@ export default function TherapistProfile () {
                         <Image 
                         className='action-icon view-icon' 
                         src={ViewIcon} 
-                        alt="" 
+                        alt="View"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => router.push('/Therapist/PatientListPage')}
                         />
                     </div>
                 </div>
@@ -99,7 +126,9 @@ export default function TherapistProfile () {
                         <Image 
                         className='action-icon view-icon' 
                         src={ViewIcon} 
-                        alt="" 
+                        alt="View"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => router.push('/Therapist/AppointmentsAndHistory')}
                         />
                     </div>
                 </div>

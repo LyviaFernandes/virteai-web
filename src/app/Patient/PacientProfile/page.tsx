@@ -1,7 +1,10 @@
 "use client"
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import './pacientprofile.css'
 import Image from 'next/image';
+import { useAuth, usePatient } from '@/lib';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Iconpaciente from '@/assets/images/ProfileIcon.svg';
@@ -9,20 +12,36 @@ import visualize from '@/assets/images/visualizeicon.svg';
 import barraprocess from '@/assets/images/barraprocesso.svg';
 import Footer from '@/components/footer/Footer';
 
-type User = {
-    id: number;
-    name: string;
-    profileImage?: string;
-    status: string;
-}
-
 export default function PacientProfile () {
+    const router = useRouter();
+    const { isAuthenticated, user } = useAuth();
+    const { data: patientData, loading, error, getMyProfile } = usePatient();
 
-    const user: User = {
-        id: 1,
-        name: "João Lucas Vega",
-        profileImage: "https://thumbs.dreamstime.com/b/retrato-da-pessoa-adulta-22170035.jpg",
-        status: "Em acompanhamento"
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push('/Login');
+            return;
+        }
+        if (user?.role !== 'PATIENT') {
+            router.push('/Home');
+            return;
+        }
+        getMyProfile();
+    }, [isAuthenticated, user, getMyProfile, router]);
+
+    if (!isAuthenticated) {
+        return <div style={{ padding: '20px', textAlign: 'center' }}>Please log in</div>;
+    }
+
+    if (loading) {
+        return <div style={{ padding: '20px', textAlign: 'center' }}>Loading profile...</div>;
+    }
+
+    const careStatusMap: { [key: string]: string } = {
+        'NOT_STARTED': 'Não iniciado',
+        'IN_PROGRESS': 'Em acompanhamento',
+        'PAUSED': 'Pausado',
+        'FINISHED': 'Concluído'
     };
 
     return(
@@ -37,7 +56,7 @@ export default function PacientProfile () {
                 <div className="profile-avatar-wrapper">
                     <div className="profile-avatar-container">
                         <Image 
-                        src={user.profileImage || Iconpaciente}
+                        src={Iconpaciente}
                         alt="Foto do usuário"
                         fill
                         className="profile-avatar-image"
@@ -47,10 +66,10 @@ export default function PacientProfile () {
 
                 <div className="profile-info">
 
-                    <h2>{user.name}</h2>
+                    <h2>{patientData?.name || 'Paciente'}</h2>
 
                     <div className="profile-status">
-                        <h3>{user.status}</h3>
+                        <h3>{careStatusMap[patientData?.careStatus || 'NOT_STARTED']}</h3>
                     </div>
 
                 </div>
@@ -60,12 +79,22 @@ export default function PacientProfile () {
             <div className="profile-content">
                 <div className="profile-card">
                     <h3>Informações de Cadastro</h3>
+                    {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
+                    {patientData && (
+                        <div style={{ marginBottom: '10px', fontSize: '14px' }}>
+                            <p><strong>Email:</strong> {patientData.email}</p>
+                            <p><strong>Cidade:</strong> {patientData.city}</p>
+                            <p><strong>Data de Nascimento:</strong> {new Date(patientData.birthDate).toLocaleDateString('pt-BR')}</p>
+                        </div>
+                    )}
                     
                     <div className="profile-card__actions">
                         <Image 
                         className='profile-card__icon--view' 
                         src={visualize} 
-                        alt="" 
+                        alt="View"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => router.push('/Patient/AccountInformation')}
                         />
                     </div>
                 </div>
@@ -86,7 +115,9 @@ export default function PacientProfile () {
                         <Image 
                         className='profile-card__icon--view' 
                         src={visualize} 
-                        alt="" 
+                        alt="View"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => router.push('/Patient/SheetsAndTests')}
                         />
                     </div>
                 </div>
@@ -98,7 +129,9 @@ export default function PacientProfile () {
                         <Image 
                         className='profile-card__icon--view' 
                         src={visualize} 
-                        alt="" 
+                        alt="View"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => router.push('/Patient/ProcessesAndTreatments')}
                         />
                     </div>
                 </div>

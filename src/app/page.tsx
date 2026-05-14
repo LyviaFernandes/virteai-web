@@ -1,3 +1,9 @@
+"use client";
+
+import { useAuth } from '@/lib';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
 import Card from "@/components/card-carrosel/Card";
 import ButtonEnter from "@/components/enter-button/Button";
 import Footer from "@/components/footer/Footer";
@@ -5,13 +11,17 @@ import HeaderEnter from "@/components/header-enter/HeaderEnter";
 import HeaderHome from "@/components/header-logout/Header";
 import Input from "@/components/input/Input";
 import Image from "next/image";
-import HomePage from "./Home/page";
-import AboutUs from "./AboutUs/page";
+
 import Login from "./Login/page";
+
 import PatientSingup from "./Patient/SingUpPatient/page";
 import TherapistSingup from "./Therapist/SingUpTherapist/page";
 import RedefinePassword from "./RedefineWeb/page";
 import Profile from "./Profile/page";
+
+import HomePage from "./Home/page";
+import AboutUs from "./AboutUs/page";
+
 import Acess from "./AccountAcess/page";
 import TherapistList from "./Patient/TherapistList/page";
 import Questionnaire from "./Patient/AQ10TestWeb/page";
@@ -47,8 +57,19 @@ import ScenariosResult from "./Therapist/ScenarioResult/page";
 import CalendarHistory from "./Therapist/AppointmentsAndHistory/page";
 
 export default function Home() {
-  return (
-    <PatientsMedicalRecord/>
-    
-  );
+  const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (isAuthenticated) {
+        router.push('/Home');
+      } else {
+        router.push('/Login');
+      }
+    }
+  }, [isAuthenticated, isLoading, router]);
+
+  // Show loading while checking authentication
+  return <div>Loading...</div>;
 }

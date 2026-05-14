@@ -1,18 +1,28 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
 import Link from 'next/link';
 
 export default function CodeAuthentication () {
+    const router = useRouter();
+    const { isAuthenticated } = useAuth();
 
     const [generatedCode] = useState(() =>
         Math.floor(100000 + Math.random() * 900000).toString()
     );
 
     const [userCode, setUserCode] = useState(['', '', '', '', '']);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/Home');
+        }
+    }, [isAuthenticated, router]);
 
     const handleChange = (value: string, index: number) => {
         if (!/^[0-9]?$/.test(value)) return;
@@ -33,6 +43,24 @@ export default function CodeAuthentication () {
             alert('Código incorreto ❌');
         }
     };
+
+    if (isAuthenticated) {
+        return <div>Redirecting...</div>;
+    }
+
+    return(
+        <div className="reset-password">
+            <HeaderEnter src={Return} />
+            
+            <div className="reset-password__container">
+                <h2>Autenticação</h2>
+
+                <div className="reset-password__card">
+                    <div className="reset-password__message">
+                        <p>
+                            Enviamos um código em seu email. Informe-o abaixo para continuar a redefinição de senha.
+                        </p>
+                    </div>
 
     return(
         <div className="reset-password">

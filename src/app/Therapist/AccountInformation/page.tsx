@@ -1,6 +1,9 @@
 "use client"
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth, useTherapist } from '@/lib';
+import { handleApiError } from '@/utils/apiErrors';
 import './style.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -9,33 +12,36 @@ import Iconpaciente from '@/assets/images/ProfileIcon.svg';
 import Footer from '@/components/footer/Footer';
 import edit from '@/assets/images/editicon.svg';
 
-type User = {
-    id: number;
-    name: string;
-    profileImage?: string;
-    CRP: string;
-    status: string;
-    especialidade: string;
-    experiência: string;
-    cidade:string;
-    pais: string;
-}
-
 export default function AccountInformationTherapist () {
-    const user: User = {
-        id: 1,
-        name: "Camila Andrade",
-        profileImage: "https://thumbs.dreamstime.com/b/retrato-da-pessoa-adulta-22170035.jpg",
-        CRP: "06/38472",
-        status: "Terapeuta Cognitivo-Comportamental",
-        especialidade: "Psicologia infantil",
-        experiência: "8 anos",
-        cidade: "São Paulo - SP",
-        pais: "Brasil",
-    };
-
+    const router = useRouter();
+    const { isAuthenticated, user } = useAuth();
+    const { getTherapistProfile, updateTherapistProfile, loading } = useTherapist();
+    const [therapistData, setTherapistData] = useState<any>(null);
+    const [error, setError] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | undefined>(undefined);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push('/Login');
+            return;
+        }
+        if (user?.role !== 'THERAPIST') {
+            router.push('/Home');
+            return;
+        }
+
+        const fetchTherapistData = async () => {
+            try {
+                const data = await getTherapistProfile();
+                setTherapistData(data);
+            } catch (err) {
+                setError(handleApiError(err));
+            }
+        };
+
+        fetchTherapistData();
+    }, [isAuthenticated, user, router, getTherapistProfile]);
 
     const handleImageClick = () => {
         fileInputRef.current?.click();
@@ -46,8 +52,17 @@ export default function AccountInformationTherapist () {
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             setProfileImage(imageUrl);
+            // TODO: Implement image upload to backend
         }
     };
+
+    if (!isAuthenticated) {
+        return <div style={{ padding: '20px', textAlign: 'center' }}>Please log in</div>;
+    }
+
+    if (loading || !therapistData) {
+        return <div style={{ padding: '20px', textAlign: 'center' }}>Loading...</div>;
+    }
 
     
     return(
@@ -79,11 +94,11 @@ export default function AccountInformationTherapist () {
 
                 <div className="account-user-info">
 
-                    <h2>{user.name}</h2>
+                    <h2>{therapistData.name}</h2>
 
                     <div className="account-status">
-                        <p>CRP: {user.CRP}</p>
-                        <p>{user.status}</p>
+                        <p>CRP: {therapistData.crp || 'Não informado'}</p>
+                        <p>{therapistData.specialization || 'Terapeuta'}</p>
                     </div>
 
                 </div>
@@ -94,8 +109,8 @@ export default function AccountInformationTherapist () {
                 <h3 className='personal-data-title'>Dados Pessoais:</h3>
 
                 <div className="personal-data-item">
-                    <p>Nome: {user.name}</p>
-                    <Image 
+                    <p>Nome: {therapistData.name}</p>
+                    <Image
                             src={edit}
                             alt=""
                             className="edit-icon"
@@ -103,12 +118,12 @@ export default function AccountInformationTherapist () {
                 </div>
 
                 <div className="personal-data-item">
-                    <p>CRP: {user.CRP}</p>
+                    <p>CRP: {therapistData.crp || 'Não informado'}</p>
                 </div>
 
                 <div className="personal-data-item">
-                    <p>Especialidade: {user.especialidade}</p>
-                    <Image 
+                    <p>Especialidade: {therapistData.specialization || 'Não informado'}</p>
+                    <Image
                             src={edit}
                             alt=""
                             className="edit-icon"
@@ -116,23 +131,23 @@ export default function AccountInformationTherapist () {
                 </div>
 
                 <div className="personal-data-item">
-                    <p>Experiência: {user.experiência}</p>
-                    <Image 
+                    <p>Experiência: {therapistData.experience || 'Não informado'}</p>
+                    <Image
                             src={edit}
                             alt=""
                             className="edit-icon"
                         />
                 </div>
 
-                
+
             </div>
 
             <div className="account-settings-section">
                 <h3 className='account-local-title'>Localização e Atendimento:</h3>
 
                 <div className="personal-data-item">
-                    <p>País: {user.pais}</p>
-                    <Image 
+                    <p>País: {therapistData.country || 'Brasil'}</p>
+                    <Image
                             src={edit}
                             alt=""
                             className="edit-icon"
@@ -140,8 +155,8 @@ export default function AccountInformationTherapist () {
                 </div>
 
                 <div className="personal-data-item">
-                    <p>Cidade: {user.cidade}</p>
-                    <Image 
+                    <p>Cidade: {therapistData.city || 'Não informado'}</p>
+                    <Image
                             src={edit}
                             alt=""
                             className="edit-icon"
@@ -153,7 +168,7 @@ export default function AccountInformationTherapist () {
                 <div className="account-modalidade-box">
                     <div className="account-modalidade-item">
                         <p>Modalidade de atendimento:</p>
-                        <Image 
+                        <Image
                                 src={edit}
                                 alt=""
                                 className="edit-icon"
@@ -163,17 +178,17 @@ export default function AccountInformationTherapist () {
                     <div className="questionnaire-options">
 
                         <div className="questionnaire-option">
-                            <input type="radio" id="agree" name="tea"/>
+                            <input type="radio" id="agree" name="tea" checked={therapistData.modality === 'ONLINE'} />
                             <label htmlFor="agree">Online</label>
                         </div>
 
                         <div className="questionnaire-option">
-                            <input type="radio" id="completely-disagree" name="tea"/>
+                            <input type="radio" id="completely-disagree" name="tea" checked={therapistData.modality === 'IN_PERSON'} />
                             <label htmlFor="completely-disagree">Presencial</label>
                         </div>
 
                         <div className="questionnaire-option">
-                            <input type="radio" id="disagree" name="tea"/>
+                            <input type="radio" id="disagree" name="tea" checked={therapistData.modality === 'BOTH'} />
                             <label htmlFor="disagree">Ambos</label>
                         </div>
                     </div>
@@ -185,9 +200,9 @@ export default function AccountInformationTherapist () {
 
                 <div className="account-field">
                     <p>Email:</p>
-                    <input name="name" value="marcosvega82@gmail.com" />
+                    <input name="email" value={therapistData.email || user?.email || ''} readOnly />
 
-                    <Image 
+                    <Image
                                 src={edit}
                                 alt=""
                                 className="edit-icon"
@@ -196,7 +211,27 @@ export default function AccountInformationTherapist () {
 
                 <div className="account-field">
                     <p>Senha:</p>
-                    <input name="email" value="••••••••••••" />
+                    <input name="password" value="••••••••••••" type="password" readOnly />
+
+                    <Image
+                                src={edit}
+                                alt=""
+                                className="edit-icon"
+                            />
+                </div>
+            </div>
+
+            {error && (
+                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '20px' }}>
+                    <p>{error}</p>
+                </div>
+            )}
+
+            <Footer/>
+        </div>
+
+    )
+}
 
                     <Image 
                                 src={edit}
