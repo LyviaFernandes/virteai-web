@@ -50,43 +50,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     initializeAuth();
   }, [router]);
 
-  // Monitor localStorage changes (e.g., token deletion)
+  // Monitor localStorage changes and redirect if token is deleted
   useEffect(() => {
-    const handleStorageChange = () => {
-      const token = authService.getToken();
+    if (isLoading) return; // Don't check while loading
 
-      console.log('Token:', token);
+    const checkAuth = () => {
+      const token = authService.getToken();
       
-      if (!token) {
-        // Token was removed, clear user and redirect to login
+      // If no token but user is set, redirect to login
+      if (!token && user) {
+        console.log('Token deleted, redirecting to login');
         setUser(null);
         router.push('/Login');
-      } else {
-        // Token still exists, update user if needed
-        const currentUser = authService.getCurrentUser();
-        if (currentUser) {
-          setUser(currentUser);
-        }
       }
     };
 
     // Listen for storage changes from other tabs
-    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('storage', checkAuth);
     
-    // Also check periodically in case token is deleted in the same tab
-    const interval = setInterval(() => {
-      const token = authService.getToken();
-      if (!token && user) {
-        setUser(null);
-        router.push('/Login');
-      }
-    }, 1000); // Check every second
+    // Listen for window focus (user comes back to tab)
+    window.addEventListener('focus', checkAuth);
+    
+    // Check every 300ms for same-tab token deletion
+    const interval = setInterval(checkAuth, 300);
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('storage', checkAuth);
+      window.removeEventListener('focus', checkAuth);
       clearInterval(interval);
     };
-  }, [router, user]);
+  }, [router, user, isLoading]);
 
   const login = useCallback(async (data: LoginRequest) => {
     try {

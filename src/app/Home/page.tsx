@@ -13,28 +13,39 @@ import Andddes from '../../assets/images/AndddesLogo.svg';
 import Card from '@/components/card-carrosel/Card';
 import Footer from '@/components/footer/Footer';
 import { useRef, useEffect } from 'react';
+import { useAuth } from '@/lib';
+import { useRouter } from 'next/navigation';
 
 
 export default function HomePage () {
-
+    const { isAuthenticated, isLoading } = useAuth();
+    const router = useRouter();
     const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const container = containerRef.current;
+    // Check authentication on mount and when it changes
+    useEffect(() => {
+      if (!isLoading && !isAuthenticated) {
+        router.push('/Login');
+      }
+    }, [isAuthenticated, isLoading, router]);
 
-    const handleWheel = (e: WheelEvent) => {
-      if (!container) return;
+    // Scroll listener for carousel
+    useEffect(() => {
+      const container = containerRef.current;
 
-      e.preventDefault();
-      container.scrollLeft += e.deltaY;
-    };
+      const handleWheel = (e: WheelEvent) => {
+        if (!container) return;
 
-    container?.addEventListener("wheel", handleWheel);
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+      };
 
-    return () => {
-      container?.removeEventListener("wheel", handleWheel);
-    };
-  }, []);
+      container?.addEventListener("wheel", handleWheel);
+
+      return () => {
+        container?.removeEventListener("wheel", handleWheel);
+      };
+    }, []);
 
     return(
         
