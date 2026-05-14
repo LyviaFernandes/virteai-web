@@ -1,16 +1,17 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import './HeaderEnter.css'
 import logo from '../../assets/images/logo.svg';
 import Image from 'next/image';
-import Link from "next/link";
 
 type ICard = {
     src: string
 }
 
 export default function HeaderEnter ({src} : ICard) {
+    const router = useRouter();
 
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
@@ -18,10 +19,8 @@ export default function HeaderEnter ({src} : ICard) {
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > lastScrollY) {
-                // rolando pra baixo → esconde
                 setShowHeader(false);
             } else {
-                // rolando pra cima → mostra
                 setShowHeader(true);
             }
 
@@ -33,27 +32,33 @@ export default function HeaderEnter ({src} : ICard) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [lastScrollY]);
 
+    const handleBack = () => {
+        if (typeof window !== 'undefined' && window.history.length > 1) {
+            router.back();
+        } else {
+            router.push('/Home');
+        }
+    };
+
     return (
         <header className={showHeader ? "header show" : "header hide"}>
-            <Image 
-                className='logo-header' 
-                src={logo} 
-                alt="Logo image" 
+            <Image
+                className='logo-header'
+                src={logo}
+                alt="Logo image"
                 width={160}
                 height={150}
             />
-            
-            <Link href="/Home">
-                <button className='container-return'>
-                    <Image 
-                        className='return-enter' 
-                        src={src} 
-                        alt='Home'
-                        width={50}
-                        height={50}
-                    />
-                </button>
-            </Link>
+
+            <button className='container-return' onClick={handleBack} aria-label="Voltar">
+                <Image
+                    className='return-enter'
+                    src={src}
+                    alt='Voltar'
+                    width={50}
+                    height={50}
+                />
+            </button>
         </header>
     );
 }

@@ -81,6 +81,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, [router, user, isLoading]);
 
+  const dashboardPathForRole = (role?: string) => {
+    if (role === 'PATIENT') return '/Patient/PacientProfile';
+    if (role === 'THERAPIST') return '/Therapist/TherapistPersonalProfile';
+    return '/Home';
+  };
+
   const login = useCallback(async (data: LoginRequest) => {
     try {
       setIsLoading(true);
@@ -89,7 +95,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const currentUser = authService.getCurrentUser();
       if (currentUser) {
         setUser(currentUser);
-        router.push('/Home');
+        router.push(dashboardPathForRole(currentUser.role));
       }
     } catch (err: any) {
       const errorMessage = err.message || 'Login failed';
@@ -113,7 +119,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const currentUser = authService.getCurrentUser();
       if (currentUser) {
         setUser(currentUser);
-        router.push('/Home');
+        router.push(dashboardPathForRole(currentUser.role));
       }
     } catch (err: any) {
       const errorMessage = err.message || 'Registration failed';

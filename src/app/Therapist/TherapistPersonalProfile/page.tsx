@@ -121,14 +121,28 @@ export default function TherapistProfile () {
 
                 <div className="profile-card">
                     <h3>Agenda e Histórico</h3>
-                    
+
                     <div className="card-actions">
-                        <Image 
-                        className='action-icon view-icon' 
-                        src={ViewIcon} 
+                        <Image
+                        className='action-icon view-icon'
+                        src={ViewIcon}
                         alt="View"
                         style={{ cursor: 'pointer' }}
                         onClick={() => router.push('/Therapist/AppointmentsAndHistory')}
+                        />
+                    </div>
+                </div>
+
+                <div className="profile-card">
+                    <h3>Nossos planos e serviços</h3>
+
+                    <div className="card-actions">
+                        <Image
+                        className='action-icon view-icon'
+                        src={ViewIcon}
+                        alt="View"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => router.push('/Therapist/OurServicesWeb')}
                         />
                     </div>
                 </div>

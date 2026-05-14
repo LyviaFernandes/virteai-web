@@ -11,8 +11,13 @@ import menu from '../../assets/images/iconmenu.svg';
 import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
 import Link from "next/link";
+import { useAuth } from '@/lib';
 
 export default function HeaderHome () {
+    const { user, logout } = useAuth();
+    const profileHref = user?.role === 'THERAPIST'
+        ? '/Therapist/TherapistPersonalProfile'
+        : '/Patient/PacientProfile';
     
     const [openModal, setOpenModal] = useState(false);
     const [openNotifications, setOpenNotifications] = useState(false);
@@ -71,7 +76,7 @@ export default function HeaderHome () {
             </button>
             
             <div className="container-pages">
-                <Link href="Home">
+                <Link href="/Home">
                     <button className="iconecontainer">
                         <Image className='image' src={home} alt="Pagina inicial" width={50}/>
                         <p>Página inicial</p>
@@ -96,11 +101,20 @@ export default function HeaderHome () {
                 </button>
             </div>
             
-            <Link href="PacientProfile">
+            <Link href={profileHref}>
                 <button className="container-profile">
                     <Image className='Profile' src={profile} alt="Icon profile"/>
                 </button>
             </Link>
+
+            <button
+                className="container-profile"
+                onClick={logout}
+                title="Sair"
+                style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0, marginLeft: 8 }}
+            >
+                <p style={{ fontWeight: 600 }}>Sair</p>
+            </button>
         </header>
 
         
@@ -108,7 +122,7 @@ export default function HeaderHome () {
         {menuOpen && (
             <div className="mobile-menu">
 
-                <Link href="Home" onClick={() => setMenuOpen(false)}>
+                <Link href="/Home" onClick={() => setMenuOpen(false)}>
                 <p>Página inicial</p>
                 </Link>
 
@@ -135,9 +149,13 @@ export default function HeaderHome () {
                     </p>
                 </button>
 
-                <Link href="PacientProfile" onClick={() => setMenuOpen(false)}>
+                <Link href={profileHref} onClick={() => setMenuOpen(false)}>
                 <p>Perfil</p>
                 </Link>
+
+                <button onClick={() => { setMenuOpen(false); logout(); }}>
+                    <p>Sair</p>
+                </button>
 
             </div>
             )}
