@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import "./style.css";
 import Image from "next/image";
@@ -31,7 +31,7 @@ const careStatusLabel: Record<PatientCareStatus, string> = {
   FINISHED: "Finalizado",
 };
 
-export default function PatientsMedicalRecord() {
+function PatientsMedicalRecordContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const patientIdParam = searchParams.get("patientId") || searchParams.get("id");
@@ -409,5 +409,13 @@ export default function PatientsMedicalRecord() {
       <Footer />
     </div>
     </ProtectedRoute>
+  );
+}
+
+export default function PatientsMedicalRecord() {
+  return (
+    <Suspense fallback={<div>Carregando...</div>}>
+      <PatientsMedicalRecordContent />
+    </Suspense>
   );
 }

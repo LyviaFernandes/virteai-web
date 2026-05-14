@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -24,7 +24,7 @@ const statusToEvolution: Record<string, ReportEvolution> = {
     retrocedeu: 'REGRESSED',
 };
 
-export default function AddNewReport () {
+function AddNewReportContent () {
     const router = useRouter();
     const searchParams = useSearchParams();
     const prefillPatient = searchParams.get('patientId');
@@ -214,4 +214,12 @@ export default function AddNewReport () {
         </div>
         </ProtectedRoute>
     )
+}
+
+export default function AddNewReport () {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <AddNewReportContent />
+        </Suspense>
+    );
 }

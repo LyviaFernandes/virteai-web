@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import './style.css'
@@ -30,7 +30,7 @@ const formatDate = (iso?: string) => {
     return isNaN(d.getTime()) ? iso : d.toLocaleDateString('pt-BR');
 };
 
-export default function ReportsList () {
+function ReportsListContent () {
     const router = useRouter();
     const searchParams = useSearchParams();
     const patientIdFilter = searchParams.get('patientId');
@@ -108,4 +108,12 @@ export default function ReportsList () {
         </div>
         </ProtectedRoute>
         )
+}
+
+export default function ReportsList () {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <ReportsListContent />
+        </Suspense>
+    );
 }

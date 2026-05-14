@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import './styles.css'
 import Image from 'next/image';
@@ -32,7 +32,7 @@ const statusClass: Record<ScenarioStatus, string> = {
     FINISHED: 'finalizado',
 };
 
-export default function Scenarios () {
+function ScenariosContent () {
     const searchParams = useSearchParams();
     const patientIdParam = searchParams.get('patientId');
 
@@ -278,4 +278,12 @@ export default function Scenarios () {
         </ProtectedRoute>
     )
 
+}
+
+export default function Scenarios () {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <ScenariosContent />
+        </Suspense>
+    );
 }
