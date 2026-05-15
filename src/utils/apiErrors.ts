@@ -36,29 +36,8 @@ export const isApiError = (error: unknown): error is ApiError => {
  * Handle API errors with appropriate user messages
  */
 export const handleApiError = (error: unknown): string => {
-  if (isApiError(error)) {
-    switch (error.status) {
-      case 400:
-        return 'Invalid request. Please check your input.';
-      case 401:
-        return 'Session expired. Please log in again.';
-      case 403:
-        return 'You do not have permission to perform this action.';
-      case 404:
-        return 'The requested resource was not found.';
-      case 409:
-        return 'This resource already exists.';
-      case 422:
-        return 'Validation error. Please check your input.';
-      case 500:
-        return 'Server error. Please try again later.';
-      case 503:
-        return 'Service unavailable. Please try again later.';
-      default:
-        return error.message || 'An error occurred. Please try again.';
-    }
-  }
-
+  // Prefer the message provided by the API (e.g. { error: "..." } or { message: "..." }).
+  // Fall back to generic extraction for non-API errors.
   return getErrorMessage(error);
 };
 
