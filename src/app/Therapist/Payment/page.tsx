@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './pay.css'
 import Footer from '@/components/footer/Footer';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -35,9 +36,9 @@ function PaymentContent () {
     const handleCheckout = () => {
         if (!plan) { alert('Selecione um plano.'); return; }
         if (paymentMethod === 'pix') {
-            router.push('/Therapist/PIXPayment');
+            router.push(ROUTES.therapistPixPayment);
         } else {
-            router.push('/Therapist/FinishedPayment');
+            router.push(ROUTES.therapistFinishedPayment);
         }
     };
 

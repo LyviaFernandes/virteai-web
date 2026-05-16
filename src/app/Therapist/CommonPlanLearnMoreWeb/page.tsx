@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { ROUTES } from '@/lib/routes';
 import './Plan.css';
 import HeaderHome from '@/components/header-login/Header';
 import Footer from '@/components/footer/Footer';
@@ -102,7 +103,7 @@ export default function CommonPlan() {
                 Uma estrutura invisível, mas poderosa, que sustenta o seu trabalho todos os dias.</p>
             </div>
 
-            <Link href="/Therapist/Payment?plan=common">
+            <Link href={`${ROUTES.therapistPayment}?plan=common`}>
                 <button className='plan-cta-button'>
                     <h3>Assine Agora!</h3>
                 </button>

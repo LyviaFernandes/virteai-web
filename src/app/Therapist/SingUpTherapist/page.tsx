@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import { useAuth } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
 import './singup.css'
@@ -37,7 +38,7 @@ export default function TherapistSignup () {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/Home');
+            router.push(ROUTES.home);
         }
     }, [isAuthenticated, router]);
 

@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { ROUTES } from '@/lib/routes';
 import { useRouter, useSearchParams } from 'next/navigation';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -83,7 +84,7 @@ function ReportsListContent () {
                 {filtered.map((report) => (
                     <Link
                         key={report.reportId}
-                        href={`/Therapist/Reports?id=${report.reportId}`}
+                        href={`${ROUTES.therapistReports}?id=${report.reportId}`}
                         style={{ textDecoration: 'none', color: 'inherit' }}
                     >
                         <div className="list-report-info">
@@ -100,7 +101,7 @@ function ReportsListContent () {
             </div>
 
             <div className="new__report">
-                <button onClick={() => router.push('/Therapist/AddNewReport' + (patientIdFilter ? `?patientId=${patientIdFilter}` : ''))}>
+                <button onClick={() => router.push(`${ROUTES.therapistAddNewReport}${patientIdFilter ? `?patientId=${patientIdFilter}` : ''}`)}>
                     Adicionar novo relatório
                 </button>
             </div>

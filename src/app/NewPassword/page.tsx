@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import { useAuth, authService } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
 import './style.css'
@@ -20,7 +21,7 @@ export default function NewPassword () {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/Home');
+            router.push(ROUTES.home);
         }
     }, [isAuthenticated, router]);
 
@@ -36,7 +37,7 @@ export default function NewPassword () {
             const token = (typeof window !== 'undefined' && sessionStorage.getItem('resetToken')) || 'MOCK_TOKEN';
             await authService.resetPassword({ token, password });
             setSuccess(true);
-            setTimeout(() => router.push('/Login'), 800);
+            setTimeout(() => router.push(ROUTES.login), 800);
         } catch (err) {
             setError(handleApiError(err));
         } finally {

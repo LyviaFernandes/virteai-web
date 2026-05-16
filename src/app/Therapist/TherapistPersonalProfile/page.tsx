@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './personal.css'
 import Image from 'next/image';
 import { useAuth, useTherapist } from '@/lib';
@@ -19,11 +20,11 @@ export default function TherapistProfile () {
 
     useEffect(() => {
         if (!isAuthenticated) {
-            router.push('/Login');
+            router.push(ROUTES.login);
             return;
         }
         if (user?.role !== 'THERAPIST') {
-            router.push('/Home');
+            router.push(ROUTES.home);
             return;
         }
         getMyProfile();
@@ -92,14 +93,14 @@ export default function TherapistProfile () {
                         src={ViewIcon} 
                         alt="View"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => router.push('/Therapist/AccountInformation')}
+                        onClick={() => router.push(ROUTES.therapistAccountInformation)}
                         />
                         <Image 
                         className='action-icon edit-icon' 
                         src={EditIcon} 
                         alt="Edit"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => router.push('/Therapist/AccountInformation')}
+                        onClick={() => router.push(ROUTES.therapistAccountInformation)}
                         />
                     </div>
                 </div>
@@ -114,7 +115,7 @@ export default function TherapistProfile () {
                         src={ViewIcon} 
                         alt="View"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => router.push('/Therapist/PatientListPage')}
+                        onClick={() => router.push(ROUTES.therapistPatientList)}
                         />
                     </div>
                 </div>
@@ -128,7 +129,7 @@ export default function TherapistProfile () {
                         src={ViewIcon}
                         alt="View"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => router.push('/Therapist/AppointmentsAndHistory')}
+                        onClick={() => router.push(ROUTES.therapistCalendarHistory)}
                         />
                     </div>
                 </div>
@@ -142,7 +143,7 @@ export default function TherapistProfile () {
                         src={ViewIcon}
                         alt="View"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => router.push('/Therapist/OurServicesWeb')}
+                        onClick={() => router.push(ROUTES.therapistOurServices)}
                         />
                     </div>
                 </div>

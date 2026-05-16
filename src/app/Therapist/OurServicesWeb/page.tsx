@@ -1,6 +1,7 @@
 "use client"
 
 import Link from 'next/link';
+import { ROUTES } from '@/lib/routes';
 import './services.css'
 import Image from 'next/image';
 import Footer from '@/components/footer/Footer';
@@ -83,7 +84,7 @@ export default function OurServices () {
                         <p>R$49,90/mês</p>
                     </div>
 
-                    <Link href="/Therapist/CommonPlanLearnMoreWeb">
+                    <Link href={ROUTES.therapistCommonPlan}>
                         <button>
                             <p>saiba mais</p>
                         </button>
@@ -126,7 +127,7 @@ export default function OurServices () {
                         <p>R$199,00/mês</p>
                     </div>
 
-                    <Link href="/Therapist/CorporativePlanLearnMoreWeb">
+                    <Link href={ROUTES.therapistCorporativePlan}>
                         <button>
                             <p>saiba mais</p>
                         </button>

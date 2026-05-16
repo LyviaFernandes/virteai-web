@@ -19,7 +19,7 @@ export default function CodeAuthentication () {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/Home');
+            router.push(ROUTES.home);
         }
     }, [isAuthenticated, router]);
 
@@ -36,7 +36,7 @@ export default function CodeAuthentication () {
 
         // O backend envia o link de reset por email; aqui simulamos a etapa do código.
         if (code.length === 5) {
-            router.push('/NewPassword');
+            router.push(ROUTES.newPassword);
         } else {
             alert('Informe os 5 dígitos do código.');
         }

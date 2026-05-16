@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib';
+import { ROUTES } from '@/lib/routes';
 import { handleApiError } from '@/utils/apiErrors';
 import './login.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -21,7 +22,7 @@ export default function Login () {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/Home');
+            router.push(ROUTES.home);
         }
     }, [isAuthenticated, router]);
 
@@ -68,7 +69,7 @@ export default function Login () {
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <Link href="/RedefineWeb">
+                    <Link href={ROUTES.passwordReset}>
                         <button className='login-forgot-password'>
                             <div className="login-forgot-password__text">
                                 <p>esqueci a senha</p>
@@ -82,7 +83,7 @@ export default function Login () {
                             onclick={handleLogin}
                         />
 
-                        <Link href="/Profile">
+                        <Link href={ROUTES.profile}>
                             <button className='login-register'>
                                 <p>Não tenho cadastro</p>
                             </button>

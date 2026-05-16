@@ -16,8 +16,8 @@ import { useAuth } from '@/lib';
 export default function HeaderHome () {
     const { user, logout } = useAuth();
     const profileHref = user?.role === 'THERAPIST'
-        ? '/Therapist/TherapistPersonalProfile'
-        : '/Patient/PacientProfile';
+        ? ROUTES.therapistDashboard
+        : ROUTES.patientProfile;
     
     const [openModal, setOpenModal] = useState(false);
     const [openNotifications, setOpenNotifications] = useState(false);
@@ -76,14 +76,14 @@ export default function HeaderHome () {
             </button>
             
             <div className="container-pages">
-                <Link href="/Home">
+                <Link href={ROUTES.home}>
                     <button className="iconecontainer">
                         <Image className='image' src={home} alt="Pagina inicial" width={50}/>
                         <p>Página inicial</p>
                     </button>
                 </Link>
 
-                <Link href="/AboutUs">
+                <Link href={ROUTES.aboutUs}>
                     <button className="iconecontainer">
                         <Image className='image' src={aboutUs} alt="Sobre nós icon" width={50}/>
                         <p>Sobre nós</p>
@@ -122,11 +122,11 @@ export default function HeaderHome () {
         {menuOpen && (
             <div className="mobile-menu">
 
-                <Link href="/Home" onClick={() => setMenuOpen(false)}>
+                <Link href={ROUTES.home} onClick={() => setMenuOpen(false)}>
                 <p>Página inicial</p>
                 </Link>
 
-                <Link href="/AboutUs" onClick={() => setMenuOpen(false)}>
+                <Link href={ROUTES.aboutUs} onClick={() => setMenuOpen(false)}>
                 <p>Sobre nós</p>
                 </Link>
 

@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../../assets/images/return-icon.svg';
@@ -32,7 +33,7 @@ export default function FinishedPayment () {
                         <div className="finished-payment__actions">
                             <ButtonEnter
                             label='Continuar'
-                            onclick={() => router.push('/Therapist/TherapistPersonalProfile')}
+                            onclick={() => router.push(ROUTES.therapistDashboard)}
                             />
                         </div>
                     </div>

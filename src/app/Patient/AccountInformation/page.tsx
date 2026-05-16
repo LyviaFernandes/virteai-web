@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import { useAuth, usePatient } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
 import './account.css'
@@ -25,11 +26,11 @@ export default function AccountInformation () {
 
     useEffect(() => {
         if (!isAuthenticated) {
-            router.push('/Login');
+            router.push(ROUTES.login);
             return;
         }
         if (user?.role !== 'PATIENT') {
-            router.push('/Home');
+            router.push(ROUTES.home);
             return;
         }
 

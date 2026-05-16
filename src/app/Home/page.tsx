@@ -15,6 +15,7 @@ import Footer from '@/components/footer/Footer';
 import { useRef, useEffect } from 'react';
 import { useAuth } from '@/lib';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 
 
 export default function HomePage () {
@@ -25,7 +26,7 @@ export default function HomePage () {
     // Check authentication on mount and when it changes
     useEffect(() => {
       if (!isLoading && !isAuthenticated) {
-        router.push('/Login');
+        router.push(ROUTES.login);
       }
     }, [isAuthenticated, isLoading, router]);
 

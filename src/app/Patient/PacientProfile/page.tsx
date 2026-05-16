@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './pacientprofile.css'
 import Image from 'next/image';
 import { useAuth, usePatient } from '@/lib';
@@ -19,11 +20,11 @@ export default function PacientProfile () {
 
     useEffect(() => {
         if (!isAuthenticated) {
-            router.push('/Login');
+            router.push(ROUTES.login);
             return;
         }
         if (user?.role !== 'PATIENT') {
-            router.push('/Home');
+            router.push(ROUTES.home);
             return;
         }
         getMyProfile();
@@ -94,7 +95,7 @@ export default function PacientProfile () {
                         src={visualize} 
                         alt="View"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => router.push('/Patient/AccountInformation')}
+                        onClick={() => router.push(ROUTES.patientAccountInformation)}
                         />
                     </div>
                 </div>
@@ -117,7 +118,7 @@ export default function PacientProfile () {
                         src={visualize} 
                         alt="View"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => router.push('/Patient/SheetsAndTests')}
+                        onClick={() => router.push(ROUTES.patientSheetsAndTests)}
                         />
                     </div>
                 </div>
@@ -131,7 +132,7 @@ export default function PacientProfile () {
                         src={visualize} 
                         alt="View"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => router.push('/Patient/ProcessesAndTreatments')}
+                        onClick={() => router.push(ROUTES.patientProcessesAndTreatments)}
                         />
                     </div>
                 </div>

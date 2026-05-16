@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import { useRouter } from 'next/navigation';
 import { User, LoginRequest, RegisterRequest } from '@/types';
 import { authService } from '@/services/authService';
+import { ROUTES } from '@/lib/routes';
 
 interface AuthContextType {
   user: User | null;
@@ -34,9 +35,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(currentUser);
         // Redirect to Home if user is authenticated and on a pre-login page
         const currentPath = window.location.pathname;
-        const preLoginPaths = ['/Login', '/Patient/SingUpPatient', '/Therapist/SingUpTherapist', '/Profile'];
+        const preLoginPaths = [
+          ROUTES.login,
+          ROUTES.patientSignup,
+          ROUTES.therapistSignup,
+          ROUTES.profile,
+        ];
         if (preLoginPaths.includes(currentPath)) {
-          router.push('/Home');
+          router.push(ROUTES.home);
         }
       } else {
         // Clear invalid state
@@ -61,7 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (!token && user) {
         console.log('Token deleted, redirecting to login');
         setUser(null);
-        router.push('/Login');
+        router.push(ROUTES.login);
       }
     };
 
@@ -82,9 +88,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [router, user, isLoading]);
 
   const dashboardPathForRole = (role?: string) => {
-    if (role === 'PATIENT') return '/Patient/PacientProfile';
-    if (role === 'THERAPIST') return '/Therapist/TherapistPersonalProfile';
-    return '/Home';
+    if (role === 'PATIENT') return ROUTES.patientProfile;
+    if (role === 'THERAPIST') return ROUTES.therapistDashboard;
+    return ROUTES.home;
   };
 
   const login = useCallback(async (data: LoginRequest) => {
@@ -134,7 +140,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     authService.logout();
     setUser(null);
     setError(null);
-    router.push('/Login');
+    router.push(ROUTES.login);
   }, [router]);
 
   const clearError = useCallback(() => {

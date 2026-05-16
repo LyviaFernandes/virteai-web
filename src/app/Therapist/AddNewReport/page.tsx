@@ -89,7 +89,7 @@ function AddNewReportContent () {
                 content: form.report,
             });
             setSuccess('Relatório enviado com sucesso.');
-            setTimeout(() => router.push('/Therapist/ReportsList'), 800);
+            setTimeout(() => router.push(ROUTES.therapistReportsList), 800);
         } catch (err) {
             setError(handleApiError(err));
         }
