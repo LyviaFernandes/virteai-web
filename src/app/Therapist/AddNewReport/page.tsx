@@ -10,6 +10,7 @@ import { useReport, useTherapist } from '@/lib';
 import type { PatientProfile, ReportEvolution } from '@/types';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { handleApiError } from '@/utils/apiErrors';
+import { ROUTES } from '@/lib/routes';
 
 type FormType = {
     patientId: string;
