@@ -30,6 +30,7 @@ export const ROUTES = {
   therapistCorporativePlan: '/Therapist/CorporativePlanLearnMoreWeb',
   therapistPayment: '/Therapist/Payment',
   therapistPixPayment: '/Therapist/PIXPayment',
+  therapistFinishedPayment: '/Therapist/FinishedPayment',
   therapistAccountInformation: '/Therapist/AccountInformation',
   therapistPatientList: '/Therapist/PatientListPage',
   therapistMedicalRecord: '/Therapist/PatientsMedicalRecord',
