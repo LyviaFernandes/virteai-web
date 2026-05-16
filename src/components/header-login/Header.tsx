@@ -12,6 +12,7 @@ import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
 import Link from "next/link";
 import { useAuth } from '@/lib';
+import { ROUTES } from '@/lib/routes';
 
 export default function HeaderHome () {
     const { user, logout } = useAuth();
