@@ -42,16 +42,22 @@ interface AreaStats {
 function ScenariosResultContent () {
     const searchParams = useSearchParams();
     const scenarioId = searchParams.get('id');
+    const patientIdParam = searchParams.get('patientId');
     const { getScenarioById } = useScenario();
     const { getPatientById } = usePatient();
 
     const [scenario, setScenario] = useState<Scenario | null>(null);
+    const [patientName, setPatientName] = useState<string | null>(null);
     const [areaStats, setAreaStats] = useState<AreaStats[]>([]);
     const [sessionDuration, setSessionDuration] = useState(0);
     const [totalFocusTime, setTotalFocusTime] = useState(0);
     const [numberOfFixations, setNumberOfFixations] = useState(0);
     const [averageFixationTime, setAverageFixationTime] = useState(0);
     const [error, setError] = useState<string | null>(null);
+    const [sessionsCount, setSessionsCount] = useState<number | null>(null);
+    const [latestSessionCreatedAt, setLatestSessionCreatedAt] = useState<string | null>(null);
+    const [latestSessionRaw, setLatestSessionRaw] = useState<string | null>(null);
+    const [showRaw, setShowRaw] = useState(false);
 
     const formatTime = (seconds: number): string => {
         const hours = Math.floor(seconds / 3600);
@@ -65,8 +71,15 @@ function ScenariosResultContent () {
     const processSessionData = (sessions: any[]) => {
         if (!sessions || sessions.length === 0) return;
 
-        // Get the most recent session
+        // Get the most recent session (by array order)
         const latestSession = sessions[sessions.length - 1];
+        setSessionsCount(sessions.length);
+        setLatestSessionCreatedAt(latestSession?.createdAt || (latestSession?.data?.startedAtUtc ?? null));
+        try {
+            setLatestSessionRaw(JSON.stringify(latestSession?.data || latestSession, null, 2));
+        } catch (e) {
+            setLatestSessionRaw(String(latestSession));
+        }
         const data: SessionData = latestSession.data;
 
         if (!data || !data.events) return;
@@ -121,22 +134,34 @@ function ScenariosResultContent () {
     };
 
     useEffect(() => {
-        if (!scenarioId) return;
+        if (!scenarioId && !patientIdParam) return;
         let cancelled = false;
         
         (async () => {
             try {
-                // Get the scenario first
-                const s = await getScenarioById(Number(scenarioId));
-                if (cancelled) return;
-                setScenario(s);
+                if (scenarioId) {
+                    // Get the scenario first
+                    const s = await getScenarioById(Number(scenarioId));
+                    if (cancelled) return;
+                    setScenario(s);
 
-                // Get patient profile to get sessions
-                if (s.patientId) {
-                    const patientProfile = await getPatientById(s.patientId);
+                    // Get patient profile to get sessions
+                    if (s.patientId) {
+                        const patientProfile = await getPatientById(s.patientId);
+                        if (!cancelled && patientProfile) {
+                            setPatientName((patientProfile as any)?.name || null);
+                            // Extract sessions from patient user object if available
+                            const userSessions = (patientProfile as any)?.user?.sessions ||
+                                                (patientProfile as any)?.sessions || [];
+                            processSessionData(userSessions);
+                        }
+                    }
+                } else if (patientIdParam) {
+                    // Direct patient link: fetch patient and process sessions
+                    const patientProfile = await getPatientById(Number(patientIdParam));
                     if (!cancelled && patientProfile) {
-                        // Extract sessions from patient user object if available
-                        const userSessions = (patientProfile as any)?.user?.sessions || 
+                        setPatientName((patientProfile as any)?.name || null);
+                        const userSessions = (patientProfile as any)?.user?.sessions ||
                                             (patientProfile as any)?.sessions || [];
                         processSessionData(userSessions);
                     }
@@ -147,7 +172,7 @@ function ScenariosResultContent () {
         })();
 
         return () => { cancelled = true; };
-    }, [scenarioId, getScenarioById, getPatientById]);
+    }, [scenarioId, patientIdParam, getScenarioById, getPatientById]);
 
     const imageIcons = [one, two, three, four, five];
     const imageClasses = ['one', 'two', 'three', 'four', 'five'];
@@ -160,7 +185,7 @@ function ScenariosResultContent () {
             />
 
             <div className="section-header">
-                <h1>{scenario?.title || 'Cenário'}</h1>
+                <h1>{scenario?.title || patientName || 'Cenário'}</h1>
             </div>
 
             {error && (
@@ -222,6 +247,22 @@ function ScenariosResultContent () {
 
                 <div className="General__Statistics">
                     <h3>Áreas com mais foco</h3>
+                    <div style={{ margin: '8px 0' }}>
+                        <p className='space'>Sessões disponíveis</p>
+                        <p>{sessionsCount !== null ? sessionsCount : '—'}</p>
+                    </div>
+                    <div style={{ margin: '8px 0' }}>
+                        <p className='space'>Última sessão</p>
+                        <p>{latestSessionCreatedAt || '—'}</p>
+                    </div>
+                    {latestSessionRaw && (
+                        <div style={{ margin: '8px 0' }}>
+                            <button onClick={() => setShowRaw(!showRaw)}>{showRaw ? 'Ocultar JSON' : 'Mostrar JSON'}</button>
+                            {showRaw && (
+                                <pre style={{ maxHeight: 300, overflow: 'auto', background: '#f6f6f6', padding: 8 }}>{latestSessionRaw}</pre>
+                            )}
+                        </div>
+                    )}
                     {areaStats.length > 0 ? (
                         areaStats.map((area, index) => (
                             <div key={index} className="box__areas">
