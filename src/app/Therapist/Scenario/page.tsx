@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import './styles.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -13,7 +14,7 @@ import visualize from '@/assets/images/visualizeicon.svg';
 import infoicon from '@/assets/images/InfoIcon.svg';
 import Iconpaciente from '@/assets/images/ProfileIcon.svg';
 import Input from "@/components/input/Input";
-import { useScenario, usePatient, useSession } from '@/lib';
+import { useScenario, usePatient, useSession, ROUTES } from '@/lib';
 import type { Scenario, ScenarioStatus, PatientProfile } from '@/types';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { handleApiError } from '@/utils/apiErrors';
@@ -238,11 +239,14 @@ function ScenariosContent () {
                                     style={{ cursor: 'pointer' }}
                                 />
                                 {scenario.status === 'FINISHED' && (
-                                    <Image
-                                        src={visualize}
-                                        alt=""
-                                        className="view"
-                                    />
+                                    <Link href={`${ROUTES.therapistScenarioResult}?patientId=${patientIdParam || scenario.patientId}`}>
+                                        <Image
+                                            src={visualize}
+                                            alt="Ver resultados"
+                                            className="view"
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    </Link>
                                 )}
                             </div>
                         </div>
