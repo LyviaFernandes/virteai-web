@@ -68,52 +68,88 @@ footer{
     flex-shrink: 0;
 }
 
+@media (max-width: 1024px){
+    footer{
+        padding: 24px 30px;
+        gap: 24px;
+    }
+
+    .container-footer{
+        gap: 24px;
+    }
+
+    .container-contact h3,
+    .container-help h3,
+    .container-Terms h3{
+        font-size: 18px;
+    }
+}
+
 @media (max-width: 768px){
 
-footer{
-    display: flex;
-    height: 150px;
-    align-items: center;
-    padding: 15px;
-    justify-content: center;
+    footer{
+        min-height: auto;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .Logo{
+        width: 120px;
+        height: auto;
+    }
+
+    .container-footer{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+        width: 100%;
+        padding: 0;
+    }
+
+    .container-contact,
+    .container-help,
+    .container-Terms{
+        flex: 1 1 30%;
+        min-width: 120px;
+    }
+
+    .container-contact h3,
+    .container-help h3,
+    .container-Terms h3{
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .emailFooter{
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .emailFooter p {
+        font-size: 12px;
+        word-break: break-all;
+    }
+
+    .container-help p,
+    .container-Terms p{
+        font-size: 12px;
+        width: auto;
+        margin-top: 6px;
+    }
 }
 
-.Logo{
-    display: none;
-}
+@media (max-width: 480px){
+    .container-footer{
+        flex-direction: column;
+        gap: 16px;
+    }
 
-.container-footer{
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    
-}
-
-.image{
-    width: 15px;
-}
-
-.container-contact h3{
-    font-size: 15px;
-}
-
-.emailFooter p {
-    font-size: 10px;
-}
-
-.container-help h3{
-    font-size: 15px;
-}
-
-.container-help p{
-    font-size: 10px;
-}
-
-.container-Terms h3{
-    font-size: 15px;
-}
-
-.container-Terms p{
-    font-size: 10px;
-}
+    .container-contact,
+    .container-help,
+    .container-Terms{
+        flex: 1 1 100%;
+    }
 }

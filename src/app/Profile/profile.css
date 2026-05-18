@@ -15,20 +15,25 @@
 }
 
 .profile-header h2{
-    margin-top: 15%;
-    font-size: 60px;
+    margin-top: clamp(40px, 8vw, 120px);
+    font-size: clamp(28px, 5vw, 60px);
     margin-bottom: 30px;
-    align-items: center;
+    text-align: center;
 }
 
 .profile-header p{
-    font-size: 30px;
-    margin-bottom: 100px;
+    font-size: clamp(16px, 2vw, 30px);
+    margin-bottom: clamp(40px, 8vw, 100px);
+    text-align: center;
+    padding: 0 16px;
 }
 
 .profile-card-list{
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 16px;
 }
 
 .profile-card{
@@ -38,11 +43,11 @@
     justify-content: center;
     background-color: var(--dark-blue);
     border-radius: 30px;
-    padding: 76px 82px;
+    padding: clamp(32px, 6vw, 76px) clamp(36px, 6vw, 82px);
 }
 
 .profile-card p{
-    font-size: 30px;
+    font-size: clamp(18px, 2vw, 30px);
     margin-top: 15px;
     color: var(--white-color);
 }

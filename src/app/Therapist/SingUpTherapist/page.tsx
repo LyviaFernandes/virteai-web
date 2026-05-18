@@ -167,6 +167,7 @@ export default function TherapistSignup () {
 
                     <p>Senha:</p>
                     <Input
+                        type="password"
                         description='defina sua senha'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

@@ -10,7 +10,22 @@
     margin: 0px;
     padding: 0px;
     border: 0px;
+    box-sizing: border-box;
 }
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
 p, h6, input, textarea, option, input, select{
     font-family: 'Comfortaa';
 }

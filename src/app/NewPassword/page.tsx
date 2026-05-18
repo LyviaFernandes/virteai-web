@@ -72,6 +72,7 @@ export default function NewPassword () {
                         <div className="reset-password__input-group">
                             <p>Senha:</p>
                             <Input
+                                type="password"
                                 description='Insira sua senha'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}

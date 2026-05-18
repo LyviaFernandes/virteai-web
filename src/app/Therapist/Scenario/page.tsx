@@ -7,7 +7,7 @@ import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Footer from '@/components/footer/Footer';
-import deleteicon from '@/assets/images/deleteicon.svg';
+import deleteicon from '@/assets/images/DeleteIcon.svg';
 import plusicon from '@/assets/images/PlusIcon.svg';
 import visualize from '@/assets/images/visualizeicon.svg';
 import infoicon from '@/assets/images/InfoIcon.svg';

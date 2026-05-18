@@ -21,8 +21,9 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
 
-    padding: 0 50px;
+    padding: 0 clamp(16px, 3vw, 50px);
 
     background-color: var(--primary-color);
 
@@ -58,7 +59,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 150px;
+    gap: clamp(24px, 6vw, 150px);
+    flex-wrap: wrap;
 }
 
 .container-pages a,
@@ -298,6 +300,22 @@ body{
     background: var(--gray-medium-two);
 }
 
+/* ================= TABLET ================= */
+
+@media (max-width: 1200px){
+    .container-pages{
+        gap: clamp(16px, 3vw, 60px);
+    }
+
+    .iconecontainer p{
+        font-size: 16px;
+    }
+
+    .logo{
+        width: 140px;
+    }
+}
+
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px){
@@ -330,7 +348,7 @@ body{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left: 60%;
+        margin-left: auto;
     }
 
     /* menu mobile */

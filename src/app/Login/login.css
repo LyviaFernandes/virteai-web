@@ -14,8 +14,8 @@
 .login-container h2{
     background-color: var(--blue-medium-two);
     color: var(--white-color);
-    font-size: 50px;
-    padding: 15px 60px;
+    font-size: clamp(24px, 4vw, 50px);
+    padding: 15px clamp(24px, 4vw, 60px);
     border-radius: 50px;
     z-index: 2;
     box-shadow: 5px 5px 5px rgb(169, 160, 160);
@@ -25,21 +25,21 @@
     display: flex;
     flex-direction: column;
     background-color: var(--primary-color);
-    padding: 30px 60px 50px;
+    padding: 30px clamp(20px, 4vw, 60px) 50px;
     border-radius: 50px;
     z-index: 0;
     margin-top: -40px;
     justify-content: center;
     border: 5px solid var(--blue-medium-two);
-    width: 35%;
+    width: 90%;
+    max-width: 520px;
 }
 
 .login-card p{
-    font-size: 20px;
+    font-size: clamp(14px, 1.5vw, 20px);
     margin: 5px;
-    margin-top: 50px;
+    margin-top: 30px;
     justify-content: center;
-    margin-left: 5%;
 }
 
 

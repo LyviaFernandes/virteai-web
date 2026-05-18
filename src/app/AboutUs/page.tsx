@@ -15,10 +15,10 @@ import Teai from '../../assets/images/TEAImage.svg';
 import Footer from '@/components/footer/Footer';
 
 export default function AboutUs () {
-    const { isAuthenticated, isLoading } = useAuth();
+    const { isAuthenticated } = useAuth();
     return(
         <div className="about-us">
-            {isLoading ? null : (isAuthenticated ? <HeaderLogged/> : <HeaderLogout/>)}
+            {isAuthenticated ? <HeaderLogged/> : <HeaderLogout/>}
 
             <Image 
                 className='about-us__banner' 

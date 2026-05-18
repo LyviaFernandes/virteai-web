@@ -5,11 +5,13 @@ header{
     width: 100%;
     height: 170px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     background-color: var(--primary-color);
 
-    justify-content: space-evenly;
-    gap: 5%;
+    justify-content: space-between;
+    gap: clamp(16px, 3vw, 40px);
+    padding: 0 clamp(16px, 3vw, 40px);
+    flex-wrap: wrap;
 
     position: fixed;
     top: 0;
@@ -40,21 +42,21 @@ body{
 }
 
 .logo{
-    width: 15%;
-   margin-left: -3%;
+    width: clamp(120px, 12vw, 200px);
 }
 
 .container-pages{
     display: flex;
-    justify-content: space-between;
-    gap: 15%;
     justify-content: center;
+    gap: clamp(16px, 4vw, 80px);
+    flex-wrap: wrap;
 }
 
 .iconecontainer p{
-    width: 170px;
+    max-width: 170px;
     margin-top: 10px;
     font-size: 20px;
+    text-align: center;
 }
 
 .iconecontainer{
@@ -99,6 +101,24 @@ body{
 .hamburger{
         display: none;
     }
+
+/* ===== TABLET ===== */
+@media (max-width: 1200px){
+    .container-pages{
+        gap: clamp(12px, 2vw, 40px);
+    }
+
+    .iconecontainer p{
+        font-size: 16px;
+    }
+
+    .white-button,
+    .blue-button{
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
 /* ===== MOBILE ===== */
 @media (max-width: 768px){
 
@@ -113,7 +133,6 @@ body{
 
     .logo{
         width: 100px;
-        margin-left: 2%;
     }
 
     /* esconde menu desktop */
@@ -130,7 +149,7 @@ body{
     .hamburger{
         display: flex;
         cursor: pointer;
-        margin-left: 55%;
+        margin-left: auto;
         align-items: center;
         background-color: var(--primary-color);
     }

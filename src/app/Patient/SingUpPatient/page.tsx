@@ -114,6 +114,7 @@ export default function PatientSingup () {
                     
                     <p>Senha:</p>
                     <Input
+                        type="password"
                         description='Defina sua senha'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

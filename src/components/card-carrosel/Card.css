@@ -4,13 +4,12 @@
   display: flex;
     background-color: var(--primary-color);
     border-radius: 50px;
-    width: 23%;
-    height: 560px;
+    width: clamp(280px, 25vw, 400px);
+    min-height: 560px;
   overflow: hidden; /* Ensures the image respects the border radius */
   margin: 16px;
   flex-direction: column;
   align-items: center;
-  min-width: 350px;
     flex-shrink: 0;
 }
 
@@ -60,17 +59,10 @@
 @media (max-width: 768px){
 
 .CardGeneral{
-  display: flex;
-    background-color: var(--primary-color);
-    border-radius: 50px;
-    width: 23%;
-    height: 490px;
-  overflow: hidden; /* Ensures the image respects the border radius */
-  margin: 16px;
-  flex-direction: column;
-  align-items: center;
-  min-width: 350px;
-    flex-shrink: 0;
+    width: 85vw;
+    max-width: 360px;
+    min-height: 490px;
+    margin: 12px;
 }
 
 .imageContainer{

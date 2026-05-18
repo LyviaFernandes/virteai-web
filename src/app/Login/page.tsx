@@ -64,6 +64,7 @@ export default function Login () {
 
                     <p>Senha:</p>
                     <Input
+                        type="password"
                         description='Insira sua senha'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

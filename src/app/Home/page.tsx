@@ -18,7 +18,7 @@ import { useAuth } from '@/lib';
 
 
 export default function HomePage () {
-    const { isAuthenticated, isLoading } = useAuth();
+    const { isAuthenticated } = useAuth();
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Scroll listener for carousel
@@ -42,7 +42,7 @@ export default function HomePage () {
     return(
 
         <div className="home-page">
-            {isLoading ? null : (isAuthenticated ? <HeaderHome/> : <HeaderLogout/>)}
+            {isAuthenticated ? <HeaderHome/> : <HeaderLogout/>}
 
             <Image
                 className='home-banner'
