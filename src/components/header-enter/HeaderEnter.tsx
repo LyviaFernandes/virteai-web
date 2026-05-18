@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import './HeaderEnter.css'
 import logo from '../../assets/images/logo.svg';
@@ -13,25 +13,6 @@ type ICard = {
 export default function HeaderEnter ({src} : ICard) {
     const router = useRouter();
 
-    const [showHeader, setShowHeader] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > lastScrollY) {
-                setShowHeader(false);
-            } else {
-                setShowHeader(true);
-            }
-
-            setLastScrollY(window.scrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
-
     const handleBack = () => {
         if (typeof window !== 'undefined' && window.history.length > 1) {
             router.back();
@@ -41,7 +22,7 @@ export default function HeaderEnter ({src} : ICard) {
     };
 
     return (
-        <header className={showHeader ? "header show" : "header hide"}>
+        <header className="header show">
             <Image
                 className='logo-header'
                 src={logo}

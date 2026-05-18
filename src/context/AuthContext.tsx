@@ -81,12 +81,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, [router, user, isLoading]);
 
-  const dashboardPathForRole = (role?: string) => {
-    if (role === 'PATIENT') return '/Patient/PacientProfile';
-    if (role === 'THERAPIST') return '/Therapist/TherapistPersonalProfile';
-    return '/Home';
-  };
-
   const login = useCallback(async (data: LoginRequest) => {
     try {
       setIsLoading(true);
@@ -95,7 +89,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const currentUser = authService.getCurrentUser();
       if (currentUser) {
         setUser(currentUser);
-        router.push(dashboardPathForRole(currentUser.role));
+        router.push('/Home');
       }
     } catch (err: any) {
       const errorMessage = err.message || 'Login failed';
@@ -110,17 +104,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setIsLoading(true);
       setError(null);
-      const response = await authService.register(data);
-      if (response.token) {
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('authToken', response.token);
-        }
-      }
-      const currentUser = authService.getCurrentUser();
-      if (currentUser) {
-        setUser(currentUser);
-        router.push(dashboardPathForRole(currentUser.role));
-      }
+      await authService.register(data);
+      // Per designer flow: SignUp -> Login. Don't auto-login the user after register.
+      authService.logout();
+      setUser(null);
+      router.push('/Login');
     } catch (err: any) {
       const errorMessage = err.message || 'Registration failed';
       setError(errorMessage);
@@ -134,7 +122,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     authService.logout();
     setUser(null);
     setError(null);
-    router.push('/Login');
+    router.push('/Home');
   }, [router]);
 
   const clearError = useCallback(() => {

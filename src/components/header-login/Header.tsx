@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Header.css'
 import logo from '../../assets/images/logo.svg';
 import aboutUs from '../../assets/images/about-us.svg';
@@ -11,34 +11,20 @@ import menu from '../../assets/images/iconmenu.svg';
 import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib';
 
 export default function HeaderHome () {
     const { user, logout } = useAuth();
-    const profileHref = user?.role === 'THERAPIST'
+    const router = useRouter();
+    const isTherapist = user?.role === 'THERAPIST';
+    const profileHref = isTherapist
         ? '/Therapist/TherapistPersonalProfile'
         : '/Patient/PacientProfile';
     
     const [openModal, setOpenModal] = useState(false);
     const [openNotifications, setOpenNotifications] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-
-    const [showHeader, setShowHeader] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > lastScrollY) {
-                setShowHeader(false);
-            } else {
-                setShowHeader(true);
-            }
-            setLastScrollY(window.scrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
 
     const [notifications, setNotifications] = useState([
         {id:1, text1:"Novo recurso disponível!", text2:"Ajuste a intensidade visual e sonora", read:false},
@@ -65,7 +51,7 @@ export default function HeaderHome () {
 
     return (
         <>
-        <header className={showHeader ? "header show" : "header hide"}>
+        <header className="header show">
             <Image className='logo' src={logo} alt="Logo image" />
             
             <button 
@@ -90,10 +76,19 @@ export default function HeaderHome () {
                     </button>
                 </Link>
 
-                <button className="iconecontainer" onClick={() => setOpenModal(true)}>
-                    <Image className='image' src={Offers} alt="Ofertas icon" width={50}/>
-                    <p>Nossos serviços</p>
-                </button>
+                {isTherapist ? (
+                    <Link href="/Therapist/OurServicesWeb">
+                        <button className="iconecontainer">
+                            <Image className='image' src={Offers} alt="Ofertas icon" width={50}/>
+                            <p>Nossos serviços</p>
+                        </button>
+                    </Link>
+                ) : (
+                    <button className="iconecontainer" onClick={() => setOpenModal(true)}>
+                        <Image className='image' src={Offers} alt="Ofertas icon" width={50}/>
+                        <p>Nossos serviços</p>
+                    </button>
+                )}
 
                 <button className="iconecontainer" onClick={() => setOpenNotifications(true)}>
                     <Image className='image' src={Notification} alt="Notificações icon" width={50}/>
@@ -130,14 +125,18 @@ export default function HeaderHome () {
                 <p>Sobre nós</p>
                 </Link>
 
-                <button onClick={() => {
-                setOpenModal(true);
-                setMenuOpen(false);
-                }}>
-                    <p>
-                        Nossos serviços
-                    </p>
-                </button>
+                {isTherapist ? (
+                    <Link href="/Therapist/OurServicesWeb" onClick={() => setMenuOpen(false)}>
+                        <p>Nossos serviços</p>
+                    </Link>
+                ) : (
+                    <button onClick={() => {
+                    setOpenModal(true);
+                    setMenuOpen(false);
+                    }}>
+                        <p>Nossos serviços</p>
+                    </button>
+                )}
 
                 <button onClick={() => {
                 setOpenNotifications(true);
@@ -220,7 +219,7 @@ export default function HeaderHome () {
                     </label>
 
                     <div className="modal-buttons">
-                        <button>Enviar</button>
+                        <button onClick={() => { setOpenModal(false); router.push('/Patient/AQ10TestWeb'); }}>Enviar</button>
                         <button onClick={() => setOpenModal(false)}>Fechar</button>
                     </div>
 

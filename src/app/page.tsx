@@ -1,6 +1,5 @@
 "use client";
 
-import { useAuth } from '@/lib';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -57,19 +56,11 @@ import ScenariosResult from "./Therapist/ScenarioResult/page";
 import CalendarHistory from "./Therapist/AppointmentsAndHistory/page";
 
 export default function Home() {
-  const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading) {
-      if (isAuthenticated) {
-        router.push('/Home');
-      } else {
-        router.push('/Login');
-      }
-    }
-  }, [isAuthenticated, isLoading, router]);
+    router.replace('/Home');
+  }, [router]);
 
-  // Show loading while checking authentication
   return <div>Loading...</div>;
 }

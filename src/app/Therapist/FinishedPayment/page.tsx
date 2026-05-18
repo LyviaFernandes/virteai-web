@@ -32,7 +32,7 @@ export default function FinishedPayment () {
                         <div className="finished-payment__actions">
                             <ButtonEnter
                             label='Continuar'
-                            onclick={() => router.push('/Therapist/TherapistPersonalProfile')}
+                            onclick={() => router.push('/Home')}
                             />
                         </div>
                     </div>

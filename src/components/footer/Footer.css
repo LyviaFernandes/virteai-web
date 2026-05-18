@@ -2,54 +2,70 @@
 
 
 footer{
-  height: 250px;
+  min-height: 250px;
   width: 100%;
   display: flex;
-  align-items: center; 
+  align-items: center;
   background-color: var(--primary-color);
   border-top: 10px solid var(--turquoise-medium-four);
-}
-    
-.container-footer{
-    display: flex;
-    gap: 60%;
-    align-items: start;
-    text-align: center;
-    justify-content: space-between;
+  padding: 30px 50px;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
-.container-contact h3{
+.container-footer{
+    display: flex;
+    flex: 1;
+    gap: 40px;
+    align-items: flex-start;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.container-contact h3,
+.container-help h3,
+.container-Terms h3 {
     font-size: 20px;
+    margin-bottom: 16px;
+    color: var(--dark-blue);
 }
 
 .emailFooter{
-    margin-top: 20px;
+    margin-top: 8px;
     display: flex;
-    font-family: 20px;
-    gap: 5px;
+    gap: 8px;
     align-items: center;
     justify-content: center;
 }
 
-.container-help{
+.emailFooter p{
+    color: var(--dark-blue);
+}
+
+.container-help,
+.container-Terms {
     text-align: center;
+}
+
+.container-help a,
+.container-Terms a {
+    text-decoration: none;
+    color: var(--dark-blue);
+    display: block;
 }
 
 .container-help p{
-    margin-top: 20px;
+    margin-top: 8px;
+    color: var(--dark-blue);
 }
 
-.container-Terms{
-    text-align: center;
-}
 .container-Terms p{
-    margin-top: 15px;
-    width: 200px;
+    margin-top: 8px;
+    color: var(--dark-blue);
 }
 
 .Logo{
-    margin: 5%;
-    margin-right: 13%;
+    flex-shrink: 0;
 }
 
 @media (max-width: 768px){

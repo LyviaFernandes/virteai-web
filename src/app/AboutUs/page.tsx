@@ -2,7 +2,9 @@
 
 import './aboutus.css'
 import Image from 'next/image';
-import HeaderHome from "@/components/header-logout/Header";
+import HeaderLogged from "@/components/header-login/Header";
+import HeaderLogout from "@/components/header-logout/Header";
+import { useAuth } from '@/lib';
 import imagegroup from '../../assets/images/GroupPhoto.svg';
 import Lyvia from '../../assets/images/LyviaImage.svg';
 import Ana from '../../assets/images/AnaImage.svg';
@@ -13,9 +15,10 @@ import Teai from '../../assets/images/TEAImage.svg';
 import Footer from '@/components/footer/Footer';
 
 export default function AboutUs () {
+    const { isAuthenticated, isLoading } = useAuth();
     return(
         <div className="about-us">
-            <HeaderHome/>
+            {isLoading ? null : (isAuthenticated ? <HeaderLogged/> : <HeaderLogout/>)}
 
             <Image 
                 className='about-us__banner' 

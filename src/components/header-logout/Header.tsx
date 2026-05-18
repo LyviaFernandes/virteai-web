@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Header.css'
 import logo from '../../assets/images/logo.svg';
 import aboutUs from '../../assets/images/about-us.svg';
@@ -15,26 +15,9 @@ export default function HeaderLogout () {
 
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const [showHeader, setShowHeader] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > lastScrollY) {
-                setShowHeader(false);
-            } else {
-                setShowHeader(true);
-            }
-            setLastScrollY(window.scrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
-
     return (
         <>
-            <header className={showHeader ? "header show" : "header hide"}>
+            <header className="header show">
                 <Image className='logo' src={logo} alt="Logo image" />
 
                 <button 
