@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../../assets/images/return-icon.svg';

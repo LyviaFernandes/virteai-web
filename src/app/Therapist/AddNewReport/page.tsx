@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -10,6 +10,7 @@ import { useReport, useTherapist } from '@/lib';
 import type { PatientProfile, ReportEvolution } from '@/types';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { handleApiError } from '@/utils/apiErrors';
+import { ROUTES } from '@/lib/routes';
 
 type FormType = {
     patientId: string;
@@ -24,7 +25,7 @@ const statusToEvolution: Record<string, ReportEvolution> = {
     retrocedeu: 'REGRESSED',
 };
 
-export default function AddNewReport () {
+function AddNewReportContent () {
     const router = useRouter();
     const searchParams = useSearchParams();
     const prefillPatient = searchParams.get('patientId');
@@ -89,7 +90,7 @@ export default function AddNewReport () {
                 content: form.report,
             });
             setSuccess('Relatório enviado com sucesso.');
-            setTimeout(() => router.push('/Therapist/ReportsList'), 800);
+            setTimeout(() => router.push(ROUTES.therapistReportsList), 800);
         } catch (err) {
             setError(handleApiError(err));
         }
@@ -214,4 +215,12 @@ export default function AddNewReport () {
         </div>
         </ProtectedRoute>
     )
+}
+
+export default function AddNewReport () {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <AddNewReportContent />
+        </Suspense>
+    );
 }

@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib';
+import { ROUTES } from '@/lib/routes';
 import './profile.css'
 import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -19,7 +20,7 @@ export default function Profile () {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/Home');
+            router.push(ROUTES.home);
         }
     }, [isAuthenticated, router]);
 
@@ -40,7 +41,7 @@ export default function Profile () {
             </div>
 
             <div className="profile-card-list">
-                <Link href="/Patient/SingUpPatient">
+                <Link href={ROUTES.patientSignup}>
                     <div className="profile-card">
                         <Image 
                         className='profile-card__icon' 
@@ -51,7 +52,7 @@ export default function Profile () {
                     </div>
                 </Link>
 
-                <Link href="/Therapist/SingUpTherapist">
+                <Link href={ROUTES.therapistSignup}>
                     <div className="profile-card">
                         <Image 
                         className='profile-card__icon' 

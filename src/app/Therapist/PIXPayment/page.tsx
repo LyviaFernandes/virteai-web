@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './pay.css'
 import Footer from '@/components/footer/Footer';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -77,7 +78,7 @@ export default function PixPay () {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
-                <button onClick={() => router.push('/Therapist/FinishedPayment')}>
+                <button onClick={() => router.push(ROUTES.therapistFinishedPayment)}>
                     Já paguei
                 </button>
             </div>

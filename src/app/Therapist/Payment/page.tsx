@@ -1,14 +1,15 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './pay.css'
 import Footer from '@/components/footer/Footer';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 
-export default function Payment () {
+function PaymentContent () {
     const router = useRouter();
     const searchParams = useSearchParams();
     const preselectedPlan = searchParams.get('plan');
@@ -35,9 +36,9 @@ export default function Payment () {
     const handleCheckout = () => {
         if (!plan) { alert('Selecione um plano.'); return; }
         if (paymentMethod === 'pix') {
-            router.push('/Therapist/PIXPayment');
+            router.push(ROUTES.therapistPixPayment);
         } else {
-            router.push('/Therapist/FinishedPayment');
+            router.push(ROUTES.therapistFinishedPayment);
         }
     };
 
@@ -284,4 +285,12 @@ export default function Payment () {
             <Footer/>
         </div>
     )
+}
+
+export default function Payment () {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <PaymentContent />
+        </Suspense>
+    );
 }

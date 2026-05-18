@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { ROUTES } from '@/lib/routes';
 import './Footer.css'
 import logo from '../../assets/images/logo.svg';
 import email from '../../assets/images/emailIcon.svg';
@@ -38,14 +39,14 @@ export default function Footer () {
 
                 <div className="container-help">
                     <h3>Ajuda</h3>
-                    <Link href="/FAQWeb"><p>FAQ</p></Link>
+                    <Link href={ROUTES.faq}><p>FAQ</p></Link>
                 </div>
 
                 <div className="container-Terms">
                     <h3>Termos</h3>
-                    <Link href="/TermsofServiceWeb"><p>Termos de serviço</p></Link>
-                    <Link href="/LegalTermsWeb"><p>Termos Legais</p></Link>
-                    <Link href="/PrivacyPolicyWeb"><p>Politica de privacidade</p></Link>
+                    <Link href={ROUTES.termsOfService}><p>Termos de serviço</p></Link>
+                    <Link href={ROUTES.legalTerms}><p>Termos Legais</p></Link>
+                    <Link href={ROUTES.privacyPolicy}><p>Politica de privacidade</p></Link>
                 </div>
             </div>
 

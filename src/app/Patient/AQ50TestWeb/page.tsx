@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import { useAuth, useTest } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
 import './test.css'
@@ -70,11 +71,11 @@ export default function BigQuestionnaire () {
 
     useEffect(() => {
         if (!isAuthenticated) {
-            router.push('/Login');
+            router.push(ROUTES.login);
             return;
         }
         if (user?.role !== 'PATIENT') {
-            router.push('/Home');
+            router.push(ROUTES.home);
             return;
         }
     }, [isAuthenticated, user, router]);
@@ -94,7 +95,7 @@ export default function BigQuestionnaire () {
         try {
             setError(null);
             const result = await submitTest50({ answers });
-            router.push(`/Patient/AQ50ResultTest?score=${result.score}`);
+            router.push(`${ROUTES.patientAQ50Result}?score=${result.score}`);
         } catch (err) {
             setError(handleApiError(err));
         }

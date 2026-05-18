@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './result.css'
 import Return from '@/assets/images/return-icon.svg';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -68,10 +69,10 @@ export default function ResultQuestionnaire () {
 
                             <ButtonEnter
                             label='Continuar'
-                            onclick={() => router.push('/Patient/TherapistList')}
+                            onclick={() => router.push(ROUTES.patientTherapistList)}
                             />
 
-                            <Link href="/Patient/AQ50TestWeb">
+                            <Link href={ROUTES.patientAQ50Test}>
                                 <button className='result-card__secondary-button'>
                                     <h3>Acessar Teste</h3>
                                 </button>

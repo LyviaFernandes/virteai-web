@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import './HeaderEnter.css'
 import logo from '../../assets/images/logo.svg';
 import Image from 'next/image';
@@ -17,7 +18,7 @@ export default function HeaderEnter ({src} : ICard) {
         if (typeof window !== 'undefined' && window.history.length > 1) {
             router.back();
         } else {
-            router.push('/Home');
+            router.push(ROUTES.home);
         }
     };
 

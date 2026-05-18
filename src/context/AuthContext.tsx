@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import { useRouter } from 'next/navigation';
 import { User, LoginRequest, RegisterRequest } from '@/types';
 import { authService } from '@/services/authService';
+import { ROUTES } from '@/lib/routes';
 
 interface AuthContextType {
   user: User | null;
@@ -34,9 +35,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(currentUser);
         // Redirect to Home if user is authenticated and on a pre-login page
         const currentPath = window.location.pathname;
-        const preLoginPaths = ['/Login', '/Patient/SingUpPatient', '/Therapist/SingUpTherapist', '/Profile'];
+        const preLoginPaths = [
+          ROUTES.login,
+          ROUTES.patientSignup,
+          ROUTES.therapistSignup,
+          ROUTES.profile,
+        ];
         if (preLoginPaths.includes(currentPath)) {
-          router.push('/Home');
+          router.push(ROUTES.home);
         }
       } else {
         // Clear invalid state
@@ -61,7 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (!token && user) {
         console.log('Token deleted, redirecting to login');
         setUser(null);
-        router.push('/Login');
+        router.push(ROUTES.login);
       }
     };
 

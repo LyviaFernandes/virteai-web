@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import { useAuth, useTherapist } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
 import './style.css'
@@ -23,11 +24,11 @@ export default function AccountInformationTherapist () {
 
     useEffect(() => {
         if (!isAuthenticated) {
-            router.push('/Login');
+            router.push(ROUTES.login);
             return;
         }
         if (user?.role !== 'THERAPIST') {
-            router.push('/Home');
+            router.push(ROUTES.home);
             return;
         }
 

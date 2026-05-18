@@ -1,7 +1,8 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { ROUTES } from '@/lib/routes';
 import { useRouter, useSearchParams } from 'next/navigation';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -30,7 +31,7 @@ const formatDate = (iso?: string) => {
     return isNaN(d.getTime()) ? iso : d.toLocaleDateString('pt-BR');
 };
 
-export default function ReportsList () {
+function ReportsListContent () {
     const router = useRouter();
     const searchParams = useSearchParams();
     const patientIdFilter = searchParams.get('patientId');
@@ -83,7 +84,7 @@ export default function ReportsList () {
                 {filtered.map((report) => (
                     <Link
                         key={report.reportId}
-                        href={`/Therapist/Reports?id=${report.reportId}`}
+                        href={`${ROUTES.therapistReports}?id=${report.reportId}`}
                         style={{ textDecoration: 'none', color: 'inherit' }}
                     >
                         <div className="list-report-info">
@@ -100,7 +101,7 @@ export default function ReportsList () {
             </div>
 
             <div className="new__report">
-                <button onClick={() => router.push('/Therapist/AddNewReport' + (patientIdFilter ? `?patientId=${patientIdFilter}` : ''))}>
+                <button onClick={() => router.push(`${ROUTES.therapistAddNewReport}${patientIdFilter ? `?patientId=${patientIdFilter}` : ''}`)}>
                     Adicionar novo relatório
                 </button>
             </div>
@@ -108,4 +109,12 @@ export default function ReportsList () {
         </div>
         </ProtectedRoute>
         )
+}
+
+export default function ReportsList () {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <ReportsListContent />
+        </Suspense>
+    );
 }

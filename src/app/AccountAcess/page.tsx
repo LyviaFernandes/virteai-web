@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import { useAuth } from '@/lib';
 import './account.css'
 import Image from 'next/image';
@@ -16,7 +17,7 @@ export default function Acess () {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/Home');
+            router.push(ROUTES.home);
         }
     }, [isAuthenticated, router]);
 
@@ -43,7 +44,7 @@ export default function Acess () {
                     <div className="account-access__actions">
                         <ButtonEnter
                             label='Continuar'
-                            onclick={() => router.push('/Login')}
+                            onclick={() => router.push(ROUTES.login)}
                         />
                     </div>
 
@@ -53,7 +54,7 @@ export default function Acess () {
                         </p>
                         <p
                             className='account-access__terms-link'
-                            onClick={() => router.push('/TermsofServiceWeb')}
+                            onClick={() => router.push(ROUTES.termsOfService)}
                             style={{ cursor: 'pointer' }}
                         >
                             Termos de Uso

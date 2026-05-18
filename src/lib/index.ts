@@ -21,5 +21,8 @@ export { useScenario } from '@/hooks/useScenario';
 export { useTest } from '@/hooks/useTest';
 export { useSession } from '@/hooks/useSession';
 
+// Routes
+export { ROUTES, dashboardPathForRole } from '@/lib/routes';
+
 // Types
 export type * from '@/types';

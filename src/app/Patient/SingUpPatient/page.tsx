@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 import { useAuth } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
 import './singup.css'
@@ -24,7 +25,7 @@ export default function PatientSingup () {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/Home');
+            router.push(ROUTES.home);
         }
     }, [isAuthenticated, router]);
 
@@ -126,7 +127,7 @@ export default function PatientSingup () {
                     </div>
 
                     <div style={{ marginTop: '15px' }}>
-                        <Link href="/Login">
+                        <Link href={ROUTES.login}>
                             Já possui conta? Entrar
                         </Link>
                     </div>

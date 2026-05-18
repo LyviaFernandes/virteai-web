@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import './result.css'
+import { ROUTES } from '@/lib/routes';
 import Return from '@/assets/images/return-icon.svg';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Link from "next/link";
@@ -62,7 +63,7 @@ export default function ResultBigQuestionnaire () {
 
                         <div className="result-card__actions">
 
-                            <Link href="/Patient/TherapistList">
+                            <Link href={ROUTES.patientTherapistList}>
                                 <button className='result-button'>
                                     <h3>Continuar</h3>
                                 </button>

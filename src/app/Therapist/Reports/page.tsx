@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
@@ -23,7 +23,7 @@ const evolutionClass: Record<ReportEvolution, string> = {
     REGRESSED: 'retrocedeu',
 };
 
-export default function Reports () {
+function ReportsContent () {
     const searchParams = useSearchParams();
     const reportId = searchParams.get('id');
 
@@ -134,5 +134,13 @@ export default function Reports () {
         </div>
         </ProtectedRoute>
     )
-
 }
+
+export default function Reports () {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <ReportsContent />
+        </Suspense>
+    );
+}
+
