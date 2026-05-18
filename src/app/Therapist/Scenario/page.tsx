@@ -226,6 +226,14 @@ function ScenariosContent () {
             <div className="scenarios-container">
                 {loading && <p>Carregando cenários...</p>}
                 {!loading && scenarios.length === 0 && <p>Nenhum cenário criado.</p>}
+                <Link href={`${ROUTES.therapistScenarioResult}?patientId=${patientIdParam}`}>
+                    <Image
+                        src={visualize}
+                        alt="Ver resultados"
+                        className="view"
+                        style={{ cursor: 'pointer' }}
+                    />
+                </Link>
                 {scenarios.map(scenario => (
                     <div className="scenario-card" key={scenario.scenarioId}>
                         <div className="scenario-card-container">
@@ -238,7 +246,7 @@ function ScenariosContent () {
                                     onClick={() => handleDelete(scenario.scenarioId)}
                                     style={{ cursor: 'pointer' }}
                                 />
-                                {scenario.status === 'FINISHED' && (
+                                {/* {scenario.status === 'FINISHED' && (
                                     <Link href={`${ROUTES.therapistScenarioResult}?patientId=${patientIdParam || scenario.patientId}`}>
                                         <Image
                                             src={visualize}
@@ -247,7 +255,7 @@ function ScenariosContent () {
                                             style={{ cursor: 'pointer' }}
                                         />
                                     </Link>
-                                )}
+                                )} */}
                             </div>
                         </div>
                         <div className="status-container">
