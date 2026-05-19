@@ -7,7 +7,25 @@ input {
     font-size: 20px;
     border-radius: 28px;
     box-shadow: inset 5px 6px 6px rgba(0, 0, 0, 0.15);
-    
+}
+
+.input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-wrapper--error input {
+    outline: 2px solid #c0392b;
+    outline-offset: -2px;
+}
+
+.input-error-message {
+    color: #c0392b;
+    font-size: 13px;
+    padding-left: 12px;
+    font-family: 'Comfortaa', sans-serif;
 }
 
 @media (max-width: 768px){
@@ -15,5 +33,9 @@ input {
         padding: 15px 20px;
         font-size: 15px;
         border-radius: 20px;
+    }
+
+    .input-error-message {
+        font-size: 12px;
     }
 }

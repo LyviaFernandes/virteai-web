@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth, authService } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
+import { validateEmail } from '@/utils/validators';
 import './redefine.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
@@ -17,6 +18,7 @@ export default function RedefinePassword () {
     const [email, setEmail] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [emailError, setEmailError] = useState<string | null>(null);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -29,13 +31,15 @@ export default function RedefinePassword () {
     }
 
     const handleSubmit = async () => {
-        if (!email) { setError('Informe o email.'); return; }
+        setError(null);
+        const v = validateEmail(email);
+        setEmailError(v);
+        if (v) return;
         try {
             setSubmitting(true);
-            setError(null);
-            await authService.forgotPassword({ email });
+            await authService.forgotPassword({ email: email.trim() });
             if (typeof window !== 'undefined') {
-                sessionStorage.setItem('resetEmail', email);
+                sessionStorage.setItem('resetEmail', email.trim());
             }
             router.push('/CodeAuthentication');
         } catch (err) {
@@ -70,9 +74,13 @@ export default function RedefinePassword () {
                         <div className="reset-password__input-group">
                             <p>Email:</p>
                             <Input
+                                type="email"
+                                autoComplete="email"
                                 description='Insira seu email'
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => { setEmail(e.target.value); if (emailError) setEmailError(null); }}
+                                onBlur={() => setEmailError(validateEmail(email))}
+                                error={emailError}
                             />
                         </div>
 

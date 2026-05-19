@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib';
 import { ROUTES } from '@/lib/routes';
 import { handleApiError } from '@/utils/apiErrors';
+import { validateEmail, required } from '@/utils/validators';
 import './login.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
@@ -18,6 +19,7 @@ export default function Login () {
     const { login, isLoading, isAuthenticated } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({});
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -26,11 +28,21 @@ export default function Login () {
         }
     }, [isAuthenticated, router]);
 
+    const validate = () => {
+        const errs: typeof fieldErrors = {};
+        const e = validateEmail(email);
+        if (e) errs.email = e;
+        const p = required(password, 'Senha');
+        if (p) errs.password = p;
+        setFieldErrors(errs);
+        return Object.keys(errs).length === 0;
+    };
+
     const handleLogin = async () => {
+        setError(null);
+        if (!validate()) return;
         try {
-            setError(null);
-            await login({ email, password });
-            // Redirection is handled by AuthContext
+            await login({ email: email.trim(), password });
         } catch (err) {
             setError(handleApiError(err));
         }
@@ -54,20 +66,27 @@ export default function Login () {
                             <p>{error}</p>
                         </div>
                     )}
-                    
+
                     <p>Email:</p>
                     <Input
+                        type="email"
+                        autoComplete="email"
                         description='Insira seu email'
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => { setEmail(e.target.value); if (fieldErrors.email) setFieldErrors({ ...fieldErrors, email: undefined }); }}
+                        onBlur={() => setFieldErrors({ ...fieldErrors, email: validateEmail(email) || undefined })}
+                        error={fieldErrors.email}
                     />
 
                     <p>Senha:</p>
                     <Input
                         type="password"
+                        autoComplete="current-password"
                         description='Insira sua senha'
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => { setPassword(e.target.value); if (fieldErrors.password) setFieldErrors({ ...fieldErrors, password: undefined }); }}
+                        onBlur={() => setFieldErrors({ ...fieldErrors, password: required(password, 'Senha') || undefined })}
+                        error={fieldErrors.password}
                     />
 
                     <Link href={ROUTES.passwordReset}>

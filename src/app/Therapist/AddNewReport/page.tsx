@@ -44,6 +44,7 @@ function AddNewReportContent () {
     const [open, setOpen] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
+    const [fieldErrors, setFieldErrors] = useState<Partial<Record<'patientId'|'title'|'goals'|'report'|'status', string>>>({});
 
     const statusLabel: Record<string, string> = {
         evoluiu: 'Evoluiu',
@@ -75,18 +76,21 @@ function AddNewReportContent () {
         setError(null);
         setSuccess(null);
 
-        if (!form.patientId) { setError('Selecione um paciente.'); return; }
-        if (!form.title.trim()) { setError('Informe o título.'); return; }
-        if (!form.goals.trim()) { setError('Informe o objetivo da sessão.'); return; }
-        if (!form.report.trim()) { setError('Escreva o relatório.'); return; }
-        if (!status) { setError('Selecione um status de evolução.'); return; }
+        const errs: typeof fieldErrors = {};
+        if (!form.patientId) errs.patientId = 'Selecione um paciente.';
+        if (!form.title.trim()) errs.title = 'Informe o título.';
+        if (!form.goals.trim()) errs.goals = 'Informe o objetivo da sessão.';
+        if (!form.report.trim()) errs.report = 'Escreva o relatório.';
+        if (!status) errs.status = 'Selecione um status de evolução.';
+        setFieldErrors(errs);
+        if (Object.keys(errs).length > 0) return;
 
         try {
             await createReport({
                 patientId: Number(form.patientId),
                 sessionObjective: form.goals,
                 title: form.title,
-                evolution: statusToEvolution[status],
+                evolution: statusToEvolution[status as string],
                 content: form.report,
             });
             setSuccess('Relatório enviado com sucesso.');
@@ -130,12 +134,14 @@ function AddNewReportContent () {
                         value={form.patientId}
                         onChange={handleChange}
                         className="input-field"
+                        style={fieldErrors.patientId ? { outline: '2px solid #c0392b' } : undefined}
                     >
                         <option value="">Selecione um paciente</option>
                         {patients.map(p => (
                             <option key={p.userId} value={p.userId}>{p.name}</option>
                         ))}
                     </select>
+                    {fieldErrors.patientId && <small style={{ color: '#c0392b', fontSize: 13 }}>{fieldErrors.patientId}</small>}
                 </div>
 
                 <div className="personal-data-item">
@@ -146,7 +152,9 @@ function AddNewReportContent () {
                         onChange={handleChange}
                         className="input-field"
                         placeholder="Insira o objetivo da sessão realizada"
+                        style={fieldErrors.goals ? { outline: '2px solid #c0392b' } : undefined}
                     />
+                    {fieldErrors.goals && <small style={{ color: '#c0392b', fontSize: 13 }}>{fieldErrors.goals}</small>}
                 </div>
             </div>
 
@@ -160,7 +168,9 @@ function AddNewReportContent () {
                             onChange={handleChange}
                             className="input-title"
                             placeholder="Título do relatório"
+                            style={fieldErrors.title ? { outline: '2px solid #c0392b' } : undefined}
                         />
+                        {fieldErrors.title && <small style={{ color: '#c0392b', fontSize: 13 }}>{fieldErrors.title}</small>}
 
                         <div className="status-container">
                             <h3
@@ -200,7 +210,10 @@ function AddNewReportContent () {
                             onChange={handleChange}
                             className="input-report"
                             placeholder="Neste campo, escreva o relatório sobre a sessão realizada."
+                            style={fieldErrors.report ? { outline: '2px solid #c0392b' } : undefined}
                         />
+                        {fieldErrors.report && <small style={{ color: '#c0392b', fontSize: 13 }}>{fieldErrors.report}</small>}
+                        {fieldErrors.status && <small style={{ color: '#c0392b', fontSize: 13, display: 'block', marginTop: 6 }}>{fieldErrors.status}</small>}
                     </div>
 
                 </div>

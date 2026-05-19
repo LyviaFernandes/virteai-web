@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/lib/routes';
 import { useAuth } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
+import { validateEmail, validatePassword, validateBirthDateBR, required } from '@/utils/validators';
 import './singup.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
@@ -12,15 +13,18 @@ import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
 import Link from 'next/link';
 
+type FieldErrors = Partial<Record<'name' | 'email' | 'password' | 'birthDate' | 'city', string>>;
+
 export default function PatientSingup () {
     const router = useRouter();
     const { register, isLoading, isAuthenticated } = useAuth();
-    
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [birthDate, setBirthDate] = useState('');
     const [city, setCity] = useState('');
+    const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -29,32 +33,36 @@ export default function PatientSingup () {
         }
     }, [isAuthenticated, router]);
 
+    const validate = (): boolean => {
+        const errs: FieldErrors = {};
+        const n = required(name, 'Nome'); if (n) errs.name = n;
+        const e = validateEmail(email); if (e) errs.email = e;
+        const p = validatePassword(password); if (p) errs.password = p;
+        const d = validateBirthDateBR(birthDate); if (d) errs.birthDate = d;
+        const c = required(city, 'Cidade'); if (c) errs.city = c;
+        setFieldErrors(errs);
+        return Object.keys(errs).length === 0;
+    };
+
+    const clearField = (field: keyof FieldErrors) => {
+        if (fieldErrors[field]) setFieldErrors({ ...fieldErrors, [field]: undefined });
+    };
+
     const handleRegister = async () => {
+        setError(null);
+        if (!validate()) return;
         try {
-            setError(null);
-
-            // Validate DD/MM/YYYY
-            const isValidDate = /^\d{2}\/\d{2}\/\d{4}$/.test(birthDate);
-
-            if (!isValidDate) {
-                setError('Data inválida. Use DD/MM/YYYY');
-                return;
-            }
-
-            // Convert DD/MM/YYYY -> YYYY-MM-DD
             const [day, month, year] = birthDate.split('/');
             const formattedBirthDate = `${year}-${month}-${day}`;
 
             await register({
-                name,
-                email,
+                name: name.trim(),
+                email: email.trim(),
                 password,
                 birthDate: formattedBirthDate,
-                city,
+                city: city.trim(),
                 role: 'PATIENT'
             });
-
-            // Redirection is handled by AuthContext
         } catch (err) {
             setError(handleApiError(err));
         }
@@ -86,38 +94,52 @@ export default function PatientSingup () {
 
                     <p>Nome:</p>
                     <Input
+                        autoComplete="name"
                         description='Insira seu nome'
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => { setName(e.target.value); clearField('name'); }}
+                        onBlur={() => setFieldErrors({ ...fieldErrors, name: required(name, 'Nome') || undefined })}
+                        error={fieldErrors.name}
                     />
 
                     <p>Data de Nascimento:</p>
                     <Input
-                        description='Insira sua data de nascimento (DD/MM/YYYY)'
+                        description='DD/MM/YYYY'
                         value={birthDate}
-                        onChange={(e) => setBirthDate(e.target.value)}
+                        onChange={(e) => { setBirthDate(e.target.value); clearField('birthDate'); }}
+                        onBlur={() => setFieldErrors({ ...fieldErrors, birthDate: validateBirthDateBR(birthDate) || undefined })}
+                        error={fieldErrors.birthDate}
                     />
 
                     <p>Cidade:</p>
                     <Input
                         description='Insira sua cidade'
                         value={city}
-                        onChange={(e) => setCity(e.target.value)}
+                        onChange={(e) => { setCity(e.target.value); clearField('city'); }}
+                        onBlur={() => setFieldErrors({ ...fieldErrors, city: required(city, 'Cidade') || undefined })}
+                        error={fieldErrors.city}
                     />
 
                     <p>Email:</p>
                     <Input
+                        type="email"
+                        autoComplete="email"
                         description='Insira seu email'
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => { setEmail(e.target.value); clearField('email'); }}
+                        onBlur={() => setFieldErrors({ ...fieldErrors, email: validateEmail(email) || undefined })}
+                        error={fieldErrors.email}
                     />
-                    
+
                     <p>Senha:</p>
                     <Input
                         type="password"
-                        description='Defina sua senha'
+                        autoComplete="new-password"
+                        description='Mínimo 8 caracteres, com letras e números'
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => { setPassword(e.target.value); clearField('password'); }}
+                        onBlur={() => setFieldErrors({ ...fieldErrors, password: validatePassword(password) || undefined })}
+                        error={fieldErrors.password}
                     />
 
                     <div className="signup-actions">

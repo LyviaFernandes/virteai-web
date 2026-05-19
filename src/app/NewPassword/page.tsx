@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/lib/routes';
 import { useAuth, authService } from '@/lib';
 import { handleApiError } from '@/utils/apiErrors';
+import { validatePassword } from '@/utils/validators';
 import './style.css'
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '../../assets/images/return-icon.svg';
@@ -15,6 +16,7 @@ export default function NewPassword () {
     const router = useRouter();
     const { isAuthenticated } = useAuth();
     const [password, setPassword] = useState('');
+    const [passwordError, setPasswordError] = useState<string | null>(null);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState(false);
@@ -30,10 +32,12 @@ export default function NewPassword () {
     }
 
     const handleSubmit = async () => {
-        if (!password) { setError('Informe a nova senha.'); return; }
+        setError(null);
+        const v = validatePassword(password, 'Nova senha');
+        setPasswordError(v);
+        if (v) return;
         try {
             setSubmitting(true);
-            setError(null);
             const token = (typeof window !== 'undefined' && sessionStorage.getItem('resetToken')) || 'MOCK_TOKEN';
             await authService.resetPassword({ token, password });
             setSuccess(true);
@@ -73,9 +77,12 @@ export default function NewPassword () {
                             <p>Senha:</p>
                             <Input
                                 type="password"
-                                description='Insira sua senha'
+                                autoComplete="new-password"
+                                description='Mínimo 8 caracteres, com letras e números'
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) => { setPassword(e.target.value); if (passwordError) setPasswordError(null); }}
+                                onBlur={() => setPasswordError(validatePassword(password, 'Nova senha'))}
+                                error={passwordError}
                             />
                         </div>
 

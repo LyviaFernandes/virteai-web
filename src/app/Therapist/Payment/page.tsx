@@ -8,6 +8,14 @@ import Footer from '@/components/footer/Footer';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
+import {
+    validateEmail,
+    validateCPF,
+    validateCardNumber,
+    validateCardExpiry,
+    validateCVV,
+    required,
+} from '@/utils/validators';
 
 function PaymentContent () {
     const router = useRouter();
@@ -33,13 +41,42 @@ function PaymentContent () {
         if (preselectedPlan === 'corporative') setPlan('Plano Corporativo');
     }, [preselectedPlan]);
 
+    const [fieldErrors, setFieldErrors] = useState<Record<string, string | undefined>>({});
+    const [formError, setFormError] = useState<string | null>(null);
+
+    const validateCheckout = (): boolean => {
+        const errs: Record<string, string | undefined> = {};
+        if (!plan) errs.plan = 'Selecione um plano.';
+        if (!charge) errs.charge = 'Selecione o dia de cobrança.';
+        const nameErr = required(form.name, 'Nome'); if (nameErr) errs.name = nameErr;
+        const emailErr = validateEmail(form.email); if (emailErr) errs.email = emailErr;
+        const birthErr = required(birthDate, 'Data de nascimento'); if (birthErr) errs.birthDate = birthErr;
+
+        const cpfErr = validateCPF(card.cpf); if (cpfErr) errs.cpf = cpfErr;
+        if (paymentMethod === 'card') {
+            const numErr = validateCardNumber(card.number); if (numErr) errs.number = numErr;
+            const expErr = validateCardExpiry(expiry); if (expErr) errs.expiry = expErr;
+            const cvvErr = validateCVV(card.cvv); if (cvvErr) errs.cvv = cvvErr;
+        }
+        setFieldErrors(errs);
+        return Object.keys(errs).length === 0;
+    };
+
     const handleCheckout = () => {
-        if (!plan) { alert('Selecione um plano.'); return; }
+        setFormError(null);
+        if (!validateCheckout()) {
+            setFormError('Corrija os campos destacados antes de continuar.');
+            return;
+        }
         if (paymentMethod === 'pix') {
             router.push(ROUTES.therapistPixPayment);
         } else {
             router.push(ROUTES.therapistFinishedPayment);
         }
+    };
+
+    const clearField = (k: string) => {
+        if (fieldErrors[k]) setFieldErrors({ ...fieldErrors, [k]: undefined });
     };
 
     const [card, setCard] = useState({
@@ -194,12 +231,24 @@ function PaymentContent () {
 
                         <p>CPF:</p>
                         <div className="input-wrapper">
-                            <Input description="000.000.000-00" value={card.cpf} onChange={handleCPF}/>
+                            <Input
+                                description="000.000.000-00"
+                                value={card.cpf}
+                                onChange={(e) => { handleCPF(e); clearField('cpf'); }}
+                                onBlur={() => setFieldErrors({ ...fieldErrors, cpf: validateCPF(card.cpf) || undefined })}
+                                error={fieldErrors.cpf}
+                            />
                         </div>
 
                         <p>Número do cartão:</p>
                         <div className="input-wrapper-card">
-                            <Input description="0000 0000 0000 0000" value={card.number} onChange={handleCardNumber}/>
+                            <Input
+                                description="0000 0000 0000 0000"
+                                value={card.number}
+                                onChange={(e) => { handleCardNumber(e); clearField('number'); }}
+                                onBlur={() => setFieldErrors({ ...fieldErrors, number: validateCardNumber(card.number) || undefined })}
+                                error={fieldErrors.number}
+                            />
                         </div>
 
                         <div className="card-extra-fields">
@@ -207,14 +256,28 @@ function PaymentContent () {
                             <div className="card-field-group">
                                 <p>Validade:</p>
                                 <div className="input-wrapper-expiry">
-                                    <Input description="MM/AA" value={expiry} onChange={handleExpiry} maxLength={5}/>
+                                    <Input
+                                        description="MM/AA"
+                                        value={expiry}
+                                        onChange={(e) => { handleExpiry(e); clearField('expiry'); }}
+                                        onBlur={() => setFieldErrors({ ...fieldErrors, expiry: validateCardExpiry(expiry) || undefined })}
+                                        error={fieldErrors.expiry}
+                                        maxLength={5}
+                                    />
                                 </div>
                             </div>
 
                             <div className="card-field-group">
                                 <p>CVV:</p>
                                 <div className="input-wrapper-cvv">
-                                    <Input description="CVV" value={card.cvv} onChange={handleCVV} maxLength={4}/>
+                                    <Input
+                                        description="CVV"
+                                        value={card.cvv}
+                                        onChange={(e) => { handleCVV(e); clearField('cvv'); }}
+                                        onBlur={() => setFieldErrors({ ...fieldErrors, cvv: validateCVV(card.cvv) || undefined })}
+                                        error={fieldErrors.cvv}
+                                        maxLength={4}
+                                    />
                                 </div>
                             </div>
 
@@ -275,6 +338,12 @@ function PaymentContent () {
 
                     <p>• Cancele quando quiser</p>
                 </div>
+
+                {formError && (
+                    <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '10px 16px', textAlign: 'center' }}>
+                        <p>{formError}</p>
+                    </div>
+                )}
 
                 <div className="checkout-action">
                     <button onClick={handleCheckout}>Concluir Compra</button>
