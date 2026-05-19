@@ -9,7 +9,7 @@ import ImageCenter from '@/assets/images/Banner.svg';
 import Check from '@/assets/images/check.svg';
 import XIcon from '@/assets/images/XIcon.svg';
 import CheckIcon from '@/assets/images/CheckIcon.svg';
-import HeaderLogout from '@/components/header-logout/Header';
+import HeaderHome from '@/components/header-login/Header';
 
 
 type Feature = {
@@ -32,7 +32,7 @@ const features: Feature[] = [
 export default function OurServices () {
     return(
         <div className="services-section">
-            <HeaderLogout/>
+            <HeaderHome/>
     
             <Image 
                 className='services-banner' 
