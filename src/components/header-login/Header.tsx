@@ -194,39 +194,48 @@ export default function HeaderHome () {
         )}
 
         {openModal && (
-            <div className="modal-overlay">
-                    <div className="container-tittle">
-                        <h2>Formulário de Conhecimento</h2>
-                    </div>
-                <div className="modal">
-
-                    <p>
-                        Responda o pequeno formulário a seguir, para que possamos seguir da melhor maneira:
-                    </p>
-
-                    <label>
-                        <input type="radio" name="tea"/>
-                        Eu não sei ou não tenho certeza se possuo o Transtorno do Espectro Autista (TEA).
-                    </label>
-
-                    <label>
-                        <input type="radio" name="tea"/>
-                        Eu possuo o Transtorno do Espectro Autista (TEA), mas não possuo ou não consegui um laudo.
-                    </label>
-
-                    <label>
-                        <input type="radio" name="tea"/>
-                        Eu possuo o Transtorno do Espectro Autista (TEA), e já possuo um laudo.
-                    </label>
-
-                    <div className="modal-buttons">
-                        <button onClick={() => { setOpenModal(false); router.push('/Patient/AQ10TestWeb'); }}>Enviar</button>
-                        <button onClick={() => setOpenModal(false)}>Fechar</button>
-                    </div>
-
-                </div>
+    <div
+        className="modal-overlay"
+        onClick={() => setOpenModal(false)}
+    >
+            <div className="container-tittle">
+                <h2>Formulário de Conhecimento</h2>
             </div>
-        )}
+        <div
+            className="modal"
+            onClick={(e) => e.stopPropagation()}
+        >
+
+            <p>
+                Responda o pequeno formulário a seguir, para que possamos seguir da melhor maneira:
+            </p>
+
+            <label>
+                <input type="radio" name="tea"/>
+                Eu não sei ou não tenho certeza se possuo o Transtorno do Espectro Autista (TEA).
+            </label>
+
+            <label>
+                <input type="radio" name="tea"/>
+                Eu possuo o Transtorno do Espectro Autista (TEA), mas não possuo ou não consegui um laudo.
+            </label>
+
+            <label>
+                <input type="radio" name="tea"/>
+                Eu possuo o Transtorno do Espectro Autista (TEA), e já possuo um laudo.
+            </label>
+
+            <div className="modal-buttons">
+                <button onClick={() => {
+                    setOpenModal(false);
+                    router.push('/Patient/AQ10TestWeb');
+                }}>
+                    Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+)}
         </>
     );
 }

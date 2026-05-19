@@ -67,6 +67,22 @@ export default function PatientSingup () {
             setError(handleApiError(err));
         }
     };
+    const formatBirthDate = (value: string) => {
+    // remove tudo que não for número
+    value = value.replace(/\D/g, '');
+
+    // limita em 8 números
+    value = value.slice(0, 8);
+
+    // adiciona as barras
+    if (value.length > 4) {
+        value = value.replace(/(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
+    } else if (value.length > 2) {
+        value = value.replace(/(\d{2})(\d{1,2})/, '$1/$2');
+    }
+
+    return value;
+};
 
     return(
         <div className="signup-section">
@@ -81,11 +97,12 @@ export default function PatientSingup () {
                     {error && (
                         <div
                             style={{
-                                backgroundColor: '#fee',
+                                backgroundColor: '#CADAED',
                                 color: '#c00',
                                 padding: '10px',
                                 borderRadius: '4px',
-                                marginBottom: '15px'
+                                marginBottom: '15px',
+                                alignItems: 'center',
                             }}
                         >
                             <p>{error}</p>
@@ -106,8 +123,16 @@ export default function PatientSingup () {
                     <Input
                         description='DD/MM/YYYY'
                         value={birthDate}
-                        onChange={(e) => { setBirthDate(e.target.value); clearField('birthDate'); }}
-                        onBlur={() => setFieldErrors({ ...fieldErrors, birthDate: validateBirthDateBR(birthDate) || undefined })}
+                        onChange={(e) => {
+                            setBirthDate(formatBirthDate(e.target.value));
+                            clearField('birthDate');
+                        }}
+                        onBlur={() =>
+                            setFieldErrors({
+                                ...fieldErrors,
+                                birthDate: validateBirthDateBR(birthDate) || undefined
+                            })
+                        }
                         error={fieldErrors.birthDate}
                     />
 

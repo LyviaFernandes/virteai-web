@@ -143,16 +143,16 @@ export default function Questionnaire () {
                         onClick={handleSubmit}
                         disabled={loading}
                         style={{
-                            backgroundColor: '#007bff',
+                            backgroundColor: '#22304A',
                             color: 'white',
-                            padding: '10px 20px',
+                            padding: '15px 50px',
                             border: 'none',
-                            borderRadius: '4px',
+                            borderRadius: '30px',
                             cursor: loading ? 'not-allowed' : 'pointer',
-                            fontSize: '16px'
+                            fontSize: '30px'
                         }}
                     >
-                        {loading ? 'Enviando...' : 'Enviar Teste'}
+                        {loading ? 'Enviando...' : 'Enviar'}
                     </button>
                 </div>
             </div>

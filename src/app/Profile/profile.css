@@ -44,12 +44,14 @@
     background-color: var(--dark-blue);
     border-radius: 30px;
     padding: clamp(32px, 6vw, 76px) clamp(36px, 6vw, 82px);
+    text-decoration: none !important;
 }
 
 .profile-card p{
     font-size: clamp(18px, 2vw, 30px);
     margin-top: 15px;
     color: var(--white-color);
+    text-decoration: none !important;
 }
 
 @media (max-width: 768px){

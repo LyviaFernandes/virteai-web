@@ -119,6 +119,7 @@
     transform: scale(3);
     margin-right: 10px;
     cursor: pointer;
+    box-shadow: none;
 }
 
 .questionnaire-submit{
