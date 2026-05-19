@@ -190,7 +190,7 @@ export default function AccountInformationTherapist () {
 
                         <div className="questionnaire-option">
                             <input type="radio" id="disagree" name="tea" checked={therapistData.modality === 'BOTH'} />
-                            <label htmlFor="disagree">Ambos</label>
+                            <label htmlFor="disagree">Híbrido</label>
                         </div>
                     </div>
                 </div>
