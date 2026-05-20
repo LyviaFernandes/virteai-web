@@ -35,12 +35,13 @@
     
 }
 
-.edit{
+.box-edit{
+    cursor: pointer;
     align-items: center;
-    z-index: 1000;
+    z-index: 800;
     position: absolute;
-    margin-top: 11%;
-    margin-left: 12%
+   margin-top: 11%;
+    margin-left: 12%;
 }
 
 .account-user-info{
@@ -163,17 +164,19 @@
     padding-bottom: 20px;
     margin-bottom: 50px;
     align-items: center;
+
 }
 
 .account-field p{
     font-size: 30px;
     margin-left: 5%;
+    
 }
 
 .account-field input{
     font-size: 30px;
     margin-left: 20px;
-    width: 75%;
+    width: 80%;
     box-shadow: none;
     padding: 5;
 }

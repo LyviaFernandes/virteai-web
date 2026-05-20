@@ -91,11 +91,22 @@ export default function AccountInformation () {
                             style={{ display: 'none' }}
                         />
                     </div>
-                       <Image
-                           src={editimage}
-                           alt=""
-                           className="edit"
-                       />
+                    <div className="box-edit" onClick={handleImageClick}>
+
+                        <Image
+                            src={editimage}
+                            alt=""
+                            className="edit"
+                        />
+                        <input
+                                type="file"
+                                accept="image/*"
+                                ref={fileInputRef}
+                                onChange={handleImageChange}
+                                style={{ display: 'none' }}
+                            />
+                    </div>
+
                 </div>
 
                 <div className="account-user-info">
@@ -137,6 +148,11 @@ export default function AccountInformation () {
 
                 <div className="personal-data-item">
                     <p>Data de nascimento: {patientData.birthDate || 'Não informado'}</p>
+                    <Image
+                            src={edit}
+                            alt=""
+                            className="edit-icon"
+                        />
                 </div>
 
                 <div className="personal-data-item">
@@ -155,11 +171,21 @@ export default function AccountInformation () {
                 <div className="account-field">
                     <p>Email:</p>
                     <input name="email" value={patientData.email || user?.email || ''} readOnly />
+                    <Image
+                            src={edit}
+                            alt=""
+                            className="edit-icon"
+                        />
                 </div>
 
                 <div className="account-field">
                     <p>Senha:</p>
                     <input name="password" value="••••••••••••" type="password" readOnly />
+                    <Image
+                            src={edit}
+                            alt=""
+                            className="edit-icon"
+                        />
                 </div>
             </div>
 

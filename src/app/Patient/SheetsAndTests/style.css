@@ -58,11 +58,15 @@
 
 .test-card h3{
     font-size: 30px;
-    background-color: #A8D5B7;
-    width: 11%;
-    padding: 10px 35px;
+    background-color: var(--green-dark);;
+    padding: 20px 35px;
     border-radius: 50px;
-    margin-left: 5%
+    margin-left: 5%;
+    white-space: nowrap;
+    width: 265px;
+    display: flex;
+    justify-content: center;
+    color: var(--white-color);
 }
 /*  */
 

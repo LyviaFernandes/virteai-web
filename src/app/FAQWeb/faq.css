@@ -35,7 +35,7 @@
 }
 
 .faq-card--sand{
-    background-color: var(--backgroud-sand);
+    background-color: var(--sand-ligth);
     border-radius: 50px;
     border: 5px solid var(--sand-medium);
     display: flex;
@@ -44,7 +44,7 @@
 }
 
 .faq-card--ciano{
-    background-color: var(--blue-faq);
+    background-color: var(--turquoise-ligth);
     border-radius: 50px;
     border: 5px solid var(--Turquoise-medium-three);
     display: flex;
@@ -62,9 +62,9 @@
 }
 
 .faq-card--green{
-    background-color: var(--background-green-faq);
+    background-color: var(--green-ligth);
     border-radius: 50px;
-    border: 5px solid var(--border-green);
+    border: 5px solid var(--green-dark);
     display: flex;
     width: 60%;
     padding: 50px;

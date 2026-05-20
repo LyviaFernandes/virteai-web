@@ -2,7 +2,8 @@
 
 import React from 'react';
 import './faq.css'
-import HeaderHome from '@/components/header-login/Header';
+import HeaderEnter from '@/components/header-enter/HeaderEnter';
+import Return from '@/assets/images/return-icon.svg';
 import Footer from '@/components/footer/Footer';
 import Image from 'next/image';
 import questionicon from '@/assets/images/questionicon.svg';
@@ -11,7 +12,9 @@ import questionicon from '@/assets/images/questionicon.svg';
 export default function FAQ () {
     return(
         <div className="faq-section">
-            <HeaderHome/>
+                <HeaderEnter
+                    src={Return}
+                />
                 <div className="faq-header">
                     <h1>Perguntas Frequentes</h1>
                     <p>Veja abaixo as respostas de nossas perguntas mais frequentes.</p>

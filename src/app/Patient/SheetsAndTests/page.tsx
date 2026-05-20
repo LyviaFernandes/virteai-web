@@ -85,21 +85,21 @@ export default function SheetsAndTests () {
                 </div>
             )}
 
-            <Link href={test10Done ? '/Patient/AQ10ResultTest' : '/Patient/AQ10TestWeb'}>
                 <div className="test-card">
                     <h2>Teste AQ-10</h2>
                     <p>Um teste curto, para auxiliar na avaliação e identificação de TEA em pacientes </p>
-                    <h3>{statusLabel(test10Done)}</h3>
+                    <Link href={test10Done ? '/Patient/AQ10ResultTest' : '/Patient/AQ10TestWeb'}>
+                        <h3>{statusLabel(test10Done)}</h3>
+                    </Link>
                 </div>
-            </Link>
 
-            <Link href={test50Done ? '/Patient/AQ50ResultTest' : '/Patient/AQ50TestWeb'}>
                 <div className="test-card">
                     <h2>Teste AQ-50</h2>
                     <p>Um teste curto, para auxiliar na avaliação e identificação de TEA em pacientes </p>
-                    <h3>{statusLabel(test50Done)}</h3>
+                    <Link href={test50Done ? '/Patient/AQ50ResultTest' : '/Patient/AQ50TestWeb'}>
+                        <h3>{statusLabel(test50Done)}</h3>
+                    </Link>
                 </div>
-            </Link>
 
             <h3 className='form-title'>Ficha:</h3>
 
