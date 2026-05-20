@@ -14,8 +14,8 @@ import ButtonEnter from '@/components/enter-button/Button';
 import Link from 'next/link';
 
 const options = ["Presencial", "Híbrido", "Online"];
-const optionMap: { [key: string]: 'PRESENCIAL' | 'BOTH' | 'ONLINE' } = {
-    "Presencial": "PRESENCIAL",
+const optionMap: { [key: string]: 'PRESENTIAL' | 'BOTH' | 'ONLINE' } = {
+    "Presencial": "PRESENTIAL",
     "Híbrido": "BOTH",
     "Online": "ONLINE"
 };
