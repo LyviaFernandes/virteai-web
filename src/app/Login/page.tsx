@@ -62,7 +62,7 @@ export default function Login () {
                 <h2>Login</h2>
                 <div className="login-card">
                     {error && (
-                        <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
+                        <div style={{ backgroundColor: '#CADAED', color: '#c00', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
                             <p>{error}</p>
                         </div>
                     )}
