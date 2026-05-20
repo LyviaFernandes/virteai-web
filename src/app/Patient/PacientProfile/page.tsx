@@ -80,14 +80,6 @@ export default function PacientProfile () {
             <div className="profile-content">
                 <div className="profile-card">
                     <h3>Informações de Cadastro</h3>
-                    {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
-                    {patientData && (
-                        <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-                            <p><strong>Email:</strong> {patientData.email}</p>
-                            <p><strong>Cidade:</strong> {patientData.city}</p>
-                            <p><strong>Data de Nascimento:</strong> {new Date(patientData.birthDate).toLocaleDateString('pt-BR')}</p>
-                        </div>
-                    )}
                     
                     <div className="profile-card__actions">
                         <Image 

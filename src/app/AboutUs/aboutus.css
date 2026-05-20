@@ -57,12 +57,13 @@
 .mission__image{
     max-width: 100%;
     height: auto;
+    margin-right: 145px;
 }
 
 .mission__content p{
     font-size: clamp(16px, 2vw, 30px);
-    max-width: 730px;
-    width: 90%;
+    height: 825px;
+    width: 730px;
     text-align: justify;
     margin-bottom: clamp(40px, 8vw, 100px);
 }
@@ -98,7 +99,7 @@
 
 .team__group{
     display: flex;
-    gap: clamp(20px, 6vw, 170px);
+    gap: 250px;
     flex-wrap: wrap;
     justify-content: center;
 }

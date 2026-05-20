@@ -2,13 +2,16 @@
 
 import React from 'react';
 import './terms.css'
-import HeaderHome from '@/components/header-login/Header';
 import Footer from '@/components/footer/Footer';
+import HeaderEnter from '@/components/header-enter/HeaderEnter';
+import Return from '@/assets/images/return-icon.svg';
 
 export default function TermosServico () {
     return(
         <div className="terms-section">
-            <HeaderHome/>
+                <HeaderEnter
+                    src={Return}
+                />
                 <div className="terms-header">
                     <h1>Termos de serviço</h1>
                 </div>

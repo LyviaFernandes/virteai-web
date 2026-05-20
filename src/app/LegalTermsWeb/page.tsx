@@ -2,13 +2,17 @@
 
 import React from 'react';
 import './terms.css'
-import HeaderHome from '@/components/header-login/Header';
 import Footer from '@/components/footer/Footer';
+import HeaderEnter from '@/components/header-enter/HeaderEnter';
+import Return from '@/assets/images/return-icon.svg';
+
 
 export default function TermosLegais () {
     return(
         <div className="legal-section">
-            <HeaderHome/>
+                 <HeaderEnter
+                    src={Return}
+                />
                 <div className="legal-header">
                     <h1>Termos Legais</h1>
                 </div>

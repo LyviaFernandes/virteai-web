@@ -7,15 +7,15 @@
 
 .profile-container{
     display: flex;
-    width: 45%;
-    margin-top: 10%;
+    width: 35%;
+    margin-top: 5%;
     align-items: start;
 }
 
 .profile-avatar-wrapper {
   display: flex;
   justify-content: center;
-  margin-right: 50%;
+  margin-right: 30%;
   margin-left: 15%;
   margin-bottom: 100px;
 }
@@ -32,13 +32,14 @@
 
 .profile-avatar-image {
   object-fit: cover;
+  
 }
 
 .profile-info{
     display: flex;
     flex-direction: column;
     text-align: center;
-    align-items: center;
+    align-items: start;
     justify-content: center;
 }
 
@@ -47,7 +48,6 @@
     align-items: center;
     font-size: 60px;
     margin-bottom: 50px;
-    width: 480px;
 }
 
 .profile-status {
@@ -59,13 +59,11 @@
 .profile-status h3{
     font-size: 40px;
     background-color: var(--green-medium);
-    color: #265D39;
-    background-color: #A8D5B7;
+    color: var(--green-dark);
     padding: 20px 50px;
-    width: 100%;
     border-radius: 100px;
     margin: 0 auto;
-      white-space: nowrap;
+    white-space: nowrap;
 }
 
 /*  */

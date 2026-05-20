@@ -2,13 +2,16 @@
 
 import React from 'react';
 import './privacy.css'
-import HeaderHome from '@/components/header-login/Header';
 import Footer from '@/components/footer/Footer';
+import HeaderEnter from '@/components/header-enter/HeaderEnter';
+import Return from '@/assets/images/return-icon.svg';
 
 export default function PoliticaPrivacidade () {
     return(
         <div className="privacy-section">
-            <HeaderHome/>
+                <HeaderEnter
+                    src={Return}
+                />
                 <div className="privacy-header">
                     <h1>Politica de Privacidade</h1>
                 </div>

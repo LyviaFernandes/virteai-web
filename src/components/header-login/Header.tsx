@@ -103,14 +103,6 @@ export default function HeaderHome () {
                 </button>
             </Link>
 
-            <button
-                className="container-profile"
-                onClick={logout}
-                title="Sair"
-                style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0, marginLeft: 8 }}
-            >
-                <p style={{ fontWeight: 600 }}>Sair</p>
-            </button>
         </header>
 
         
@@ -152,10 +144,6 @@ export default function HeaderHome () {
                 <Link href={profileHref} onClick={() => setMenuOpen(false)}>
                 <p>Perfil</p>
                 </Link>
-
-                <button onClick={() => { setMenuOpen(false); logout(); }}>
-                    <p>Sair</p>
-                </button>
 
             </div>
             )}
