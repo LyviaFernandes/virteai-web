@@ -157,7 +157,7 @@ function ScenariosContent () {
 
                         <h2>{patient?.name || (loading ? 'Carregando...' : 'Paciente não selecionado')}</h2>
 
-                        <div className="box-ID" onClick={handleGenerateId} style={{ cursor: 'pointer' }}>
+                        <div className="box-ID">
                             <h3>{sessionId ? sessionId : 'Gerar ID'}</h3>
                             <div className="info-wrapper">
                                 <Image
@@ -173,6 +173,12 @@ function ScenariosContent () {
                                 </div>
                              </div>
                         </div>
+                        <button className="generate-id-button" onClick={handleGenerateId}>
+                            {sessionId ? 'Gerar outro ID' : 'Gerar ID'}
+                        </button>
+                        {sessionId && (
+                            <p className="generated-id-text">ID gerado: {sessionId}</p>
+                        )}
                     </div>
             </div>
 

@@ -119,6 +119,12 @@
     display: block;
 }
 
+.box-ID{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .box-ID h3{
     display: flex;
     margin-top: 20px;
@@ -129,6 +135,24 @@
     justify-content: center;
     border-radius: 50px;
     white-space: nowrap;
+}
+
+.generate-id-button{
+    margin-top: 16px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--dark-blue);
+    color: var(--white-color);
+    font-size: 16px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.generated-id-text{
+    margin-top: 12px;
+    font-size: 18px;
+    color: var(--dark-blue);
 }
 
 /*  */
