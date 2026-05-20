@@ -90,7 +90,7 @@ export default function NewPasswordClient() {
             </div>
           )}
 
-          <div className="reset-password__input-group">
+          {/* <div className="reset-password__input-group">
             <p>Código de redefinição:</p>
             <Input
               type="text"
@@ -98,7 +98,7 @@ export default function NewPasswordClient() {
               value={token}
               onChange={(e) => setToken(e.target.value)}
             />
-          </div>
+          </div> */}
 
           <div className="reset-password__input-group">
             <p>Senha:</p>
