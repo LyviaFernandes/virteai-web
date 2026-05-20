@@ -11,6 +11,7 @@ import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Input from '@/components/input/Input';
 import ButtonEnter from '@/components/enter-button/Button';
+import Link from 'next/link';
 
 const options = ["Presencial", "Híbrido", "Online"];
 const optionMap: { [key: string]: 'PRESENCIAL' | 'BOTH' | 'ONLINE' } = {
@@ -90,6 +91,20 @@ export default function TherapistSignup () {
             setError(handleApiError(err));
         }
     };
+    
+        const formatBirthDate = (value: string) => {
+        value = value.replace(/\D/g, '');
+
+        value = value.slice(0, 8);
+
+        if (value.length > 4) {
+            value = value.replace(/(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
+        } else if (value.length > 2) {
+            value = value.replace(/(\d{2})(\d{1,2})/, '$1/$2');
+        }
+
+        return value;
+    };
 
     return(
         <div className="signup-section">
@@ -120,11 +135,18 @@ export default function TherapistSignup () {
                     <Input
                         description='DD/MM/YYYY'
                         value={date}
-                        onChange={(e) => { setDate(e.target.value); clearField('date'); }}
-                        onBlur={() => setFieldErrors({ ...fieldErrors, date: validateBirthDateBR(date) || undefined })}
+                        onChange={(e) => {
+                            setDate(formatBirthDate(e.target.value));
+                            clearField('date');
+                        }}
+                        onBlur={() =>
+                            setFieldErrors({
+                                ...fieldErrors,
+                                date: validateBirthDateBR(date) || undefined
+                            })
+                        }
                         error={fieldErrors.date}
                     />
-
                     <p>Cidade:</p>
                     <Input
                         description='Insira a cidade que mora'
@@ -220,6 +242,11 @@ export default function TherapistSignup () {
                             label={isLoading ? 'Registrando...' : 'Enviar'}
                             onclick={handleRegister}
                         />
+                        <div style={{ marginTop: '15px', marginLeft: '30px' }}>
+                            <Link href={ROUTES.login}>
+                                Já possui conta? Entrar
+                            </Link>
+                        </div>
                     </div>
                 </div>
 

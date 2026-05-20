@@ -29,6 +29,7 @@
   flex-shrink: 0; 
 }
 
+
 .profile-avatar-image {
   object-fit: cover;
 }

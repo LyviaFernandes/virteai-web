@@ -172,13 +172,13 @@ export default function PatientSingup () {
                             label={isLoading ? 'Registrando...' : 'Enviar'}
                             onclick={handleRegister}
                         />
+                        <div style={{ marginTop: '15px', marginLeft: '30px' }}>
+                            <Link href={ROUTES.login}>
+                                Já possui conta? Entrar
+                            </Link>
+                        </div>
                     </div>
 
-                    <div style={{ marginTop: '15px' }}>
-                        <Link href={ROUTES.login}>
-                            Já possui conta? Entrar
-                        </Link>
-                    </div>
                 </div>
             </div>
         </div>
