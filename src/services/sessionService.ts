@@ -18,10 +18,10 @@ export const sessionService = {
   /**
    * Generate temporary session token
    */
-  async generateSession(): Promise<SessionGenerateResponse> {
+  async generateSession(userId: number): Promise<SessionGenerateResponse> {
     return apiClient.post<SessionGenerateResponse>(
       '/sessions/generate',
-      {}
+      { userId }
     );
   },
 

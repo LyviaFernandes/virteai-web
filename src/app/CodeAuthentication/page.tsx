@@ -12,10 +12,6 @@ export default function CodeAuthentication () {
     const router = useRouter();
     const { isAuthenticated } = useAuth();
 
-    const [generatedCode] = useState(() =>
-        Math.floor(100000 + Math.random() * 900000).toString()
-    );
-
     const [userCode, setUserCode] = useState(['', '', '', '', '']);
 
     useEffect(() => {
@@ -35,13 +31,14 @@ export default function CodeAuthentication () {
     const handleSubmit = () => {
         const code = userCode.join('');
 
-        // O backend envia o link de reset por email; aqui simulamos a etapa do código.
         if (code.length === 5) {
+            if (typeof window !== 'undefined') {
+                sessionStorage.setItem('resetToken', code);
+            }
             router.push(ROUTES.newPassword);
         } else {
             alert('Informe os 5 dígitos do código.');
         }
-        console.debug('código mock gerado:', generatedCode);
     };
 
     if (isAuthenticated) {
@@ -58,7 +55,7 @@ export default function CodeAuthentication () {
                 <div className="reset-password__card">
                     <div className="reset-password__message">
                         <p>
-                            Enviamos um código em seu email. Informe-o abaixo para continuar a redefinição de senha.
+                            Enviamos um código de 5 dígitos para o seu email. Informe-o abaixo para continuar a redefinição de senha.
                         </p>
                     </div>
 

@@ -45,7 +45,7 @@ export interface RegisterRequest {
   professionalRegister?: string;
   specialty?: string;
   experience?: string;
-  attendanceModality?: 'ONLINE' | 'PRESENCIAL' | 'BOTH';
+  attendanceModality?: 'ONLINE' | 'PRESENTIAL' | 'BOTH';
 }
 
 export interface ForgotPasswordRequest {

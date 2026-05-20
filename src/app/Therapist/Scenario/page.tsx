@@ -81,8 +81,13 @@ function ScenariosContent () {
     }, [patientIdParam]);
 
     const handleGenerateId = async () => {
+        if (!patientIdParam) {
+            setError('ID do paciente não encontrado.');
+            return;
+        }
+
         try {
-            const session = await generateSession();
+            const session = await generateSession(Number(patientIdParam));
             setSessionId(session?.sessionId || null);
         } catch (err) {
             setError(handleApiError(err));
@@ -158,27 +163,29 @@ function ScenariosContent () {
                         <h2>{patient?.name || (loading ? 'Carregando...' : 'Paciente não selecionado')}</h2>
 
                         <div className="box-ID">
-                            <h3>{sessionId ? sessionId : 'Gerar ID'}</h3>
-                            <div className="info-wrapper">
-                                <Image
-                                    src={infoicon}
-                                    alt=""
-                                    className="infoicon"
-                                />
+                            <div className="generate-id-row">
+                                {/* <h3>{ sessionId ? `ID da Sessão: ${sessionId}` : 'Gerar ID' }</h3> */}
+                              <button className="generate-id-button" onClick={handleGenerateId}>
+                                  {sessionId ? 'Gerar outro ID' : 'Gerar ID'}
+                              </button>
+                              <div className="info-wrapper">
+                                  <Image
+                                      src={infoicon}
+                                      alt=""
+                                      className="infoicon"
+                                  />
 
-                                <div className="info-tooltip">
-                                O ID gerado será utilizado para a validação
-                                da identidade do seu paciente para o acesso
-                                dos cenários
-                                </div>
-                             </div>
+                                  <div className="info-tooltip">
+                                  O ID gerado será utilizado para a validação
+                                  da identidade do seu paciente para o acesso
+                                  dos cenários
+                                  </div>
+                               </div>
+                            </div>
+                            {sessionId && (
+                                <p className="generated-id-text">{sessionId}</p>
+                            )}
                         </div>
-                        <button className="generate-id-button" onClick={handleGenerateId}>
-                            {sessionId ? 'Gerar outro ID' : 'Gerar ID'}
-                        </button>
-                        {sessionId && (
-                            <p className="generated-id-text">ID gerado: {sessionId}</p>
-                        )}
                     </div>
             </div>
 

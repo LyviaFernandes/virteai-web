@@ -21,11 +21,11 @@ export const useSession = () => {
     }
   }, []);
 
-  const generateSession = useCallback(async () => {
+  const generateSession = useCallback(async (userId: number) => {
     try {
       setLoading(true);
       setError(null);
-      return await sessionService.generateSession();
+      return await sessionService.generateSession(userId);
     } catch (err: any) {
       setError(err);
       throw err;
