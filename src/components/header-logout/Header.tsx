@@ -96,6 +96,14 @@ export default function HeaderLogout () {
                         <p>Notificações</p>
                     </Link>
 
+                    <Link href={ROUTES.login} onClick={() => setMenuOpen(false)}>
+                        <p>Entrar</p>
+                    </Link>
+
+                    <Link href={ROUTES.profile} onClick={() => setMenuOpen(false)}>
+                        <p>Cadastre-se</p>
+                    </Link>
+
                 </div>
             )}
         </>

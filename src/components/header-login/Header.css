@@ -113,6 +113,10 @@ body{
     opacity: 0.9;
 }
 
+.mobile-only{
+    display: none;
+}
+
 /* ================= HAMBURGER ================= */
 
 .hamburger{
@@ -360,6 +364,14 @@ body{
     .container-profile .Profile{
         display: none !important;
         visibility: hidden !important;
+    }
+
+    .desktop-only{
+        display: none !important;
+    }
+
+    .mobile-only{
+        display: block;
     }
 
     /* mostra hamburger */

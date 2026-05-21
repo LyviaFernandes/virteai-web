@@ -103,7 +103,7 @@ export default function HeaderHome () {
                 </button>
             </Link>
 
-            <button className="logout-button" onClick={logout}>
+            <button className="logout-button desktop-only" onClick={logout}>
                 Sair
             </button>
 
@@ -150,7 +150,7 @@ export default function HeaderHome () {
                 </Link>
 
                 <button
-                    className="logout-button"
+                    className="logout-button mobile-only"
                     onClick={() => {
                         logout();
                         setMenuOpen(false);
