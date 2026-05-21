@@ -103,6 +103,10 @@ export default function HeaderHome () {
                 </button>
             </Link>
 
+            <button className="logout-button" onClick={logout}>
+                Sair
+            </button>
+
         </header>
 
         
@@ -144,6 +148,16 @@ export default function HeaderHome () {
                 <Link href={profileHref} onClick={() => setMenuOpen(false)}>
                 <p>Perfil</p>
                 </Link>
+
+                <button
+                    className="logout-button"
+                    onClick={() => {
+                        logout();
+                        setMenuOpen(false);
+                    }}
+                >
+                    <p>Sair</p>
+                </button>
 
             </div>
             )}
