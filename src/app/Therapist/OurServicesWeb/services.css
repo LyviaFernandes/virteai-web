@@ -40,8 +40,8 @@
 }
 
 .plan-card-basic{
-    background-color: var(--backgroud-sand);
-    border: 2px solid var(--card-therapist);
+    background-color: var(--sand-ligth);
+    border: 5px solid var(--Turquoise-medium-three);
     border-radius: 30px;
     padding: 50px;
     display: flex;
@@ -50,8 +50,8 @@
 }
 
 .plan-card-premium{
-    background-color: var(--backgroud-sand);
-    border: 2px solid var(--button-personalized-plan);
+    background-color: var(--sand-ligth);
+    border: 5px solid var(--sand-medium);
     border-radius: 30px;
     padding: 70px 50px;
     display: flex;
@@ -61,7 +61,7 @@
 
 .plan-card-basic h2{
     font-size: 40px;
-    background-color: var(--card-therapist);
+    background-color: var(--Turquoise-medium-three);
     color: white;
     padding: 15px;
     border-radius: 50px;
@@ -70,7 +70,7 @@
 
 .plan-card-premium h2{
     font-size: 40px;
-    background-color: var(--button-personalized-plan);
+    background-color: var(--sand-medium);
     color: white;
     padding: 15px;
     border-radius: 50px;
@@ -116,7 +116,7 @@
 .plan-card-basic button{
     font-size: 30px;
     color: white;
-    background-color: var(--card-therapist) ;
+    background-color: var(--Turquoise-medium-three) ;
     padding: 15px;
     border-radius: 30px;
 }
@@ -124,7 +124,7 @@
 .plan-card-premium button{
     font-size: 30px;
     color: white;
-    background-color: var(--button-personalized-plan) ;
+    background-color: var(--sand-medium) ;
     padding: 15px;
     border-radius: 30px;
 }

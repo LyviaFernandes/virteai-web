@@ -141,6 +141,19 @@
     font-size: 30px;
 }
 
+.questionnaire-white {
+    background-color: var(--white-color);
+}
+
+.questionnaire-send {
+    background-color: var(--sand-ligth);
+}
+
+.questionnaire-item p{
+    width: 83%;
+    text-align: center;
+}
+
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px){

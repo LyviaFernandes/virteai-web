@@ -20,16 +20,15 @@
 }
 
 .about-us__intro h1{
-    font-size: clamp(28px, 5vw, 60px);
-    margin-bottom: clamp(20px, 3vw, 50px);
+    font-size: 60px;
+    margin-bottom: 50px;
 }
 
 .about-us__intro p{
-    font-size: clamp(16px, 2vw, 30px);
-    max-width: 930px;
-    width: 90%;
+    font-size: 30px;
+    width: 930px;
     text-align: justify;
-    margin-bottom: clamp(40px, 8vw, 100px);
+    margin-bottom: 100px;
 }
 
 .about-us__mission{
@@ -37,112 +36,124 @@
     flex-direction: column;
     background-color: var(--gray-medium);
     align-items: center;
-    padding: 0 20px;
 }
 
 .about-us__mission h2{
-    font-size: clamp(28px, 5vw, 60px);
-    margin-top: clamp(40px, 8vw, 100px);
-    margin-bottom: clamp(20px, 3vw, 50px);
+    font-size: 60px;
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 .mission__content{
     display: flex;
     align-items: center;
-    gap: clamp(16px, 4vw, 60px);
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.mission__image{
-    max-width: 100%;
-    height: auto;
-    margin-right: 145px;
 }
 
 .mission__content p{
-    font-size: clamp(16px, 2vw, 30px);
-    height: 825px;
+    font-size: 30px;
     width: 730px;
     text-align: justify;
-    margin-bottom: clamp(40px, 8vw, 100px);
+    margin-left: 145px;
+    margin-bottom: 100px;
 }
 
 .about-us__team{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
 }
 
 .about-us__team h2{
-    font-size: clamp(28px, 5vw, 60px);
-    margin-top: clamp(40px, 8vw, 100px);
-    margin-bottom: clamp(20px, 3vw, 50px);
+    font-size: 60px;
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 .about-us__team p{
-    font-size: clamp(16px, 2vw, 30px);
-    max-width: 930px;
-    width: 90%;
+    font-size: 30px;
+    width: 930px;
     text-align: justify;
-    margin-bottom: clamp(40px, 8vw, 100px);
+    margin-bottom: 100px;
 }
 
 .team{
     display: flex;
-    gap: clamp(40px, 8vw, 100px);
+    gap: 100px;
     align-items: center;
     flex-direction: column;
-    margin-bottom: clamp(40px, 8vw, 100px);
+    margin-bottom: 100px;
 }
 
 .team__group{
     display: flex;
-    gap: 250px;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 170px;
 }
 
 .team__member{
     text-align: center;
-    font-size: clamp(16px, 2vw, 30px);
-    max-width: 300px;
-}
-
-.team__image{
-    max-width: 100%;
-    height: auto;
+    font-size: 30px;
+    width: 300px;
 }
 
 @media (max-width: 768px){
 
+.about-us__intro h1{
+    font-size: 30px;
+}
+
+.about-us__intro p{
+    font-size: 20px;
+    width: 80%;
+}
+
+.about-us__mission h2{
+    font-size: 30px;
+}
+
 .mission__image{
-    width: 60%;
-    max-width: 280px;
+    display: none;
 }
 
 .mission__content p{
-    margin-bottom: 40px;
+    font-size: 20px;
+    width: 80%;
+    margin-left: 45px;
+}
+
+.about-us__team h2{
+    font-size: 30px;
+}
+
+.about-us__team p{
+    font-size: 20px;
+    width: 80%;
 }
 
 .team__image{
-    width: 100px;
-    height: 100px;
-    margin-bottom: 16px;
+    display: flex;
+    width: 200px;
+    margin-bottom: 10px;
 }
 
 .team__member{
+    font-size: 15px;
+    width: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .team__group{
-    gap: 30px;
+    gap: 50px;
+    justify-content: center;
+}
+
+.team__group:last-child{
+    gap: 140px;
+    margin-top: 10px;
 }
 
 .team{
-    gap: 30px;
+    gap: 50px;
 }
 }

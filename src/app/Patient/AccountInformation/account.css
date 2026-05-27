@@ -64,7 +64,7 @@
 
 .account-status p{
     font-size: 30px;
-    color: #636363;
+    color: var(--gray-dark);
     width: 100%;
     border-radius: 100px;
     margin: 0 auto;
@@ -91,7 +91,7 @@
     top: 20%;
     left: 320%;
     transform: translateX(-50%);
-    background-color: white;
+    background-color: var(--white-color);
     box-shadow: 5 5 5px rgba(0, 0, 0, 0.2);
     border-radius: 30px;
     text-align: justify;
@@ -194,6 +194,7 @@
     box-shadow: none;
     padding: 5;
 }
+
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px){

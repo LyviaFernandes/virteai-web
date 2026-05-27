@@ -16,24 +16,22 @@
 }
 
 .home-testimonials h1{
-    font-size: clamp(28px, 5vw, 60px);
+    font-size: 60px;
 }
 
 .home-testimonials p{
-    font-size: clamp(16px, 2vw, 30px);
-    max-width: 900px;
-    width: 90%;
-    margin: clamp(20px, 4vw, 50px);
+    font-size: 30px;
+    width: 900px;
+    margin: 50px;
     text-align: center;
 }
 
 .home-carousel {
     margin-bottom: 100px;
     display: flex;
-    gap: clamp(16px, 3vw, 40px);
+    gap: 40px;
     width: 100%;
-    padding: 0 clamp(16px, 3vw, 40px);
-    height: auto;
+    height: 600px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
@@ -48,21 +46,22 @@
 .home-partners{
     background-color: var(--gray-medium);
     display: flex;
-    flex-direction: column;
+    flex-direction: column ;
     justify-content: center;
     text-align: center;
     align-items: center;
-    padding: clamp(40px, 8vw, 100px) 20px;
+    flex-direction: column; 
+    
 }
 
 .home-partners h2{
-    margin: 0 0 clamp(30px, 5vw, 80px);
-    font-size: clamp(28px, 5vw, 60px);
+    margin: 100px;
+    font-size: 60px;
+    
 }
 
 .home-partners__logo{
-    max-width: 80%;
-    height: auto;
+    margin-bottom: 100px;
 }
 
 @media (max-width: 768px){

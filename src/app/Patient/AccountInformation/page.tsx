@@ -51,7 +51,7 @@ export default function AccountInformation () {
         }
 
         const fetchPatientData = async () => {
-    try {
+         try {
         const data: any = await getMyProfile();
 
         setPatientData(data);

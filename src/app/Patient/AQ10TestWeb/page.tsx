@@ -11,15 +11,15 @@ import Footer from '@/components/footer/Footer';
 
 const questions = [
     "Costumo notar pequenos sons quando outros não percebem",
-    "Normalmente me concentro mais no quadro geral do que nos pequenos detalhes",
-    "Costumo notar detalhes de uma passagem escrita que outros não notam",
-    "Costumo encontrar instruções difíceis de seguir",
-    "Costumo fazer as coisas da mesma maneira todos os dias",
-    "Costumo planejar as coisas com antecedência",
-    "Costumo perder a noção do tempo",
-    "Costumo encontrar fácil fazer mais de uma coisa ao mesmo tempo",
-    "Quando estou lendo uma história, costumo encontrar fácil trabalhar com os personagens",
-    "Costumo gostar de coletar informações sobre categorias de coisas (exemplo: tipos de carros, tipos de aves, tipos de trem, tipos de planta etc.)"
+    "Eu geralmente me concentro mais no todo de uma imagem, ao invés de pequenos detalhes",
+    "Acho fácil fazer mais de uma coisa de uma só vez",
+    "Se houver uma interrupção, posso voltar para o que eu estava fazendo muito rápido",
+    "Acho fácil “ler nas entrelinhas” quando alguém esta falando comigo",
+    "Eu sei dizer se alguém que está me ouvindo está ficando entediado",
+    "Quando estou lendo uma história, acho difícil descobrir as intenções dos personagens",
+    "Gosto de coletar informações sobre categorias de coisas (por exemplo, tipos de carro, tipos de pássaros, etc.)",
+    "Acho que é fácil descobrir o que alguém está pensando ou sentindo apenas olhando para o rosto da pessoa",
+    "Acho difícil entender as intenções das pessoas"
 ];
 
 export default function Questionnaire () {
@@ -78,17 +78,19 @@ export default function Questionnaire () {
                     de autismo em um indivíduo. Responda de acordo com o que se identifica.</p>
             </div>
 
-            {error && (
-                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '20px' }}>
-                    <p>{error}</p>
-                </div>
-            )}
-
+            
             <h2 className="questionnaire-subtitle">AQ-10</h2>
 
             <div className="questionnaire-card">
                 {questions.map((question, index) => (
-                    <form key={index} className="questionnaire-item">
+                    <form
+                        key={index}
+                        className={`questionnaire-item ${
+                            index % 2 === 0
+                                ? 'questionnaire-white'
+                                : 'questionnaire-send'
+                        }`}
+                    >
                         <p>{index + 1}. {question}</p>
                         <div className="questionnaire-options">
                             <div className="questionnaire-option">
@@ -155,7 +157,14 @@ export default function Questionnaire () {
                         {loading ? 'Enviando...' : 'Enviar'}
                     </button>
                 </div>
+                
             </div>
+            {error && (
+                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '50px' }}>
+                    <p>{error}</p>
+                </div>
+            )}
+
 
             <Footer/>
         </div>

@@ -62,7 +62,7 @@ export default function TherapistProfile () {
 
                     <h2>{therapistData?.name || 'Terapeuta'}</h2>
 
-                    <p>{therapistData?.professionalRegister || 'Registro profissional'}</p>
+                    <p>CRP: {therapistData?.professionalRegister || 'Registro profissional'}</p>
 
                     <div className="profile-status">
                         <h3>{therapistData?.specialty || 'Especialidade'}</h3>
@@ -73,17 +73,8 @@ export default function TherapistProfile () {
             </div>
 
             <div className="profile-sections">
-                {error && <p style={{ color: 'red', padding: '10px' }}>Error: {error.message}</p>}
+               
                 
-                {therapistData && (
-                    <div style={{ padding: '10px', fontSize: '14px', marginBottom: '15px' }}>
-                        <p><strong>Email:</strong> {therapistData.email}</p>
-                        <p><strong>Cidade:</strong> {therapistData.city}</p>
-                        <p><strong>Experiência:</strong> {therapistData.experience}</p>
-                        <p><strong>Modalidade:</strong> {therapistData.attendanceModality}</p>
-                    </div>
-                )}
-
                 <div className="profile-card">
                     <h3>Informações de Cadastro</h3>
                     
@@ -95,13 +86,7 @@ export default function TherapistProfile () {
                         style={{ cursor: 'pointer' }}
                         onClick={() => router.push(ROUTES.therapistAccountInformation)}
                         />
-                        <Image 
-                        className='action-icon edit-icon' 
-                        src={EditIcon} 
-                        alt="Edit"
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => router.push(ROUTES.therapistAccountInformation)}
-                        />
+                      
                     </div>
                 </div>
 
@@ -134,19 +119,6 @@ export default function TherapistProfile () {
                     </div>
                 </div>
 
-                <div className="profile-card">
-                    <h3>Nossos planos e serviços</h3>
-
-                    <div className="card-actions">
-                        <Image
-                        className='action-icon view-icon'
-                        src={ViewIcon}
-                        alt="View"
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => router.push(ROUTES.therapistOurServices)}
-                        />
-                    </div>
-                </div>
 
             </div>
 
