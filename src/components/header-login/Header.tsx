@@ -103,9 +103,7 @@ export default function HeaderHome () {
                 </button>
             </Link>
 
-            <button className="logout-button desktop-only" onClick={logout}>
-                Sair
-            </button>
+          
 
         </header>
 
