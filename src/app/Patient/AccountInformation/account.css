@@ -119,6 +119,20 @@
     white-space: nowrap;
 }
 
+.edit-icon{ 
+    cursor: pointer;
+}
+
+/*  */
+.editprogram{
+    width: 70%;
+    margin-right: 60px;
+    font-size: 30px;
+}
+
+.edit_button{
+    margin-right: 15px;
+}
 /*  */
 
 .personal-data-title{
@@ -144,7 +158,7 @@
 }
 
 .personal-data-item p{
-    width: 90%;
+    width: 95%;
 }
 
 .account-settings-title{
@@ -176,7 +190,7 @@
 .account-field input{
     font-size: 30px;
     margin-left: 20px;
-    width: 80%;
+    width: 85%;
     box-shadow: none;
     padding: 5;
 }
