@@ -34,6 +34,16 @@
   object-fit: cover;
 }
 
+.box-edit{
+    cursor: pointer;
+    align-items: center;
+    z-index: 800;
+    position: absolute;
+   margin-top: 11%;
+    margin-left: 12%;
+}
+
+
 .account-user-info{
     display: flex;
     flex-direction: column;
@@ -91,6 +101,11 @@
 
 .personal-data-item p{
     width: 90%;
+}
+
+.personal-data-item button{
+    font-size: 15px;
+    margin-left: 15px;
 }
 /*  */
 .account-modalidade-section{
@@ -164,6 +179,12 @@
 .account-modalidade-item .edit-icon{
     margin-bottom: 2%;
 }
+
+.modalidade-buttons button{
+    font-size: 15px;
+    margin-left: 15px;
+    margin-top: 25px;
+}
 /*  */
 .account-settings-title{
     font-size: 40px;
@@ -211,6 +232,12 @@
     padding: 5;
 }
 
+.account-field button{
+    font-size: 15px;
+    margin-left: 15px;
+
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 768px){
 
@@ -251,13 +278,16 @@
     margin-top: 5%;
     text-align: center;
     margin-bottom: 40px;
+    justify-content: center;
 }
 
 .account-user-info h2{
     display: flex;
     font-size: 20px;
     margin-bottom: 20px;
-    width:65%;
+    text-align: center;
+    align-items: center;
+    width: 50%;
 }
 
 .account-status {
@@ -310,7 +340,7 @@
     align-items: center;
 }
 
-.personal-data-item .edit-icon{
+.edit-icon{
     width: 50px;
     height: 20px;
 }
@@ -423,5 +453,6 @@
     box-shadow: none;
     padding: 5;
 }
+
 
 }

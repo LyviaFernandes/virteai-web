@@ -85,14 +85,20 @@ export interface TherapistProfile {
   userId: number;
   email: string;
   name: string;
-  city: string;
+  city?: string;
   birthDate: string;
   professionalRegister: string;
   specialty: string;
-  experience: string;
+  experience?: string;
   attendanceModality: AttendanceModality;
   createdAt: string;
   updatedAt: string;
+  crp?: string;
+  specialization?: string;
+  country?: string;
+  modality?: 'ONLINE' | 'IN_PERSON' | 'BOTH';
+  profileImage?: string;
+
 }
 
 export interface UpdateTherapistRequest {
@@ -112,7 +118,7 @@ export interface SessionGenerateResponse {
 
 export interface SessionAttachRequest {
   sessionId: string;
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
 }
 
 // Test Types
@@ -245,5 +251,5 @@ export interface ApiResponse<T> {
 export interface ApiError {
   message: string;
   status: number;
-  data?: any;
+  data?: unknown;
 }

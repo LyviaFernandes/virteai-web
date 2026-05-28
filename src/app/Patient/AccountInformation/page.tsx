@@ -14,13 +14,13 @@ import editimage from '@/assets/images/EditImageIcon.svg';
 import infoicon from '@/assets/images/InfoIcon.svg';
 import Footer from '@/components/footer/Footer';
 import edit from '@/assets/images/editicon.svg';
+import type { PatientProfile } from '@/types/index';
 
 export default function AccountInformation () {
     const router = useRouter();
     const { isAuthenticated, user } = useAuth();
     const { getMyProfile, loading } = usePatient();
-    const [patientData, setPatientData] = useState<any>(null);
-    const [error, setError] = useState<string | null>(null);
+const [patientData, setPatientData] = useState<PatientProfile | null>(null);    const [error, setError] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | undefined>(undefined);
     const fileInputRef = useRef<HTMLInputElement>(null);
 

@@ -4,7 +4,7 @@ import { useState } from "react"
 import "./styles.css"
 
 export default function CalendarVirteai() {
-  const [currentDate, setCurrentDate] = useState(new Date())
+   const [currentDate, setCurrentDate] = useState(new Date())
 
   // datas com consulta
   const appointments = [
