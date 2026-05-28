@@ -97,7 +97,16 @@ export default function AccountInformationTherapist () {
             updateData[field] = formData[field];
 
             const updatedData = await updateTherapistProfile(updateData);
-            setTherapistData(updatedData);
+
+            setTherapistData((prev) =>
+            prev ? { ...prev, ...updatedData } : updatedData
+            );
+
+            setFormData((prev) => ({
+            ...prev,
+            [field]: updateData[field],
+            }));
+
             setEditingField(null);
         } catch (err) {
             setError(handleApiError(err));
