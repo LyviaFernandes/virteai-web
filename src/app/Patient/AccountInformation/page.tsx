@@ -52,7 +52,7 @@ const [patientData, setPatientData] = useState<PatientProfile | null>(null);    
 
         const fetchPatientData = async () => {
          try {
-        const data: any = await getMyProfile();
+        const data: PatientProfile = await getMyProfile();
 
         setPatientData(data);
 
@@ -290,10 +290,12 @@ const [patientData, setPatientData] = useState<PatientProfile | null>(null);    
 
                             <button className='edit_button'
                                 onClick={() => {
+                                    if (patientData) {
                                     setPatientData({
                                         ...patientData,
                                         country: editedCountry
                                     });
+                                }
 
                                     setIsEditingCountry(false);
                                 }}

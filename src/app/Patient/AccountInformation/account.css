@@ -251,7 +251,8 @@
     display: flex;
     font-size: 20px;
     margin-bottom: 20px;
-    width:65%;
+    width:100%;
+    justify-content: center;
 }
 
 .account-status {
@@ -342,7 +343,7 @@
     align-items: center;
 }
 
-.personal-data-item .edit-icon{
+.edit-icon{
     width: 50px;
     height: 20px;
 }
@@ -383,4 +384,14 @@
     padding: 5;
 }
 
+.editprogram{
+    width: 70%;
+    margin-right: 30px;
+    font-size: 15px;
+}
+
+.edit_button{
+    margin-right: 10px;
+    font-size: 15px;
+}
 }

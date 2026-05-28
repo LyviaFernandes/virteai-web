@@ -70,6 +70,11 @@ export interface PatientProfile {
   therapistId?: number;
   createdAt: string;
   updatedAt: string;
+
+  // adicionar
+  profileImage?: string;
+  country?: string;
+  status?: string;
 }
 
 export interface UpdatePatientRequest {
