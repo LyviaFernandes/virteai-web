@@ -19,26 +19,18 @@ import type { PatientProfile } from '@/types/index';
 export default function AccountInformation () {
     const router = useRouter();
     const { isAuthenticated, user } = useAuth();
-    const { getMyProfile, loading } = usePatient();
-const [patientData, setPatientData] = useState<PatientProfile | null>(null);    const [error, setError] = useState<string | null>(null);
+    const { getMyProfile, updateMyProfile, loading } = usePatient();
+    const [patientData, setPatientData] = useState<PatientProfile | null>(null);
+    const [error, setError] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | undefined>(undefined);
     const fileInputRef = useRef<HTMLInputElement>(null);
-
-    const [isEditingName, setIsEditingName] = useState(false);
-    const [editedName, setEditedName] = useState('');
-
+    const [isSaving, setIsSaving] = useState(false);
 
     const [isEditingBirthDate, setIsEditingBirthDate] = useState(false);
     const [editedBirthDate, setEditedBirthDate] = useState('');
 
-    const [isEditingCountry, setIsEditingCountry] = useState(false);
-    const [editedCountry, setEditedCountry] = useState('');
-
-    const [isEditingEmail, setIsEditingEmail] = useState(false);
-    const [editedEmail, setEditedEmail] = useState('');
-
-    const [isEditingPassword, setIsEditingPassword] = useState(false);
-    const [editedPassword, setEditedPassword] = useState('');
+    const [isEditingCity, setIsEditingCity] = useState(false);
+    const [editedCity, setEditedCity] = useState('');
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -51,34 +43,25 @@ const [patientData, setPatientData] = useState<PatientProfile | null>(null);    
         }
 
         const fetchPatientData = async () => {
-         try {
-        const data: PatientProfile = await getMyProfile();
+            try {
+                const data: PatientProfile = await getMyProfile();
+                setPatientData(data);
 
-        setPatientData(data);
+                // Data de nascimento
+                setEditedBirthDate(
+                    data.birthDate
+                        ? data.birthDate.split('T')[0]
+                        : ''
+                );
 
-        // Nome
-        setEditedName(data.name || '');
-
-        // Data de nascimento
-        setEditedBirthDate(
-            data.birthDate
-                ? data.birthDate.split('T')[0]
-                : ''
-        );
-
-        // País
-        setEditedCountry(data.country || '');
-
-        // Email
-        setEditedEmail(data.email || '');
-
-    } catch (err) {
-        setError(handleApiError(err));
-    }
-};
+                // Cidade
+                setEditedCity(data.city || '');
+            } catch (err) {
+                setError(handleApiError(err));
+            }
+        };
         
         fetchPatientData();
-        
     }, [isAuthenticated, user, router, getMyProfile]);
 
     const handleImageClick = () => {
@@ -91,6 +74,46 @@ const [patientData, setPatientData] = useState<PatientProfile | null>(null);    
             const imageUrl = URL.createObjectURL(file);
             setProfileImage(imageUrl);
             // TODO: Implement image upload to backend
+        }
+    };
+
+    const handleSaveField = async (field: 'birthDate' | 'city') => {
+        try {
+            setIsSaving(true);
+            const updateData: any = {};
+            
+            if (field === 'birthDate') {
+                updateData.birthDate = editedBirthDate;
+            } else if (field === 'city') {
+                updateData.city = editedCity;
+            }
+
+            const updatedProfile = await updateMyProfile(updateData);
+            setPatientData(updatedProfile);
+
+            if (field === 'birthDate') {
+                setIsEditingBirthDate(false);
+            } else if (field === 'city') {
+                setIsEditingCity(false);
+            }
+        } catch (err) {
+            setError(handleApiError(err));
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+    const handleCancelEdit = (field: 'birthDate' | 'city') => {
+        if (field === 'birthDate' && patientData) {
+            setEditedBirthDate(
+                patientData.birthDate
+                    ? patientData.birthDate.split('T')[0]
+                    : ''
+            );
+            setIsEditingBirthDate(false);
+        } else if (field === 'city' && patientData) {
+            setEditedCity(patientData.city || '');
+            setIsEditingCity(false);
         }
     };
 
@@ -173,52 +196,9 @@ const [patientData, setPatientData] = useState<PatientProfile | null>(null);    
                 <h3 className='personal-data-title'>Dados Pessoais:</h3>
 
                 <div className="personal-data-item">
-
-                    {isEditingName ? (
-                        <>
-                            <input
-                                className='editprogram'
-                                value={editedName}
-                                onChange={(e) => setEditedName(e.target.value)}
-                            />
-                            <button className='edit_button'
-                                onClick={() => {
-                                    // futuramente enviar para API
-                                    setPatientData({
-                                        ...patientData,
-                                        name: editedName
-                                    });
-
-                                    setIsEditingName(false);
-                                }}
-                            >
-                                Salvar
-                            </button>
-
-                            <button className='edit_button'
-                                onClick={() => {
-                                    setEditedName(patientData.name);
-                                    setIsEditingName(false);
-                                }}
-                            >
-                                Cancelar
-                            </button>
-
-                        </>
-                    ) : (
-                        <>
-                            <p>Nome: {patientData.name}</p>
-
-                            <Image
-                                src={edit}
-                                alt="Editar nome"
-                                className="edit-icon"
-                                onClick={() => setIsEditingName(true)}
-                            />
-                        </>
-                    )}
-
+                    <p>Nome: {patientData.name}</p>
                 </div>
+
                 <div className="personal-data-item">
 
                     {isEditingBirthDate ? (
@@ -228,31 +208,19 @@ const [patientData, setPatientData] = useState<PatientProfile | null>(null);    
                                 type="date"
                                 value={editedBirthDate}
                                 onChange={(e) => setEditedBirthDate(e.target.value)}
+                                disabled={isSaving}
                             />
 
                             <button className='edit_button'
-                                onClick={() => {
-                                    setPatientData({
-                                        ...patientData,
-                                        birthDate: editedBirthDate
-                                    });
-
-                                    setIsEditingBirthDate(false);
-                                }}
+                                onClick={() => handleSaveField('birthDate')}
+                                disabled={isSaving}
                             >
-                                Salvar
+                                {isSaving ? 'Salvando...' : 'Salvar'}
                             </button>
 
                             <button className='edit_button'
-                                onClick={() => {
-                                    setEditedBirthDate(
-                                        patientData.birthDate
-                                            ? patientData.birthDate.split('T')[0]
-                                            : ''
-                                    );
-
-                                    setIsEditingBirthDate(false);
-                                }}
+                                onClick={() => handleCancelEdit('birthDate')}
+                                disabled={isSaving}
                             >
                                 Cancelar
                             </button>
@@ -280,48 +248,38 @@ const [patientData, setPatientData] = useState<PatientProfile | null>(null);    
 
                 <div className="personal-data-item">
 
-                    {isEditingCountry ? (
+                    {isEditingCity ? (
                         <>
                             <input
                                 className='editprogram'
-                                value={editedCountry}
-                                onChange={(e) => setEditedCountry(e.target.value)}
+                                value={editedCity}
+                                onChange={(e) => setEditedCity(e.target.value)}
+                                disabled={isSaving}
                             />
 
                             <button className='edit_button'
-                                onClick={() => {
-                                    if (patientData) {
-                                    setPatientData({
-                                        ...patientData,
-                                        country: editedCountry
-                                    });
-                                }
-
-                                    setIsEditingCountry(false);
-                                }}
+                                onClick={() => handleSaveField('city')}
+                                disabled={isSaving}
                             >
-                                Salvar
+                                {isSaving ? 'Salvando...' : 'Salvar'}
                             </button>
 
                             <button className='edit_button'
-                                onClick={() => {
-                                    setEditedCountry(patientData.country || '');
-
-                                    setIsEditingCountry(false);
-                                }}
+                                onClick={() => handleCancelEdit('city')}
+                                disabled={isSaving}
                             >
                                 Cancelar
                             </button>
                         </>
                     ) : (
                         <>
-                            <p>País: {patientData.country || 'Brasil'}</p>
+                            <p>Cidade: {patientData.city || 'Não informado'}</p>
 
                             <Image
                                 src={edit}
                                 alt=""
                                 className="edit-icon"
-                                onClick={() => setIsEditingCountry(true)}
+                                onClick={() => setIsEditingCity(true)}
                             />
                         </>
                     )}
@@ -334,101 +292,10 @@ const [patientData, setPatientData] = useState<PatientProfile | null>(null);    
 
                 <div className="account-field">
                     <p>Email:</p>
-
-                    {isEditingEmail ? (
-                        <>
-                            <input
-                                className='editprogram'
-                                value={editedEmail}
-                                onChange={(e) => setEditedEmail(e.target.value)}
-                            />
-
-                            <button className='edit_button'
-                                onClick={() => {
-                                    setPatientData({
-                                        ...patientData,
-                                        email: editedEmail
-                                    });
-
-                                    setIsEditingEmail(false);
-                                }}
-                            >
-                                Salvar
-                            </button>
-
-                            <button className='edit_button'
-                                onClick={() => {
-                                    setEditedEmail(patientData.email || '');
-
-                                    setIsEditingEmail(false);
-                                }}
-                            >
-                                Cancelar
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <input
-                                value={patientData.email || ''}
-                                readOnly
-                            />
-
-                            <Image
-                                src={edit}
-                                alt=""
-                                className="edit-icon"
-                                onClick={() => setIsEditingEmail(true)}
-                            />
-                        </>
-                    )}
-                </div>
-                <div className="account-field">
-                    <p>Senha:</p>
-
-                    {isEditingPassword ? (
-                        <>
-                            <input
-                                className='editprogram'
-                                type="password"
-                                value={editedPassword}
-                                onChange={(e) => setEditedPassword(e.target.value)}
-                                placeholder="Nova senha"
-                            />
-
-                            <button className='edit_button'
-                                onClick={() => {
-                                    setIsEditingPassword(false);
-                                    setEditedPassword('');
-                                }}
-                            >
-                                Salvar
-                            </button>
-
-                            <button className='edit_button'
-                                onClick={() => {
-                                    setIsEditingPassword(false);
-                                    setEditedPassword('');
-                                }}
-                            >
-                                Cancelar
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <input
-                                value="••••••••••••"
-                                type="password"
-                                readOnly
-                            />
-
-                            <Image
-                                src={edit}
-                                alt=""
-                                className="edit-icon"
-                                onClick={() => setIsEditingPassword(true)}
-                            />
-                        </>
-                    )}
+                    <input
+                        value={patientData.email || ''}
+                        readOnly
+                    />
                 </div>
             </div>
 

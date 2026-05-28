@@ -84,7 +84,7 @@ export interface UpdatePatientRequest {
 }
 
 // Therapist Types
-export type AttendanceModality = 'ONLINE' | 'PRESENCIAL' | 'BOTH';
+export type AttendanceModality = 'ONLINE' | 'PRESENTIAL' | 'BOTH';
 
 export interface TherapistProfile {
   userId: number;
@@ -99,9 +99,7 @@ export interface TherapistProfile {
   createdAt: string;
   updatedAt: string;
   crp?: string;
-  specialization?: string;
   country?: string;
-  modality?: 'ONLINE' | 'IN_PERSON' | 'BOTH';
   profileImage?: string;
 
 }

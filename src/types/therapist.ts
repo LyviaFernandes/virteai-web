@@ -4,7 +4,7 @@ export interface TherapistProfile {
 
     crp?: string;
 
-    specialization?: string;
+    specialty?: string;
 
     experience?: string;
 
@@ -12,7 +12,7 @@ export interface TherapistProfile {
 
     city?: string;
 
-    modality?: 'ONLINE' | 'IN_PERSON' | 'BOTH';
+    attendanceModality?: 'ONLINE' | 'PRESENTIAL' | 'BOTH';
 
     profileImage?: string;
 }
