@@ -73,7 +73,6 @@ export interface PatientProfile {
 
   // adicionar
   profileImage?: string;
-  country?: string;
   status?: string;
 }
 
@@ -99,7 +98,6 @@ export interface TherapistProfile {
   createdAt: string;
   updatedAt: string;
   crp?: string;
-  country?: string;
   profileImage?: string;
 
 }

@@ -8,8 +8,6 @@ export interface TherapistProfile {
 
     experience?: string;
 
-    country?: string;
-
     city?: string;
 
     attendanceModality?: 'ONLINE' | 'PRESENTIAL' | 'BOTH';

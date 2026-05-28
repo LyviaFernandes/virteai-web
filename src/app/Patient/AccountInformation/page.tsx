@@ -26,6 +26,9 @@ export default function AccountInformation () {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [isSaving, setIsSaving] = useState(false);
 
+    const [isEditingName, setIsEditingName] = useState(false);
+    const [editedName, setEditedName] = useState('');
+
     const [isEditingBirthDate, setIsEditingBirthDate] = useState(false);
     const [editedBirthDate, setEditedBirthDate] = useState('');
 
@@ -46,6 +49,9 @@ export default function AccountInformation () {
             try {
                 const data: PatientProfile = await getMyProfile();
                 setPatientData(data);
+
+                // Nome
+                setEditedName(data.name || '');
 
                 // Data de nascimento
                 setEditedBirthDate(
@@ -77,7 +83,7 @@ export default function AccountInformation () {
         }
     };
 
-    const handleSaveField = async (field: 'birthDate' | 'city') => {
+    const handleSaveField = async (field: 'birthDate' | 'city' | 'name') => {
         try {
             setIsSaving(true);
             const updateData: any = {};
@@ -86,6 +92,8 @@ export default function AccountInformation () {
                 updateData.birthDate = editedBirthDate;
             } else if (field === 'city') {
                 updateData.city = editedCity;
+            } else if (field === 'name') {
+                updateData.name = editedName;
             }
 
             const updatedProfile = await updateMyProfile(updateData);
@@ -95,6 +103,8 @@ export default function AccountInformation () {
                 setIsEditingBirthDate(false);
             } else if (field === 'city') {
                 setIsEditingCity(false);
+            } else if (field === 'name') {
+                setIsEditingName(false);
             }
         } catch (err) {
             setError(handleApiError(err));
@@ -103,7 +113,7 @@ export default function AccountInformation () {
         }
     };
 
-    const handleCancelEdit = (field: 'birthDate' | 'city') => {
+    const handleCancelEdit = (field: 'birthDate' | 'city' | 'name') => {
         if (field === 'birthDate' && patientData) {
             setEditedBirthDate(
                 patientData.birthDate
@@ -114,6 +124,9 @@ export default function AccountInformation () {
         } else if (field === 'city' && patientData) {
             setEditedCity(patientData.city || '');
             setIsEditingCity(false);
+        } else if (field === 'name' && patientData) {
+            setEditedName(patientData.name || '');
+            setIsEditingName(false);
         }
     };
 
@@ -196,7 +209,38 @@ export default function AccountInformation () {
                 <h3 className='personal-data-title'>Dados Pessoais:</h3>
 
                 <div className="personal-data-item">
-                    <p>Nome: {patientData.name}</p>
+                    {isEditingName ? (
+                        <>
+                            <input
+                                className='editprogram'
+                                value={editedName}
+                                onChange={(e) => setEditedName(e.target.value)}
+                                disabled={isSaving}
+                            />
+                            <button className='edit_button'
+                                onClick={() => handleSaveField('name')}
+                                disabled={isSaving}
+                            >
+                                {isSaving ? 'Salvando...' : 'Salvar'}
+                            </button>
+                            <button className='edit_button'
+                                onClick={() => handleCancelEdit('name')}
+                                disabled={isSaving}
+                            >
+                                Cancelar
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <p>Nome: {patientData.name || 'Não informado'}</p>
+                            <Image
+                                src={edit}
+                                alt=""
+                                className="edit-icon"
+                                onClick={() => setIsEditingName(true)}
+                            />
+                        </>
+                    )}
                 </div>
 
                 <div className="personal-data-item">

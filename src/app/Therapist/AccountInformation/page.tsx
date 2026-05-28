@@ -28,9 +28,9 @@ export default function AccountInformationTherapist () {
     const [editingField, setEditingField] = useState<string | null>(null);
 
     const [formData, setFormData] = useState({
+        name: '',
         specialty: '',
         experience: '',
-        country: '',
         city: '',
         birthDate: '',
         attendanceModality: ''
@@ -52,9 +52,9 @@ export default function AccountInformationTherapist () {
 
             setTherapistData(data);
             setFormData({
+                name: data.name || '',
                 specialty: data.specialty || '',
                 experience: data.experience || '',
-                country: data.country || '',
                 city: data.city || '',
                 birthDate: data.birthDate ? data.birthDate.split('T')[0] : '',
                 attendanceModality: data.attendanceModality || ''
@@ -188,6 +188,46 @@ export default function AccountInformationTherapist () {
 
             <div className="personal-data-section">
                 <h3 className='personal-data-title'>Dados Pessoais:</h3>
+
+                <div className="personal-data-item">
+                    {editingField === 'name' ? (
+                        <>
+                            <input
+                                value={formData.name}
+                                onChange={(e) =>
+                                    handleInputChange('name', e.target.value)
+                                }
+                                disabled={isSaving}
+                            />
+
+                            <button
+                                onClick={() => handleSave('name')}
+                                disabled={isSaving}
+                            >
+                                {isSaving ? 'Salvando...' : 'Salvar'}
+                            </button>
+                            
+                            <button
+                                onClick={() => handleCancel('name')}
+                                disabled={isSaving}
+                            >
+                                Cancelar
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <p>Nome: {therapistData.name}</p>
+
+                            <Image
+                                src={edit}
+                                alt=""
+                                className="edit-icon"
+                                onClick={() => setEditingField('name')}
+                            />
+                        </>
+                    )}
+
+                </div>
 
                 <div className="personal-data-item">
                     <p>CRP: {therapistData.professionalRegister || 'Não informado'}</p>
@@ -327,47 +367,6 @@ export default function AccountInformationTherapist () {
 
             <div className="account-settings-section">
                 <h3 className='account-local-title'>Localização e Atendimento:</h3>
-
-                <div className="personal-data-item">
-
-                    {editingField === 'country' ? (
-                        <>
-                            <input
-                                value={formData.country}
-                                onChange={(e) =>
-                                    handleInputChange('country', e.target.value)
-                                }
-                                disabled={isSaving}
-                            />
-
-                            <button
-                                onClick={() => handleSave('country')}
-                                disabled={isSaving}
-                            >
-                                {isSaving ? 'Salvando...' : 'Salvar'}
-                            </button>
-
-                            <button
-                                onClick={() => handleCancel('country')}
-                                disabled={isSaving}
-                            >
-                                Cancelar
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <p>País: {therapistData.country || 'Não informado'}</p>
-
-                            <Image
-                                src={edit}
-                                alt=""
-                                className="edit-icon"
-                                onClick={() => setEditingField('country')}
-                            />
-                        </>
-                    )}
-
-                </div>
 
                 <div className="personal-data-item">
 
