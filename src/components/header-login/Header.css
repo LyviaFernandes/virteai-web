@@ -21,7 +21,6 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
 
     padding: 0 clamp(16px, 3vw, 50px);
 
@@ -352,7 +351,8 @@ body{
     }
 
     .logo{
-        width: 100px;
+        max-width: 100px;
+        width: 90%;
     }
 
     /* esconde desktop */
@@ -398,7 +398,7 @@ body{
 
         padding: 20px;
 
-        gap: 20px;
+        gap: 10%;
 
         z-index: 999;
         

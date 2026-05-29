@@ -17,7 +17,7 @@ const questions = [
     "Frequentemente noto pequenos ruídos que outras pessoas não ouvem.",
     "Costumo prestar atenção aos números das placas dos automóveis ou a outras sequências de informação do mesmo tipo",
     "Com frequência, as outras pessoas me dizem que falei algo indelicado, apesar de eu achar que fui delicado(a).",
-    "Com frequência, as outras pessoas me dizem que falei algo indelicado, apesar de eu achar que fui delicado(a).",
+    "Quando leio uma história, consigo imaginar facilmente a aparência dos personagens.",
     "Sou fascinado(a) por datas.",
     "Quando estou em grupo, tenho facilidade em seguir várias conversas ao mesmo tempo.",
     "Tenho facilidade em compreender situações sociais.",
@@ -33,33 +33,33 @@ const questions = [
     "Não aprecio ler livros de ficção.",
     "Tenho dificuldade em fazer novos amigos.",
     "Vejo, constantemente, padrões nas coisas que me rodeiam.",
-    "Não gosto de ir a compras.",
-    "Prefiro atividades que envolvam fazer as coisas com as minhas próprias mãos.",
-    "Tenho facilidade em trabalhar com várias ideias ao mesmo tempo.",
-    "Tenho tendência a repetir certas ações ou rotinas.",
-    "Tenho facilidade em entender as intenções das pessoas.",
-    "Tenho tendência a me concentrar em detalhes pequenos.",
-    "Tenho facilidade em fazer amigos.",
-    "Tenho tendência a me perder em pensamentos.",
-    "Não gosto de mudanças.",
-    "Tenho facilidade em fazer as pessoas rirem.",
-    "Tenho tendência a planejar as coisas com antecedência.",
-    "Tenho tendência a entender as regras de um jogo imediatamente.",
-    "Tenho facilidade em trabalhar sozinho(a).",
-    "Tenho tendência a ser organizado(a).",
-    "Tenho facilidade em lidar com mudanças.",
-    "Tenho tendência a reparar em detalhes que os outros não reparam.",
-    "Tenho facilidade em manter uma conversa.",
-    "Tenho tendência a me interessar por números.",
-    "Tenho facilidade em fazer as pessoas se sentirem à vontade.",
-    "Tenho tendência a gostar de rotinas.",
-    "Tenho facilidade em visualizar coisas.",
-    "Tenho tendência a gostar de listas de fatos.",
-    "Tenho facilidade em improvisar.",
-    "Tenho tendência a gostar de ordem.",
-    "Tenho facilidade em entender expressões faciais.",
-    "Tenho tendência a saber como as coisas funcionam.",
-    "Tenho facilidade em manter o foco em uma conversa."
+    "Prefiro ir ao teatro do que ir a um museu.",
+    "Não fico incomodado(a) se minha rotina diária for alterada.",
+    "Com frequência sinto que não sei manter uma conversa.",
+    "Tenho facilidade em “ler nas entrelinhas” quando falam comigo.",
+    "Geralmente me concentro mais no todo do que nos detalhes.",
+    "Não sou muito bom/boa em lembrar números de telefone.",
+    "Geralmente não noto pequenas mudanças em uma situação",
+    "Consigo dizer quando a pessoa com quem estou conversando fica entediada.",
+    "Consigo facilmente fazer mais do que uma coisa ao mesmo tempo.",
+    "Quando falo no telefone, não tenho a certeza quando é a minha vez de falar.",
+    "Gosto de fazer as coisas de forma espontânea.",
+    "Com frequência sou o(a) último(a) que entende uma piada.",
+    "Tenho facilidade em entender o que uma pessoa está pensando ou sentindo apenas olhando para o seu rosto.",
+    "Se sou interrompido(a), consigo rapidamente voltar ao que estava fazendo.",
+    "Sou bom/boa de papo.",
+    "Os outros frequentemente me dizem que eu insisto muito nas mesmas coisas.",
+    "Quando era criança, gostava de brincar de faz-de-conta com as outras crianças.",
+    "Gosto de colecionar informação sobre categorias de coisas (ex., tipos de carros, de aves, de trens, de plantas, etc.).",
+    "Tenho dificuldade de me imaginar na pele de outra pessoa.",
+    "Gosto de planejar com cuidado todas as atividades em que participo.",
+    "Aprecio eventos sociais.",
+    "Tenho dificuldade em entender as intenções das outras pessoas.",
+    "Situações novas me deixam ansioso(a).",
+    "Gosto de conhecer pessoas novas.",
+    "Tenho uma postura conciliadora em situações de interação social.",
+    "Tenho dificuldade em lembrar o dia de aniversário dos outros.",
+    "Tenho muita facilidade em brincar de faz-de-conta com as crianças."
 ];
 
 export default function BigQuestionnaire () {
@@ -126,12 +126,19 @@ export default function BigQuestionnaire () {
 
             <h2>AQ-50</h2>
 
-            <div className="card-questions">
+            <div className="questionnaire-card">
                 {questions.map((question, index) => (
-                    <form key={index} className={`questions${index % 2 === 1 ? '-colorgreen' : ''}`}>
+                    <form
+                        key={index}
+                        className={`questionnaire-item ${
+                            index % 2 === 0
+                                ? 'questionnaire-white'
+                                : 'questionnaire-green'
+                        }`}
+                    >
                         <p>{index + 1}. {question}</p>
-                        <div className="questions-section">
-                            <div className="label-container">
+                        <div className="questionnaire-options">
+                            <div className="questionnaire-option">
                                 <label htmlFor={`q${index}-0`}>Concordo plenamente</label>
                                 <input
                                     type="radio"
@@ -142,7 +149,7 @@ export default function BigQuestionnaire () {
                                 />
                             </div>
 
-                            <div className="label-container">
+                            <div className="questionnaire-option">
                                 <label htmlFor={`q${index}-1`}>Concordo parcialmente</label>
                                 <input
                                     type="radio"
@@ -153,7 +160,7 @@ export default function BigQuestionnaire () {
                                 />
                             </div>
 
-                            <div className="label-container">
+                            <div className="questionnaire-option">
                                 <label htmlFor={`q${index}-2`}>Discordo parcialmente</label>
                                 <input
                                     type="radio"
@@ -164,7 +171,7 @@ export default function BigQuestionnaire () {
                                 />
                             </div>
 
-                            <div className="label-container">
+                            <div className="questionnaire-option">
                                 <label htmlFor={`q${index}-3`}>Discordo plenamente</label>
                                 <input
                                     type="radio"
@@ -178,19 +185,19 @@ export default function BigQuestionnaire () {
                     </form>
                 ))}
 
+
                 <div style={{ textAlign: 'center', marginTop: '20px' }}>
                     <button
                         onClick={handleSubmit}
                         disabled={loading}
-                        className='envite'
                         style={{
-                            backgroundColor: loading ? '#ccc' : '#007bff',
+                            backgroundColor: '#22304A',
                             color: 'white',
-                            padding: '10px 20px',
+                            padding: '15px 50px',
                             border: 'none',
-                            borderRadius: '4px',
+                            borderRadius: '30px',
                             cursor: loading ? 'not-allowed' : 'pointer',
-                            fontSize: '16px'
+                            fontSize: '30px'
                         }}
                     >
                         {loading ? 'Enviando...' : 'Enviar'}

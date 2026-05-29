@@ -139,6 +139,7 @@
 .login-register{
     display: flex;
     cursor: pointer;
+    background-color: transparent;
 }
 
 .login-register p{
