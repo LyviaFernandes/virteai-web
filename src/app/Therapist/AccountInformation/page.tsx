@@ -10,6 +10,7 @@ import Image from 'next/image';
 import HeaderEnter from '@/components/header-enter/HeaderEnter';
 import Return from '@/assets/images/return-icon.svg';
 import Iconpaciente from '@/assets/images/ProfileIcon.svg';
+import editimage from '@/assets/images/EditImageIcon.svg';
 import Footer from '@/components/footer/Footer';
 import edit from '@/assets/images/editicon.svg';
 import type { TherapistProfile } from '@/types/index';
@@ -22,18 +23,17 @@ export default function AccountInformationTherapist () {
     const [error, setError] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | undefined>(undefined);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [isSaving, setIsSaving] = useState(false);
 
     const [editingField, setEditingField] = useState<string | null>(null);
 
     const [formData, setFormData] = useState({
         name: '',
-        specialization: '',
+        specialty: '',
         experience: '',
-        country: '',
         city: '',
-        email: '',
-        password: '',
-        modality: ''
+        birthDate: '',
+        attendanceModality: ''
     });
 
     useEffect(() => {
@@ -53,13 +53,11 @@ export default function AccountInformationTherapist () {
             setTherapistData(data);
             setFormData({
                 name: data.name || '',
-                specialization: data.specialization || '',
+                specialty: data.specialty || '',
                 experience: data.experience || '',
-                country: data.country || '',
                 city: data.city || '',
-                email: data.email || '',
-                password: '',
-                modality: data.modality || ''
+                birthDate: data.birthDate ? data.birthDate.split('T')[0] : '',
+                attendanceModality: data.attendanceModality || ''
             });
             } catch (err) {
                 setError(handleApiError(err));
@@ -88,29 +86,51 @@ export default function AccountInformationTherapist () {
         setFormData((prev) => ({
             ...prev,
             [field]: value
-            
         }));
     };
 
-    const handleSave = async (
-        field: keyof typeof formData
-    ) => {
+    const handleSave = async (field: keyof typeof formData) => {
         try {
+            setIsSaving(true);
 
-            const updatedData: TherapistProfile = {
-                ...therapistData!,
-                [field]: formData[field as keyof typeof formData]
-            };
+            const updateData: any = {};
+            updateData[field] = formData[field];
 
-            await updateTherapistProfile(updatedData);
+            const updatedData = await updateTherapistProfile(updateData);
 
-            setTherapistData(updatedData);
+            setTherapistData((prev) =>
+            prev ? { ...prev, ...updatedData } : updatedData
+            );
+
+            setFormData((prev) => ({
+            ...prev,
+            [field]: updateData[field],
+            }));
 
             setEditingField(null);
-
         } catch (err) {
             setError(handleApiError(err));
+        } finally {
+            setIsSaving(false);
         }
+    };
+
+    const handleCancel = (field: keyof typeof formData) => {
+        if (therapistData) {
+            const currentValue = therapistData[field as keyof TherapistProfile];
+            if (field === 'birthDate' && currentValue) {
+                setFormData((prev) => ({
+                    ...prev,
+                    [field]: (currentValue as string).split('T')[0]
+                }));
+            } else {
+                setFormData((prev) => ({
+                    ...prev,
+                    [field]: currentValue || ''
+                }));
+            }
+        }
+        setEditingField(null);
     };
     if (!isAuthenticated) {
         return <div style={{ padding: '20px', textAlign: 'center' }}>Please log in</div>;
@@ -133,7 +153,7 @@ export default function AccountInformationTherapist () {
                 <div className="account-avatar-wrapper">
                    <div className="account-avatar" onClick={handleImageClick}>
                         <Image 
-                            src={profileImage || Iconpaciente}
+                            src={profileImage || therapistData.profileImage || Iconpaciente}
                             alt="Foto do usuário"
                             fill
                             className="account-avatar-image"
@@ -146,7 +166,20 @@ export default function AccountInformationTherapist () {
                             style={{ display: 'none' }}
                         />
                     </div>
-                    
+                    <div className="box-edit" onClick={handleImageClick}>
+                        <Image
+                            src={editimage}
+                            alt=""
+                            className="edit"
+                        />
+                        <input
+                            type="file"
+                            accept="image/*"
+                            ref={fileInputRef}
+                            onChange={handleImageChange}
+                            style={{ display: 'none' }}
+                        />
+                    </div>
                 </div>
 
                 <div className="account-user-info">
@@ -154,8 +187,8 @@ export default function AccountInformationTherapist () {
                     <h2>{therapistData.name}</h2>
 
                     <div className="account-status">
-                        <p>CRP: {therapistData.crp || 'Não informado'}</p>
-                        <p>{therapistData.specialization || 'Terapeuta'}</p>
+                        <p>CRP: {therapistData.professionalRegister || 'Não informado'}</p>
+                        <p>{therapistData.specialty || 'Terapeuta'}</p>
                     </div>
 
                 </div>
@@ -166,7 +199,6 @@ export default function AccountInformationTherapist () {
                 <h3 className='personal-data-title'>Dados Pessoais:</h3>
 
                 <div className="personal-data-item">
-
                     {editingField === 'name' ? (
                         <>
                             <input
@@ -174,16 +206,19 @@ export default function AccountInformationTherapist () {
                                 onChange={(e) =>
                                     handleInputChange('name', e.target.value)
                                 }
+                                disabled={isSaving}
                             />
 
                             <button
                                 onClick={() => handleSave('name')}
+                                disabled={isSaving}
                             >
-                                Salvar
+                                {isSaving ? 'Salvando...' : 'Salvar'}
                             </button>
-
+                            
                             <button
-                                onClick={() => setEditingField(null)}
+                                onClick={() => handleCancel('name')}
+                                disabled={isSaving}
                             >
                                 Cancelar
                             </button>
@@ -204,41 +239,44 @@ export default function AccountInformationTherapist () {
                 </div>
 
                 <div className="personal-data-item">
-                    <p>CRP: {therapistData.crp || 'Não informado'}</p>
+                    <p>CRP: {therapistData.professionalRegister || 'Não informado'}</p>
                 </div>
 
                 <div className="personal-data-item">
 
-                    {editingField === 'specialization' ? (
+                    {editingField === 'specialty' ? (
                         <>
                             <input
-                                value={formData.specialization}
+                                value={formData.specialty}
                                 onChange={(e) =>
-                                    handleInputChange('specialization', e.target.value)
+                                    handleInputChange('specialty', e.target.value)
                                 }
+                                disabled={isSaving}
                             />
 
                             <button
-                                onClick={() => handleSave('specialization')}
+                                onClick={() => handleSave('specialty')}
+                                disabled={isSaving}
                             >
-                                Salvar
+                                {isSaving ? 'Salvando...' : 'Salvar'}
                             </button>
 
                             <button
-                                onClick={() => setEditingField(null)}
+                                onClick={() => handleCancel('specialty')}
+                                disabled={isSaving}
                             >
                                 Cancelar
                             </button>
                         </>
                     ) : (
                         <>
-                            <p>Especialização: {therapistData.specialization}</p>
+                            <p>Especialização: {therapistData.specialty}</p>
 
                             <Image
                                 src={edit}
                                 alt=""
                                 className="edit-icon"
-                                onClick={() => setEditingField('specialization')}
+                                onClick={() => setEditingField('specialty')}
                             />
                         </>
                     )}
@@ -254,23 +292,26 @@ export default function AccountInformationTherapist () {
                                 onChange={(e) =>
                                     handleInputChange('experience', e.target.value)
                                 }
+                                disabled={isSaving}
                             />
 
                             <button
                                 onClick={() => handleSave('experience')}
+                                disabled={isSaving}
                             >
-                                Salvar
+                                {isSaving ? 'Salvando...' : 'Salvar'}
                             </button>
 
                             <button
-                                onClick={() => setEditingField(null)}
+                                onClick={() => handleCancel('experience')}
+                                disabled={isSaving}
                             >
                                 Cancelar
                             </button>
                         </>
                     ) : (
                         <>
-                            <p>Experiencia: {therapistData.experience}</p>
+                            <p>Experiência: {therapistData.experience || 'Não informado'}</p>
 
                             <Image
                                 src={edit}
@@ -283,49 +324,58 @@ export default function AccountInformationTherapist () {
 
                 </div>
 
-
-            </div>
-
-            <div className="account-settings-section">
-                <h3 className='account-local-title'>Localização e Atendimento:</h3>
-
                 <div className="personal-data-item">
 
-                    {editingField === 'country' ? (
+                    {editingField === 'birthDate' ? (
                         <>
-                            <input
-                                value={formData.country}
+                            <input 
+                                type="date"
+                                value={formData.birthDate}
                                 onChange={(e) =>
-                                    handleInputChange('country', e.target.value)
+                                    handleInputChange('birthDate', e.target.value)
                                 }
+                                disabled={isSaving}
                             />
 
                             <button
-                                onClick={() => handleSave('country')}
+                                onClick={() => handleSave('birthDate')}
+                                disabled={isSaving}
                             >
-                                Salvar
+                                {isSaving ? 'Salvando...' : 'Salvar'}
                             </button>
 
                             <button
-                                onClick={() => setEditingField(null)}
+                                onClick={() => handleCancel('birthDate')}
+                                disabled={isSaving}
                             >
                                 Cancelar
                             </button>
                         </>
                     ) : (
                         <>
-                            <p>País: {therapistData.country}</p>
+                            <p>
+                                Data de nascimento: {
+                                    therapistData.birthDate
+                                        ? therapistData.birthDate.split('T')[0].split('-').reverse().join('/')
+                                        : 'Não informado'
+                                }
+                            </p>
 
                             <Image
                                 src={edit}
                                 alt=""
                                 className="edit-icon"
-                                onClick={() => setEditingField('country')}
+                                onClick={() => setEditingField('birthDate')}
                             />
                         </>
                     )}
 
                 </div>
+
+            </div>
+
+            <div className="account-settings-section">
+                <h3 className='account-local-title'>Localização e Atendimento:</h3>
 
                 <div className="personal-data-item">
 
@@ -336,23 +386,26 @@ export default function AccountInformationTherapist () {
                                 onChange={(e) =>
                                     handleInputChange('city', e.target.value)
                                 }
+                                disabled={isSaving}
                             />
 
                             <button
                                 onClick={() => handleSave('city')}
+                                disabled={isSaving}
                             >
-                                Salvar
+                                {isSaving ? 'Salvando...' : 'Salvar'}
                             </button>
 
                             <button
-                                onClick={() => setEditingField(null)}
+                                onClick={() => handleCancel('city')}
+                                disabled={isSaving}
                             >
                                 Cancelar
                             </button>
                         </>
                     ) : (
                         <>
-                            <p>Cidade: {therapistData.city}</p>
+                            <p>Cidade: {therapistData.city || 'Não informado'}</p>
 
                             <Image
                                 src={edit}
@@ -372,12 +425,12 @@ export default function AccountInformationTherapist () {
                     <div className="account-modalidade-item">
                         <p>Modalidade de atendimento:</p>
 
-                        {editingField !== 'modality' && (
+                        {editingField !== 'attendanceModality' && (
                             <Image
                                 src={edit}
                                 alt=""
                                 className="edit-icon"
-                                onClick={() => setEditingField('modality')}
+                                onClick={() => setEditingField('attendanceModality')}
                             />
                         )}
                     </div>
@@ -388,11 +441,11 @@ export default function AccountInformationTherapist () {
                             <input
                                 type="radio"
                                 id="online"
-                                name="modality"
-                                checked={formData.modality === 'ONLINE'}
-                                disabled={editingField !== 'modality'}
+                                name="attendanceModality"
+                                checked={formData.attendanceModality === 'ONLINE'}
+                                disabled={editingField !== 'attendanceModality' || isSaving}
                                 onChange={() =>
-                                    handleInputChange('modality', 'ONLINE')
+                                    handleInputChange('attendanceModality', 'ONLINE')
                                 }
                             />
 
@@ -403,11 +456,11 @@ export default function AccountInformationTherapist () {
                             <input
                                 type="radio"
                                 id="presencial"
-                                name="modality"
-                                checked={formData.modality === 'IN_PERSON'}
-                                disabled={editingField !== 'modality'}
+                                name="attendanceModality"
+                                checked={formData.attendanceModality === 'PRESENTIAL'}
+                                disabled={editingField !== 'attendanceModality' || isSaving}
                                 onChange={() =>
-                                    handleInputChange('modality', 'IN_PERSON')
+                                    handleInputChange('attendanceModality', 'PRESENTIAL')
                                 }
                             />
 
@@ -420,11 +473,11 @@ export default function AccountInformationTherapist () {
                             <input
                                 type="radio"
                                 id="hibrido"
-                                name="modality"
-                                checked={formData.modality === 'BOTH'}
-                                disabled={editingField !== 'modality'}
+                                name="attendanceModality"
+                                checked={formData.attendanceModality === 'BOTH'}
+                                disabled={editingField !== 'attendanceModality' || isSaving}
                                 onChange={() =>
-                                    handleInputChange('modality', 'BOTH')
+                                    handleInputChange('attendanceModality', 'BOTH')
                                 }
                             />
 
@@ -433,24 +486,19 @@ export default function AccountInformationTherapist () {
 
                     </div>
 
-                    {editingField === 'modality' && (
+                    {editingField === 'attendanceModality' && (
                         <div className="modalidade-buttons">
 
                             <button
-                                onClick={() => handleSave('modality')}
+                                onClick={() => handleSave('attendanceModality')}
+                                disabled={isSaving}
                             >
-                                Salvar
+                                {isSaving ? 'Salvando...' : 'Salvar'}
                             </button>
 
                             <button
-                                onClick={() => {
-                                    setFormData((prev) => ({
-                                        ...prev,
-                                        modality: therapistData.modality || ''
-                                    }));
-
-                                    setEditingField(null);
-                                }}
+                                onClick={() => handleCancel('attendanceModality')}
+                                disabled={isSaving}
                             >
                                 Cancelar
                             </button>
@@ -465,105 +513,12 @@ export default function AccountInformationTherapist () {
 
                 <div className="account-field">
                     <p>Email:</p>
-
-                    {editingField === 'email' ? (
-                        <>
-                            <input
-                                value={formData.email}
-                                onChange={(e) =>
-                                    handleInputChange('email', e.target.value)
-                                }
-                            />
-
-                            <button
-                                onClick={() => handleSave('email')}
-                            >
-                                Salvar
-                            </button>
-
-                            <button
-                                onClick={() => setEditingField(null)}
-                            >
-                                Cancelar
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <input
-                                name="email"
-                                value={therapistData.email || user?.email || ''}
-                                readOnly
-                            />
-
-                            <Image
-                                src={edit}
-                                alt=""
-                                className="edit-icon"
-                                onClick={() => setEditingField('email')}
-                            />
-                        </>
-                    )}
+                    <input
+                        name="email"
+                        value={therapistData.email || user?.email || ''}
+                        readOnly
+                    />
                 </div>
-
-                <div className="account-field">
-                    <p>Senha:</p>
-
-                    {editingField === 'password' ? (
-                        <>
-                            <input
-                                type="password"
-                                placeholder="Nova senha"
-                                value={formData.password}
-                                onChange={(e) =>
-                                    handleInputChange('password', e.target.value)
-                                }
-                            />
-
-                            <button
-                                onClick={() => {
-                                    // futura API de alteração de senha
-                                    setEditingField(null);
-
-                                    setFormData((prev) => ({
-                                        ...prev,
-                                        password: ''
-                                    }));
-                                }}
-                            >
-                                Salvar
-                            </button>
-
-                            <button
-                                onClick={() => {
-                                    setEditingField(null);
-
-                                    setFormData((prev) => ({
-                                        ...prev,
-                                        password: ''
-                                    }));
-                                }}
-                            >
-                                Cancelar
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <input
-                                name="password"
-                                value="••••••••••••"
-                                type="password"
-                                readOnly
-                            />
-
-                            <Image
-                                src={edit}
-                                alt=""
-                                className="edit-icon"
-                                onClick={() => setEditingField('password')}
-                            />
-                        </>
-                    )}
-</div>
             </div>
 
             {error && (

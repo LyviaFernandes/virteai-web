@@ -51,12 +51,17 @@ export const parseValidationErrors = (
     return {};
   }
 
-  const data = error.data;
-  if (data?.errors && typeof data.errors === 'object') {
+  const data = error.data as {
+    errors?: Record<string, string>;
+    field?: string;
+    message?: string;
+  };
+
+  if (data.errors && typeof data.errors === 'object') {
     return data.errors;
   }
 
-  if (data?.field && data?.message) {
+  if (data.field && data.message) {
     return {
       [data.field]: data.message,
     };

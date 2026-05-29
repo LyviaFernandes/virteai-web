@@ -4,15 +4,13 @@ export interface TherapistProfile {
 
     crp?: string;
 
-    specialization?: string;
+    specialty?: string;
 
     experience?: string;
 
-    country?: string;
-
     city?: string;
 
-    modality?: 'ONLINE' | 'IN_PERSON' | 'BOTH';
+    attendanceModality?: 'ONLINE' | 'PRESENTIAL' | 'BOTH';
 
     profileImage?: string;
 }
