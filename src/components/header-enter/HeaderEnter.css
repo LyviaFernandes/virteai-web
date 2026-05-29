@@ -51,7 +51,7 @@
 
 /* IMPORTANTE: evita sobreposição */
 body{
-    padding-top: 170px;
+    padding-top: auto;
 }
 
 @media (max-width: 768px){

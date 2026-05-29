@@ -111,11 +111,11 @@
 }
 
 .signup-card{
-    padding: 30px 50px;
+    padding: 30px 30px;
     border-radius: 50px;
     z-index: 0;
     margin-top: -40px;
-    width: 90%;
+    width: 95%;
 }
 
 .signup-card p{

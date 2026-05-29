@@ -67,7 +67,7 @@
 
 .login-register{
     display: flex;
-    background-color: var(--primary-color);
+    background-color: transparent;
     white-space: nowrap;
     cursor: pointer;
     color: var(--dark-blue);
@@ -75,7 +75,7 @@
 
 .login-forgot-password{
     display: flex;
-    background-color: var(--primary-color);
+    background-color: transparent;
     cursor: pointer;
     color: var(--dark-blue);
 }
@@ -107,7 +107,7 @@
     z-index: 0;
     margin-top: -40px;
     justify-content: center;
-    width: 85%;
+    width: 90%;
 }
 
 .login-card p{
@@ -131,9 +131,8 @@
 .login-actions{
     display: flex;
     margin-top: 20px;
-    gap: 10px;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     text-align: center;
 }
 
@@ -144,6 +143,7 @@
 
 .login-register p{
     white-space: nowrap;
+    margin-right: 10px;
 }
 .login-forgot-password{
     display: flex;

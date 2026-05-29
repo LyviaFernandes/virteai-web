@@ -119,53 +119,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-    margin-bottom: 50px;
+    gap: 20px;
+    margin-bottom: 80px;
 }
 
 .faq-card--sand{
-    background-color: var(--backgroud-sand);
     border-radius: 50px;
-    border: 5px solid var(--sand-medium);
     display: flex;
     width: 80%;
-    padding: 30px;
+    padding: 20px;
 }
 
 .faq-card--ciano{
-    background-color: var(--blue-faq);
     border-radius: 50px;
-    border: 5px solid var(--Turquoise-medium-three);
     display: flex;
     width: 80%;
-    padding: 30px;
+    padding: 20px;
 }
 
 .faq-card--blue{
-    background-color: var(--primary-color);
     border-radius: 50px;
-    border: 5px solid var(--dark-blue);
     display: flex;
     width: 80%;
-    padding: 30px;
+    padding: 20px;
 }
 
 .faq-card--green{
-    background-color: var(--background-green-faq);
     border-radius: 50px;
-    border: 5px solid var(--border-green);
     display: flex;
     width: 80%;
-    padding: 30px;
+    padding: 20px;
 }
 
 .faq-card__content{
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 .faq-card__question p{
-    font-size: 25px;
-    margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .faq-card__answer p{
@@ -174,6 +166,8 @@
 }
 
 .faq-card__icon{
-    width: 60%;
+   display: none;
 }
+
+
 }
