@@ -11,7 +11,7 @@ header{
     justify-content: space-between;
     gap: clamp(16px, 3vw, 40px);
     padding: 0 clamp(16px, 3vw, 40px);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 
     position: fixed;
     top: 0;
@@ -127,18 +127,22 @@ body{
 /* ===== MOBILE ===== */
 @media (max-width: 768px){
 
+    @media (max-width: 768px){
+
     header{
-        display: flex;
         height: 100px;
-        gap: 20px;
+        display: flex;
+        align-items: center;
         justify-content: space-between;
-        padding: 10 20px;
-        width: 100%;
+        overflow: hidden;
+        padding: 0 20px;
+        flex-wrap: nowrap; /* impede quebrar linha */
     }
 
     .logo{
-        width: 100px;
-        margin-right: 60%;
+        width: clamp(80px, 20vw, 110px);
+        margin-right: 0; /* remove o empurrão */
+        flex-shrink: 1;
     }
 
     /* esconde menu desktop */
@@ -146,27 +150,32 @@ body{
         display: none;
     }
 
-    /* esconde profile (opcional, podemos manter se quiser) */
     .container-button{
         display: none;
     }
 
-    /* mostra hamburger */
+    /* hamburger */
     .hamburger{
         display: flex;
-        cursor: pointer;
-        margin-left: auto;
         align-items: center;
-        width: 80px;
+        justify-content: center;
+
+        width: 44px;
+        height: 40px;
+
+
+        margin-left: 60%;
+        cursor: pointer;
+        flex-shrink: 0;
     }
 
-    /* menu mobile */
     .mobile-menu{
-    position: fixed;
-    top: 100px;
-    left: 0;
-    width: 100%;
-    z-index: 999;
+        position: fixed;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+    }
 }
 
     .mobile-menu a,
