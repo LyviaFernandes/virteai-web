@@ -33,7 +33,7 @@ export default function Footer () {
                         width={30}
                         height={30}
                         />
-                        <p>virteaioficial@gmail.com</p>
+                        <a href="mailto:contato@virteai.com.br">contato@virteai.com.br</a>
                     </div>
                 </div>
 
