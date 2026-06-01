@@ -19,6 +19,7 @@ const normalizePatient = (raw: any): PatientProfile => ({
   userId: raw?.userId ?? raw?.user?.userId,
   name: raw?.name ?? raw?.user?.name,
   email: raw?.email ?? raw?.user?.email,
+  profileImage: raw?.profilePictureUrl || raw?.profileImage,
 });
 
 export const therapistService = {
