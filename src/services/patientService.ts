@@ -11,6 +11,7 @@ const normalizePatient = (raw: any): PatientProfile => ({
   userId: raw?.userId ?? raw?.user?.userId,
   name: raw?.name ?? raw?.user?.name,
   email: raw?.email ?? raw?.user?.email,
+  profileImage: raw?.profilePictureUrl || raw?.profileImage,
 });
 
 const normalizePatientList = (raw: any): PatientProfile[] =>
@@ -55,7 +56,7 @@ export const patientService = {
   /**
    * Update authenticated patient's own profile
    */
-  async updateMyProfile(data: UpdatePatientRequest): Promise<PatientProfile> {
+  async updateMyProfile(data: UpdatePatientRequest | FormData): Promise<PatientProfile> {
     const raw = await apiClient.put<any>(
       '/patients/update',
       data

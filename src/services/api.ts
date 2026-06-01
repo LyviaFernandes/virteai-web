@@ -52,9 +52,12 @@ class APIClient {
     } = options;
 
     const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
       ...(customHeaders as Record<string, string>),
     };
+
+    if (!(body instanceof FormData)) {
+      headers['Content-Type'] = 'application/json';
+    }
 
     if (!skipAuth) {
       const token = await this.getAuthToken();
@@ -70,7 +73,7 @@ class APIClient {
     };
 
     if (body) {
-      fetchOptions.body = JSON.stringify(body);
+      fetchOptions.body = body instanceof FormData ? body : JSON.stringify(body);
     }
 
     try {

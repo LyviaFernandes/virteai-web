@@ -66,7 +66,7 @@ export const useTherapist = () => {
     }
   }, []);
 
-  const updateMyProfile = useCallback(async (updateData: UpdateTherapistRequest) => {
+  const updateMyProfile = useCallback(async (updateData: UpdateTherapistRequest | FormData) => {
     try {
       setLoading(true);
       setError(null);

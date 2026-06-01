@@ -74,12 +74,29 @@ export default function AccountInformation () {
         fileInputRef.current?.click();
     };
 
+    const uploadProfileImage = async (file: File) => {
+        try {
+            setIsSaving(true);
+            const formData = new FormData();
+            formData.append('profilePicture', file);
+
+            const updatedProfile = await updateMyProfile(formData);
+            setPatientData(updatedProfile);
+            setProfileImage(updatedProfile.profileImage);
+        } catch (err) {
+            setError(handleApiError(err));
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             setProfileImage(imageUrl);
-            // TODO: Implement image upload to backend
+            uploadProfileImage(file);
+            event.currentTarget.value = '';
         }
     };
 
@@ -163,19 +180,11 @@ export default function AccountInformation () {
                         />
                     </div>
                     <div className="box-edit" onClick={handleImageClick}>
-
                         <Image
                             src={editimage}
                             alt=""
                             className="edit"
                         />
-                        <input
-                                type="file"
-                                accept="image/*"
-                                ref={fileInputRef}
-                                onChange={handleImageChange}
-                                style={{ display: 'none' }}
-                            />
                     </div>
 
                 </div>

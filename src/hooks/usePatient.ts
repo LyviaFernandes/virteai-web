@@ -66,7 +66,7 @@ export const usePatient = () => {
     }
   }, []);
 
-  const updateMyProfile = useCallback(async (updateData: UpdatePatientRequest) => {
+  const updateMyProfile = useCallback(async (updateData: UpdatePatientRequest | FormData) => {
     try {
       setLoading(true);
       setError(null);

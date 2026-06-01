@@ -77,9 +77,11 @@ export interface PatientProfile {
 }
 
 export interface UpdatePatientRequest {
+  name?: string;
   city?: string;
   birthDate?: string;
   careStatus?: PatientCareStatus;
+  profilePicture?: File;
 }
 
 // Therapist Types
@@ -103,12 +105,14 @@ export interface TherapistProfile {
 }
 
 export interface UpdateTherapistRequest {
+  name?: string;
   professionalRegister?: string;
   city?: string;
   birthDate?: string;
   specialty?: string;
   experience?: string;
   attendanceModality?: AttendanceModality;
+  profilePicture?: File;
 }
 
 // Session Types

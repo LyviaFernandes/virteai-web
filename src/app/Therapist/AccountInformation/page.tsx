@@ -71,12 +71,32 @@ export default function AccountInformationTherapist () {
         fileInputRef.current?.click();
     };
 
+    const uploadProfileImage = async (file: File) => {
+        try {
+            setIsSaving(true);
+            const formData = new FormData();
+            formData.append('profilePicture', file);
+
+            const updatedProfile = await updateTherapistProfile(formData);
+
+            setTherapistData((prev) =>
+                prev ? { ...prev, ...updatedProfile } : updatedProfile
+            );
+            setProfileImage(updatedProfile.profileImage);
+        } catch (err) {
+            setError(handleApiError(err));
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
             const imageUrl = URL.createObjectURL(file);
             setProfileImage(imageUrl);
-            // TODO: Implement image upload to backend
+            uploadProfileImage(file);
+            event.currentTarget.value = '';
         }
     };
     const handleInputChange = (
@@ -171,13 +191,6 @@ export default function AccountInformationTherapist () {
                             src={editimage}
                             alt=""
                             className="edit"
-                        />
-                        <input
-                            type="file"
-                            accept="image/*"
-                            ref={fileInputRef}
-                            onChange={handleImageChange}
-                            style={{ display: 'none' }}
                         />
                     </div>
                 </div>

@@ -11,6 +11,7 @@ const normalizeTherapist = (raw: any): TherapistProfile => ({
   userId: raw?.userId ?? raw?.user?.userId,
   name: raw?.name ?? raw?.user?.name,
   email: raw?.email ?? raw?.user?.email,
+  profileImage: raw?.profilePictureUrl || raw?.profileImage,
 });
 
 const normalizePatient = (raw: any): PatientProfile => ({
@@ -56,7 +57,7 @@ export const therapistService = {
   /**
    * Update authenticated therapist's own profile
    */
-  async updateMyProfile(data: UpdateTherapistRequest): Promise<TherapistProfile> {
+  async updateMyProfile(data: UpdateTherapistRequest | FormData): Promise<TherapistProfile> {
     const raw = await apiClient.put<any>(
       '/therapists/update',
       data
