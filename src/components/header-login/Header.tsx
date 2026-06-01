@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css'
 import logo from '../../assets/images/logo.svg';
 import aboutUs from '../../assets/images/about-us.svg';
@@ -12,11 +12,13 @@ import Notification from '../../assets/images/notification.svg';
 import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/lib';
+import { useAuth, usePatient, useTherapist } from '@/lib';
 import { ROUTES } from '@/lib/routes';
 
 export default function HeaderHome () {
     const { user, logout } = useAuth();
+    const { getMyProfile: getPatientProfile } = usePatient();
+    const { getMyProfile: getTherapistProfile } = useTherapist();
     const router = useRouter();
     const isTherapist = user?.role === 'THERAPIST';
     const profileHref = isTherapist
@@ -26,6 +28,7 @@ export default function HeaderHome () {
     const [openModal, setOpenModal] = useState(false);
     const [openNotifications, setOpenNotifications] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [profileImage, setProfileImage] = useState<string | undefined>(undefined);
 
     const [notifications, setNotifications] = useState([
         {id:1, text1:"Novo recurso disponível!", text2:"Ajuste a intensidade visual e sonora", read:false},
@@ -49,6 +52,27 @@ export default function HeaderHome () {
             )
         );
     };
+
+    useEffect(() => {
+        if (!user) return;
+        
+        let cancelled = false;
+        (async () => {
+            try {
+                const profileData = isTherapist 
+                    ? await getTherapistProfile()
+                    : await getPatientProfile();
+                
+                if (!cancelled && profileData?.profileImage) {
+                    setProfileImage(profileData.profileImage);
+                }
+            } catch {
+                // silently fail, keep default icon
+            }
+        })();
+        
+        return () => { cancelled = true; };
+    }, [user, isTherapist, getPatientProfile, getTherapistProfile]);
 
     return (
         <>
@@ -99,7 +123,12 @@ export default function HeaderHome () {
             
             <Link href={profileHref}>
                 <button className="container-profile">
-                    <Image className='Profile' src={profile} alt="Icon profile"/>
+                    <Image 
+                        className='Profile' 
+                        src={profileImage || profile} 
+                        alt="Icon profile"
+                        unoptimized={!!profileImage}
+                    />
                 </button>
             </Link>
 
