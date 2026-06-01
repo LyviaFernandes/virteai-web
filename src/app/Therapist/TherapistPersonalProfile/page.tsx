@@ -50,9 +50,10 @@ export default function TherapistProfile () {
                 <div className="profile-avatar-wrapper">
                     <div className="profile-avatar-container">
                         <Image 
-                        src={DefaultProfileIcon}
+                        src={therapistData?.profileImage || DefaultProfileIcon}
                         alt="Foto do usuário"
                         fill
+                        unoptimized={!!therapistData?.profileImage}
                         className="profile-avatar-image"
                         />
                     </div>

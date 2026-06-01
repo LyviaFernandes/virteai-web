@@ -176,6 +176,7 @@ export default function AccountInformationTherapist () {
                             src={profileImage || therapistData.profileImage || Iconpaciente}
                             alt="Foto do usuário"
                             fill
+                            unoptimized={!!(profileImage || therapistData.profileImage)}
                             className="account-avatar-image"
                         />
                         <input

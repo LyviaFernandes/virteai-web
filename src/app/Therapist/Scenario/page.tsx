@@ -152,9 +152,10 @@ function ScenariosContent () {
             <div className="account-avatar-wrapper">
                    <div className="account-avatar">
                         <Image
-                            src={Iconpaciente}
+                            src={patient?.profileImage || Iconpaciente}
                             alt="Foto do usuário"
                             fill
+                            unoptimized={!!patient?.profileImage}
                             className="account-avatar-image"
                         />
                     </div>

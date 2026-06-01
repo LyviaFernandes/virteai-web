@@ -168,6 +168,7 @@ export default function AccountInformation () {
                             src={profileImage || patientData.profileImage || Iconpaciente}
                             alt="Foto do usuário"
                             fill
+                            unoptimized={!!(profileImage || patientData.profileImage)}
                             className="account-avatar-image"
                         />
 

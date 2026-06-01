@@ -57,9 +57,10 @@ export default function PacientProfile () {
                 <div className="profile-avatar-wrapper">
                     <div className="profile-avatar-container">
                         <Image 
-                        src={Iconpaciente}
+                        src={patientData?.profileImage || Iconpaciente}
                         alt="Foto do usuário"
                         fill
+                        unoptimized={!!patientData?.profileImage}
                         className="profile-avatar-image"
                         />
                     </div>

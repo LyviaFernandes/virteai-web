@@ -75,8 +75,9 @@ export default function TherapistList () {
                         <div className="therapist-card">
                             <Image
                             className='therapist-card__image'
-                            src={profile}
-                            alt=""
+                            src={t.profileImage || profile}
+                            alt={t.name}
+                            unoptimized={!!t.profileImage}
                             />
 
                             <div className="therapist-card__content">

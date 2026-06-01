@@ -76,9 +76,10 @@ export default function ProcessesAndTreatments () {
                 <div className="profile-avatar-wrapper">
                     <div className="profile-avatar-container">
                         <Image
-                        src={DefaultProfileIcon}
+                        src={therapist?.profileImage || DefaultProfileIcon}
                         alt="Foto do usuário"
                         fill
+                        unoptimized={!!therapist?.profileImage}
                         className="profile-avatar-image"
                         />
                     </div>

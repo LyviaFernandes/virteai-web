@@ -73,8 +73,9 @@ export default function PatientListPage () {
                         >
                             <Image
                                 className='patient-card__image'
-                                src={profile}
-                                alt=""
+                                src={patient.profileImage || profile}
+                                alt={patient.name}
+                                unoptimized={!!patient.profileImage}
                             />
 
                             <div className="patient-card__content">
