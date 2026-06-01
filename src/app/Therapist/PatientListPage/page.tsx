@@ -75,6 +75,7 @@ export default function PatientListPage () {
                                 className='patient-card__image'
                                 src={patient.profileImage || profile}
                                 alt={patient.name}
+                                width={80}
                                 unoptimized={!!patient.profileImage}
                             />
 
@@ -86,6 +87,7 @@ export default function PatientListPage () {
                                 className='patient-card__action-icon'
                                 src={visualize}
                                 alt=""
+                                width={24}
                             />
                         </div>
                     ))

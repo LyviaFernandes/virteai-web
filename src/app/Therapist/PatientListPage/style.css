@@ -51,6 +51,16 @@
     margin-right: 25%;
 }
 
+.patient-card__image{
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.patient-card__action-icon{
+    width: 24px;
+}
+
 @media (max-width: 768px){
 
 .patient-header{
@@ -89,6 +99,8 @@
 
 .patient-card__image{
     width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .patient-card__action-icon{
