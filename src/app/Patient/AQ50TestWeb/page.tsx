@@ -118,11 +118,7 @@ export default function BigQuestionnaire () {
                     Responda de acordo com o que se identifica.</p>
             </div>
 
-            {error && (
-                <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', margin: '20px' }}>
-                    <p>{error}</p>
-                </div>
-            )}
+            
 
             <h2>AQ-50</h2>
 
@@ -203,6 +199,11 @@ export default function BigQuestionnaire () {
                         {loading ? 'Enviando...' : 'Enviar'}
                     </button>
                 </div>
+                {error && (
+                <div style={{ backgroundColor: '#9CB4D3', color: '#c00', padding: '10px', borderRadius: '4px', margin: '20px' }}>
+                    <p>{error}</p>
+                </div>
+            )}
             </div>
 
             <Footer/>

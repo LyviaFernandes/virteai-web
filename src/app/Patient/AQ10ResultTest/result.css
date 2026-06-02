@@ -141,12 +141,11 @@
     margin-top: 30px;
     gap: 10px;
     justify-content: center;
-    
 }
 
 .result-card__message{
     display: flex;
-    width: 80%;
+    width: 90%;
     text-align: center;
     justify-content: center;
     margin-top: 30px;
@@ -162,6 +161,16 @@
 }
 
 .result-card__secondary-button h3{
-    font-size: 20px;
+    font-size: 15px;
 }
+
+.result-card__secondary-button{
+     padding: 10px 15px;
+}
+
+.result-card__actions Button{
+     padding: 10px 15px;
+     font-size: 15px;
+}
+
 }

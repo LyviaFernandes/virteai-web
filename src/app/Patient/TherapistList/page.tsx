@@ -77,6 +77,8 @@ export default function TherapistList () {
                             className='therapist-card__image'
                             src={t.profileImage || profile}
                             alt={t.name}
+                            width={100}
+                            height={100}
                             unoptimized={!!t.profileImage}
                             />
 
