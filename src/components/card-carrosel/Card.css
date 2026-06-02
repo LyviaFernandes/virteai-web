@@ -62,7 +62,7 @@
   display: flex;
     background-color: var(--primary-color);
     border-radius: 50px;
-    height: 80%;
+    height: 70%;
   overflow: hidden; /* Ensures the image respects the border radius */
   margin: 10px;
   flex-direction: column;
@@ -74,14 +74,14 @@
 .imageContainer{
   display: flex;
   width: 85%;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .cardContainer{
   margin-top: 5px;
   background-color: var(--secundary-color);
   border-radius: 30px;
-  width: 85%;
+  width: 90%;
   height: 54%;
   display: flex;
   flex-direction: column;
@@ -101,7 +101,7 @@
 }
 
 .cardContainer p{
-  font-size: 15px;
+  font-size: 14px;
   align-items: center;
   text-align: justify;
   margin: 10px;

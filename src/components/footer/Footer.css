@@ -38,7 +38,7 @@ footer{
     justify-content: center;
 }
 
-.emailFooter p{
+.emailFooter a{
     color: var(--dark-blue);
 }
 
@@ -115,7 +115,7 @@ footer{
     font-size: 15px;
 }
 
-.emailFooter p {
+.emailFooter a {
     font-size: 10px;
 }
 
