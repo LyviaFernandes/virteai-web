@@ -31,7 +31,7 @@ header{
 
 /* evita conteúdo invadir */
 body{
-    padding-top: auto;
+    padding-top: 170px;
 }
 
 .container-profile{
