@@ -123,12 +123,12 @@ export default function HeaderHome () {
             
             <Link href={profileHref}>
                 <button className="container-profile">
-                    <Image 
-                        className='Profile' 
-                        src={profileImage || profile} 
+                    <Image
+                        className="Profile"
+                        src={profileImage || profile}
                         alt="Icon profile"
-                        unoptimized={!!profileImage}
-                    />
+                        fill
+                        />
                 </button>
             </Link>
 

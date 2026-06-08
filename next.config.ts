@@ -1,16 +1,18 @@
-// import type { NextConfig } from "next";
+import type { NextConfig } from "next";
 
-// const nextConfig: NextConfig = {
-//   /* config options here */
-// };
-
-// export default nextConfig;
-
-// /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
-    domains: ['thumbs.dreamstime.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "thumbs.dreamstime.com",
+      },
+      {
+        protocol: "https",
+        hostname: "open-amaranth-yak.myfilebase.com",
+      },
+    ],
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
