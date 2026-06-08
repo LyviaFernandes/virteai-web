@@ -45,7 +45,7 @@ header{
 
 /* evita sobreposição */
 body{
-    padding-top: auto;
+    padding-top: 170px;
 }
 
 .logo{

@@ -52,11 +52,23 @@ function PaymentContent () {
         const emailErr = validateEmail(form.email); if (emailErr) errs.email = emailErr;
         const birthErr = required(birthDate, 'Data de nascimento'); if (birthErr) errs.birthDate = birthErr;
 
-        const cpfErr = validateCPF(card.cpf); if (cpfErr) errs.cpf = cpfErr;
+        const cpfValue =
+            paymentMethod === 'card'
+                ? cardData.cpf
+                : pixData.cpf;
+
+        const cpfErr = validateCPF(cpfValue);
+        if (cpfErr) errs.cpf = cpfErr;
+
         if (paymentMethod === 'card') {
-            const numErr = validateCardNumber(card.number); if (numErr) errs.number = numErr;
-            const expErr = validateCardExpiry(expiry); if (expErr) errs.expiry = expErr;
-            const cvvErr = validateCVV(card.cvv); if (cvvErr) errs.cvv = cvvErr;
+            const numErr = validateCardNumber(cardData.number);
+            if (numErr) errs.number = numErr;
+
+            const expErr = validateCardExpiry(expiry);
+            if (expErr) errs.expiry = expErr;
+
+            const cvvErr = validateCVV(cardData.cvv);
+            if (cvvErr) errs.cvv = cvvErr;
         }
         setFieldErrors(errs);
         return Object.keys(errs).length === 0;
@@ -79,38 +91,60 @@ function PaymentContent () {
         if (fieldErrors[k]) setFieldErrors({ ...fieldErrors, [k]: undefined });
     };
 
-    const [card, setCard] = useState({
-        cpf: "",
-        number: "",
+    const [cardData, setCardData] = useState({
+    name: "",
+    email: "",
+    cpf: "",
+    number: "",
         cvv: ""
     })
 
-    const handleCPF = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = e.target.value.replace(/\D/g, "").slice(0, 11)
+    const [pixData, setPixData] = useState({
+        name: "",
+        email: "",
+        cpf: ""
+    })
 
-        value = value
-            .replace(/(\d{3})(\d)/, "$1.$2")
-            .replace(/(\d{3})(\d)/, "$1.$2")
-            .replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+    const handleCardCPF = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, "").slice(0, 11)
 
-        setCard({ ...card, cpf: value })
+    value = value
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+
+    setCardData({ ...cardData, cpf: value })
     }
+
+    const handlePixCPF = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, "").slice(0, 11)
+
+    value = value
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+
+    setPixData({ ...pixData, cpf: value })
+}
 
     const handleCardNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = e.target.value.replace(/\D/g, "").slice(0, 16)
-        value = value.replace(/(\d{4})(?=\d)/g, "$1 ")
-        setCard({ ...card, number: value })
-    }
+    let value = e.target.value.replace(/\D/g, "").slice(0, 16)
+    value = value.replace(/(\d{4})(?=\d)/g, "$1 ")
+
+    setCardData({
+        ...cardData,
+        number: value
+    })
+}
 
     const handleCVV = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = e.target.value.replace(/\D/g, "").slice(0, 4)
+    let value = e.target.value.replace(/\D/g, "").slice(0, 4)
 
-        if (value.length >= 3) {
-            value = value.replace(/(\d{2})(\d{1,2})/, "$1/$2")
-        }
-
-        setCard({ ...card, cvv: value })
-    }
+    setCardData({
+        ...cardData,
+        cvv: value
+    })
+}
 
     const handleExpiry = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value.replace(/\D/g, "").slice(0, 4)
@@ -204,38 +238,58 @@ function PaymentContent () {
                 </div>
 
                 <div className="payment-method-section">
+                    
 
                     <h3 className='payment-title-method'>Pagamento:</h3>
-
+                
                     <div className="payment-card">
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="tea"
-                                checked={paymentMethod === 'card'}
-                                onChange={() => setPaymentMethod('card')}
-                            />
-                            Cartão de crédito
-                        </label>
+                        <div className="payment-label">
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="tea"
+                                    checked={paymentMethod === 'card'}
+                                    onChange={() => setPaymentMethod('card')}
+                                />
+                                Cartão de crédito
+                            </label>
+
+                        </div>
 
                         <p>Nome:</p>
                         <div className="input-wrapper">
-                            <input name="name" value={form.name} onChange={handleChange}/>
+                            <input
+                                value={cardData.name}
+                                onChange={(e) =>
+                                    setCardData({
+                                        ...cardData,
+                                        name: e.target.value
+                                    })
+                                }
+                            />
                         </div>
 
                         <p>Email:</p>
                         <div className="input-wrapper">
-                            <input name="email" value={form.email} onChange={handleChange}/>
+                            <input
+                                value={cardData.email}
+                                onChange={(e) =>
+                                    setCardData({
+                                        ...cardData,
+                                        email: e.target.value
+                                    })
+                                }
+                            />
                         </div>
 
                         <p>CPF:</p>
                         <div className="input-wrapper">
                             <Input
                                 description="000.000.000-00"
-                                value={card.cpf}
-                                onChange={(e) => { handleCPF(e); clearField('cpf'); }}
-                                onBlur={() => setFieldErrors({ ...fieldErrors, cpf: validateCPF(card.cpf) || undefined })}
+                                value={cardData.cpf}
+                                onChange={(e) => { handleCardCPF(e); clearField('cpf'); }}
+                                onBlur={() => setFieldErrors({ ...fieldErrors, cpf: validateCPF(cardData.cpf) || undefined })}
                                 error={fieldErrors.cpf}
                             />
                         </div>
@@ -244,9 +298,9 @@ function PaymentContent () {
                         <div className="input-wrapper-card">
                             <Input
                                 description="0000 0000 0000 0000"
-                                value={card.number}
+                                value={cardData.number}
                                 onChange={(e) => { handleCardNumber(e); clearField('number'); }}
-                                onBlur={() => setFieldErrors({ ...fieldErrors, number: validateCardNumber(card.number) || undefined })}
+                                onBlur={() => setFieldErrors({ ...fieldErrors, number: validateCardNumber(cardData.number) || undefined })}
                                 error={fieldErrors.number}
                             />
                         </div>
@@ -272,9 +326,9 @@ function PaymentContent () {
                                 <div className="input-wrapper-cvv">
                                     <Input
                                         description="CVV"
-                                        value={card.cvv}
+                                        value={cardData.cvv}
                                         onChange={(e) => { handleCVV(e); clearField('cvv'); }}
-                                        onBlur={() => setFieldErrors({ ...fieldErrors, cvv: validateCVV(card.cvv) || undefined })}
+                                        onBlur={() => setFieldErrors({ ...fieldErrors, cvv: validateCVV(cardData.cvv) || undefined })}
                                         error={fieldErrors.cvv}
                                         maxLength={4}
                                     />
@@ -297,21 +351,38 @@ function PaymentContent () {
 
                         <p>Nome:</p>
                         <div className="input-wrapper">
-                            <input name="name" value={form.name} onChange={handleChange}/>
+                            <input
+                                value={pixData.name}
+                                onChange={(e) =>
+                                    setPixData({
+                                        ...pixData,
+                                        name: e.target.value
+                                    })
+                                }
+                            />
                         </div>
 
                         <p>Email:</p>
                         <div className="input-wrapper">
-                           <input name="email" value={form.email} onChange={handleChange}/>
+                           <input
+                                value={pixData.email}
+                                onChange={(e) =>
+                                    setPixData({
+                                        ...pixData,
+                                        email: e.target.value
+                                    })
+                                }
+                            />
                         </div>
 
                         <p>CPF:</p>
                         <div className="input-wrapper">
-                            <Input description="000.000.000-00" value={card.cpf} onChange={handleCPF}/>
+                            <Input description="000.000.000-00" value={pixData.cpf} onChange={handlePixCPF}/>
                         </div>
                     </div>
 
                 </div>
+
 
                 <div className="order-summary">
 

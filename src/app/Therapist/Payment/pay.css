@@ -131,9 +131,12 @@
     padding-bottom: 60px;
 }
 
+.payment-label{
+    display: flex;
+}
+
 .payment-card label{
     display:flex;
-    gap:20px;
     margin-bottom: 50px;
     font-size: 25px;
     align-items: center;
@@ -148,6 +151,8 @@
     margin-right: 10px;
     margin-left: 25px;
     cursor: pointer;
+    box-shadow: none;
+    width: 50px;
 }
 
 .payment-card p{

@@ -137,7 +137,7 @@ export default function CorporativePlan() {
             
 
             <Link href={`${ROUTES.therapistPayment}?plan=corporative`}>
-                <button className='plan-cta-button'>
+                <button className='plan-cts-button'>
                     <h3>Assine Agora!</h3>
                 </button>
             </Link>

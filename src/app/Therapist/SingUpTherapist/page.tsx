@@ -115,11 +115,6 @@ export default function TherapistSignup () {
             <div className="signup-container">
                 <h2>Cadastro</h2>
                 <div className="signup-card">
-                    {error && (
-                        <div style={{ backgroundColor: '#fee', color: '#c00', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
-                            <p>{error}</p>
-                        </div>
-                    )}
 
                     <p>Nome:</p>
                     <Input
@@ -180,7 +175,7 @@ export default function TherapistSignup () {
                             className="select-box"
                             onClick={() => setOpen(!open)}
                             style={fieldErrors.modality ? { outline: '2px solid #c0392b' } : undefined}
-                        >
+                            >
                             {selected || "Selecione"}
                         </div>
 
@@ -213,7 +208,7 @@ export default function TherapistSignup () {
                         onChange={(e) => { setRegister(e.target.value); clearField('register'); }}
                         onBlur={() => setFieldErrors({ ...fieldErrors, register: required(register, 'Registro profissional') || undefined })}
                         error={fieldErrors.register}
-                    />
+                        />
 
                     <p>Email:</p>
                     <Input
@@ -224,7 +219,7 @@ export default function TherapistSignup () {
                         onChange={(e) => { setEmail(e.target.value); clearField('email'); }}
                         onBlur={() => setFieldErrors({ ...fieldErrors, email: validateEmail(email) || undefined })}
                         error={fieldErrors.email}
-                    />
+                        />
 
                     <p>Senha:</p>
                     <Input
@@ -235,8 +230,13 @@ export default function TherapistSignup () {
                         onChange={(e) => { setPassword(e.target.value); clearField('password'); }}
                         onBlur={() => setFieldErrors({ ...fieldErrors, password: validatePassword(password) || undefined })}
                         error={fieldErrors.password}
-                    />
+                        />
 
+                        {error && (
+                            <div style={{ backgroundColor: '#CADAED', color: '#c00', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
+                                <p>{error}</p>
+                            </div>
+                        )}
                     <div className="signup-actions">
                         <ButtonEnter
                             label={isLoading ? 'Registrando...' : 'Enviar'}

@@ -119,6 +119,7 @@
     background-color: var(--Turquoise-medium-three) ;
     padding: 15px;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 .plan-card-premium button{
@@ -127,6 +128,7 @@
     background-color: var(--sand-medium) ;
     padding: 15px;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 /* Tabela */
