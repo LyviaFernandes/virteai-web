@@ -61,11 +61,6 @@ export default function Login () {
             <div className="login-container">
                 <h2>Login</h2>
                 <div className="login-card">
-                    {error && (
-                        <div style={{ backgroundColor: '#CADAED', color: '#c00', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
-                            <p>{error}</p>
-                        </div>
-                    )}
 
                     <p>Email:</p>
                     <Input
@@ -87,7 +82,7 @@ export default function Login () {
                         onChange={(e) => { setPassword(e.target.value); if (fieldErrors.password) setFieldErrors({ ...fieldErrors, password: undefined }); }}
                         onBlur={() => setFieldErrors({ ...fieldErrors, password: required(password, 'Senha') || undefined })}
                         error={fieldErrors.password}
-                    />
+                        />
 
                     <Link href={ROUTES.passwordReset}>
                         <button className='login-forgot-password'>
@@ -97,6 +92,11 @@ export default function Login () {
                         </button>
                     </Link>
 
+                        {error && (
+                            <div style={{ backgroundColor: '#CADAED', color: '#c00', padding: '10px', borderRadius: '4px', marginBottom: '15px' }}>
+                                <p>{error}</p>
+                            </div>
+                        )}
                     <div className="login-actions">
                         <ButtonEnter
                             label={isLoading ? 'Entrando...' : 'Entrar'}

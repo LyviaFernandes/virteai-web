@@ -156,25 +156,35 @@ body{
 
     /* hamburger */
     .hamburger{
+
+        background: none;
+        border: none;
+        padding: 0;
+
         display: flex;
         align-items: center;
         justify-content: center;
 
         width: 44px;
-        height: 40px;
-
-
+        height: 44px;
+        
+        z-index: 1001;
         margin-left: 60%;
         cursor: pointer;
         flex-shrink: 0;
     }
+    .menu{
+    width: 45px;
+    height: auto;
+    display: block;
+}
 
     .mobile-menu{
         position: fixed;
         top: 100px;
         left: 0;
         width: 100%;
-        z-index: 999;
+        z-index: 1001;
         display: flex;
         flex-direction: column;
         gap: 15px;

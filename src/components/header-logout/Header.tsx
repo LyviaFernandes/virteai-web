@@ -36,28 +36,28 @@ export default function HeaderLogout () {
                 
                 <Link href={ROUTES.home}>
                     <button className="iconecontainer">
-                        <Image className='image' src={home} alt="Pagina inicial" width={50}/>
+                        <Image className='image' src={home} alt="Pagina inicial" width={50} height={50}/>
                         <p>Página inicial</p>
                     </button>
                 </Link>
 
                 <Link href={ROUTES.aboutUs}>
                     <button className="iconecontainer">
-                        <Image className='image' src={aboutUs} alt="Sobre nós icon" width={50}/>
+                        <Image className='image' src={aboutUs} alt="Sobre nós icon" width={50} height={50}/>
                         <p>Sobre nós</p>
                     </button>
                 </Link>
 
                 <Link href={ROUTES.accountAccess}>
                     <button className="iconecontainer">
-                        <Image className='image' src={Offers} alt="Ofertas icon" width={50}/>
+                        <Image className='image' src={Offers} alt="Ofertas icon" width={50} height={50}/>
                         <p>Nossos serviços</p>
                     </button>
                 </Link>
                 
                 <Link href={ROUTES.accountAccess}>
                     <button className="iconecontainer">
-                        <Image className='image' src={Notification} alt="Notificações icon" width={50}/>
+                        <Image className='image' src={Notification} alt="Notificações icon" width={50} height={50}/>
                         <p>Notificações</p>
                     </button>
                 </Link>

@@ -395,6 +395,7 @@ body{
         align-items: center;
         justify-content: center;
         margin-left: auto;
+        z-index: 1001;
     }
     .menu {
     width: 45px;
@@ -420,7 +421,7 @@ body{
 
         gap: 10%;
 
-        z-index: 999;
+        z-index: 1001;
         
     }
 

@@ -62,7 +62,7 @@ body{
 }
 
 .logo-header{
-    width: 100px;
+    width: clamp(80px, 20vw, 110px);
 }
 
 .return-enter{

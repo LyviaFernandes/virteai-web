@@ -134,6 +134,7 @@
     align-items: center;
     justify-content: start;
     text-align: center;
+    flex-direction: column;
 }
 
 .login-register{
@@ -144,7 +145,8 @@
 
 .login-register p{
     white-space: nowrap;
-    margin-right: 10px;
+    margin-right: 0px;
+    margin-top: 3px;
 }
 .login-forgot-password{
     display: flex;
