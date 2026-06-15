@@ -7,6 +7,7 @@ button{
     color: var(--white-color);
     background-color: var(--dark-blue);
     cursor: pointer;
+    white-space: nowrap;
 }
 
 @media (max-width: 768px){

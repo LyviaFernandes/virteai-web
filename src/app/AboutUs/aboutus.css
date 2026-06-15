@@ -95,6 +95,47 @@
     width: 300px;
 }
 
+/* ===== TABLET ===== */
+@media (max-width: 1200px){
+    .about-us__intro p{
+    font-size: 25px;
+    width: 80%;
+}
+
+ .mission__image{
+    display: none;
+}   
+
+.mission__content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.mission__content p{
+    font-size: 25px;
+    width: 80%;
+    margin-left: 0px;
+}
+
+.about-us__team p{
+    font-size: 25px;
+    width: 80%;
+}
+
+.team__image{
+    display: flex;
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.team__member{
+    font-size: 15px;
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+}
 @media (max-width: 768px){
 
 .about-us__intro h1{
@@ -114,10 +155,16 @@
     display: none;
 }
 
+.mission__content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .mission__content p{
     font-size: 20px;
     width: 80%;
-    margin-left: 45px;
+    margin-left: 0px;
 }
 
 .about-us__team h2{
@@ -137,6 +184,37 @@
 
 .team__member{
     font-size: 15px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team__group{
+    gap: 50px;
+    justify-content: center;
+}
+
+.team__group:last-child{
+    gap: 100px;
+    margin-top: 10px;
+}
+
+.team{
+    gap: 50px;
+}
+}
+
+/* ===== MOBILE PEQUENO ===== */
+@media (max-width: 480px){
+    .team__image{
+    display: flex;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.team__member{
+    font-size: 15px;
     width: 80px;
     display: flex;
     flex-direction: column;
@@ -149,11 +227,34 @@
 }
 
 .team__group:last-child{
-    gap: 140px;
+    gap: 100px;
     margin-top: 10px;
 }
 
 .team{
     gap: 50px;
+}
+}
+
+/* ===== 320px ===== */
+@media (max-width: 320px){
+
+    .team__group{
+    gap: 25px;
+    justify-content: center;
+}
+
+.team{
+    gap: 15px;
+}
+
+.team__group:last-child{
+    gap: 50px;
+    margin-top: 10px;
+}
+
+.team__member{
+    font-size: 12px;
+    width: 60px;
 }
 }

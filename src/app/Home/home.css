@@ -65,6 +65,17 @@
     margin-bottom: 100px;
 }
 
+
+/* ===== TABLET ===== */
+@media (max-width: 1200px){
+    .home-testimonials p{
+    font-size: 30px;
+    width: 70%;
+    margin: 50px;
+    text-align: center;
+}
+}
+
 @media (max-width: 768px){
 
 .home-banner{

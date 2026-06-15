@@ -82,7 +82,7 @@
 
 /* ================= MOBILE ================= */
 
-@media (max-width: 768px){
+@media (max-width: 480px){
 
 
 .login-container{
@@ -153,4 +153,17 @@
     cursor: pointer;
 }
 
+}
+
+@media (max-width: 768px){
+    .login-card{
+        width: 70%;
+    }
+
+    .login-container h2{
+    font-size: 30px;
+    padding: 15px 60px;
+    border-radius: 50px;
+    z-index: 2;
+}
 }

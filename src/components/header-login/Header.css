@@ -12,6 +12,7 @@ body{
     overflow-x: hidden;
 }
 
+
 /* ================= HEADER ================= */
 
 header{
@@ -349,6 +350,41 @@ body{
     .logo{
         width: 140px;
     }
+
+    .container-profile .Profile{
+        width: 50px;
+        height: 50px;
+    }
+
+    .modal{
+        width: 85%;
+        padding: 50px;
+        padding-top: 80px;
+    }
+
+    .modal p{
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .modal button{
+        font-size: 25px;
+        padding: 10px 30px;
+        margin-top: 5px;
+    }
+
+    .modal label{
+    display:flex;
+
+    margin-bottom: 50px;
+
+    font-size: 20px;
+    text-align: justify;
+    align-items: center;
+
+    width: 100%;
+    cursor: pointer;
+}
 }
 
 /* ================= MOBILE ================= */
@@ -512,5 +548,172 @@ body{
         font-size: 24px;
 
         margin-bottom: 30px;
+    }
+}
+
+/* ================= MOBILE PEQUENO ================= */
+
+@media (max-width: 480px){
+
+    header{
+        height: 90px;
+        padding: 0 15px;
+    }
+
+    body{
+        padding-top: 90px;
+    }
+
+    .logo{
+        width: 85px;
+    }
+
+    .hamburger{
+        width: 40px;
+        height: 40px;
+    }
+
+    .menu{
+        width: 40px;
+        height: 40px;
+    }
+
+    .mobile-menu{
+        top: 90px;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .mobile-menu a,
+    .mobile-menu button,
+    .mobile-menu .logout-button{
+        font-size: 18px;
+    }
+
+    /* Modal */
+
+    .modal{
+        width: 95%;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .container-tittle h2{
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+
+    .modal p{
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .modal label{
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .modal-buttons{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-buttons button{
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    /* Notificações */
+
+    .notification-panel{
+        width: 100%;
+    }
+
+    .notification-panel h2{
+        font-size: 22px;
+    }
+
+    .notification-item{
+        padding: 15px;
+    }
+}
+
+/* ================= 320px ================= */
+
+@media (max-width: 320px){
+
+    header{
+        height: 80px;
+        padding: 0 10px;
+    }
+
+    body{
+        padding-top: 80px;
+    }
+
+    .logo{
+        width: 70px;
+    }
+
+    .hamburger{
+        width: 36px;
+        height: 36px;
+    }
+
+    .menu{
+        width: 30px;
+        height: 30px;
+    }
+
+    .mobile-menu{
+        top: 80px;
+        padding: 10px;
+    }
+
+    .mobile-menu a,
+    .mobile-menu button,
+    .mobile-menu .logout-button{
+        font-size: 16px;
+    }
+
+    /* Modal */
+
+    .container-tittle h2{
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    .modal{
+        width: 98%;
+        padding: 15px;
+    }
+
+    .modal p{
+        font-size: 13px;
+    }
+
+    .modal label{
+        font-size: 13px;
+    }
+
+    .modal input[type="radio"]{
+        transform: scale(1.2);
+    }
+
+    .modal-buttons button{
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    /* Notificações */
+
+    .notification-panel h2{
+        font-size: 20px;
+    }
+
+    .notification-item{
+        padding: 12px;
+        font-size: 14px;
     }
 }

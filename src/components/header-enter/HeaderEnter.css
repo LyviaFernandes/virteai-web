@@ -24,6 +24,7 @@
     transition: transform 0.3s ease;
 }
 
+
 .logo-header{
     width: clamp(110px, 12vw, 160px);
     height: auto;

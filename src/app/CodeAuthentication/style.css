@@ -166,3 +166,20 @@
     margin-bottom: 20px;
 }
 }
+
+/* Mobile pequeno */
+@media (max-width: 320px) {
+
+    .reset-password__message p{
+    font-size: 15px;
+}
+    .code-inputs{
+        gap: 5px;
+    }
+
+    .code-input{
+        font-size: 15px;
+        width: 40px;
+        height:40px;
+    }
+}

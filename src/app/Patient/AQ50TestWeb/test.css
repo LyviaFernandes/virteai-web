@@ -141,7 +141,35 @@
 .questionnaire-green {
     background-color: var(--green-ligth);
 }
+/* Tablet */
+@media (max-width: 1292px) {
+    .description h1{
+        font-size: 40px;
+    }
 
+    .description p{
+        font-size: 30px;
+        width: 90%;
+        text-align: justify;
+    }
+
+    .card-questions{
+        width: 90%;
+    }
+
+    .questions p{
+        width: 100%;
+        font-size: 30px;
+    }
+
+    .questions-section{
+        gap: 120px;
+    }
+
+    .label-container label{
+        font-size: 20px;
+    }
+}
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px){

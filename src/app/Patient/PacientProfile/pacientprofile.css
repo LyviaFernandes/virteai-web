@@ -89,6 +89,7 @@
     font-size: 40px;
     margin-left: 2%;
     margin-right: 13%;
+    white-space: nowrap;
 }
 
 .profile-card__actions{
@@ -112,7 +113,63 @@
 }
 
 
+/* Tablet */
+@media (max-width: 1024px) {
+.profile-avatar-container {
+  position: relative;
+  width: 300px !important;  
+  height: 300px !important;  
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; 
+}
 
+.profile-container{
+    display: flex;
+    width: 30%;
+    margin-top: 10%;
+    align-items: start;
+}
+
+.profile-info h2{
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.profile-status h3{
+    font-size: 30px;
+    padding: 20px 50px;
+    width: 100%;
+    border-radius: 100px;
+    margin: 0 auto;
+      white-space: nowrap;
+}
+
+/*  */
+
+.profile-card h3{
+    width: 75%;
+    font-size: 30px;
+    margin-left: 2%;
+    margin-right: 13%;
+}
+
+.profile-card{
+    height: 150px;
+}
+
+.profile-card__content  {
+    width: 90%;
+}
+
+.profile-progress{
+    width: 100%;
+    
+}
+}
 /*  */
 @media (max-width: 768px){
 

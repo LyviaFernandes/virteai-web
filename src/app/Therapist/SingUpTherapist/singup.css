@@ -92,6 +92,13 @@
   background: #f0f0f0;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .signup-card {
+    width: 80%;
+  }
+}
+
 @media (max-width: 768px){
 
 .signup-container{
@@ -115,7 +122,7 @@
     border-radius: 50px;
     z-index: 0;
     margin-top: -40px;
-    width: 95%;
+    width: 80%;
 }
 
 .signup-card p{
@@ -172,4 +179,17 @@
   background: #f0f0f0;
 }
 
+}
+
+/* ===== MOBILE PEQUENO ===== */
+@media (max-width: 480px){
+  .signup-actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signup-card{
+    width: 95%;
+  }
 }

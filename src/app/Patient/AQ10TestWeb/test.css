@@ -152,7 +152,35 @@
     width: 83%;
     text-align: center;
 }
+/* Tablet */
+@media (max-width: 1292px) {
+    .questionnaire-header h1{
+        font-size: 40px;
+    }
 
+    .questionnaire-header p{
+        font-size: 30px;
+        width: 90%;
+        text-align: justify;
+    }
+
+    .questionnaire-card{
+        width: 90%;
+    }
+
+    .questionnaire-item p{
+        width: 100%;
+        font-size: 30px;
+    }
+
+    .questionnaire-options{
+        gap: 120px;
+    }
+
+    .questionnaire-option label{
+        font-size: 20px;
+    }
+}
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px){

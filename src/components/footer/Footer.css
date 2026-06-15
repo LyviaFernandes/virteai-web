@@ -28,6 +28,7 @@ footer{
     font-size: 20px;
     margin-bottom: 16px;
     color: var(--dark-blue);
+    white-space: nowrap;
 }
 
 .emailFooter{
@@ -57,11 +58,13 @@ footer{
 .container-help p{
     margin-top: 8px;
     color: var(--dark-blue);
+    white-space: nowrap;
 }
 
 .container-Terms p{
     margin-top: 8px;
     color: var(--dark-blue);
+    white-space: nowrap;
 }
 
 .Logo{
@@ -83,13 +86,21 @@ footer{
     .container-Terms h3{
         font-size: 18px;
     }
+
+    .Logo{
+    width: 120px;
+    }
+
+    .image{
+        width: 20px;
+    }
 }
 
 @media (max-width: 768px){
 
 footer{
     display: flex;
-    height: 150px;
+    min-height: 150px;
     align-items: center;
     padding: 15px;
     justify-content: center;
@@ -134,4 +145,71 @@ footer{
 .container-Terms p{
     font-size: 10px;
 }
+}
+
+/* ===== MOBILE PEQUENO ===== */
+@media (max-width: 480px){
+
+    footer{
+        min-height: auto;
+        height: auto;
+        padding: 15px 10px;
+    }
+
+    .container-footer{
+        width: 100%;
+        gap: 15px;
+    }
+
+    .container-contact h3,
+    .container-help h3,
+    .container-Terms h3{
+        font-size: 13px;
+    }
+
+    .emailFooter{
+        gap: 5px;
+    }
+
+    .image{
+        width: 12px;
+    }
+
+    .emailFooter a,
+    .container-help p,
+    .container-Terms p{
+        font-size: 9px;
+    }
+}
+
+/* ===== 320px ===== */
+@media (max-width: 320px){
+
+    footer{
+        padding: 10px 5px;
+    }
+
+    .container-footer{
+        gap: 10px;
+    }
+
+    .container-contact h3,
+    .container-help h3,
+    .container-Terms h3{
+        font-size: 11px;
+    }
+
+    .image{
+        width: 10px;
+    }
+
+    .emailFooter a,
+    .container-help p,
+    .container-Terms p{
+        font-size: 8px;
+    }
+
+    .emailFooter{
+        gap: 3px;
+    }
 }

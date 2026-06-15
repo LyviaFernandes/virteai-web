@@ -205,6 +205,24 @@
     height:45px;
     border-radius: 30px;
 }
+/* Tablet */
+@media (max-width: 1024px) {
+    .profile-info h2{
+        font-size: 40px;
+    }
+    .profile-info p{
+        font-size: 30px;
+    }
+
+    .email-box h3{
+        font-size: 20px;
+        white-space: nowrap;
+    }
+
+    .section-title-responsible, .section-title-scenarios{
+        font-size: 25px;
+    }
+}
 /* ================= MOBILE ================= */
 @media (max-width: 768px){
 
