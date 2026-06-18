@@ -105,6 +105,17 @@ export default function TherapistSignup () {
 
         return value;
     };
+    const formatProfessionalRegister = (value: string) => {
+    value = value.replace(/\D/g, ''); // aceita apenas números
+
+    value = value.slice(0, 8); // limita a 8 números (2 + 6)
+
+    if (value.length > 2) {
+        value = value.replace(/(\d{2})(\d{1,6})/, '$1/$2');
+    }
+
+    return value;
+};
 
     return(
         <div className="signup-section">
@@ -202,12 +213,20 @@ export default function TherapistSignup () {
                     )}
 
                     <p>Registro Profissional:</p>
-                    <Input
-                        description='Insira seu número de registro profissional'
-                        value={register}
-                        onChange={(e) => { setRegister(e.target.value); clearField('register'); }}
-                        onBlur={() => setFieldErrors({ ...fieldErrors, register: required(register, 'Registro profissional') || undefined })}
-                        error={fieldErrors.register}
+                        <Input
+                            description='Insira seu número de registro profissional'
+                            value={register}
+                            onChange={(e) => {
+                                setRegister(formatProfessionalRegister(e.target.value));
+                                clearField('register');
+                            }}
+                            onBlur={() =>
+                                setFieldErrors({
+                                    ...fieldErrors,
+                                    register: required(register, 'Registro profissional') || undefined
+                                })
+                            }
+                            error={fieldErrors.register}
                         />
 
                     <p>Email:</p>
