@@ -78,6 +78,7 @@
     background-color: #22304A;
     padding: 20px 50px;
     border-radius: 50px;
+    cursor: pointer;
 }
 @media (max-width: 768px){
 
