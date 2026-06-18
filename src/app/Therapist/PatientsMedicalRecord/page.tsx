@@ -74,27 +74,60 @@ function PatientsMedicalRecordContent() {
     }
   };
 
+  const formatConsultationDate = (value: string) => {
+  value = value.replace(/\D/g, "");
+
+  value = value.slice(0, 8);
+
+  if (value.length > 4) {
+    value = value.replace(/(\d{2})(\d{2})(\d{1,4})/, "$1/$2/$3");
+  } else if (value.length > 2) {
+    value = value.replace(/(\d{2})(\d{1,2})/, "$1/$2");
+  }
+
+  return value;
+};
+
   useEffect(() => {
     loadAll();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [patientIdNum]);
 
   const handleCreateConsultation = async () => {
-    if (!patientIdNum) return;
-    try {
-      await createConsultation({
-        patientId: patientIdNum,
-        consultationDate: date ? new Date(date).toISOString() : new Date().toISOString(),
-        objective: goal,
-        score: Number(pontuation) || 0,
-      });
-      setDate(""); setGoal(""); setPontuation("");
-      setShowCodeInput(false);
-      await loadAll();
-    } catch (err) {
-      setError(handleApiError(err));
-    }
-  };
+  if (!patientIdNum) return;
+
+  try {
+    const consultationDate = date
+      ? (() => {
+          const [day, month, year] = date.split("/");
+
+          return new Date(
+            Number(year),
+            Number(month) - 1,
+            Number(day)
+          ).toISOString();
+        })()
+      : new Date().toISOString();
+
+    await createConsultation({
+      patientId: patientIdNum,
+      consultationDate,
+      objective: goal,
+      score: Number(pontuation) || 0,
+    });
+
+    setDate("");
+    setGoal("");
+    setPontuation("");
+    setShowCodeInput(false);
+
+    await loadAll();
+  } catch (err) {
+    setError(handleApiError(err));
+  }
+};
+
+  
 
   const handleAddObjective = async () => {
     if (!patientIdNum || !newObjective.trim()) return;
@@ -126,6 +159,7 @@ function PatientsMedicalRecordContent() {
       setError(handleApiError(err));
     }
   };
+
 
   return (
     <ProtectedRoute requiredRoles={["THERAPIST", "ADMIN"]}>
@@ -195,9 +229,9 @@ function PatientsMedicalRecordContent() {
               <div className="input-box">
                 <p>Data da consulta:</p>
                 <Input
-                  description="Insira a data da consulta realizada"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                    description="DD/MM/AAAA"
+                    value={date}
+                    onChange={(e) => setDate(formatConsultationDate(e.target.value))}
                 />
               </div>
 
