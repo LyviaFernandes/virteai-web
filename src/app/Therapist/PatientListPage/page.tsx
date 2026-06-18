@@ -76,6 +76,7 @@ export default function PatientListPage () {
                                 src={patient.profileImage || profile}
                                 alt={patient.name}
                                 width={80}
+                                height={80}
                                 unoptimized={!!patient.profileImage}
                             />
 

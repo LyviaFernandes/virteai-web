@@ -53,12 +53,13 @@
 
 .patient-card__image{
     width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .patient-card__action-icon{
-    width: 24px;
+    width: 80px;
 }
 
 @media (max-width: 768px){

@@ -12,6 +12,7 @@ header{
     gap: clamp(16px, 3vw, 40px);
     padding: 0 clamp(16px, 3vw, 40px);
     flex-wrap: nowrap;
+    white-space: nowrap;
 
     position: fixed;
     top: 0;
@@ -307,6 +308,9 @@ body{
 /* ===== Telas muito pequenas (320px) ===== */
 @media (max-width: 320px){
 
+    .iconecontainer{
+        display: none;
+    }
     header{
         height: 80px;
         padding: 0 10px;

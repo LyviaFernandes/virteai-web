@@ -54,26 +54,26 @@
     justify-content: center;
     
 }
-.profile-status.não-iniciado{
+.profile-status.not_started{
     background-color: var(--gray-medium);
     color: var(--gray-dark);
     border-radius: 100px;
 }
 
-.profile-status.em-acompanhamento{
+.profile-status.in_progress{
     background-color: var(--green-medium);
     color: var(--green-dark);
     border-radius: 100px;
 }
 
-.profile-status.pausado{
+.profile-status.paused{
     background-color: #E9E1C8;
     color: #5C513B;
     border-radius: 100px;
 }
 
 /* Finalizado */
-.profile-status.finalizado{
+.profile-status.finished{
     background-color: var(--primary-color);
     color: var(--blue-dark);
     border-radius: 100px;
